@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập Nối Từ</title>
+    <style>
+        /* Giữ nguyên CSS cũ */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2196F3;
+        }
+
+        .button-group {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .start {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .start:hover {
+            background-color: #45a049;
+        }
+
+        .data {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .data:hover {
+            background-color: #1e87db;
+        }
+
+        .reset {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .reset:hover {
+            background-color: #da190b;
+        }
+
+        /* Thêm style cho dropdown */
+        #lessonSelect {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 2px solid #2196F3;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        /* Các style khác giữ nguyên */
+        .question {
+            margin: 20px 0;
+        }
+
+        #studentName {
+            border: 2px solid #2196F3;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            font-size: 24px;
+            margin: 0 auto;
+            width: 280px;
+           display: none;
+        }
+
+        .word-pairs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .column {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .word {
+            border: 2px solid #2196f3;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 10px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            font-size: 22px;
+        }
+
+        .word.chinese {
+            font-family: '楷体', sans-serif;
+            font-size: 30px;
+        }
+
+        .word.meaning {
+            font-family: Arial, sans-serif;
+        }
+
+        .word:hover {
+            background-color: #f0f0f0;
+        }
+
+        .word.correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .word.wrong {
+            background-color: #f44336;
+            color: white;
+            animation: shake 0.5s;
+        }
+
+        .word.selected {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trò chơi nối từ</h1>
+        <div>
+            <select id="lessonSelect">
+                <option value="">Chọn bài học</option>
+            </select>
+        </div>
+        <div>
+            <label for="vocabCount">Số lượng từ vựng (tối đa 10):</label>
+            <input type="number" id="vocabCount" value="5" min="1" max="10" />
+        </div>
+        <div class="button-group">
+            <button id="startBtn" class="btn start">Bắt đầu</button>
+            <button id="shuffleBtn" class="btn data" style="display: none;">Xáo trộn</button>
+            <button id="resetBtn" class="btn reset" style="display: none;">Tiếp theo</button>
+        </div>
+        <div class="question">
+            <div class="box" id="studentName">Chọn học sinh</div>
+        </div>
+
+        <div class="word-pairs">
+            <div class="column" id="leftColumn"></div>
+            <div class="column" id="rightColumn"></div>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Danh sách học sinh
+        const originalStudents = [
+            'Nguyễn Đức Thành', 
+            'Nguyễn Khánh Phương', 
+            'Nguyễn Phương Nhi', 
+            'Nghiêm Diệu Linh', 
+            'Nguyễn Minh Hằng', 
+            'Nguyễn Đức Trung', 
+            'Hoàng Minh Thái', 
+            'Nguyễn Đức Bảo Phong', 
+            'Tạ Thị Ngọc Anh', 
+            'Vương Thanh Hà', 
+            'Hoàng Tuấn Thành', 
+            'Nguyễn Thị Trang', 
+            'Hoàng Thế Anh Quân', 
+            'Trịnh Công Minh', 
+            'Trịnh Anh Kiệt'
+        ];
+
+        // Dữ liệu từ vựng theo bài học
+        const lessonVocabulary = {
+            'Bài 1: Chào hỏi': [
+    { vocab: "你", meaning: "bạn" },
+    { vocab: "好", meaning: "tốt" },
+    { vocab: "你好", meaning: "xin chào" },
+    { vocab: "再见", meaning: "tạm biệt" },
+    { vocab: "谢谢", meaning: "cảm ơn" },
+],
+            'Bài 2: Bản thân': [
+    { vocab: "您", meaning: "ngài, ông" },
+    { vocab: "朋", meaning: "bạn" },
+    { vocab: "友", meaning: "bạn" },
+    { vocab: "朋友", meaning: "bạn" },
+    { vocab: "校", meaning: "trường" },
+    { vocab: "与", meaning: "với" },
+    { vocab: "和", meaning: "và" },
+    { vocab: "很", meaning: "rất" },
+    { vocab: "多", meaning: "nhiều" },
+    { vocab: "少", meaning: "ít" },
+    { vocab: "谢", meaning: "cảm ơn" },
+    { vocab: "吗", meaning: "không" },
+    { vocab: "这", meaning: "này, đây" },
+    { vocab: "那", meaning: "kia, đó" },
+    { vocab: "是", meaning: "là" },
+    { vocab: "不", meaning: "không" },
+    { vocab: "有", meaning: "có" },
+    { vocab: "大", meaning: "lớn" },
+    { vocab: "小", meaning: "nhỏ" },
+    { vocab: "多少", meaning: "bao nhiêu" },
+    { vocab: "给", meaning: "cho" },
+    { vocab: "汉语", meaning: "tiếng Hán" },
+    { vocab: "多大", meaning: "bao tuổi" },
+    { vocab: "公园", meaning: "công viên" },
+    { vocab: "明天", meaning: "ngày mai" },
+    { vocab: "农民", meaning: "nông dân" },
+    { vocab: "爸爸", meaning: "bố" },
+    { vocab: "妈妈", meaning: "mẹ" },
+    { vocab: "爷爷", meaning: "ông" },
+    { vocab: "奶奶", meaning: "bà" },
+    { vocab: "哥哥", meaning: "anh" },
+    { vocab: "姐姐", meaning: "chị" },
+    { vocab: "妹妹", meaning: "em gái" },
+    { vocab: "弟弟", meaning: "em trai" },
+    { vocab: "喝", meaning: "uống" },
+    { vocab: "吃", meaning: "ăn" },
+    { vocab: "饭", meaning: "cơm" },
+    { vocab: "了", meaning: "rồi" },
+],
+            'Bài 3: Gia đình': [
+    { vocab: "姓", meaning: "họ" },
+    { vocab: "他", meaning: "anh ấy, ông ấy" },
+    { vocab: "她", meaning: "cô ấy, bà ấy" },
+    { vocab: "他们", meaning: "họ (nam)" },
+    { vocab: "她们", meaning: "họ (nữ)" },
+    { vocab: "也", meaning: "cũng" },
+    { vocab: "都", meaning: "đều" },
+    { vocab: "呢", meaning: "trợ từ nghi vấn" },
+    { vocab: "家", meaning: "nhà" },
+    { vocab: "家庭", meaning: "gia đình" },
+    { vocab: "人", meaning: "người" },
+    { vocab: "岁", meaning: "tuổi" },
+    { vocab: "几", meaning: "mấy, bao nhiêu" },
+    { vocab: "个", meaning: "lượng từ cho người/vật" },
+    { vocab: "没", meaning: "không (phủ định)" },
+    { vocab: "没有", meaning: "không có" },
+    { vocab: "工作", meaning: "công việc" },
+    { vocab: "学生", meaning: "học sinh" },
+    { vocab: "农民", meaning: "nông dân" },
+    { vocab: "工人", meaning: "công nhân" },
+    { vocab: "医生", meaning: "bác sĩ" },
+    { vocab: "护士", meaning: "y tá" },
+    { vocab: "记者", meaning: "phóng viên" },
+    { vocab: "公安", meaning: "cảnh sát" },
+    { vocab: "部队", meaning: "quân đội" },
+    { vocab: "律师", meaning: "luật sư" },
+    { vocab: "警察", meaning: "cảnh sát" },
+    { vocab: "演员", meaning: "diễn viên" },
+    { vocab: "司机", meaning: "tài xế" },
+    { vocab: "厨师", meaning: "đầu bếp" },
+    { vocab: "消防员", meaning: "lính cứu hỏa" },
+    { vocab: "公务员", meaning: "công chức" },
+],
+            'Bài 4: Sở thích': [
+    { vocab: "爱好", meaning: "Sở thích" },
+    { vocab: "喜欢", meaning: "Thích" },
+    { vocab: "吃", meaning: "Ăn" },
+    { vocab: "喝", meaning: "Uống" },
+    { vocab: "看", meaning: "Xem" },
+    { vocab: "听", meaning: "Nghe" },
+    { vocab: "打", meaning: "Đánh" },
+    { vocab: "唱", meaning: "Hát" },
+    { vocab: "去", meaning: "Đi" },
+    { vocab: "玩", meaning: "Chơi" },
+    { vocab: "踢", meaning: "Đá" },
+    { vocab: "学习", meaning: "Học tập" },
+    { vocab: "运动", meaning: "Thể thao" },
+    { vocab: "旅游", meaning: "Du lịch" },
+    { vocab: "睡觉", meaning: "Ngủ" },
+    { vocab: "游戏", meaning: "Trò chơi" },
+    { vocab: "烹饪", meaning: "Nấu ăn" },
+    { vocab: "购物", meaning: "Mua sắm" },
+    { vocab: "摄影", meaning: "Chụp ảnh" },
+    { vocab: "书", meaning: "Sách" },
+    { vocab: "茶", meaning: "Trà" },
+    { vocab: "饭", meaning: "Cơm" },
+    { vocab: "面", meaning: "Mì" },
+    { vocab: "歌", meaning: "Bài hát" },
+    { vocab: "颜色", meaning: "Màu sắc" },
+    { vocab: "足球", meaning: "Bóng đá" },
+    { vocab: "牛奶", meaning: "Sữa bò" },
+    { vocab: "面包", meaning: "Bánh mì" },
+    { vocab: "包子", meaning: "Bánh bao" },
+    { vocab: "炒面", meaning: "Mì xào" },
+    { vocab: "炒饭", meaning: "Cơm rang" },
+    { vocab: "奶茶", meaning: "Trà sữa" },
+    { vocab: "音乐", meaning: "Âm nhạc" },
+    { vocab: "果汁", meaning: "Nước ép trái cây" },
+    { vocab: "咖啡", meaning: "Cà phê" },
+    { vocab: "零食", meaning: "Đồ ăn vặt" },
+    { vocab: "电影", meaning: "Phim" },
+    { vocab: "羽毛球", meaning: "Cầu lông" },
+],
+            'Bài 5: Quê hương':[
+    { vocab: "越南", meaning: "Việt Nam" },
+    { vocab: "中国", meaning: "Trung Quốc" },
+    { vocab: "日本", meaning: "Nhật Bản" },
+    { vocab: "韩国", meaning: "Hàn Quốc" },
+    { vocab: "法国", meaning: "Pháp" },
+    { vocab: "泰国", meaning: "Thái Lan" },
+    { vocab: "美国", meaning: "Hoa Kỳ" },
+    { vocab: "德国", meaning: "Đức" },
+    { vocab: "国籍", meaning: "Quốc tịch" },
+    { vocab: "国旗", meaning: "Quốc kỳ" },
+    { vocab: "北宁", meaning: "Bắc Ninh" },
+    { vocab: "北江", meaning: "Bắc Giang" },
+    { vocab: "河内", meaning: "Hà Nội" },
+    { vocab: "海防", meaning: "Hải Phòng" },
+    { vocab: "海阳", meaning: "Hải Dương" },
+    { vocab: "语", meaning: " Ngữ" },
+    { vocab: "言", meaning: "Ngôn" },
+    { vocab: "语言", meaning: "Ngôn ngữ" },
+    { vocab: "门", meaning: "Cửa" },
+    { vocab: "人", meaning: "Người" },
+    { vocab: "文", meaning: "Văn" },
+    { vocab: "字", meaning: "Chữ" },
+    { vocab: "文字", meaning: "Văn tự" },
+    { vocab: "汉字", meaning: "Chữ Hán" },
+    { vocab: "哪", meaning: "Nào" },
+    { vocab: "哪儿", meaning: "Ở đâu" },
+    { vocab: "哪里", meaning: "Ở đâu" },
+    { vocab: "来自", meaning: "Đến từ" },
+    { vocab: "家乡", meaning: "Quê hương" },
+    { vocab: "在", meaning: "Tại, ở" },
+    { vocab: "会", meaning: "Biết, có thể" },
+    { vocab: "做", meaning: "Làm" },
+    { vocab: "写", meaning: "Viết" },
+    { vocab: "读", meaning: "Đọc" },
+    { vocab: "说", meaning: "Nói" },
+    { vocab: "开", meaning: "Mở, bắt đầu" },
+    { vocab: "骑", meaning: "Cưỡi, đi (xe đạp)" },
+    { vocab: "表演", meaning: "Biểu diễn" },
+    { vocab: "武术", meaning: "Võ thuật" },
+    { vocab: "书法", meaning: "Thư pháp" },
+    { vocab: "游泳", meaning: "Bơi" },
+    { vocab: "魔术", meaning: "Ảo thuật" },
+    { vocab: "自行车", meaning: "Xe đạp" },
+    { vocab: "电瓶车", meaning: "Xe điện" },
+    { vocab: "汽车", meaning: "Ô tô" },
+],
+        'Bài 6: Sinh nhật':[
+    { vocab: "年", meaning: "năm" },
+    { vocab: "月", meaning: "tháng" },
+    { vocab: "日", meaning: "ngày" },
+    { vocab: "号", meaning: "số (ngày)" },
+    { vocab: "天", meaning: "trời, ngày" },
+    { vocab: "日子", meaning: "ngày, thời gian" },
+    { vocab: "阳历", meaning: "lịch dương" },
+    { vocab: "农历", meaning: "lịch âm" },
+    { vocab: "元旦", meaning: "Tết Dương lịch" },
+    { vocab: "节", meaning: "lễ, dịp lễ" },
+    { vocab: "节日", meaning: "ngày lễ" },
+    { vocab: "春节", meaning: "Tết Nguyên Đán" },
+    { vocab: "国际", meaning: "quốc tế" },
+    { vocab: "劳动", meaning: "lao động" },
+    { vocab: "儿童", meaning: "trẻ em" },
+    { vocab: "中秋", meaning: "Tết Trung Thu" },
+    { vocab: "国庆", meaning: "Ngày Quốc Khánh" },
+    { vocab: "教师", meaning: "giáo viên" },
+    { vocab: "今天", meaning: "hôm nay" },
+    { vocab: "昨天", meaning: "hôm qua" },
+    { vocab: "前天", meaning: "hôm kia" },
+    { vocab: "明天", meaning: "ngày mai" },
+    { vocab: "后天", meaning: "ngày kia" },
+    { vocab: "今年", meaning: "năm nay" },
+    { vocab: "去年", meaning: "năm ngoái" },
+    { vocab: "明年", meaning: "năm tới" },
+    { vocab: "凌晨", meaning: "lúc rạng sáng" },
+    { vocab: "清晨", meaning: "sáng sớm" },
+    { vocab: "早上", meaning: "buổi sáng" },
+    { vocab: "上午", meaning: "buổi sáng (trước 12h)" },
+    { vocab: "中午", meaning: "buổi trưa" },
+    { vocab: "下午", meaning: "buổi chiều" },
+    { vocab: "晚上", meaning: "buổi tối" },
+    { vocab: "星期", meaning: "tuần" },
+    { vocab: "周末", meaning: "cuối tuần" },
+    { vocab: "上", meaning: "trên, lên" },
+    { vocab: "下", meaning: "dưới, xuống" },
+    { vocab: "初", meaning: "đầu (tháng)" },
+    { vocab: "底", meaning: "cuối (tháng)" },
+    { vocab: "末", meaning: "cuối" },
+    { vocab: "生日", meaning: "sinh nhật" },
+    { vocab: "出生", meaning: "sinh ra" },
+    { vocab: "在", meaning: "ở, tại, vào" },
+    { vocab: "去", meaning: "đi, đến" },
+    { vocab: "馆", meaning: "tiệm, quán" },
+    { vocab: "图书馆", meaning: "thư viện" },
+    { vocab: "咖啡馆", meaning: "quán cà phê" },
+    { vocab: "商店", meaning: "cửa hàng" },
+    { vocab: "餐厅", meaning: "nhà hàng" },
+    { vocab: "电影院", meaning: "rạp chiếu phim" },
+    { vocab: "买", meaning: "mua" },
+    { vocab: "借", meaning: "mượn" },
+    { vocab: "散步", meaning: "đi dạo" },
+    { vocab: "跑步", meaning: "chạy bộ" },
+],
+        'Bài 7: Thường ngày': [
+    { vocab: "现在", meaning: "bây giờ" },
+    { vocab: "钟", meaning: "đồng hồ, chuông" },
+    { vocab: "表", meaning: "đồng hồ đeo tay" },
+    { vocab: "手", meaning: "tay" },
+    { vocab: "点", meaning: "giờ" },
+    { vocab: "时", meaning: "thời gian, giờ, khi" },
+    { vocab: "分", meaning: "phút" },
+    { vocab: "秒", meaning: "giây" },
+    { vocab: "刻", meaning: "khắc, 15 phút" },
+    { vocab: "半", meaning: "nửa" },
+    { vocab: "差", meaning: "kém, thiếu" },
+    { vocab: "针", meaning: "kim đồng hồ" },
+    { vocab: "每", meaning: "mỗi" },
+    { vocab: "时候", meaning: "thời gian, lúc, khi" },
+    { vocab: "前", meaning: "trước" },
+    { vocab: "后", meaning: "sau" },
+    { vocab: "以前", meaning: "trước đây, trước khi" },
+    { vocab: "以后", meaning: "sau này, sau khi" },
+    { vocab: "早饭", meaning: "cơm sáng" },
+    { vocab: "午饭", meaning: "cơm trưa" },
+    { vocab: "晚饭", meaning: "cơm tối" },
+    { vocab: "睡觉", meaning: "ngủ" },
+    { vocab: "起床", meaning: "thức dậy" },
+    { vocab: "刷牙", meaning: "đánh răng" },
+    { vocab: "洗澡", meaning: "tắm" },
+    { vocab: "常", meaning: "thường" },
+    { vocab: "常常", meaning: "thường thường" },
+    { vocab: "平时", meaning: "bình thường" },
+    { vocab: "左右", meaning: "khoảng, xấp xỉ" },
+    { vocab: "快", meaning: "nhanh" },
+    { vocab: "慢", meaning: "chậm" },
+    { vocab: "早", meaning: "sớm" },
+    { vocab: "迟到", meaning: "đến muộn" },
+    { vocab: "一点", meaning: "một chút" },
+    { vocab: "坐", meaning: "ngồi" },
+    { vocab: "座", meaning: "tòa, chỗ ngồi" },
+    { vocab: "挂", meaning: "treo" },
+    { vocab: "闹", meaning: "làm ồn" },
+    { vocab: "闹钟", meaning: "đồng hồ báo thức" },
+    { vocab: "准时", meaning: "đúng giờ" },
+    { vocab: "出发", meaning: "xuất phát" },
+    { vocab: "医院", meaning: "bệnh viện" },
+    { vocab: "看", meaning: "xem, nhìn, khám" },
+    { vocab: "课", meaning: "bài học" },
+    { vocab: "节", meaning: "tiết học" },
+    { vocab: "上课", meaning: "lên lớp" },
+    { vocab: "下课", meaning: "tan học" },
+    { vocab: "教室", meaning: "phòng học" },
+    { vocab: "开", meaning: "mở" },
+    { vocab: "关", meaning: "đóng" },
+    { vocab: "门", meaning: "cửa" },
+    { vocab: "回", meaning: "quay về" },
+    { vocab: "等", meaning: "đợi" },
+    { vocab: "从", meaning: "từ" },
+    { vocab: "到", meaning: "đến" },
+],
+        };
+
+        let students = [...originalStudents];
+        let vocabPairs = [];
+        let selectedWord1 = null;
+        let selectedWord2 = null;
+        let correctPairs = {};
+        let matchedPairs = 0;
+
+        // Khởi tạo dropdown bài học
+        function initializeLessonSelect() {
+            const select = document.getElementById('lessonSelect');
+            Object.keys(lessonVocabulary).forEach(lesson => {
+                const option = document.createElement('option');
+                option.value = lesson;
+                option.textContent = lesson;
+                select.appendChild(option);
+            });
+        }
+
+        // Sự kiện khi chọn bài học
+        document.getElementById('lessonSelect').addEventListener('change', function() {
+            const selectedLesson = this.value;
+            if (selectedLesson) {
+                vocabPairs = [...lessonVocabulary[selectedLesson]];
+                document.getElementById('startBtn').disabled = false;
+            } else {
+                document.getElementById('startBtn').disabled = true;
+            }
+        });
+
+        document.getElementById('startBtn').addEventListener('click', startGame);
+        document.getElementById('resetBtn').addEventListener('click', resetGame);
+        document.getElementById('shuffleBtn').addEventListener('click', shuffleMeanings);
+
+        function startGame() {
+            if (!document.getElementById('lessonSelect').value) {
+                alert('Vui lòng chọn bài học trước khi bắt đầu!');
+                return;
+            }
+
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+            document.getElementById('shuffleBtn').style.display = 'inline-block';
+
+            let vocabCount = parseInt(document.getElementById('vocabCount').value);
+            if (vocabCount < 1 || vocabCount > 10) {
+                alert("Vui lòng nhập số lượng từ vựng từ 1 đến 10.");
+                return;
+            }
+
+            selectRandomStudent();
+            showVocabPairs(vocabCount);
+        }
+
+        function selectRandomStudent() {
+            let studentNameBox = document.getElementById('studentName');
+            let interval = setInterval(() => {
+                studentNameBox.innerText = students[Math.floor(Math.random() * students.length)];
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                if (students.length === 0) {
+                    students = [...originalStudents];
+                }
+                let randomIndex = Math.floor(Math.random() * students.length);
+                let selectedStudent = students.splice(randomIndex, 1)[0];
+                studentNameBox.innerText = selectedStudent;
+            }, 2000);
+        }
+
+        function showVocabPairs(count) {
+            let leftColumn = document.getElementById('leftColumn');
+            let rightColumn = document.getElementById('rightColumn');
+            leftColumn.innerHTML = '';
+            rightColumn.innerHTML = '';
+            correctPairs = {};
+            selectedWord1 = null;
+            selectedWord2 = null;
+            matchedPairs = 0;
+
+            let randomPairs = vocabPairs.sort(() => 0.5 - Math.random()).slice(0, count);
+            let shuffledMeanings = randomPairs.map(pair => pair.meaning).sort(() => 0.5 - Math.random());
+
+            randomPairs.forEach((pair, index) => {
+                let leftWord = createWordElement(pair.vocab, 'left' + index, true);
+                let rightWord = createWordElement(shuffledMeanings[index], 'right' + index, false);
+
+                correctPairs[pair.vocab] = pair.meaning;
+
+                leftColumn.appendChild(leftWord);
+                rightColumn.appendChild(rightWord);
+            });
+
+            document.querySelector('.word-pairs').style.display = 'flex';
+            document.getElementById('result').innerText = '';
+        }
+
+        function createWordElement(text, id, isLeft) {
+            let wordElement = document.createElement('div');
+            wordElement.classList.add('word');
+            wordElement.id = id;
+            wordElement.innerText = text;
+            wordElement.addEventListener('click', selectWord);
+            wordElement.setAttribute('aria-label', isLeft ? 'Từ vựng: ' + text : 'Nghĩa: ' + text);
+
+            if (isLeft) {
+                wordElement.classList.add('chinese');
+            } else {
+                wordElement.classList.add('meaning');
+            }
+
+            return wordElement;
+        }
+
+        function selectWord() {
+            if (this.classList.contains('correct')) return;
+
+            if (!selectedWord1) {
+                selectedWord1 = this;
+                this.classList.add('selected');
+            } else if (!selectedWord2 && this !== selectedWord1) {
+                selectedWord2 = this;
+                this.classList.add('selected');
+
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            if (correctPairs[selectedWord1.innerText] === selectedWord2.innerText ||
+                correctPairs[selectedWord2.innerText] === selectedWord1.innerText) {
+                
+                selectedWord1.classList.add('correct');
+                selectedWord2.classList.add('correct');
+                matchedPairs++;
+
+                selectedWord1.remove();
+                selectedWord2.remove();
+
+                updateWordColumns();
+
+                if (matchedPairs === Object.keys(correctPairs).length) {
+                    showResult("Chúc mừng! Bạn đã hoàn thành bài tập.");
+                }
+            } else {
+                document.body.style.backgroundColor = "red";
+                setTimeout(() => {
+                    document.body.style.backgroundColor = "#f0f0f0";
+                }, 300);
+
+                selectedWord1.classList.add('wrong');
+                selectedWord2.classList.add('wrong');
+
+                setTimeout(() => {
+                    selectedWord1.classList.remove('wrong', 'selected');
+                    selectedWord2.classList.remove('wrong', 'selected');
+                }, 500);
+            }
+
+            setTimeout(() => {
+                selectedWord1.classList.remove('selected');
+                selectedWord2.classList.remove('selected');
+                selectedWord1 = null;
+                selectedWord2 = null;
+            }, 500);
+        }
+
+        function updateWordColumns() {
+            const leftColumn = document.getElementById('leftColumn');
+            const rightColumn = document.getElementById('rightColumn');
+
+            Array.from(leftColumn.children).forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    leftColumn.appendChild(node);
+                }
+            });
+
+            Array.from(rightColumn.children).forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    rightColumn.appendChild(node);
+                }
+            });
+        }
+
+        function shuffleMeanings() {
+            let rightColumn = document.getElementById('rightColumn');
+            let meanings = Array.from(rightColumn.children);
+            rightColumn.innerHTML = '';
+
+            meanings.sort(() => Math.random() - 0.5);
+
+            meanings.forEach(meaning => {
+                rightColumn.appendChild(meaning);
+            });
+        }
+
+        function resetGame() {
+            selectRandomStudent();
+            showVocabPairs(parseInt(document.getElementById('vocabCount').value));
+            document.getElementById('result').innerText = '';
+        }
+
+        function showResult(message) {
+            document.getElementById('result').innerText = message;
+        }
+
+        // Khởi tạo khi tải trang
+        window.onload = function() {
+            initializeLessonSelect();
+            document.getElementById('startBtn').disabled = true;
+        };
+    </script>
+</body>
+</html>
