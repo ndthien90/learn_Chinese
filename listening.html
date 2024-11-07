@@ -28,7 +28,7 @@
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             position: relative;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
@@ -70,7 +70,7 @@
 	}	
 
         .btn {
-            padding: 0.8rem 2rem;
+            padding: 6px;
             border: none;
             border-radius: 10px;
             font-size: 1.2rem;
@@ -84,9 +84,9 @@
             transform: translateY(-2px);
         }
 
-        .btn-start { background: #00c853; color: white; font-size: 1.3rem; }
-        .btn-data { display:none; background: #0091ea; color: white; font-size: 1.3rem; }
-        .btn-next { background: #9c27b0; color: white; font-size: 1.3rem; }
+        .btn-start { background: #00c853; color: white; font-size: 1.rem; }
+        .btn-data { background: #0091ea; color: white; font-size: 1.rem; }
+        .btn-next { background: #9c27b0; color: white; font-size: 1.rem; }
 
         #pinyinToggle {
             width: 135px;
@@ -112,11 +112,11 @@
         .student-info { display:none; text-align: center; padding: 1rem; border: 2px solid #0091ea; border-radius: 10px; margin-bottom: 1rem; background: white; }
         .student-name { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .student-stats { display: flex; justify-content: center; gap: 2rem; font-size: 1.1rem; }
-        .timer { text-align: center; font-size: 2rem; color: #ff0000; border: 2px solid #ff0000; width: fit-content; padding: 0.5rem 2rem; margin: 1rem auto; border-radius: 8px; cursor: pointer; }
+        .timer { text-align: center; font-size: 1rem; color: #ff0000; border: 2px solid #ff0000; width: fit-content; padding: 0.5rem 2rem; margin: 1rem auto; border-radius: 8px; cursor: pointer; }
         .question-container { text-align: center; margin: 2rem 0; }
         .question { font-size: 1.8rem; margin-bottom: 1rem; }
         .pinyin { font-size: 1.8rem; color: #666; margin-bottom: 1rem; }
-        .answers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .answers { width: 60%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 0 auto; }
         .answer { padding: 1rem; border: 2px solid #0091ea; border-radius: 8px; cursor: pointer; font-size: 1.8rem; transition: all 0.3s; background: white; text-align: center; display: flex; flex-direction: column; gap: 0.5rem; }
         .answer-pinyin { font-size: 1.5rem; color: #666; }
         .answer:hover { border-color: #9c27b0; background: #f3e5f5; }
@@ -267,7 +267,7 @@ body.dark-mode #playAudioBtn {
 </head>
 <body>
     <div class="container">
-        <h1>Luyện nghe</h1>
+        <h1>Học Tiếng Trung</h1>
         <div class="buttons">
             <button class="btn btn-start" onclick="startQuiz()">Bắt đầu</button>
             <button class="btn btn-data" onclick="openFileInput()">Dữ liệu</button>
@@ -631,7 +631,7 @@ function showQuestion() {
             document.getElementById('score').textContent = score+"%";
 
             answerElements.forEach(element => {
-                //element.style.pointerEvents = 'none';
+                element.style.pointerEvents = 'none';
             });
         }
 
