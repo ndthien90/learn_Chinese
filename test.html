@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Chinese Learning</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --error-color: #e74c3c;
+            --bg-color: #ffffff;
+            --text-color: #2c3e50;
+            --card-bg: #f5f5f5;
+            --border-color: #dcdde1;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            display: none;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+        }
+
+        .main-content {
+            //display: grid;
+            //grid-template-columns: 3fr 1fr;
+            gap: 10px;
+        }
+
+        .game-area {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--border-color);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .timer {
+            font-size: 24px;
+            text-align: center;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .timer.warning {
+            background-color: var(--warning-color);
+            animation: pulse 1s infinite;
+        }
+
+        .question {
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .question-text {
+            font-size: 35px;
+            margin-bottom: 15px;
+            font-family: 'kaiti', sans-serif;
+        }
+
+        .pinyin {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .blank {
+            display: inline-block;
+            min-width: 80px;
+            height: 40px;
+            border: 2px dashed var(--primary-color);
+            border-radius: 5px;
+            margin: 0 5px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 36px;
+            cursor: pointer;
+            //background-color: var(--bg-color); /* Màu nền mặc định */
+        }
+
+        .blank.active {
+            border-color: var(--success-color);
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+
+        .blank.correct {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        .blank.incorrect {
+            background-color: var(--error-color);
+            border-color: var(--error-color);
+            color: white;
+            animation: shake 0.5s;
+        }
+        .answers-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .answer {
+            padding: 5px 10px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+            text-align: center;
+            font-size: 30px;
+            font-family: 'kaiti', sans-serif;
+        }
+
+        .answer:hover {
+            transform: scale(1.01);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .answer.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .stats {
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .grammar-tip {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chọn đáp án đúng</h1>
+            <div class="nav-buttons">
+                <button class="btn btn-primary" id="startBtn">
+                    <i class="fas fa-play"></i> Bắt đầu
+                </button>
+                <button class="btn btn-success" id="uploadBtn">
+                    <i class="fas fa-upload"></i> Tải dữ liệu
+                </button>
+                <button class="btn btn-warning" id="darkModeBtn">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="game-area">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+                
+                <div class="timer" id="timer">03:00</div>
+                
+                <div id="questions"></div>
+                
+                <div class="answers-container" id="answers"></div>
+                
+                <div class="grammar-tip">
+                    <h3>Mẹo ngữ pháp</h3>
+                    <p id="grammarTip"></p>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h2>Statistics</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span>Câu đúng:</span>
+                        <span id="correctCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Chính xác:</span>
+                        <span id="accuracy">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Thời gia ngắn nhất:</span>
+                        <span id="bestTime">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <h2>Tải dữ liệu</h2>
+            <input type="file" id="fileInput" accept=".json">
+            <button class="btn btn-primary" id="confirmUpload">Tải lên</button>
+        </div>
+    </div>
+
+    <script>
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Game state
+let gameState = {
+    timeLeft: 120,
+    timer: null,
+    isPlaying: false,
+    correctAnswers: 0,
+    totalAttempts: 0,
+    questions: [],
+    currentQuestionIndex: 0,
+    bestTime: localStorage.getItem('bestTime') || null,
+    selectedBlank: null,
+    // Thêm mảng lưu đáp án đã xáo trộn
+    shuffledOptions: []
+};
+
+        // Sample questions
+        const defaultQuestions = [
+    {
+        "text": "我下午去学校/踢/足球。",
+        "pinyin": "wǒ xià wǔ qù xué xiào ____ zú qiú",
+        "blanks": ["踢"],
+        "options": ["踢", "打", "玩", "看"],
+        "grammarTip": "Động từ chỉ hành động thường đi sau chủ ngữ và trạng từ chỉ thời gian."
+    },
+    {
+        "text": "她今天去/商店/买衣服。",
+        "pinyin": "tā jīn tiān qù ____ mǎi yī fu",
+        "blanks": ["商店"],
+        "options": ["商店", "图书馆", "学校", "咖啡馆"],
+        "grammarTip": "Thời gian thường đứng trước động từ trong câu tiếng Trung."
+    },
+    {
+        "text": "我们昨天晚上去/公园/跑步。",
+        "pinyin": "wǒ men zuó tiān wǎn shàng qù ____ pǎo bù",
+        "blanks": ["公园"],
+        "options": ["公园", "商店", "学校", "超市"],
+        "grammarTip": "Cấu trúc '去 + địa điểm + động từ' chỉ hành động đi đâu đó."
+    },
+    {
+        "text": "他们上午去图书馆/借/书。",
+        "pinyin": "tā men shàng wǔ qù tú shū guǎn ____ shū",
+        "blanks": ["借"],
+        "options": ["借", "还", "买", "读"],
+        "grammarTip": "Động từ chỉ hành động đi sau chủ ngữ và trạng từ chỉ thời gian."
+    },
+    {
+        "text": "我去/咖啡馆/喝咖啡。",
+        "pinyin": "wǒ qù ____ hē kā fēi",
+        "blanks": ["咖啡馆"],
+        "options": ["咖啡馆", "商店", "图书馆", "饭店"],
+        "grammarTip": "Cấu trúc '去 + địa điểm + động từ' chỉ hành động đi đâu đó."
+    },
+    {
+        "text": "我/后天/去朋友家玩。",
+        "pinyin": "wǒ ____ qù péng yǒu jiā wán",
+        "blanks": ["后天"],
+        "options": ["后天", "今天", "明天", "昨天"],
+        "grammarTip": "Các từ chỉ thời gian thường đứng trước động từ trong câu."
+    },
+    {
+        "text": "他去/电影院/看电影。",
+        "pinyin": "tā qù ____ kàn diàn yǐng",
+        "blanks": ["电影院"],
+        "options": ["电影院", "商店", "超市", "图书馆"],
+        "grammarTip": "Cấu trúc '去 + địa điểm + động từ' chỉ hành động đi đâu đó."
+    },
+    {
+        "text": "我们去/餐厅/吃饭。",
+        "pinyin": "wǒ men qù ____ chī fàn",
+        "blanks": ["餐厅"],
+        "options": ["餐厅", "咖啡馆", "商店", "学校"],
+        "grammarTip": "Cấu trúc '去 + địa điểm + động từ' chỉ hành động đi đâu đó."
+    },
+    {
+        "text": "我今天在家/学习/英语和汉语。",
+        "pinyin": "wǒ jīn tiān zài jiā ____ yīng yǔ hé hàn yǔ",
+        "blanks": ["学习"],
+        "options": ["学习", "读", "写", "听"],
+        "grammarTip": "Cấu trúc '在 + địa điểm + động từ' chỉ hành động đang diễn ra ở đâu."
+    },
+    {
+        "text": "今天是/二月十四号/，我和女朋友去电影院看电影。",
+        "pinyin": "jīn tiān shì ____ , wǒ hé nǚ péng yǒu qù diàn yǐng yuàn kàn diàn yǐng",
+        "blanks": ["二月十四号"],
+        "options": ["一月一号", "二月十四号", "三月三号", "四月四号"],
+        "grammarTip": "Ngày tháng thường đứng trước động từ trong câu."
+    },
+    {
+        "text": "我和他们/都/在越南学习汉语。",
+        "pinyin": "wǒ hé tā men ____ zài yuè nán xué xí hàn yǔ",
+        "blanks": ["都"],
+        "options": ["都", "也", "还", "只是"],
+        "grammarTip": "Từ '都' thường dùng để nhấn mạnh tính chung của một nhóm."
+    },
+    {
+        "text": "她/喜欢/去图书馆看书。",
+        "pinyin": "tā ____ qù tú shū guǎn kàn shū",
+        "blanks": ["喜欢"],
+        "options": ["喜欢", "希望", "觉得", "知道"],
+        "grammarTip": "Cấu trúc '喜欢 + động từ' chỉ sở thích."
+    }
+];
+
+        // Initialize game
+        function initGame() {
+            gameState.questions = defaultQuestions;
+            createQuestionElements();
+            createAnswerElements();
+            updateStats();
+            updateProgress();
+        }
+
+        // Create question elements
+        function createQuestionElements() {
+            const questionsContainer = document.getElementById('questions');
+            questionsContainer.innerHTML = '';
+
+            const currentQuestion = gameState.questions[gameState.currentQuestionIndex];
+            
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+
+            const pinyinDiv = document.createElement('div');
+            pinyinDiv.className = 'pinyin';
+            pinyinDiv.textContent = currentQuestion.pinyin;
+            questionDiv.appendChild(pinyinDiv);
+
+            const textDiv = document.createElement('div');
+            textDiv.className = 'question-text';
+            
+            const parts = currentQuestion.text.split('/');
+            let blankIndex = 0;
+
+            parts.forEach((part, i) => {
+                if (i % 2 === 0) {
+                    // Text part
+                    const span = document.createElement('span');
+                    span.textContent = part;
+                    textDiv.appendChild(span);
+                } else {
+                    // Blank part
+                    const blank = document.createElement('div');
+                    blank.className = 'blank';
+                    blank.dataset.index = blankIndex;
+                    blank.dataset.correct = currentQuestion.blanks[blankIndex];
+                    blank.addEventListener('click', handleBlankClick);
+                    textDiv.appendChild(blank);
+                    blankIndex++;
+                }
+            });
+
+            questionDiv.appendChild(textDiv);
+            questionsContainer.appendChild(questionDiv);
+
+            updateGrammarTip();
+        }
+
+
+        // Create answer elements
+function createAnswerElements() {
+    const answersContainer = document.getElementById('answers');
+    answersContainer.innerHTML = '';
+
+    const currentQuestion = gameState.questions[gameState.currentQuestionIndex];
+    
+    // Nếu chưa có đáp án xáo trộn cho câu hỏi hiện tại, tạo mới
+    if (!gameState.shuffledOptions[gameState.currentQuestionIndex]) {
+        gameState.shuffledOptions[gameState.currentQuestionIndex] = 
+            [...currentQuestion.options];
+        shuffleArray(gameState.shuffledOptions[gameState.currentQuestionIndex]);
+    }
+
+    gameState.shuffledOptions[gameState.currentQuestionIndex].forEach(option => {
+        const answerDiv = document.createElement('div');
+        answerDiv.className = 'answer';
+        answerDiv.textContent = option;
+        answerDiv.addEventListener('click', () => handleAnswerClick(option));
+        answersContainer.appendChild(answerDiv);
+    });
+}
+        // Update grammar tip
+        function updateGrammarTip() {
+            document.getElementById('grammarTip').textContent = 
+                gameState.questions[gameState.currentQuestionIndex].grammarTip;
+        }
+
+        // Drag and drop handlers
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.textContent);
+            e.target.style.opacity = '0.5';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            this.classList.add('hover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            this.classList.remove('hover');
+
+            const answer = e.dataTransfer.getData('text/plain');
+            if (answer === this.dataset.correct) {
+                this.textContent = answer;
+                this.classList.add('correct');
+                gameState.correctAnswers++;
+                gameState.totalAttempts++;
+                updateStats();
+                
+                // Check if all blanks are filled correctly
+                const allBlanks = document.querySelectorAll('.blank');
+                const allCorrect = Array.from(allBlanks).every(blank => 
+                    blank.classList.contains('correct'));
+                
+                if (allCorrect) {
+                    if (gameState.currentQuestionIndex < gameState.questions.length - 1) {
+                        gameState.currentQuestionIndex++;
+                        setTimeout(createQuestionElements, 500);
+                        setTimeout(createAnswerElements, 500);
+                    } else {
+                        endGame();
+                    }
+                }
+            } else {
+                gameState.totalAttempts++;
+                updateStats();
+                this.classList.add('error');
+                setTimeout(() => {
+                    this.classList.remove('error');
+                    this.textContent = '';
+                }, 500);
+            }
+        }
+
+        // Timer functions
+        function startTimer() {
+            if (gameState.timer) clearInterval(gameState.timer);
+            
+            gameState.timer = setInterval(() => {
+                gameState.timeLeft--;
+                updateTimer();
+
+                if (gameState.timeLeft <= 30) {
+                    document.getElementById('timer').classList.add('warning');
+                }
+
+                if (gameState.timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(gameState.timeLeft / 60);
+            const seconds = gameState.timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Statistics functions
+        function updateStats() {
+            document.getElementById('correctCount').textContent = gameState.correctAnswers;
+            const accuracy = gameState.totalAttempts === 0 ? 0 : 
+                Math.round((gameState.correctAnswers / gameState.totalAttempts) * 100);
+            document.getElementById('accuracy').textContent = `${accuracy}%`;
+            
+            if (gameState.bestTime) {
+                document.getElementById('bestTime').textContent = gameState.bestTime;
+            }
+        }
+
+        function updateProgress() {
+            const progress = (gameState.currentQuestionIndex / gameState.questions.length) * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+        }
+
+        // Game control functions
+function startGame() {
+    gameState.isPlaying = true;
+    gameState.timeLeft = 180;
+    gameState.correctAnswers = 0;
+    gameState.totalAttempts = 0;
+    gameState.currentQuestionIndex = 0;
+    // Reset mảng đáp án đã xáo trộn
+    gameState.shuffledOptions = [];
+    
+    document.getElementById('startBtn').innerHTML = '<i class="fas fa-pause"></i>Dừng';
+    startTimer();
+    createQuestionElements();
+    createAnswerElements();
+    updateStats();
+    updateProgress();
+}
+
+        function pauseGame() {
+            gameState.isPlaying = false;
+            clearInterval(gameState.timer);
+            document.getElementById('startBtn').innerHTML = '<i class="fas fa-play"></i> Tiếp tục';
+        }
+
+function endGame() {
+    clearInterval(gameState.timer);
+    gameState.isPlaying = false;
+    
+    // Tính thời gian đã sử dụng (thay 120 thành 180)
+    const currentTime = 180 - gameState.timeLeft;
+    
+    // Chuyển đổi bestTime từ "MM:SS" sang số giây để so sánh
+    let bestTimeInSeconds = Infinity;
+    if (gameState.bestTime) {
+        const [minutes, seconds] = gameState.bestTime.split(':').map(Number);
+        bestTimeInSeconds = minutes * 60 + seconds;
+    }
+    
+    // So sánh và cập nhật nếu thời gian mới tốt hơn
+    if (currentTime < bestTimeInSeconds) {
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = currentTime % 60;
+        const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        gameState.bestTime = timeString;
+        localStorage.setItem('bestTime', timeString);
+    }
+    
+    alert(`Game Over!\nCorrect Answers: ${gameState.correctAnswers}\nAccuracy: ${Math.round((gameState.correctAnswers / gameState.totalAttempts) * 100)}%`);
+    
+    document.getElementById('startBtn').innerHTML = '<i class="fas fa-play"></i> Start';
+    updateStats();
+}
+
+        // Event Listeners
+        document.getElementById('startBtn').addEventListener('click', () => {
+            if (!gameState.isPlaying) {
+                startGame();
+            } else {
+                pauseGame();
+            }
+        });
+
+        document.getElementById('uploadBtn').addEventListener('click', () => {
+            document.getElementById('uploadModal').style.display = 'flex';
+        });
+
+        document.getElementById('confirmUpload').addEventListener('click', () => {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const questions = JSON.parse(e.target.result);
+                        if (Array.isArray(questions) && questions.length > 0) {
+                            gameState.questions = questions;
+                            gameState.currentQuestionIndex = 0;
+                            createQuestionElements();
+                            createAnswerElements();
+                            document.getElementById('uploadModal').style.display = 'none';
+                        } else {
+                            alert('Invalid questions format');
+                        }
+                    } catch (error) {
+                        alert('Error parsing questions file');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        document.getElementById('darkModeBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#darkModeBtn i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('uploadModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('uploadModal')) {
+                document.getElementById('uploadModal').style.display = 'none';
+            }
+        });
+        function handleBlankClick(e) {
+            // Remove active class from all blanks
+            document.querySelectorAll('.blank').forEach(blank => {
+                blank.classList.remove('active');
+            });
+
+            // Add active class to clicked blank
+            e.target.classList.add('active');
+            gameState.selectedBlank = e.target;
+        }
+
+        // Handle answer click
+        function handleAnswerClick(answer) {
+            if (!gameState.selectedBlank) {
+                alert('Hãy chọn vào ô trống trước, sau đó chọn đáp án!');
+                return;
+            }
+
+            gameState.totalAttempts++;
+
+            if (answer === gameState.selectedBlank.dataset.correct) {
+                gameState.selectedBlank.textContent = answer;
+                gameState.selectedBlank.classList.remove('active');
+                gameState.selectedBlank.classList.add('correct');
+                gameState.correctAnswers++;
+                
+                // Check if all blanks are filled correctly
+                const allBlanks = document.querySelectorAll('.blank');
+                const allCorrect = Array.from(allBlanks).every(blank => 
+                    blank.classList.contains('correct'));
+                
+                if (allCorrect) {
+                    if (gameState.currentQuestionIndex < gameState.questions.length - 1) {
+                        gameState.currentQuestionIndex++;
+                        setTimeout(() => {
+                            createQuestionElements();
+                            createAnswerElements();
+                            updateProgress();
+                        }, 500);
+                    } else {
+                        endGame();
+                    }
+                }
+            } else {
+        // Xử lý trường hợp sai
+        const blank = gameState.selectedBlank;
+        blank.classList.add('incorrect');
+        
+        // Tạo một promise để đợi animation kết thúc
+        const animationEnd = new Promise(resolve => {
+            blank.addEventListener('animationend', function handler() {
+                blank.removeEventListener('animationend', handler);
+                resolve();
+            });
+        });
+
+        // Sau khi animation kết thúc và timeout 500ms, reset blank
+        Promise.all([
+            animationEnd,
+            new Promise(resolve => setTimeout(resolve, 500))
+        ]).then(() => {
+            blank.classList.remove('incorrect', 'active');
+            blank.textContent = '';
+        });
+            }
+
+            gameState.selectedBlank = null;
+            updateStats();
+        }
+
+        // Initialize game
+        initGame();
+    </script>
+</body>
+</html>
