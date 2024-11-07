@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .app-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+            max-width: 100%;
+            width: 300px;
+        }
+        .header {
+            font-size: 30px;
+            color: red;
+            margin-bottom: 15px;
+        }
+        .hsk-select {
+            width: 65%; /* Giảm độ rộng xuống còn một nửa */
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #007bff; /* Màu viền tối hơn */
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #fff;
+            color: #2d3748;
+            appearance: none; /* Loại bỏ mũi tên mặc định của trình duyệt */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232c5282' d='M6 8.825L1.175 4 2.237 2.938 6 6.7l3.763-3.762L10.825 4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+        .hsk-select:hover {
+            border-color: #1a365d; /* Màu viền tối hơn khi hover */
+        }
+        .hsk-select:focus {
+            outline: none;
+            border-color: #2b6cb0;
+            box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.2);
+        }
+        .card {
+            width: 100%;
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin: 0 auto 15px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 6px 20px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+            border: 3px solid #007bff; /* Màu viền tối hơn đồng bộ với dropdown */
+        }
+        .card:hover .card-face {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 12px 40px rgba(0,0,0,0.2);
+        }
+        .card-front {
+            font-family: '楷体', 'Noto Sans SC', sans-serif;
+            font-size: 70px;
+            color: red;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            flex-direction: column;
+        }
+        .pinyin {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .word-count {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #666;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .nav-button {
+            background-color: #007bff; /* Màu nút tối hơn đồng bộ với theme */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 20px;
+        }
+        .nav-button:hover {
+            background-color: #1a365d;
+        }
+        .random-button {
+            background-color: #c53030; /* Màu đỏ tối hơn cho nút random */
+        }
+        .random-button:hover {
+            background-color: #9b2c2c;
+        }
+
+        @media (max-width: 320px) {
+            .app-container {
+                padding: 10px;
+            }
+            .card {
+                height: 160px;
+            }
+            .card-front {
+                font-size: 50px;
+            }
+            .nav-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .hsk-select {
+                width: 50%; /* Điều chỉnh độ rộng cho màn hình nhỏ */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Phần HTML giữ nguyên như cũ -->
+    <div class="app-container">
+        <div class="header">Từ vựng tiếng Trung</div>
+        <select class="hsk-select">
+            <option value="Bai1">Bài 1: Chào hỏi</option>
+            <option value="Bai2">Bài 2: Bản thân</option>
+            <option value="Bai3">Bài 3: Gia đình</option>
+            <option value="Bai4">Bài 4: Sở thích</option>
+            <option value="Bai5">Bài 5: Quê hương</option>
+            <option value="Bai6">Bài 6: Sinh nhật</option>
+            <option value="Bai7">Bài 7: Thường ngày</option>
+        </select>
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-face card-front"></div>
+                <div class="card-face card-back">
+                    <div class="pinyin"></div>
+                    <div class="meaning"></div>
+                </div>
+            </div>
+        </div>
+        <div class="word-count"></div>
+        <div class="navigation">
+            <button class="nav-button prev-button">&lt;</button>
+            <button class="nav-button random-button">Ngẫu nhiên</button>
+            <button class="nav-button next-button">&gt;</button>
+        </div>
+    </div>
+
+    <!-- JavaScript giữ nguyên như cũ -->
+    <script>
+        const vocabularyData = {
+            Bai1: [
+    { "hanzi": "你", "pinyin": "nǐ", "meaning": "bạn" },
+    { "hanzi": "好", "pinyin": "hǎo", "meaning": "tốt" },
+    { "hanzi": "你好", "pinyin": "nǐhǎo", "meaning": "xin chào" },
+    { "hanzi": "再见", "pinyin": "zàijiàn", "meaning": "tạm biệt" },
+    { "hanzi": "谢谢", "pinyin": "xièxie", "meaning": "cảm ơn" },
+],
+            Bai2: [
+    { "hanzi": "您", "pinyin": "nín", "meaning": "ngài, ông" },
+    { "hanzi": "朋", "pinyin": "pénɡ", "meaning": "bạn" },
+    { "hanzi": "友", "pinyin": "yǒu", "meaning": "bạn" },
+    { "hanzi": "朋友", "pinyin": "pénɡyǒu", "meaning": "bạn" },
+    { "hanzi": "校", "pinyin": "xiào", "meaning": "trường" },
+    { "hanzi": "与", "pinyin": "yǔ", "meaning": "với" },
+    { "hanzi": "和", "pinyin": "hé", "meaning": "và" },
+    { "hanzi": "很", "pinyin": "hěn", "meaning": "rất" },
+    { "hanzi": "多", "pinyin": "duō", "meaning": "nhiều" },
+    { "hanzi": "少", "pinyin": "shǎo", "meaning": "ít" },
+    { "hanzi": "谢", "pinyin": "xiè", "meaning": "cảm ơn" },
+    { "hanzi": "吗", "pinyin": "ma", "meaning": "không" },
+    { "hanzi": "这", "pinyin": "zhè", "meaning": "này, đây" },
+    { "hanzi": "那", "pinyin": "nà", "meaning": "kia, đó" },
+    { "hanzi": "是", "pinyin": "shì", "meaning": "là" },
+    { "hanzi": "不", "pinyin": "bù", "meaning": "không" },
+    { "hanzi": "有", "pinyin": "yǒu", "meaning": "có" },
+    { "hanzi": "大", "pinyin": "dà", "meaning": "lớn" },
+    { "hanzi": "小", "pinyin": "xiǎo", "meaning": "nhỏ" },
+    { "hanzi": "多少", "pinyin": "duōshǎo", "meaning": "bao nhiêu" },
+    { "hanzi": "给", "pinyin": "gěi", "meaning": "cho" },
+    { "hanzi": "汉语", "pinyin": "hànyǔ", "meaning": "tiếng Hán" },
+    { "hanzi": "多大", "pinyin": "duōdà", "meaning": "bao tuổi" },
+    { "hanzi": "公园", "pinyin": "gōngyuán", "meaning": "công viên" },
+    { "hanzi": "明天", "pinyin": "míngtiān", "meaning": "ngày mai" },
+    { "hanzi": "农民", "pinyin": "nóngmín", "meaning": "nông dân" },
+    { "hanzi": "爸爸", "pinyin": "bàba", "meaning": "bố" },
+    { "hanzi": "妈妈", "pinyin": "māma", "meaning": "mẹ" },
+    { "hanzi": "爷爷", "pinyin": "yéye", "meaning": "ông" },
+    { "hanzi": "奶奶", "pinyin": "nǎinai", "meaning": "bà" },
+    { "hanzi": "哥哥", "pinyin": "gēge", "meaning": "anh" },
+    { "hanzi": "姐姐", "pinyin": "jiějie", "meaning": "chị" },
+    { "hanzi": "妹妹", "pinyin": "mèimei", "meaning": "em gái" },
+    { "hanzi": "弟弟", "pinyin": "dìdi", "meaning": "em trai" },
+    { "hanzi": "喝", "pinyin": "hē", "meaning": "uống" },
+    { "hanzi": "吃", "pinyin": "chī", "meaning": "ăn" },
+    { "hanzi": "饭", "pinyin": "fàn", "meaning": "cơm" },
+    { "hanzi": "了", "pinyin": "le", "meaning": "rồi" },
+],
+            Bai3: [
+    { "hanzi": "姓", "pinyin": "xìng", "meaning": "họ" },
+    { "hanzi": "他", "pinyin": "tā", "meaning": "anh ấy, ông ấy" },
+    { "hanzi": "她", "pinyin": "tā", "meaning": "cô ấy, bà ấy" },
+    { "hanzi": "他们", "pinyin": "tāmen", "meaning": "họ (nam)" },
+    { "hanzi": "她们", "pinyin": "tāmen", "meaning": "họ (nữ)" },
+    { "hanzi": "也", "pinyin": "yě", "meaning": "cũng" },
+    { "hanzi": "都", "pinyin": "dōu", "meaning": "đều" },
+    { "hanzi": "呢", "pinyin": "ne", "meaning": "trợ từ nghi vấn" },
+    { "hanzi": "家", "pinyin": "jiā", "meaning": "nhà" },
+    { "hanzi": "家庭", "pinyin": "jiātíng", "meaning": "gia đình" },
+    { "hanzi": "人", "pinyin": "rén", "meaning": "người" },
+    { "hanzi": "岁", "pinyin": "suì", "meaning": "tuổi" },
+    { "hanzi": "几", "pinyin": "jǐ", "meaning": "mấy, bao nhiêu" },
+    { "hanzi": "个", "pinyin": "gè", "meaning": "lượng từ cho người/vật" },
+    { "hanzi": "没", "pinyin": "méi", "meaning": "không (phủ định)" },
+    { "hanzi": "没有", "pinyin": "méiyǒu", "meaning": "không có" },
+    { "hanzi": "工作", "pinyin": "gōngzuò", "meaning": "công việc" },
+    { "hanzi": "学生", "pinyin": "xuéshēng", "meaning": "học sinh" },
+    { "hanzi": "农民", "pinyin": "nóngmín", "meaning": "nông dân" },
+    { "hanzi": "工人", "pinyin": "gōngrén", "meaning": "công nhân" },
+    { "hanzi": "医生", "pinyin": "yīshēng", "meaning": "bác sĩ" },
+    { "hanzi": "护士", "pinyin": "hùshì", "meaning": "y tá" },
+    { "hanzi": "记者", "pinyin": "jìzhě", "meaning": "phóng viên" },
+    { "hanzi": "公安", "pinyin": "gōng'ān", "meaning": "cảnh sát" },
+    { "hanzi": "部队", "pinyin": "bùduì", "meaning": "quân đội" },
+    { "hanzi": "律师", "pinyin": "lǜshī", "meaning": "luật sư" },
+    { "hanzi": "警察", "pinyin": "jǐngchá", "meaning": "cảnh sát" },
+    { "hanzi": "演员", "pinyin": "yǎnyuán", "meaning": "diễn viên" },
+    { "hanzi": "司机", "pinyin": "sījī", "meaning": "tài xế" },
+    { "hanzi": "厨师", "pinyin": "chúshī", "meaning": "đầu bếp" },
+    { "hanzi": "消防员", "pinyin": "xiāofángyuán", "meaning": "lính cứu hỏa" },
+    { "hanzi": "公务员", "pinyin": "gōngwùyuán", "meaning": "công chức" },
+],
+            Bai4: [
+    { "hanzi": "爱好", "pinyin": "àihào", "meaning": "Sở thích" },
+    { "hanzi": "喜欢", "pinyin": "xǐhuān", "meaning": "Thích" },
+    { "hanzi": "吃", "pinyin": "chī", "meaning": "Ăn" },
+    { "hanzi": "喝", "pinyin": "hē", "meaning": "Uống" },
+    { "hanzi": "看", "pinyin": "kàn", "meaning": "Xem" },
+    { "hanzi": "听", "pinyin": "tīng", "meaning": "Nghe" },
+    { "hanzi": "打", "pinyin": "dǎ", "meaning": "Đánh" },
+    { "hanzi": "唱", "pinyin": "chàng", "meaning": "Hát" },
+    { "hanzi": "去", "pinyin": "qù", "meaning": "Đi" },
+    { "hanzi": "玩", "pinyin": "wán", "meaning": "Chơi" },
+    { "hanzi": "踢", "pinyin": "tī", "meaning": "Đá" },
+    { "hanzi": "学习", "pinyin": "xuéxí", "meaning": "Học tập" },
+    { "hanzi": "运动", "pinyin": "yùndòng", "meaning": "Thể thao" },
+    { "hanzi": "旅游", "pinyin": "lǚyóu", "meaning": "Du lịch" },
+    { "hanzi": "睡觉", "pinyin": "shuìjiào", "meaning": "Ngủ" },
+    { "hanzi": "游戏", "pinyin": "yóuxì", "meaning": "Trò chơi" },
+    { "hanzi": "烹饪", "pinyin": "pēngrèn", "meaning": "Nấu ăn" },
+    { "hanzi": "购物", "pinyin": "gòuwù", "meaning": "Mua sắm" },
+    { "hanzi": "摄影", "pinyin": "shèyǐng", "meaning": "Chụp ảnh" },
+    { "hanzi": "书", "pinyin": "shū", "meaning": "Sách" },
+    { "hanzi": "茶", "pinyin": "chá", "meaning": "Trà" },
+    { "hanzi": "饭", "pinyin": "fàn", "meaning": "Cơm" },
+    { "hanzi": "面", "pinyin": "miàn", "meaning": "Mì" },
+    { "hanzi": "歌", "pinyin": "gē", "meaning": "Bài hát" },
+    { "hanzi": "颜色", "pinyin": "yánsè", "meaning": "Màu sắc" },
+    { "hanzi": "足球", "pinyin": "zúqiú", "meaning": "Bóng đá" },
+    { "hanzi": "牛奶", "pinyin": "niúnǎi", "meaning": "Sữa bò" },
+    { "hanzi": "面包", "pinyin": "miànbāo", "meaning": "Bánh mì" },
+    { "hanzi": "包子", "pinyin": "bāozi", "meaning": "Bánh bao" },
+    { "hanzi": "炒面", "pinyin": "chǎomiàn", "meaning": "Mì xào" },
+    { "hanzi": "炒饭", "pinyin": "chǎofàn", "meaning": "Cơm rang" },
+    { "hanzi": "奶茶", "pinyin": "nǎichá", "meaning": "Trà sữa" },
+    { "hanzi": "音乐", "pinyin": "yīnyuè", "meaning": "Âm nhạc" },
+    { "hanzi": "果汁", "pinyin": "guǒzhī", "meaning": "Nước ép trái cây" },
+    { "hanzi": "咖啡", "pinyin": "kāfēi", "meaning": "Cà phê" },
+    { "hanzi": "零食", "pinyin": "língshí", "meaning": "Đồ ăn vặt" },
+    { "hanzi": "电影", "pinyin": "diànyǐng", "meaning": "Phim" },
+    { "hanzi": "羽毛球", "pinyin": "yǔmáoqiú", "meaning": "Cầu lông" },
+],
+            Bai5: [
+    { "hanzi": "越南", "pinyin": "Yuènán", "meaning": "Việt Nam" },
+    { "hanzi": "中国", "pinyin": "Zhōngguó", "meaning": "Trung Quốc" },
+    { "hanzi": "日本", "pinyin": "Rìběn", "meaning": "Nhật Bản" },
+    { "hanzi": "韩国", "pinyin": "Hánguó", "meaning": "Hàn Quốc" },
+    { "hanzi": "法国", "pinyin": "Fǎguó", "meaning": "Pháp" },
+    { "hanzi": "泰国", "pinyin": "Tàiguó", "meaning": "Thái Lan" },
+    { "hanzi": "美国", "pinyin": "Měiguó", "meaning": "Hoa Kỳ" },
+    { "hanzi": "德国", "pinyin": "Déguó", "meaning": "Đức" },
+    { "hanzi": "国籍", "pinyin": "guójí", "meaning": "Quốc tịch" },
+    { "hanzi": "国旗", "pinyin": "guóqí", "meaning": "Quốc kỳ" },
+    { "hanzi": "北宁", "pinyin": "Běiníng", "meaning": "Bắc Ninh" },
+    { "hanzi": "北江", "pinyin": "Běijiāng", "meaning": "Bắc Giang" },
+    { "hanzi": "河内", "pinyin": "Hénèi", "meaning": "Hà Nội" },
+    { "hanzi": "海防", "pinyin": "Hǎifáng", "meaning": "Hải Phòng" },
+    { "hanzi": "海阳", "pinyin": "Hǎiyáng", "meaning": "Hải Dương" },
+    { "hanzi": "语", "pinyin": "yǔ", "meaning": "Ngữ" },
+    { "hanzi": "言", "pinyin": "yán", "meaning": "Ngôn" },
+    { "hanzi": "语言", "pinyin": "yǔyán", "meaning": "Ngôn ngữ" },
+    { "hanzi": "门", "pinyin": "mén", "meaning": "Cửa" },
+    { "hanzi": "人", "pinyin": "rén", "meaning": "Người" },
+    { "hanzi": "文", "pinyin": "wén", "meaning": "Văn" },
+    { "hanzi": "字", "pinyin": "zì", "meaning": "Chữ" },
+    { "hanzi": "文字", "pinyin": "wénzì", "meaning": "Văn tự" },
+    { "hanzi": "汉字", "pinyin": "Hànzì", "meaning": "Chữ Hán" },
+    { "hanzi": "哪", "pinyin": "nǎ", "meaning": "Nào" },
+    { "hanzi": "哪儿", "pinyin": "nǎr", "meaning": "Ở đâu" },
+    { "hanzi": "哪里", "pinyin": "nǎlǐ", "meaning": "Ở đâu" },
+    { "hanzi": "来自", "pinyin": "láizì", "meaning": "Đến từ" },
+    { "hanzi": "家乡", "pinyin": "jiāxiāng", "meaning": "Quê hương" },
+    { "hanzi": "在", "pinyin": "zài", "meaning": "Tại, ở" },
+    { "hanzi": "会", "pinyin": "huì", "meaning": "Biết, có thể" },
+    { "hanzi": "做", "pinyin": "zuò", "meaning": "Làm" },
+    { "hanzi": "写", "pinyin": "xiě", "meaning": "Viết" },
+    { "hanzi": "读", "pinyin": "dú", "meaning": "Đọc" },
+    { "hanzi": "说", "pinyin": "shuō", "meaning": "Nói" },
+    { "hanzi": "开", "pinyin": "kāi", "meaning": "Mở, bắt đầu" },
+    { "hanzi": "骑", "pinyin": "qí", "meaning": "Cưỡi, đi (xe đạp)" },
+    { "hanzi": "表演", "pinyin": "biǎoyǎn", "meaning": "Biểu diễn" },
+    { "hanzi": "武术", "pinyin": "wǔshù", "meaning": "Võ thuật" },
+    { "hanzi": "书法", "pinyin": "shūfǎ", "meaning": "Thư pháp" },
+    { "hanzi": "游泳", "pinyin": "yóuyǒng", "meaning": "Bơi" },
+    { "hanzi": "魔术", "pinyin": "móshù", "meaning": "Ảo thuật" },
+    { "hanzi": "自行车", "pinyin": "zìxíngchē", "meaning": "Xe đạp" },
+    { "hanzi": "电瓶车", "pinyin": "diànpíngchē", "meaning": "Xe điện" },
+    { "hanzi": "汽车", "pinyin": "qìchē", "meaning": "Ô tô" },
+],
+            Bai6: [
+    { "hanzi": "年", "pinyin": "nián", "meaning": "năm" },
+    { "hanzi": "月", "pinyin": "yuè", "meaning": "tháng" },
+    { "hanzi": "日", "pinyin": "rì", "meaning": "ngày" },
+    { "hanzi": "号", "pinyin": "hào", "meaning": "số (ngày)" },
+    { "hanzi": "天", "pinyin": "tiān", "meaning": "trời, ngày" },
+    { "hanzi": "日子", "pinyin": "rìzi", "meaning": "ngày, thời gian" },
+    { "hanzi": "阳历", "pinyin": "yánglì", "meaning": "lịch dương" },
+    { "hanzi": "农历", "pinyin": "nónglì", "meaning": "lịch âm" },
+    { "hanzi": "元旦", "pinyin": "yuándàn", "meaning": "Tết Dương lịch" },
+    { "hanzi": "节", "pinyin": "jié", "meaning": "lễ, dịp lễ" },
+    { "hanzi": "节日", "pinyin": "jiérì", "meaning": "ngày lễ" },
+    { "hanzi": "春节", "pinyin": "chūnjié", "meaning": "Tết Nguyên Đán" },
+    { "hanzi": "国际", "pinyin": "guójì", "meaning": "quốc tế" },
+    { "hanzi": "劳动", "pinyin": "láodòng", "meaning": "lao động" },
+    { "hanzi": "儿童", "pinyin": "értóng", "meaning": "trẻ em" },
+    { "hanzi": "中秋", "pinyin": "zhōngqiū", "meaning": "Tết Trung Thu" },
+    { "hanzi": "国庆", "pinyin": "guóqìng", "meaning": "Ngày Quốc Khánh" },
+    { "hanzi": "教师", "pinyin": "jiàoshī", "meaning": "giáo viên" },
+    { "hanzi": "今天", "pinyin": "jīntiān", "meaning": "hôm nay" },
+    { "hanzi": "昨天", "pinyin": "zuótiān", "meaning": "hôm qua" },
+    { "hanzi": "前天", "pinyin": "qiántiān", "meaning": "hôm kia" },
+    { "hanzi": "明天", "pinyin": "míngtiān", "meaning": "ngày mai" },
+    { "hanzi": "后天", "pinyin": "hòutiān", "meaning": "ngày kia" },
+    { "hanzi": "今年", "pinyin": "jīnnián", "meaning": "năm nay" },
+    { "hanzi": "去年", "pinyin": "qùnián", "meaning": "năm ngoái" },
+    { "hanzi": "明年", "pinyin": "míngnián", "meaning": "năm tới" },
+    { "hanzi": "凌晨", "pinyin": "língchén", "meaning": "lúc rạng sáng" },
+    { "hanzi": "清晨", "pinyin": "qīngchén", "meaning": "sáng sớm" },
+    { "hanzi": "早上", "pinyin": "zǎoshang", "meaning": "buổi sáng" },
+    { "hanzi": "上午", "pinyin": "shàngwǔ", "meaning": "buổi sáng (trước 12h)" },
+    { "hanzi": "中午", "pinyin": "zhōngwǔ", "meaning": "buổi trưa" },
+    { "hanzi": "下午", "pinyin": "xiàwǔ", "meaning": "buổi chiều" },
+    { "hanzi": "晚上", "pinyin": "wǎnshang", "meaning": "buổi tối" },
+    { "hanzi": "星期", "pinyin": "xīngqī", "meaning": "tuần" },
+    { "hanzi": "周末", "pinyin": "zhōumò", "meaning": "cuối tuần" },
+    { "hanzi": "上", "pinyin": "shàng", "meaning": "trên, lên" },
+    { "hanzi": "下", "pinyin": "xià", "meaning": "dưới, xuống" },
+    { "hanzi": "初", "pinyin": "chū", "meaning": "đầu (tháng)" },
+    { "hanzi": "底", "pinyin": "dǐ", "meaning": "cuối (tháng)" },
+    { "hanzi": "末", "pinyin": "mò", "meaning": "cuối" },
+    { "hanzi": "生日", "pinyin": "shēngrì", "meaning": "sinh nhật" },
+    { "hanzi": "出生", "pinyin": "chūshēng", "meaning": "sinh ra" },
+    { "hanzi": "在", "pinyin": "zài", "meaning": "ở, tại, vào" },
+    { "hanzi": "去", "pinyin": "qù", "meaning": "đi, đến" },
+    { "hanzi": "馆", "pinyin": "guǎn", "meaning": "tiệm, quán" },
+    { "hanzi": "图书馆", "pinyin": "túshūguǎn", "meaning": "thư viện" },
+    { "hanzi": "咖啡馆", "pinyin": "kāfēiguǎn", "meaning": "quán cà phê" },
+    { "hanzi": "商店", "pinyin": "shāngdiàn", "meaning": "cửa hàng" },
+    { "hanzi": "餐厅", "pinyin": "cāntīng", "meaning": "nhà hàng" },
+    { "hanzi": "电影院", "pinyin": "diànyǐngyuàn", "meaning": "rạp chiếu phim" },
+    { "hanzi": "买", "pinyin": "mǎi", "meaning": "mua" },
+    { "hanzi": "借", "pinyin": "jiè", "meaning": "mượn" },
+    { "hanzi": "散步", "pinyin": "sànbù", "meaning": "đi dạo" },
+    { "hanzi": "跑步", "pinyin": "pǎobù", "meaning": "chạy bộ" },
+],
+    Bai7: [
+    { "hanzi": "现在", "pinyin": "xiànzài", "meaning": "bây giờ" },
+    { "hanzi": "钟", "pinyin": "zhōng", "meaning": "đồng hồ, chuông" },
+    { "hanzi": "表", "pinyin": "biǎo", "meaning": "đồng hồ đeo tay" },
+    { "hanzi": "手", "pinyin": "shǒu", "meaning": "tay" },
+    { "hanzi": "点", "pinyin": "diǎn", "meaning": "giờ" },
+    { "hanzi": "时", "pinyin": "shí", "meaning": "thời gian, giờ, khi" },
+    { "hanzi": "分", "pinyin": "fēn", "meaning": "phút" },
+    { "hanzi": "秒", "pinyin": "miǎo", "meaning": "giây" },
+    { "hanzi": "刻", "pinyin": "kè", "meaning": "khắc, 15 phút" },
+    { "hanzi": "半", "pinyin": "bàn", "meaning": "nửa" },
+    { "hanzi": "差", "pinyin": "chà", "meaning": "kém, thiếu" },
+    { "hanzi": "针", "pinyin": "zhēn", "meaning": "kim đồng hồ" },
+    { "hanzi": "每", "pinyin": "měi", "meaning": "mỗi" },
+    { "hanzi": "时候", "pinyin": "shíhou", "meaning": "thời gian, lúc, khi" },
+    { "hanzi": "前", "pinyin": "qián", "meaning": "trước" },
+    { "hanzi": "后", "pinyin": "hòu", "meaning": "sau" },
+    { "hanzi": "以前", "pinyin": "yǐqián", "meaning": "trước đây, trước khi" },
+    { "hanzi": "以后", "pinyin": "yǐhòu", "meaning": "sau này, sau khi" },
+    { "hanzi": "早饭", "pinyin": "zǎofàn", "meaning": "cơm sáng" },
+    { "hanzi": "午饭", "pinyin": "wǔfàn", "meaning": "cơm trưa" },
+    { "hanzi": "晚饭", "pinyin": "wǎnfàn", "meaning": "cơm tối" },
+    { "hanzi": "睡觉", "pinyin": "shuìjiào", "meaning": "ngủ" },
+    { "hanzi": "起床", "pinyin": "qǐchuáng", "meaning": "thức dậy" },
+    { "hanzi": "刷牙", "pinyin": "shuāyá", "meaning": "đánh răng" },
+    { "hanzi": "洗澡", "pinyin": "xǐzǎo", "meaning": "tắm" },
+    { "hanzi": "常", "pinyin": "cháng", "meaning": "thường" },
+    { "hanzi": "常常", "pinyin": "chángcháng", "meaning": "thường thường" },
+    { "hanzi": "平时", "pinyin": "píngshí", "meaning": "bình thường" },
+    { "hanzi": "左右", "pinyin": "zuǒyòu", "meaning": "khoảng, xấp xỉ" },
+    { "hanzi": "快", "pinyin": "kuài", "meaning": "nhanh" },
+    { "hanzi": "慢", "pinyin": "màn", "meaning": "chậm" },
+    { "hanzi": "早", "pinyin": "zǎo", "meaning": "sớm" },
+    { "hanzi": "迟到", "pinyin": "chídào", "meaning": "đến muộn" },
+    { "hanzi": "一点", "pinyin": "yìdiǎn", "meaning": "một chút" },
+    { "hanzi": "坐", "pinyin": "zuò", "meaning": "ngồi" },
+    { "hanzi": "座", "pinyin": "zuò", "meaning": "tòa, chỗ ngồi" },
+    { "hanzi": "挂", "pinyin": "guà", "meaning": "treo" },
+    { "hanzi": "闹", "pinyin": "nào", "meaning": "làm ồn" },
+    { "hanzi": "闹钟", "pinyin": "nàozhōng", "meaning": "đồng hồ báo thức" },
+    { "hanzi": "准时", "pinyin": "zhǔnshí", "meaning": "đúng giờ" },
+    { "hanzi": "出发", "pinyin": "chūfā", "meaning": "xuất phát" },
+    { "hanzi": "医院", "pinyin": "yīyuàn", "meaning": "bệnh viện" },
+    { "hanzi": "看", "pinyin": "kàn", "meaning": "xem, nhìn, khám" },
+    { "hanzi": "课", "pinyin": "kè", "meaning": "bài học" },
+    { "hanzi": "节", "pinyin": "jié", "meaning": "tiết" },
+    { "hanzi": "上课", "pinyin": "shàngkè", "meaning": "lên lớp" },
+    { "hanzi": "下课", "pinyin": "xiàkè", "meaning": "tan học" },
+    { "hanzi": "教室", "pinyin": "jiàoshì", "meaning": "phòng học" },
+    { "hanzi": "开", "pinyin": "kāi", "meaning": "mở" },
+    { "hanzi": "关", "pinyin": "guān", "meaning": "đóng" },
+    { "hanzi": "门", "pinyin": "mén", "meaning": "cửa, môn" },
+    { "hanzi": "回", "pinyin": "huí", "meaning": "quay về" },
+    { "hanzi": "等", "pinyin": "děng", "meaning": "đợi" },
+    { "hanzi": "从", "pinyin": "cóng", "meaning": "từ" },
+    { "hanzi": "到", "pinyin": "dào", "meaning": "đến" },
+]
+        };
+
+        const card = document.querySelector('.card');
+        const hskSelect = document.querySelector('.hsk-select');
+        const randomButton = document.querySelector('.random-button');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const wordCountDisplay = document.querySelector('.word-count');
+        
+        let currentLevel = 'Bai1';
+        let currentIndex = 0;
+        let flipBackTimer;
+        let currentVocabulary = vocabularyData[currentLevel];
+
+        function flipCard() {
+            card.classList.toggle('flipped');
+            clearTimeout(flipBackTimer);
+            if (card.classList.contains('flipped')) {
+                flipBackTimer = setTimeout(() => {
+                    card.classList.remove('flipped');
+                }, 1000);
+            }
+        }
+
+        function updateCard(vocabItem) {
+            const cardFront = document.querySelector('.card-front');
+            const cardBackPinyin = document.querySelector('.card-back .pinyin');
+            const cardBackMeaning = document.querySelector('.card-back .meaning');
+
+            cardFront.textContent = vocabItem.hanzi;
+            cardBackPinyin.textContent = vocabItem.pinyin;
+            cardBackMeaning.textContent = vocabItem.meaning;
+            updateWordCount();
+        }
+
+        function updateWordCount() {
+            wordCountDisplay.textContent = `${currentIndex + 1} / ${currentVocabulary.length}`;
+        }
+
+        function showNextVocab() {
+            currentIndex = (currentIndex + 1) % currentVocabulary.length;
+            updateCard(currentVocabulary[currentIndex]);
+            card.classList.remove('flipped');
+        }
+
+        function showPrevVocab() {
+            currentIndex = (currentIndex - 1 + currentVocabulary.length) % currentVocabulary.length;
+            updateCard(currentVocabulary[currentIndex]);
+            card.classList.remove('flipped');
+        }
+
+        function animateRandomSelection() {
+            let count = 0;
+            const interval = setInterval(() => {
+                currentIndex = Math.floor(Math.random() * currentVocabulary.length);
+                updateCard(currentVocabulary[currentIndex]);
+                count++;
+                if (count >= 15) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+
+        function changeHSKLevel(event) {
+            currentLevel = event.target.value;
+            currentVocabulary = vocabularyData[currentLevel];
+            currentIndex = 0;
+            updateCard(currentVocabulary[currentIndex]);
+            card.classList.remove('flipped');
+        }
+
+        card.addEventListener('click', flipCard);
+        randomButton.addEventListener('click', animateRandomSelection);
+        nextButton.addEventListener('click', showNextVocab);
+        prevButton.addEventListener('click', showPrevVocab);
+        hskSelect.addEventListener('change', changeHSKLevel);
+
+        // Initialize with the first vocabulary word
+        updateCard(currentVocabulary[0]);
+    </script>
+</body>
+</html>
