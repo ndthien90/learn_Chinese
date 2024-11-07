@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Chinese Language Learning</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --card-bg: #f5f5f5;
+            --selected-color: #3498db;
+            --correct-color: #2ecc71;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+        }
+
+        body {
+            font-family: Arial,'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h3 {
+            color: white;
+            font-size: 25px;
+        }
+
+        .container {
+            max-width: 500px;
+            max-height: 900px;
+            width: 100%;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        #questionCount {
+            width: 60px;
+            height: 40px;
+            font-size: 24px;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+            margin: 0 10px;
+        }
+
+        #startBtn {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        #confirmTimer {
+            background-color: #10d60d;
+            color: white;
+        }
+
+        #cancelTimer {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        #dataBtn {
+            background-color: #2ecc71;
+            color: white;
+            display: none;
+        }
+
+        #darkModeBtn {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .student-name {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            border: 2px solid #0ca3fa;
+            height: 35px;
+           display: none;
+        }
+
+        .timer {
+            font-size: 25px;
+            text-align: center;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 8px;
+            width: 100px;
+            margin: 0 auto;
+            transition: transform 0.2s;
+            color: red;
+            border: 3px solid #faa20a;
+        }
+
+        .timer:hover {
+            transform: scale(1.05);
+        }
+
+        .questions {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .question {
+            margin: 5px 0;
+            font-size: 35px;
+            background-color: var(--card-bg);
+            padding: 8px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            font-family: 'Kaiti', sans-serif;
+        }
+
+        .question-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .question-number {
+            flex-shrink: 0;
+            min-width: 30px;
+            font-size: 40px;
+        }
+
+        .question-text {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .blank {
+            display: inline-block;
+            min-width: 40px;
+            width: auto;
+            padding: 0 10px;
+            height: 45px;
+            border: 2px dashed #3498db;
+            border-radius: 5px;
+            vertical-align: middle;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blank.selected {
+            background-color: var(--selected-color);
+            border-color: var(--selected-color);
+            color: white;
+        }
+
+        .blank.correct {
+            background-color: var(--correct-color);
+            border-color: var(--correct-color);
+            color: white;
+            cursor: default;
+        }
+
+        .answers {
+            display: none;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            font-size: 35px;
+            font-family: 'Kaiti', sans-serif;
+        }
+
+        .answer {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            border: 2px dashed #3498db;
+        }
+
+        .answer:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .answer.selected {
+            background-color: var(--selected-color);
+            border-color: var(--selected-color);
+            color: white;
+        }
+
+        .timer-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #b3c0c4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+        }
+
+        .timer-dialog input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="controls">
+                <button id="startBtn">Bắt đầu</button>
+                <button id="dataBtn">Dữ liệu</button>
+                <input type="number" id="questionCount" min="1" max="20" value="6" title="Số câu hỏi"/>
+            </div>
+            <button id="darkModeBtn">🌙</button>
+        </div>
+
+        <div class="student-name" id="studentName">Người may mắn</div>
+        <div class="timer" id="timer">1:30</div>
+
+        <div class="timer-dialog" id="timerDialog">
+            <h3>Cài đặt thời gian</h3>
+            <input type="number" id="timerInput" min="1" max="1800" placeholder="Nhập thời gian từ 1- 1800s">
+            <button id="confirmTimer">Đặt</button>
+            <button id="cancelTimer">Hủy</button>
+        </div>
+
+        <div class="questions" id="questions"></div>
+        <div class="answers" id="answers"></div>
+    </div>
+
+    <script>
+        let timer;
+        let timeLeft = 90;
+        let isDarkMode = false;
+        let questions = [];
+        let answers = new Set();
+        let isGameStarted = false;
+        let selectedBlank = null;
+        let selectedAnswer = null;
+        
+        let allQuestions = [];
+        let usedQuestions = new Set();
+        let QUESTIONS_PER_GAME = 6;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function parseQuestion(text) {
+            const parts = text.split('/');
+            const result = {
+                text: '',
+                answers: [],
+                fullText: text
+            };
+            
+            let currentIndex = 0;
+            for (let i = 0; i < parts.length; i++) {
+                if (i % 2 === 0) {
+                    result.text += parts[i];
+                    if (i < parts.length - 1) {
+                        result.text += '____';
+                    }
+                } else {
+                    result.answers.push({
+                        answer: parts[i],
+                        position: currentIndex + parts[i-1].length
+                    });
+                    answers.add(parts[i]);
+                }
+                currentIndex += parts[i].length;
+            }
+            return result;
+        }
+
+        function selectRandomQuestions() {
+            const availableQuestions = allQuestions.filter(q => !usedQuestions.has(q.fullText));
+            
+            if (availableQuestions.length < QUESTIONS_PER_GAME) {
+                usedQuestions.clear();
+                return selectRandomQuestions();
+            }
+            
+            const selectedQuestions = shuffleArray([...availableQuestions])
+                .slice(0, QUESTIONS_PER_GAME);
+                
+            selectedQuestions.forEach(q => usedQuestions.add(q.fullText));
+            
+            return selectedQuestions;
+        }
+
+        function handleBlankClick(blank) {
+            if (blank.classList.contains('correct')) return;
+
+            // Deselect previously selected blank
+            if (selectedBlank) {
+                selectedBlank.classList.remove('selected');
+            }
+
+            // Select new blank
+            blank.classList.add('selected');
+            selectedBlank = blank;
+
+            // If both blank and answer are selected, try to match
+            if (selectedAnswer) {
+                tryMatch();
+            }
+        }
+
+        function handleAnswerClick(answer) {
+            if (answer.classList.contains('used')) return;
+
+            // Deselect previously selected answer
+            if (selectedAnswer) {
+                selectedAnswer.classList.remove('selected');
+            }
+
+            // Select new answer
+            answer.classList.add('selected');
+            selectedAnswer = answer;
+
+            // If both blank and answer are selected, try to match
+            if (selectedBlank) {
+                tryMatch();
+            }
+        }
+
+        function tryMatch() {
+            if (!selectedBlank || !selectedAnswer) return;
+
+            if (selectedBlank.dataset.answer === selectedAnswer.textContent) {
+                // Correct match
+                selectedBlank.textContent = selectedAnswer.textContent;
+                selectedBlank.classList.remove('selected');
+                selectedBlank.classList.add('correct');
+                selectedAnswer.classList.remove('selected');
+                selectedAnswer.classList.add('used');
+                selectedAnswer.style.display = 'none';
+
+                // Reset selections
+                selectedBlank = null;
+                selectedAnswer = null;
+
+                // Check if all answers are correct
+                const allCorrect = Array.from(document.querySelectorAll('.blank'))
+                    .every(b => b.classList.contains('correct'));
+                if (allCorrect) {
+                    setTimeout(() => {
+                        alert('Chúc mừng bạn đã hoàn thành!');
+                        clearInterval(timer);
+                    }, 100);
+                }
+            } else {
+                // Wrong match - deselect both
+                selectedBlank.classList.remove('selected');
+                selectedAnswer.classList.remove('selected');
+                selectedBlank = null;
+                selectedAnswer = null;
+            }
+        }
+
+        function createQuestionElements() {
+            const questionsContainer = document.getElementById('questions');
+            const answersContainer = document.getElementById('answers');
+            
+            questionsContainer.innerHTML = '';
+            answersContainer.innerHTML = '';
+            answers = new Set();
+            
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                const questionContent = document.createElement('div');
+                questionContent.className = 'question-content';
+                
+                const questionNumber = document.createElement('div');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = `${index + 1}.`;
+                
+                const questionText = document.createElement('div');
+                questionText.className = 'question-text';
+                
+                const blanks = [];
+                q.answers.forEach(ans => {
+                    const blank = document.createElement('div');
+                    blank.className = 'blank';
+                    blank.dataset.answer = ans.answer;
+                    blank.addEventListener('click', () => handleBlankClick(blank));
+                    blanks.push(blank);
+                    answers.add(ans.answer);
+                });
+                
+                const parts = q.text.split('____');
+                parts.forEach((part, i) => {
+                    if (part) {
+                        const textSpan = document.createElement('span');
+                        textSpan.textContent = part;
+                        questionText.appendChild(textSpan);
+                    }
+                    if (i < blanks.length) {
+                        questionText.appendChild(blanks[i]);
+                    }
+                });
+                
+                questionContent.appendChild(questionNumber);
+                questionContent.appendChild(questionText);
+                questionDiv.appendChild(questionContent);
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            const shuffledAnswers = shuffleArray(Array.from(answers));
+            shuffledAnswers.forEach(answer => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer';
+                answerDiv.textContent = answer;
+                answerDiv.addEventListener('click', () => handleAnswerClick(answerDiv));
+                answersContainer.appendChild(answerDiv);
+            });
+        }
+
+        function showTimerDialog() {
+            const dialog = document.getElementById('timerDialog');
+            const input = document.getElementById('timerInput');
+            input.value = timeLeft;
+            dialog.style.display = 'block';
+}
+
+        function hideTimerDialog() {
+            document.getElementById('timerDialog').style.display = 'none';
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (timer) clearInterval(timer);
+            updateTimerDisplay();
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert('Hết giờ!');
+                }
+            }, 1000);
+        }
+
+        function resetGame() {
+            clearInterval(timer);
+            timeLeft = 90;
+            updateTimerDisplay();
+            
+            document.getElementById('questions').style.display = 'none';
+            document.getElementById('answers').style.display = 'none';
+            
+            selectedBlank = null;
+            selectedAnswer = null;
+            
+            // Update QUESTIONS_PER_GAME from input before selecting questions
+            const questionCountInput = document.getElementById('questionCount');
+            const newCount = parseInt(questionCountInput.value);
+            if (newCount && newCount >= 1 && newCount <= 20) {
+                QUESTIONS_PER_GAME = newCount;
+            } else {
+                questionCountInput.value = QUESTIONS_PER_GAME;
+            }
+            
+            questions = selectRandomQuestions();
+            createQuestionElements();
+            
+            isGameStarted = false;
+        }
+
+        // Event Listeners
+        document.getElementById('timer').addEventListener('click', showTimerDialog);
+
+        document.getElementById('confirmTimer').addEventListener('click', () => {
+            const newTime = parseInt(document.getElementById('timerInput').value);
+            if (newTime && !isNaN(newTime) && newTime >= 1 && newTime <= 1800) {
+                timeLeft = newTime;
+                updateTimerDisplay();
+                if (isGameStarted) {
+                    startTimer();
+                }
+            }
+            hideTimerDialog();
+        });
+
+        document.getElementById('cancelTimer').addEventListener('click', hideTimerDialog);
+
+        document.getElementById('darkModeBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            isDarkMode = !isDarkMode;
+            document.getElementById('darkModeBtn').textContent = isDarkMode ? '☀️' : '🌙';
+        });
+
+        document.getElementById('questionCount').addEventListener('change', (e) => {
+            const newCount = parseInt(e.target.value);
+            if (newCount && newCount >= 1 && newCount <= 20) {
+                QUESTIONS_PER_GAME = newCount;
+            } else {
+                e.target.value = QUESTIONS_PER_GAME;
+            }
+        });
+
+        document.getElementById('startBtn').addEventListener('click', () => {
+            resetGame();
+            
+            document.getElementById('questions').style.display = 'block';
+            document.getElementById('answers').style.display = 'flex';
+            
+            const studentName = document.getElementById('studentName');
+            const names = ['Nguyễn Đức Thành', 
+                'Nguyễn Khánh Phương', 
+                'Nguyễn Phương Nhi', 
+                'Nghiêm Diệu Linh', 
+                'Nguyễn Minh Hằng', 
+                'Nguyễn Đức Trung', 
+                'Hoàng Minh Thái', 
+                'Nguyễn Đức Bảo Phong', 
+                'Tạ Thị Ngọc Anh', 
+                'Vương Thanh Hà', 
+                'Hoàng Tuấn Thành', 
+                'Nguyễn Thị Trang', 
+                'Hoàng Thế Anh Quân', 
+                'Trịnh Công Minh', 
+                'Trịnh Anh Kiệt'];
+            let count = 0;
+            
+            const nameInterval = setInterval(() => {
+                studentName.textContent = names[count % names.length];
+                count++;
+                if (count > 6) {
+                    clearInterval(nameInterval);
+                }
+            }, 300);
+
+            startTimer();
+            isGameStarted = true;
+        });
+
+        document.getElementById('dataBtn').addEventListener('click', async () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.txt';
+            
+            input.onchange = async (e) => {
+                const file = e.target.files[0];
+                const text = await file.text();
+                
+                allQuestions = text.split('\n')
+                    .filter(line => line.trim())
+                    .map(line => parseQuestion(line));
+                
+                usedQuestions.clear();
+                
+                questions = selectRandomQuestions();
+                createQuestionElements();
+                resetGame();
+            };
+            
+            input.click();
+        });
+
+        // Initialize with default questions
+        const defaultQuestions = [
+            "我在学校/学习/中文。",
+            "她/今天上午/在图书馆/看/书。",
+            "我们在公园/散步/。",
+            "他们明天晚上在家/做/饭。",
+            "我去年在/越南/工作。",
+            "我在商店/买/东西。",
+            "她在咖啡馆/喝/咖啡。",
+            "我们上周在/电影院/看电影。"
+        ];
+
+        // Initialize allQuestions with default questions
+        allQuestions = defaultQuestions.map(q => parseQuestion(q));
+        questions = selectRandomQuestions();
+        createQuestionElements();
+        resetGame();
+    </script>
+</body>
+</html>
+        
