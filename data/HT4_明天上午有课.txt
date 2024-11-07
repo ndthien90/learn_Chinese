@@ -1,0 +1,10 @@
+xiǎomíng, jīntiān nǐ yǒu kè ma? | 小明, 今天你有课吗？ | Tiểu Minh, hôm nay bạn có tiết học không?
+wǒ shàngwǔ méi yǒu kè, xiàwǔ yǒu sān jié kè. | 我上午没有课，下午有三节课。 | Mình sáng không có tiết, chiều có ba tiết.
+shénme kè, jǐ diǎn shàngkè ne? | 什么课，几点上课呢？ | Môn gì, mấy giờ có tiết?
+liǎng jié yīngyǔ kè hé yī jié hànyǔ kè, xiàwǔ sān diǎn shàngkè. | 两节英语课和一节汉语课，下午三点上课。 | Hai tiết tiếng Anh và một tiết tiếng Hán, chiều 3 giờ có tiết.
+xiàkè yǐhòu nǐ huí jiā hái shì qù nǎr? | 下课以后你回家还是去哪儿？ | Sau khi tan học, bạn về nhà hay đi đâu?
+wǒ xiàkè yǐhòu qù tī zúqiú, ránhòu bā diǎn zuǒyòu cái huí jiā, nǐ ne? | 我下课以后去踢足球，然后八点左右才回家，你呢？ | Mình sau khi tan học sẽ đi đá bóng, rồi khoảng 8 giờ mới về nhà, còn bạn thì sao?
+wǒ jīntiān shàngwǔ yǒu sān jié kè, xiàwǔ méi yǒu kè. | 我今天上午有三节课，下午没有课。 | Hôm nay mình sáng có ba tiết, chiều không có tiết.
+shàngwǔ xiàkè yǐhòu nǐ huí jiā chī fàn ma? | 上午下课以后你回家吃饭吗？ | Buổi sáng tan học bạn về nhà ăn cơm không?
+bù shì, zhōngwǔ wǒ zài xuéxiào chī fàn, ránhòu qù túshūguǎn kàn shū. | 不是，中午我在学校吃饭，然后去图书馆看书。 | Không, trưa mình ăn ở trường, rồi đi thư viện đọc sách.
+wǒ yě xǐhuān zài túshūguǎn kàn shū. | 我也喜欢在图书馆看书。 | Mình cũng thích đọc sách ở thư viện.
