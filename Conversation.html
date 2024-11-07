@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Learning App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .app-container {
+            max-width: 550px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            //border: 2px solid #0099ff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .lesson-header {
+            background-color: white;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lesson-title {
+            font-size: 30px;
+            color: blue;
+            font-family: "Kaiti", sans-serif;
+            padding:  5px 60px;
+        }
+
+        .conversation-select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #0099ff;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .chat-container {
+            padding: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-message:hover {
+           background-color: #b0dfeb;
+           border-bottom: 1px solid #ddd;
+           border-radius: 15px;
+        }
+
+        .chat-message.playing {
+           background-color: #39f778;
+           border-bottom: 1px solid #ddd;
+           border-radius: 15px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .avatar.blue {
+            background-color: #0099ff;
+        }
+
+        .avatar.orange {
+            background-color: #ff05f7;
+        }
+
+        .message-content {
+            flex: 1;
+            background-color: #f8f8f8;
+            padding: 5px;
+            border-radius: 10px;
+            //height: 90px;
+        }
+
+        .message-text {
+            margin: 5px 0;
+        }
+
+        .pinyin {
+            color: #666;
+            font-family: Mulish, sans-serif;
+        }
+
+        .chinese {
+            font-family: "Kaiti", sans-serif;
+            font-size: 25px;
+        }
+
+        .vietnamese {
+            color: #666;
+            font-family: Mulish, sans-serif;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #f8f8f8;
+        }
+
+        .nav-button, .listen-button {
+            background-color: #0099ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .nav-button {
+            width: 40px;
+            padding: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="lesson-header">
+            <div class="lesson-title" id="lessonTitle"></div>
+            <select class="conversation-select" id="conversationSelect">
+                <!-- Options will be dynamically added -->
+            </select>
+        </div>
+        
+        <div id="chatContainer" class="chat-container">
+            <!-- Messages will be dynamically loaded here -->
+        </div>
+
+        <div class="controls">
+            <button class="nav-button" id="prevBtn" onclick="prevConversation()">◀</button>
+            <button class="listen-button" id="listenBtn" onclick="togglePlayAll()">Nghe</button>
+            <button class="nav-button" id="nextBtn" onclick="nextLesson()">▶</button>
+        </div>
+    </div>
+
+    <script>
+        let conversations = [];
+        let currentAudio = null;
+        let currentConversationIndex = 1;
+        let isPlayingAll = false;
+        let conversationTitles = {};
+        let totalConversations = 0;
+
+        async function loadConversationList() {
+            try {
+                // Fetch the list of files from the data directory
+                const response = await fetch('data/list.json');
+                const files = await response.json();
+                
+                // Process each file name to extract conversation number and title
+                files.forEach(filename => {
+                    // Extract conversation number and title from filename (e.g., "HT1_你好吗.txt")
+                    const match = filename.match(/HT(\d+)_(.+)\.txt/);
+                    if (match) {
+                        const conversationNumber = parseInt(match[1]);
+                        const title = match[2];
+                        conversationTitles[conversationNumber] = title;
+                    }
+                });
+
+                totalConversations = Object.keys(conversationTitles).length;
+                
+                // Initialize the conversation select after loading the list
+                initializeConversationSelect();
+                loadCurrentConversation();
+            } catch (error) {
+                console.error('Error loading conversation list:', error);
+            }
+        }
+
+        function initializeConversationSelect() {
+            const select = document.getElementById('conversationSelect');
+            select.innerHTML = ''; // Clear existing options
+            
+            Object.keys(conversationTitles)
+                .sort((a, b) => parseInt(a) - parseInt(b))
+                .forEach(conversationNumber => {
+                    const option = document.createElement('option');
+                    option.value = conversationNumber;
+                    option.textContent = `Hội thoại ${conversationNumber} `;
+                    //option.textContent = `Hội thoại ${conversationNumber} - ${conversationTitles[conversationNumber]}`;
+                    select.appendChild(option);
+                });
+
+            select.value = currentConversationIndex;
+            select.addEventListener('change', (e) => {
+                currentConversationIndex = parseInt(e.target.value);
+                loadCurrentConversation();
+            });
+        }
+
+        async function loadCurrentConversation() {
+            try {
+                // Reset audio state
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                isPlayingAll = false;
+                updatePlayButton();
+
+                // Load new conversation using the title from our mapping
+                const title = conversationTitles[currentConversationIndex];
+                const response = await fetch(`data/HT${currentConversationIndex}_${title}.txt`);
+                const text = await response.text();
+                conversations = text.split('\n')
+                    .filter(line => line.trim())
+                    .map(line => {
+                        const [pinyin, chinese, vietnamese] = line.split('|');
+                        return { pinyin, chinese, vietnamese };
+                    });
+                
+                // Update UI with Chinese title
+                document.getElementById('lessonTitle').textContent = title;
+                displayConversations();
+                updateNavigationButtons();
+            } catch (error) {
+                console.error('Error loading conversation:', error);
+            }
+        }
+
+        function displayConversations() {
+            const container = document.getElementById('chatContainer');
+            container.innerHTML = '';
+
+            conversations.forEach((conv, index) => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message';
+                messageDiv.setAttribute('data-index', index);
+                messageDiv.onclick = () => playAudio(index);
+
+                messageDiv.innerHTML = `
+                    <div class="avatar ${index % 2 ? 'orange' : 'blue'}">${index % 2 ? 'B' : 'A'}</div>
+                    <div class="message-content">
+                        <div class="message-text pinyin">${conv.pinyin}</div>
+                        <div class="message-text chinese">${conv.chinese}</div>
+                        <div class="message-text vietnamese">${conv.vietnamese}</div>
+                    </div>
+                `;
+
+                container.appendChild(messageDiv);
+            });
+        }
+
+        async function playAudio(index) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            document.querySelectorAll('.chat-message').forEach(msg => {
+                msg.classList.remove('playing');
+            });
+
+            const currentMessage = document.querySelector(`[data-index="${index}"]`);
+            if (currentMessage) {
+                currentMessage.classList.add('playing');
+            }
+
+            currentAudio = new Audio(`audio/HT${currentConversationIndex}/output_${index + 1}.mp3`);
+            
+            try {
+                await currentAudio.play();
+                currentAudio.onended = () => {
+                    currentMessage.classList.remove('playing');
+                    if (isPlayingAll && index < conversations.length - 1) {
+                        playAudio(index + 1);
+                    } else if (isPlayingAll) {
+                        isPlayingAll = false;
+                        updatePlayButton();
+                    }
+                };
+            } catch (error) {
+                console.error('Error playing audio:', error);
+                currentMessage.classList.remove('playing');
+            }
+        }
+
+        function togglePlayAll() {
+            if (isPlayingAll) {
+                isPlayingAll = false;
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                document.querySelectorAll('.chat-message').forEach(msg => {
+                    msg.classList.remove('playing');
+                });
+            } else {
+                isPlayingAll = true;
+                playAudio(0);
+            }
+            updatePlayButton();
+        }
+
+        function updatePlayButton() {
+            const listenBtn = document.getElementById('listenBtn');
+            listenBtn.textContent = isPlayingAll ? 'Dừng' : 'Nghe';
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevBtn').disabled = currentConversationIndex <= 1;
+            document.getElementById('nextBtn').disabled = currentConversationIndex >= totalConversations;
+        }
+
+        function prevConversation() {
+            if (currentConversationIndex > 1) {
+                currentConversationIndex--;
+                document.getElementById('conversationSelect').value = currentConversationIndex;
+                loadCurrentConversation();
+            }
+        }
+
+        function nextLesson() {
+            if (currentConversationIndex < totalConversations) {
+                currentConversationIndex++;
+                document.getElementById('conversationSelect').value = currentConversationIndex;
+                loadCurrentConversation();
+            }
+        }
+
+        // Initialize the app
+        window.onload = () => {
+            loadConversationList();
+        };
+    </script>
+</body>
+</html>
