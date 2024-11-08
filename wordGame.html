@@ -233,7 +233,7 @@
             }
 
             // Tiếp tục đọc dữ liệu các bài học
-            for (let i = 1; i <= 100; i++) {
+            for (let i = 1; i <= 20; i++) {
                 const lessonSentences = await loadLessonFile(i);
                 if (lessonSentences.length > 0) {
                     lessonData[`lesson${i}`] = lessonSentences;
