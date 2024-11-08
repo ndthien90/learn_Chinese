@@ -115,10 +115,10 @@
         .timer { text-align: center; font-size: 2rem; color: #ff0000; border: 2px solid #ff0000; width: fit-content; padding: 0.5rem 2rem; margin: 1rem auto; border-radius: 8px; cursor: pointer; }
         .question-container { text-align: center; margin: 2rem 0; }
         .question { font-size: 1.8rem; margin-bottom: 1rem; }
-        .pinyin { font-size: 1.8rem; color: #666; margin-bottom: 1rem; }
+        .pinyin { display: none; font-size: 1.8rem; color: #666; margin-bottom: 1rem; }
         .answers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
         .answer { padding: 1rem; border: 2px solid #0091ea; border-radius: 8px; cursor: pointer; font-size: 1.8rem; transition: all 0.3s; background: white; text-align: center; display: flex; flex-direction: column; gap: 0.5rem; }
-        .answer-pinyin { font-size: 1.5rem; color: #666; }
+        .answer-pinyin { display: none;font-size: 1.5rem; color: #666; }
         .answer:hover { border-color: #9c27b0; background: #f3e5f5; }
         .answer.correct { border-color: #00c853; background: #e8f5e9; }
         .answer.wrong { border-color: #ff0000; background: #ffebee; animation: shake 0.5s; }
@@ -439,8 +439,9 @@ body.dark-mode #playAudioBtn {
             <button class="btn btn-data" onclick="openFileInput()">Dữ liệu</button>
             <button class="btn btn-next" onclick="nextQuestion()" style="display: none;">Câu tiếp</button>
             <select id="pinyinToggle" onchange="togglePinyin()">
-                <option value="show">Hiện Pinyin</option>
                 <option value="hide">Ẩn Pinyin</option>
+                <option value="show">Hiện Pinyin</option>
+                
             </select>
         </div>
         <button id="darkModeToggle" onclick="toggleDarkMode()">Chế độ tối</button>
