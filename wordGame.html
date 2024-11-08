@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sắp xếp từ tiếng Trung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            min-height:500px;
+        }
+        h1 {
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+            color: #f26a02;
+            font-size: 25px;
+        }
+        #studentName {
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+            height: 25px;
+            margin-top: 5px;
+            color: black;
+            border: 2px solid #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+        }
+        select {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(50% - 24px);
+            font-size: 16px;
+            background-color: white;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        #wordContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .word {
+            background-color: transparent;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+            border: 2px dashed #007bff; /* Khung viền nét đứt màu xanh */
+        }
+        .word:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #result, #message {
+            margin-top: 20px;
+            font-size: 25px;
+        }
+        #result {
+            font-family: '楷体', sans-serif;
+            font-size: 35px;
+            color: #fa2c02;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 0 auto;
+            font-size: 16px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #007bff;
+           color: white;
+           //width:100%;
+        }
+        .stat-item {
+            background-color: #22a4e0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+            //border: 2px solid #028bed;
+            max-width: 150px;
+            min-width: 120px
+        }
+        .next-button {
+            background-color: #28a745;
+        }
+        .next-button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=KaiTi&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Xếp từ thành câu</h1>
+        <select id="lessonSelect" onchange="loadLesson()">
+            <option value="lesson1">Chọn bài tập</option>
+        </select>
+        <button onclick="startNewGame()">Bắt đầu</button>
+        <div id="studentName">Tên học sinh</div>
+        
+        <div class="progress-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                Câu: <span id="currentQuestion">0</span>/<span id="totalQuestions">0</span>
+            </div>
+            <div class="stat-item" style="display:none;">
+                Đúng: <span id="correctAnswers">0</span>
+            </div>
+            <div class="stat-item">
+                Tỷ lệ: <span id="accuracy">0</span>%
+            </div>
+        </div>
+
+        <div id="wordContainer"></div>
+        <div id="result"></div>
+        <div id="message"></div>
+        <button onclick="resetGame()" id="resetButton" style="display: none;">Thử lại</button>
+        <button onclick="nextQuestion()" id="nextButton" class="next-button" style="display: none;">Câu tiếp theo</button>
+    </div>
+
+    <script>
+        const students = [
+            'Nguyễn Đức Thành', 
+            'Nguyễn Khánh Phương', 
+            'Nguyễn Phương Nhi', 
+            'Nghiêm Diệu Linh', 
+            'Nguyễn Minh Hằng', 
+            'Nguyễn Đức Trung', 
+            'Hoàng Minh Thái', 
+            'Nguyễn Đức Bảo Phong', 
+            'Tạ Thị Ngọc Anh', 
+            'Vương Thanh Hà', 
+            'Hoàng Tuấn Thành', 
+            'Nguyễn Thị Trang', 
+            'Hoàng Thế Anh Quân', 
+            'Trịnh Công Minh', 
+            'Trịnh Anh Kiệt'
+        ];
+
+        let lessonData = {};
+        let originalSentence = '';
+        let shuffledWords = [];
+        let userSentence = [];
+        let currentLessonSentences = [];
+        let currentQuestionIndex = 0;
+        let correctCount = 0;
+        let totalAttempts = 0;
+        let lessonTitles = [];
+
+        async function loadLessonFile(lessonNumber) {
+            try {
+                const response = await fetch(`data_wordgame/${lessonNumber}.txt`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load lesson ${lessonNumber}`);
+                }
+                const text = await response.text();
+                return text.split('\n').filter(line => line.trim() !== '');
+            } catch (error) {
+                console.error(`Error loading lesson ${lessonNumber}:`, error);
+                return [];
+            }
+        }
+
+        async function initializeLessonData() {
+            // Đọc file list.txt trước
+            try {
+                const response = await fetch('data_wordgame/list.txt');
+                if (!response.ok) {
+                    throw new Error('Failed to load lesson list');
+                }
+                const text = await response.text();
+                lessonTitles = text.split('\n').filter(line => line.trim() !== '');
+            } catch (error) {
+                console.error('Error loading lesson list:', error);
+                lessonTitles = [];
+            }
+
+            // Tiếp tục đọc dữ liệu các bài học
+            for (let i = 1; i <= 100; i++) {
+                const lessonSentences = await loadLessonFile(i);
+                if (lessonSentences.length > 0) {
+                    lessonData[`lesson${i}`] = lessonSentences;
+                }
+            }
+            
+            updateLessonSelect();
+            loadLesson();
+        }
+
+        function updateLessonSelect() {
+            const lessonSelect = document.getElementById('lessonSelect');
+            lessonSelect.innerHTML = '';
+            
+            Object.keys(lessonData).forEach((lessonKey, index) => {
+                const option = document.createElement('option');
+                option.value = lessonKey;
+                const lessonNumber = lessonKey.replace('lesson', '');
+                // Sử dụng tên bài học từ file nếu có, nếu không sử dụng tên mặc định
+                const lessonTitle = lessonTitles[index] 
+                    ? lessonTitles[index]
+                    : `Bài ${lessonNumber}`;
+                option.textContent = lessonTitle;
+                lessonSelect.appendChild(option);
+            });
+        }
+
+        function loadLesson() {
+            const lessonSelect = document.getElementById('lessonSelect');
+            const selectedLesson = lessonSelect.value;
+            currentLessonSentences = [...lessonData[selectedLesson]];
+            currentQuestionIndex = 0;
+            correctCount = 0;
+            totalAttempts = 0;
+            updateProgress();
+            document.getElementById('totalQuestions').textContent = currentLessonSentences.length;
+        }
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const currentQuestion = document.getElementById('currentQuestion');
+            const correctAnswers = document.getElementById('correctAnswers');
+            const accuracy = document.getElementById('accuracy');
+            
+            const progress = ((currentQuestionIndex) / currentLessonSentences.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            currentQuestion.textContent = currentQuestionIndex;
+            correctAnswers.textContent = correctCount;
+            accuracy.textContent = totalAttempts > 0 
+                ? Math.round((correctCount / totalAttempts) * 100) 
+                : 0;
+        }
+
+        function startNewGame() {
+            if (currentQuestionIndex >= currentLessonSentences.length) {
+                alert("Bạn đã hoàn thành tất cả câu hỏi trong bài học này!");
+                return;
+            }
+           let interval;
+            const duration = 1000;
+            const endTime = Date.now() + duration;
+            const studentNameDisplay = document.getElementById('studentName');
+            
+            interval = setInterval(() => {
+                const randomStudent = students[Math.floor(Math.random() * students.length)];
+                studentNameDisplay.textContent = randomStudent;
+                
+                if (Date.now() >= endTime) {
+                    clearInterval(interval);
+                    const finalStudent = students[Math.floor(Math.random() * students.length)];
+                    studentNameDisplay.textContent = finalStudent;
+                }
+            }, 50);
+
+
+            originalSentence = currentLessonSentences[currentQuestionIndex];
+            separateAndShuffleWords();
+            document.getElementById('resetButton').style.display = 'inline-block';
+            document.getElementById('nextButton').style.display = 'none';
+            updateProgress();
+        }
+
+        function nextQuestion() {           
+            if (currentQuestionIndex < currentLessonSentences.length) {
+                
+                startNewGame();
+            } else {
+                
+                alert(`Chúc mừng! Bạn đã hoàn thành bài học với tỷ lệ đúng: ${Math.round((correctCount / totalAttempts) * 100)}%`);
+            }
+            document.getElementById('nextButton').style.display = 'none';
+        }
+
+        function separateAndShuffleWords() {
+            let words = originalSentence.split('/').filter(word => word.trim() !== '');
+            
+            shuffledWords = [];
+            while (words.length > 0) {
+                const index = Math.floor(Math.random() * words.length);
+                const word = words.splice(index, 1)[0];
+                
+                if (shuffledWords.length === 0 || (shuffledWords[shuffledWords.length - 1] !== word)) {
+                    shuffledWords.push(word);
+                }
+            }
+
+            userSentence = [];
+            displayWords();
+            document.getElementById('result').textContent = '';
+            document.getElementById('message').textContent = '';
+        }
+
+        function displayWords() {
+            const wordContainer = document.getElementById('wordContainer');
+            wordContainer.innerHTML = '';
+            shuffledWords.forEach(word => {
+                const wordElement = document.createElement('span');
+                wordElement.className = 'word';
+                wordElement.textContent = word;
+                wordElement.onclick = () => addToSentence(word);
+                wordContainer.appendChild(wordElement);
+            });
+        }
+
+        function addToSentence(word) {
+            userSentence.push(word);
+            document.getElementById('result').textContent = userSentence.join('');
+            removeWord(word);
+            if (shuffledWords.length === 0) {
+                checkSentence();
+            }
+        }
+
+        function removeWord(word) {
+            const index = shuffledWords.indexOf(word);
+            if (index > -1) {
+                shuffledWords.splice(index, 1);
+            }
+            displayWords();
+        }
+
+function checkSentence() {
+  const message = document.getElementById('message');
+  totalAttempts++;
+
+  if (userSentence.join('') === originalSentence.replace(/\//g, '')) {
+            if (currentQuestionIndex < currentLessonSentences.length) {
+                  currentQuestionIndex++;
+                } 
+
+             message.textContent = 'Chúc mừng! Bạn đã sắp xếp đúng.';
+             message.style.color = 'green';
+              correctCount++;
+               
+               document.getElementById('nextButton').style.display = 'inline-block';
+  } else {
+    message.textContent = 'Chưa đúng, hãy thử lại!';
+    message.style.color = 'red';
+  }
+    updateProgress(); // Cập nhật progressbar ngay lập tức
+}
+
+        function resetGame() {
+            separateAndShuffleWords();
+            document.getElementById('nextButton').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeLessonData);
+    </script>
+</body>
+</html>
