@@ -27,8 +27,8 @@
             padding: 2rem;
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 800px;
             position: relative;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
@@ -70,7 +70,7 @@
 	}	
 
         .btn {
-            padding: 6px;
+            padding: 0.8rem 2rem;
             border: none;
             border-radius: 10px;
             font-size: 1.2rem;
@@ -84,9 +84,9 @@
             transform: translateY(-2px);
         }
 
-        .btn-start { background: #00c853; color: white; font-size: 1.rem; }
-        .btn-data { background: #0091ea; color: white; font-size: 1.rem; }
-        .btn-next { background: #9c27b0; color: white; font-size: 1.rem; }
+        .btn-start { background: #00c853; color: white; font-size: 1.3rem; }
+        .btn-data { display: none; background: #0091ea; color: white; font-size: 1.3rem; }
+        .btn-next { background: #9c27b0; color: white; font-size: 1.3rem; }
 
         #pinyinToggle {
             width: 135px;
@@ -109,20 +109,20 @@
             font-size: 25px;
         }
 
-        .student-info { display:none; text-align: center; padding: 1rem; border: 2px solid #0091ea; border-radius: 10px; margin-bottom: 1rem; background: white; }
+        .student-info { text-align: center; padding: 1rem; border: 2px solid #0091ea; border-radius: 10px; margin-bottom: 1rem; background: white; }
         .student-name { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .student-stats { display: flex; justify-content: center; gap: 2rem; font-size: 1.1rem; }
-        .timer { text-align: center; font-size: 1rem; color: #ff0000; border: 2px solid #ff0000; width: fit-content; padding: 0.5rem 2rem; margin: 1rem auto; border-radius: 8px; cursor: pointer; }
+        .timer { text-align: center; font-size: 2rem; color: #ff0000; border: 2px solid #ff0000; width: fit-content; padding: 0.5rem 2rem; margin: 1rem auto; border-radius: 8px; cursor: pointer; }
         .question-container { text-align: center; margin: 2rem 0; }
         .question { font-size: 1.8rem; margin-bottom: 1rem; }
         .pinyin { font-size: 1.8rem; color: #666; margin-bottom: 1rem; }
-        .answers { width: 60%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 0 auto; }
+        .answers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
         .answer { padding: 1rem; border: 2px solid #0091ea; border-radius: 8px; cursor: pointer; font-size: 1.8rem; transition: all 0.3s; background: white; text-align: center; display: flex; flex-direction: column; gap: 0.5rem; }
         .answer-pinyin { font-size: 1.5rem; color: #666; }
         .answer:hover { border-color: #9c27b0; background: #f3e5f5; }
         .answer.correct { border-color: #00c853; background: #e8f5e9; }
-        .answer.wrong { border-color: #ff0000; background: #ffebee; animation: shake 0.5s;  }
-        .progress-bar { display: none; width: 100%; height: 10px; background: #f0f0f0; border-radius: 5px; margin: 1rem 0; overflow: hidden; }
+        .answer.wrong { border-color: #ff0000; background: #ffebee; animation: shake 0.5s; }
+        .progress-bar { width: 100%; height: 10px; background: #f0f0f0; border-radius: 5px; margin: 1rem 0; overflow: hidden; }
         .progress { height: 100%; background: #00c853; width: 0%; transition: width 0.3s; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
@@ -263,6 +263,172 @@ body.dark-mode #playAudioBtn {
            #timeInput {
                font-size: 1.8rem;
            }
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .buttons {
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    .btn-start, .btn-data, .btn-next {
+        font-size: 1rem;
+    }
+
+    #pinyinToggle {
+        width: 120px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .student-info {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .student-name {
+        font-size: 1.2rem;
+    }
+
+    .student-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        justify-content: space-around;
+    }
+
+    .timer-audio-container {
+        flex-direction: row;
+        gap: 10px;
+        margin: 0.5rem auto;
+    }
+
+    .timer {
+        font-size: 1.2rem;
+        padding: 0.3rem 1rem;
+    }
+
+    #playAudioBtn {
+        padding: 6px 12px;
+    }
+
+    .audio-icon {
+        font-size: 16px;
+    }
+
+    .question-container {
+        margin: 1rem 0;
+    }
+
+    .question {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .pinyin {
+        font-size: 1.2rem;
+    }
+
+    .answers {
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .answer {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .answer-text {
+        font-size: 1.2rem;
+    }
+
+    .answer-pinyin {
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .modal-content h2 {
+        font-size: 1.2rem;
+    }
+
+    #timeInput {
+        font-size: 1.2rem;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .results-table {
+        font-size: 1rem;
+    }
+
+    .results-table th, 
+    .results-table td {
+        padding: 0.5rem;
+    }
+
+    .notification {
+        font-size: 1rem;
+        padding: 10px 15px;
+        right: 10px;
+    }
+
+    #darkModeToggle {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+
+    .progress-bar {
+        height: 8px;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Thêm styles cho màn hình siêu nhỏ */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn, #pinyinToggle {
+        width: 100%;
+        margin-bottom: 0.3rem;
+    }
+
+    .student-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer-audio-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -414,10 +580,9 @@ body.dark-mode #playAudioBtn {
         let startTime = 0;
        let audioFiles = []; // Lưu trữ các file âm thanh theo thứ tự
        let currentAudio = null;
-
-async function loadDataFromFiles() {
+async function loadData() {
     try {
-        // Tải file câu hỏi
+        // Load câu hỏi
         const questionResponse = await fetch('data_listening/cauhoi.txt');
         const questionContent = await questionResponse.text();
         const questionData = questionContent.split('\n').filter(q => q.trim());
@@ -429,7 +594,7 @@ async function loadDataFromFiles() {
             pinyins.push(pinyin.trim());
         });
 
-        // Tải file đáp án
+        // Load đáp án
         const answerResponse = await fetch('data_listening/dapan.txt');
         const answerContent = await answerResponse.text();
         const answerData = answerContent.split('\n').filter(a => a.trim());
@@ -443,13 +608,25 @@ async function loadDataFromFiles() {
             correctAnswers.push(parseInt(correct));
         });
 
+        // Load audio files
+        audioFiles = [];
+        for (let i = 1; i <= questions.length; i++) {
+            try {
+                const audioResponse = await fetch(`audio_listening/${i}.mp3`);
+                const audioBlob = await audioResponse.blob();
+                audioFiles.push(audioBlob);
+            } catch (error) {
+                console.error(`Error loading audio file ${i}.mp3:`, error);
+            }
+        }
+
         return true;
     } catch (error) {
         console.error('Error loading data:', error);
-        showNotification('Lỗi khi tải dữ liệu', 'error');
         return false;
     }
 }
+
         function openFileInput() {
             document.getElementById('uploadModal').style.display = 'flex';
         }
@@ -520,19 +697,27 @@ async function loadDataFromFiles() {
             }, 3000);
         }
 function playAudio() {
+    if (!isQuizStarted) return;
+
     if (currentAudio) {
         currentAudio.pause();
-        currentAudio.currentTime = 0;
+        currentAudio = null;
     }
-    
-    const audioUrl = `audio_listening/${currentQuestion + 1}.mp3`;
-    currentAudio = new Audio(audioUrl);
-    
-    currentAudio.play().catch(error => {
-        console.error('Error playing audio:', error);
-        showNotification('Không thể phát âm thanh', 'error');
-    });
+
+    const audioFile = audioFiles[currentQuestion];
+    if (audioFile) {
+        const url = URL.createObjectURL(audioFile);
+        currentAudio = new Audio(url);
+        currentAudio.play()
+            .catch(error => {
+                console.error('Error playing audio:', error);
+                showNotification('Không thể phát âm thanh!', 'error');
+            });
+    } else {
+        showNotification(`Không tìm thấy file âm thanh cho câu hỏi ${currentQuestion + 1}!`, 'error');
+    }
 }
+
         function resetQuiz() {
             isQuizStarted = false;
             currentQuestion = 0;
@@ -557,22 +742,42 @@ function playAudio() {
         }
 
 async function startQuiz() {
-    if (!isQuizStarted) {
-        // Tải dữ liệu nếu chưa có
-        if (questions.length === 0 || answers.length === 0) {
-            const dataLoaded = await loadDataFromFiles();
-            if (!dataLoaded) return;
-        }
+    resetQuiz();
 
-        isQuizStarted = true;
-        currentQuestion = 0;
-        correctCount = 0;
-        wrongCount = 0;
-        document.querySelector('.btn-next').style.display = 'inline-block';
-        startTimer();
-        startTime = Date.now();
-        showQuestion();
+    // Tự động load dữ liệu khi bắt đầu
+    const dataLoaded = await loadData();
+    if (!dataLoaded) {
+        showNotification('Không thể tải dữ liệu. Vui lòng kiểm tra lại các file!', 'error');
+        return;
     }
+
+    if (questions.length === 0 || answers.length === 0) {
+        showNotification('Không tìm thấy dữ liệu câu hỏi hoặc đáp án!', 'error');
+        return;
+    }
+
+    if (audioFiles.length === 0) {
+        showNotification('Không tìm thấy file âm thanh, quiz sẽ chạy không có âm thanh!', 'error');
+    } else if (audioFiles.length !== questions.length) {
+        showNotification('Số lượng file âm thanh không khớp với số câu hỏi!', 'error');
+        return;
+    }
+
+    isQuizStarted = true;
+    const studentElement = document.getElementById('studentName');
+    let shuffleCount = 0;
+    const shuffleInterval = setInterval(() => {
+        studentElement.textContent = students[Math.floor(Math.random() * students.length)];
+        shuffleCount++;
+        if(shuffleCount > 10) {
+            clearInterval(shuffleInterval);
+            shuffleAnswers();
+            displayQuestion();
+            startTimer();
+            startTime = Date.now();
+            document.querySelector('.btn-next').style.display = 'inline-block';
+        }
+    }, 200);
 }
 
         function shuffleAnswers() {
@@ -589,24 +794,32 @@ async function startQuiz() {
             }
         }
 
-function showQuestion() {
-    if (currentQuestion >= questions.length) {
-        showResults();
-        return;
-    }
-
-    document.getElementById('question').textContent = questions[currentQuestion];
-    document.getElementById('pinyin').textContent = pinyins[currentQuestion];
-    
-    const answerElements = document.querySelectorAll('.answer');
-    answerElements.forEach((element, index) => {
-        element.querySelector('.answer-text').textContent = answers[currentQuestion][index];
-        element.querySelector('.answer-pinyin').textContent = answerPinyins[currentQuestion][index];
-        element.className = 'answer';
-    });
-
-    updateProgress();
+        function displayQuestion() {
+if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
 }
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
+            document.getElementById('question').textContent = questions[currentQuestion];
+            document.getElementById('pinyin').textContent = pinyins[currentQuestion];
+            
+            const answerElements = document.querySelectorAll('.answer');
+            answers[currentQuestion].forEach((answer, index) => {
+                const answerElement = answerElements[index];
+                answerElement.querySelector('.answer-text').textContent = 
+                    `${String.fromCharCode(65 + index)}. ${answer}`;
+                answerElement.querySelector('.answer-pinyin').textContent = 
+                    answerPinyins[currentQuestion][index];
+                answerElement.className = 'answer';
+            });
+
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
 
         function checkAnswer(index) {
             if (!isQuizStarted) return;
@@ -636,19 +849,16 @@ function showQuestion() {
         }
 
         function nextQuestion() {
-            
             if (!isQuizStarted) return;
             
             currentQuestion++;
             if (currentQuestion >= questions.length) {
                 showResults();
-            } 
-            else {
-                const answerElements = document.querySelectorAll('.answer');
-                showQuestion();
+            } else {
+                displayQuestion();
                 document.querySelectorAll('.answer').forEach(element => {
                     element.style.pointerEvents = 'auto';
-            });
+                });
             }
         }
 
