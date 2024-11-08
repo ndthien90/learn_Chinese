@@ -769,7 +769,7 @@ async function startQuiz() {
     const shuffleInterval = setInterval(() => {
         studentElement.textContent = students[Math.floor(Math.random() * students.length)];
         shuffleCount++;
-        if(shuffleCount > 10) {
+        if(shuffleCount > 1) {
             clearInterval(shuffleInterval);
             shuffleAnswers();
             displayQuestion();
@@ -777,7 +777,7 @@ async function startQuiz() {
             startTime = Date.now();
             document.querySelector('.btn-next').style.display = 'inline-block';
         }
-    }, 200);
+    }, 10);
 }
 
         function shuffleAnswers() {
