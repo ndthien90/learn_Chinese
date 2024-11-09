@@ -3,6 +3,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sắp xếp từ tiếng Trung</title>
     <style>
+:root {
+    --bg-color: #f0f0f0;
+    --container-bg: white;
+    --text-color: black;
+    --border-color: #007bff;
+    --button-bg: #007bff;
+    --button-hover: #0056b3;
+    --word-border: #007bff;
+    --word-hover-bg: #4CAF50;
+    --word-hover-text: white;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --container-bg: #2d2d2d;
+    --text-color: #ffffff;
+    --border-color: #4a9eff;
+    --button-bg: #4a9eff;
+    --button-hover: #2d8bff;
+    --word-border: #4a9eff;
+    --word-hover-bg: #45a049;
+    --word-hover-text: #ffffff;
+}
+
+
+.theme-toggle {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -10,10 +49,10 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
         .container {
-            background-color: white;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -21,6 +60,7 @@
             max-width: 600px;
             min-height: 550px;
             width: 100%;
+            background-color: var(--container-bg);
         }
         h1 {
             font-family: Arial, sans-serif;
@@ -31,21 +71,24 @@
         #studentName {
             font-family: Arial, sans-serif;
             font-size: 24px;
-            color: black;
             border: 2px solid #007bff;
             padding: 10px;
             border-radius: 5px;
-            background-color: white;
             width: 90%;
             margin: 10px auto;
             display: none;
+            color: var(--text-color);
+            border-color: var(--border-color);
+            background-color: var(--container-bg);
         }
         select {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 16px;
-            background-color: white;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            border-color: var(--border-color);
         }
         #lessonSelect {
             width: calc(60% - 24px);
@@ -66,17 +109,17 @@
             padding: 10px 20px;
             border: none;
             border-radius: 20px;
-            background-color: #007bff;
             color: white;
             font-size: 16px;
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background-color 0.3s, transform 0.3s;
             min-width: 120px;
+            background-color: var(--button-bg);
         }
         button:hover {
-            background-color: #0056b3;
             transform: translateY(-2px);
+            background-color: var(--button-hover);
         }
         #wordContainer {
             display: flex;
@@ -93,10 +136,12 @@
             font-size: 20px;
             transition: background-color 0.3s;
             border: 2px dashed #007bff;
+           border-color: var(--word-border);
+           color: var(--text-color);
         }
         .word:hover {
-            background-color: #4CAF50;
-            color: white;
+           background-color: var(--word-hover-bg);
+           color: var(--word-hover-text);
         }
         #result, #message {
             margin-top: 20px;
@@ -110,10 +155,10 @@
         .progress-container {
             width: 100%;
             height: 20px;
-            background-color: #f0f0f0;
             border-radius: 10px;
             margin: 20px 0;
             overflow: hidden;
+            background-color: var(--bg-color);
         }
         .progress-bar {
             height: 100%;
@@ -125,7 +170,7 @@
             justify-content: space-around;
             margin: 0 auto;
             font-size: 16px;
-            background-color: white;
+            background-color: transparent;
             padding: 10px;
             border-radius: 8px;
             border: 2px solid #007bff;
@@ -152,13 +197,14 @@
             <option value="lesson6">Bài 6: Sinh nhật</option>
             <option value="lesson7">Bài 7: Thường ngày</option>
         </select>
-        <div class="control-row">
-            <select id="modeSelect" onchange="changeMode()">
-                <option value="study">Tự học</option>
-                <option value="test">Kiểm tra</option>
-            </select>
-            <button onclick="startNewGame()">Bắt đầu</button>
-        </div>
+<div class="control-row">
+    <select id="modeSelect" onchange="changeMode()">
+        <option value="study">Tự học</option>
+        <option value="test">Kiểm tra</option>
+    </select>
+    <button onclick="startNewGame()">Bắt đầu</button>
+    <button onclick="toggleTheme()" id="themeToggle" class="theme-toggle">🌙</button>
+</div>
         <div class="stats">
             <div class="stat-item">Câu: <span id="questionCount">0/0</span></div>
             <div class="stat-item">Chính xác: <span id="accuracyRate">0%</span></div>
@@ -377,7 +423,7 @@
     "现在/是/十点/一刻。",
     "现在/是/下午/三点/多/吗？",
     "现在/是/下午/四点/半/了。",
-    "你/是/什么/时候/出生/的?",
+    "你/是/什么/时候/出生/的？",
     "我/是/2008年/6月/25号/出生/的。",
     "你/什么/时候/去/商店/买/书？",
     "我/下午/五点/半/左右/去/公园/跑步。",
@@ -453,7 +499,21 @@
         let totalQuestions = 0;
         let totalAnswers = 0;
         let currentMode = 'study';
-
+// Thêm vào phần script hiện có
+function toggleTheme() {
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    
+    if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+    }
+}
         function changeMode() {
             currentMode = document.getElementById('modeSelect').value;
             const studentNameElement = document.getElementById('studentName');
@@ -627,6 +687,18 @@
 
         // Load initial lesson data
         loadLesson();
+// Thêm đoạn này vào cuối file script để khôi phục theme đã lưu
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    const themeToggle = document.getElementById('themeToggle');
+    
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+    } else {
+        themeToggle.textContent = '🌙';
+    }
+});
     </script>
 
 
