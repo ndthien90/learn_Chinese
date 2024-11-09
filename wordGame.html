@@ -29,7 +29,6 @@
             font-size: 25px;
         }
         #studentName {
-            display:none;
             font-family: Arial, sans-serif;
             font-size: 24px;
             color: black;
@@ -38,21 +37,32 @@
             border-radius: 5px;
             background-color: white;
             width: 90%;
-            margin: 0 auto;
-
-            display: inline-block;
+            margin: 10px auto;
+            display: none;
         }
         select {
-            margin: 10px 0;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            width: calc(100% - 24px);
             font-size: 16px;
             background-color: white;
         }
-        button {
+        #lessonSelect {
+            width: calc(60% - 24px);
             margin: 10px 0;
+        }
+        #modeSelect {
+            width: 120px;
+            margin-right: 10px;
+        }
+        .control-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        button {
             padding: 10px 20px;
             border: none;
             border-radius: 20px;
@@ -62,6 +72,7 @@
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background-color 0.3s, transform 0.3s;
+            min-width: 120px;
         }
         button:hover {
             background-color: #0056b3;
@@ -81,7 +92,7 @@
             cursor: pointer;
             font-size: 20px;
             transition: background-color 0.3s;
-            border: 2px dashed #007bff; /* Khung viền nét đứt màu xanh */
+            border: 2px dashed #007bff;
         }
         .word:hover {
             background-color: #4CAF50;
@@ -118,21 +129,19 @@
             padding: 10px;
             border-radius: 8px;
             border: 2px solid #007bff;
-           color: white;
+            color: white;
         }
         .stat-item {
             background-color: #22a4e0;
             padding: 10px;
             border-radius: 8px;
             box-shadow: 0 5px 5px rgba(0,0,0,0.1);
-            //border: 2px solid #028bed;
             max-width: 150px;
             min-width: 120px
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body>    <div class="container">
         <h1>Xếp từ thành câu</h1>
         <select id="lessonSelect" onchange="loadLesson()">
             <option value="lesson1">Bài 1: Chào hỏi</option>
@@ -143,7 +152,13 @@
             <option value="lesson6">Bài 6: Sinh nhật</option>
             <option value="lesson7">Bài 7: Thường ngày</option>
         </select>
-        <button onclick="startNewGame()">Bắt đầu</button>
+        <div class="control-row">
+            <select id="modeSelect" onchange="changeMode()">
+                <option value="study">Tự học</option>
+                <option value="test">Kiểm tra</option>
+            </select>
+            <button onclick="startNewGame()">Bắt đầu</button>
+        </div>
         <div class="stats">
             <div class="stat-item">Câu: <span id="questionCount">0/0</span></div>
             <div class="stat-item">Chính xác: <span id="accuracyRate">0%</span></div>
@@ -356,6 +371,68 @@
     "今天/是/二月/十四号，我/和/女朋友/去/商店/买/衣服。",
     "我/和/他们/都/在/越南/学习/汉语。",
     "她/喜欢/去/图书馆/看/书。"
+  ], 
+    lesson7: [
+    "现在/几/点？",
+    "现在/是/十点/一刻。",
+    "现在/是/下午/三点/多/吗？",
+    "现在/是/下午/四点/半/了。",
+    "你/是/什么/时候/出生/的。",
+    "我是2008年6月25号出生的。",
+    "你什么时候去商店买书？",
+    "我/下午/五点/半/左右/去/公园/跑步。",
+    "他/什么时候/在/越南/工作？",
+    "我/爸爸/去年/在/美国/工作。",
+    "你/明天/有/空/吗？",
+    "我/明天/上午/去/学校，/下午/才/有空。",
+    "你/下午/有/什么/打算/了吗？",
+    "我/明天/下午/还/没有/什么/打算。",
+    "你/下午/几点/去/学校/打/羽毛球？",
+    "我/下午/两点半/左右/去/学校/打/羽毛球。",
+    "你/明天/五点半/去/公园/跑步/吗？",
+    "我/平时/六点/才/起床。",
+    "他/今年/多大了？",
+    "他/今年/二十多岁。",
+    "我们/明天下午/一点半/去/喝咖啡。/你/想去/吗？",
+    "明天/下午/我/打算/去/商店/买/衣服。",
+    "我们/下午/去/超市，/你/想/几点/去/呢？",
+    "我/想/四点半/左右/去/喝/奶茶。",
+    "你/明天/去/日本/旅游/吗？",
+    "我/和/女友/打算/去/日本/一个多星期/才/回来。",
+    "你/朋友/去/中国/工作/几年了？",
+    "他/去/中国/工作/一年/多/了。",
+    "明天/是/小明的/生日，/我们/几/点/去/他家/呢？",
+    "我/想/早/一点/去/学校。",
+    "你们/晚上/打算/去/看/几点/的/电影。",
+    "我们/打算/去/看/八点多/的/电影。",
+    "你/今天/有课/吗？",
+    "我/上午/有/两节/英语课，/下午/有/三节/韩语课。",
+    "明天/是/周末了，/你/想/几点/去/中国/餐厅/吃饭？",
+    "我们/中午/十二点/多/去/吧。",
+    "我们/后天/七点半/想/去/公园/玩。/你/去/吗？",
+    "我/七点半/还/没/吃/早饭。",
+    "你/是不是/昨天/晚上/八点半/左右/在/电影院/看/电影？",
+    "我/和/女朋友/一起/去/看/电影。",
+    "你/平时/几点/起床，/几点/睡觉？",
+    "我/平时/早上/六点/起床，/晚上/10点/到/10点半/睡觉。",
+    "你/平时/早饭/吃/什么/菜？",
+    "我/早饭/喜欢/吃/包子，/有时候/也/吃/面条。",
+    "你/尝/去/公园/跑步/吗？",
+    "我/有时候/去，/有时候/不去。",
+    "你/每天/有/几节/课？",
+    "我/每天/有/五节/课。/上午/有/三节，/下午/有/两节。",
+    "你/平时/早上/吃/炒饭/吗？",
+    "我/早饭/喜欢/吃/炒面/和/喝/饮料。",
+    "我们/什么/时候/去/韩国/旅游？",
+    "我们/今年/去/日本，/明年/去/韩国。",
+    "晚上/你/常/做/什么？",
+    "我/晚上/尝/看/电视/和/学习/中文。",
+    "明天/去/河内/玩，/我们/几点/出发？",
+    "我们/明天/早上/七点/一刻/出发。",
+    "他们/昨天/在/超市/买/了/多少/件/衣服/呢？",
+    "我们/去/书店/买/了/十多/本/书/左右。",
+    "他们/下午/一点半/上课，下午/四点半/下课。",
+    "我/爸爸/每天/五点半/左右/回家。"
   ]
 };
 
@@ -375,7 +452,13 @@
         let correctAnswers = 0;
         let totalQuestions = 0;
         let totalAnswers = 0;
+        let currentMode = 'study';
 
+        function changeMode() {
+            currentMode = document.getElementById('modeSelect').value;
+            const studentNameElement = document.getElementById('studentName');
+            studentNameElement.style.display = currentMode === 'test' ? 'inline-block' : 'none';
+        }
         function loadLesson() {
             const lessonSelect = document.getElementById('lessonSelect');
             const selectedLesson = lessonSelect.value;
@@ -394,21 +477,23 @@
             document.getElementById('resetButton').style.display = 'inline-block';
             updateProgressBar();
 
-            let interval;
-            const duration = 1000;
-            const endTime = Date.now() + duration;
-            const studentNameDisplay = document.getElementById('studentName');
-            
-            interval = setInterval(() => {
-                const randomStudent = students[Math.floor(Math.random() * students.length)];
-                studentNameDisplay.textContent = randomStudent;
+            if (currentMode === 'test') {
+                let interval;
+                const duration = 1000;
+                const endTime = Date.now() + duration;
+                const studentNameDisplay = document.getElementById('studentName');
                 
-                if (Date.now() >= endTime) {
-                    clearInterval(interval);
-                    const finalStudent = students[Math.floor(Math.random() * students.length)];
-                    studentNameDisplay.textContent = finalStudent;
-                }
-            }, 50);
+                interval = setInterval(() => {
+                    const randomStudent = students[Math.floor(Math.random() * students.length)];
+                    studentNameDisplay.textContent = randomStudent;
+                    
+                    if (Date.now() >= endTime) {
+                        clearInterval(interval);
+                        const finalStudent = students[Math.floor(Math.random() * students.length)];
+                        studentNameDisplay.textContent = finalStudent;
+                    }
+                }, 50);
+            }
         }
 
         function showNextQuestion() {
