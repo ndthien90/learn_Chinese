@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Chinese Language Learning</title>
     <style>
+        /* Giữ nguyên CSS cũ */
         :root {
             --bg-color: #ffffff;
             --text-color: #000000;
@@ -36,15 +37,13 @@
 
         .container {
             margin: 0 auto;
-            width: 900px;
+            max-width: 1200px;
             max-height: 1500px;
-            //width: 100%;
             background-color: var(--bg-color);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             padding: 20px;
             margin: 20px;
-            
         }
 
         .header {
@@ -75,6 +74,25 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
         }
 
+        /* Thêm style cho dropdown */
+        #lessonSelect {
+            width: 300px;
+            height: 60px;
+            font-size: 30px;
+            text-align: left;
+            border-radius: 10px;
+            border: 3px solid #3498db;
+            margin: 0 10px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #lessonSelect option {
+            font-size: 25px;
+            padding: 10px;
+        }
+
+        /* Giữ nguyên phần CSS còn lại */
         #questionCount {
             width: 120px;
             height: 60px;
@@ -111,6 +129,7 @@
             color: white;
         }
 
+        /* Giữ nguyên phần CSS còn lại từ code cũ */
         .student-name {
             padding: 10px 20px;
             border-radius: 10px;
@@ -260,8 +279,17 @@
         <div class="header">
             <div class="controls">
                 <button id="startBtn">Bắt đầu</button>
-                <button id="dataBtn">Dữ liệu</button>
+                <select id="lessonSelect">
+                    <option value="1">Bài 1 Chào hỏi</option>
+                    <option value="2">Bài 2 Bản thân</option>
+                    <option value="3">Bài 3 Gia đình</option>
+                    <option value="4">Bài 4 Sở thích</option>
+                    <option value="5">Bài 5 Quê hương</option>
+                    <option value="6">Bài 6 Sinh nhật</option>
+                    <option value="7">Bài 7 Thường ngày</option>
+                </select>
                 <input type="number" id="questionCount" min="1" max="20" value="6" title="Số câu hỏi"/>
+                <button id="dataBtn">Dữ liệu</button>
             </div>
             <button id="darkModeBtn">🌙</button>
         </div>
@@ -281,6 +309,7 @@
     </div>
 
     <script>
+        // Giữ nguyên các biến và hàm từ code cũ
         let timer;
         let timeLeft = 90;
         let isDarkMode = false;
@@ -289,11 +318,212 @@
         let isGameStarted = false;
         let selectedBlank = null;
         let selectedAnswer = null;
-        
         let allQuestions = [];
         let usedQuestions = new Set();
         let QUESTIONS_PER_GAME = 6;
 
+        // Thêm dữ liệu cho các bài học
+        const lessonData = {
+1: [
+    "/你/好",
+    "再/见/"
+  ],
+  2: [
+    "你/叫/什么名字？",
+    "我叫阮文明，你/呢？/",
+    "你/好/吗？",
+    "你/最近/怎么样？",
+    "你最近好/吗/？",
+    "一切/都/好",
+    "这/是/我的爸爸。",
+    "那是我/的/弟弟。",
+    "/这/不是我的老师。",
+    "那是你的/哥哥/吗？"
+  ],
+  3: [
+    "你/有/弟弟吗？",
+    "他/只/有一/个/妹妹。",
+    "他/有没有/姐姐？",
+    "你有/兄弟姐妹/吗？",
+    "我有一个弟弟/和/一个妹妹。",
+    "我/没有/哥哥，我只有一个弟弟。",
+    "他没有哥哥，我/也/没有哥哥。",
+    "我没有兄弟姐妹，我是/独生子/。",
+    "你家有几/口/人？",
+    "我/有/四/口人：爸爸，妈妈，弟弟和/我。",
+    "你今年/多大/？",
+    "他今年/三十五/岁。",
+    "他/做/什么工作？",
+    "我弟弟是/学生/，我/姐姐/是老师。",
+    "他不/工作/，他是学生。",
+    "他哥哥/在/失业。",
+    "我和他的妈妈/都/是医生。",
+    "我爷爷不工作，他/退休/了。"
+  ],
+  4: [
+    "你有/什么/爱好？",
+    "我/喜欢/去旅游。",
+    "你喜欢/听/音乐吗？",
+    "她不喜欢/喝/咖啡。",
+    "你哥哥喜欢吃/零食/吗？",
+    "你/喜欢喝什么/茶/？",
+    "她不喜欢/吃/炒面，她喜欢/吃/炒饭。",
+    "我不喜欢/踢/足球，我喜欢/打/羽毛球。",
+    "我喜欢/看/电影，他/也喜欢听/音乐/。",
+    "你/儿子/喜欢喝牛奶吗？",
+    "/牛奶和奶茶/他都喜欢喝。",
+    "他女儿不喜欢/玩/游戏，他女儿喜欢/学习/。",
+    "她/特别/喜欢喝奶茶。",
+    "他很喜欢喝茶，/但是/他最不喜欢喝奶茶。",
+    "我/喜欢喝/牛奶和奶茶。但是我/最喜欢/喝奶茶。",
+    "炒饭和/炒面他/都/特别喜欢/吃。",
+    "你/喜欢吃炒面/还是/炒饭？",
+    "我很喜欢吃炒面，/炒面/很/好吃。"
+  ],
+  5: [
+    "你的/国籍/是什么？",
+    "你的英语老师有/什么/国籍？",
+    "他的国籍是/中国/。",
+    "他/有/美国国籍。",
+    "她有/几/个国籍？",
+    "她有/两/个国籍，一个/是日本国籍，一个是韩国国籍。",
+    "你是/哪/国人？",
+    "我是/越南/人。",
+    "他们/都/是中国人吗？",
+    "你妈妈/是不是/韩国人？",
+    "我爸爸是/泰国人/。我妈妈是日本人。",
+    "你/来自/哪个国家？",
+    "你们来自/哪/个国家？",
+    "他们都来自法国/吗/？",
+    "你的家乡在哪/里/？",
+    "我的/家乡/在北宁。",
+    "你/会/说中文吗？",
+    "我会说中文,也会/写/汉字。",
+    "你会/读/这个汉字吗？",
+    "你朋友会说/日语/吗？",
+    "/日语和韩语/他都会说。",
+    "我不会说德语，我/只/会说法语。",
+    "你会几/门/语言？",
+    "我会/三/门语言：越南语，英语和日语。",
+    "你们/会不会/说韩语？",
+    "你们会说什么/语言/？",
+    "你会做/饭/吗？",
+    "你会做中国/菜/吗？",
+    "我喜欢吃中国菜，/但是/我不会做。",
+    "他会不会踢/足球/？",
+    "他喜欢/看/足球，但是他不会踢足球。",
+    "你爸爸会打/羽毛球/吗？",
+    "他家有汽车，但是他不会/开/。",
+    "你弟弟会不会/骑/摩托车？",
+    "你妈妈会唱/歌/吗？",
+    "/她做/的中国菜都特别好吃。",
+    "我很喜欢吃中国菜，特别是/麻辣香锅/。",
+    "你喜欢吃中国菜/和/泰国菜吗？"
+  ],
+  6: [
+    "今天几/号/？",
+    "今天星期/几/？",
+    "今天星期四，/明天/星期五。",
+    "我的/生日/是8月10号。",
+    "/下个/星期三是我的生日？",
+    "今天是/谁/的生日？",
+    "明天6月1号是/国际儿童/节。",
+    "今天4月30号，明天是/国际劳动/节。",
+    "今天5号星期一，下个/星期一/是12号。",
+    "今天是星期六，明天是/星期天/。",
+    "我在学校/学习/中文。",
+    "她今天/上午/在图书馆看书。",
+    "我们在/公园/散步。",
+    "他们明天晚上在家/做/饭。",
+    "我去年在/越南/工作。",
+    "我在/商店/买东西。",
+    "她在咖啡馆喝/咖啡/。",
+    "我们上周在/电影院/看电影。",
+    "我下周三去美国/旅游/。",
+    "我下午/去/学校踢足球。",
+    "她今天去商店/买/衣服。",
+    "我们昨天晚上去公园/跑/步。",
+    "他们上午去/图书馆/借书。",
+    "我后天去朋友家/玩/。",
+    "我们去/餐厅/吃饭。",
+    "我今天在家学习英语/和/汉语。",
+    "他/不喜欢/去餐厅吃饭。",
+    "今天是/周末/，我们晚上去电影院看电影。",
+    "我和他们都在越南学习/汉语/。",
+    "她/喜欢/去图书馆看书。"
+  ],
+  7: [
+    "/现在/几点？",
+    "现在是十/点/一刻。",
+    "现在是/下午/三点多吗？",
+    "现在是下午/四点半/了。",
+    "你是/什么时候/出生的？",
+    "我是2008年6月25号出生的。",
+    "我下午五点半/左右/去公园跑步。",
+    "我爸爸/去年/在美国工作。",
+    "你明天有/空/吗？",
+    "我明天上午去/学校/，下午才有空。",
+    "我明天下午/还/没有什么打算。",
+    "你下午/几点/去学校打羽毛球？",
+    "你明天五点半去/公园/跑步吗？",
+    "我/平时/六点才/起床/。",
+    "他今年/二十多/岁了。",
+    "我们明天下午一点半去喝咖啡，你/想/去吗？",
+    "你明天去日本/旅游/吗？",
+    "我和女友打算去日本一个多星期才/回来/。",
+    "他去中国工作/一年多/了。",
+    "明天是小明的生日，我们几点去/他家/呢？",
+    "我想早/一点/去学校。",
+    "你们晚上打算去看几点的/电影/？",
+    "我上午有两/节/英语课，下午有三节韩语/课/。",
+    "明天是周末了，你想几点去/中国餐厅/吃饭？",
+    "我和女朋友/一起/去看电影。",
+    "你平时几点起床，几点/睡觉/？",
+    "我平时早上六点起床，晚上10点/到/10点半睡觉。",
+    "你平时/早饭/吃什么菜？",
+    "我早饭喜欢吃包子，/有时候/也吃面条。",
+    "你/尝/去公园跑步吗？",
+    "我/每天/有五节课。",
+    "我晚上常看/电视/和学习中文。",
+    "明天去河内玩，我们几点/出发/？",
+    "我们明天/早上/七点一刻出发。",
+    "他们昨天在/超市/买了多少件衣服呢？",
+    "他们下午一点半/上/课，下午四点半下课。",
+    "我爸爸每天五点半左右/回/家。"
+  ]
+};
+
+        // Thêm hàm để load câu hỏi theo bài học
+// Sửa đổi hàm loadLessonQuestions
+function loadLessonQuestions(lessonNumber) {
+    const lessonQuestions = lessonData[lessonNumber];
+    if (!lessonQuestions) return;
+    
+    // Tự động cập nhật số câu hỏi tối đa dựa trên số câu trong bài học
+    const maxQuestions = lessonQuestions.length;
+    const questionCountInput = document.getElementById('questionCount');
+    questionCountInput.max = maxQuestions;
+    
+    // Nếu số câu đang chọn lớn hơn số câu có sẵn, cập nhật lại giá trị
+    if (parseInt(questionCountInput.value) > maxQuestions) {
+        questionCountInput.value = maxQuestions;
+        QUESTIONS_PER_GAME = maxQuestions;
+    }
+    
+    allQuestions = lessonQuestions.map(q => parseQuestion(q));
+    usedQuestions.clear();
+    questions = selectRandomQuestions();
+    createQuestionElements();
+}
+
+        // Sửa đổi event listener cho dropdown
+document.getElementById('lessonSelect').addEventListener('change', (e) => {
+    const lessonNumber = parseInt(e.target.value);
+    loadLessonQuestions(lessonNumber);
+    resetGame();
+});
+
+        // Giữ nguyên các hàm từ code cũ
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -329,6 +559,7 @@
             return result;
         }
 
+        // Giữ nguyên các hàm còn lại từ code cũ
         function selectRandomQuestions() {
             const availableQuestions = allQuestions.filter(q => !usedQuestions.has(q.fullText));
             
@@ -345,19 +576,17 @@
             return selectedQuestions;
         }
 
+        // Giữ nguyên tất cả các hàm xử lý từ code cũ
         function handleBlankClick(blank) {
             if (blank.classList.contains('correct')) return;
 
-            // Deselect previously selected blank
             if (selectedBlank) {
-                selectedBlank.classList.remove('selected');
+             selectedBlank.classList.remove('selected');
             }
 
-            // Select new blank
             blank.classList.add('selected');
             selectedBlank = blank;
 
-            // If both blank and answer are selected, try to match
             if (selectedAnswer) {
                 tryMatch();
             }
@@ -366,16 +595,13 @@
         function handleAnswerClick(answer) {
             if (answer.classList.contains('used')) return;
 
-            // Deselect previously selected answer
             if (selectedAnswer) {
                 selectedAnswer.classList.remove('selected');
             }
 
-            // Select new answer
             answer.classList.add('selected');
             selectedAnswer = answer;
 
-            // If both blank and answer are selected, try to match
             if (selectedBlank) {
                 tryMatch();
             }
@@ -385,7 +611,6 @@
             if (!selectedBlank || !selectedAnswer) return;
 
             if (selectedBlank.dataset.answer === selectedAnswer.textContent) {
-                // Correct match
                 selectedBlank.textContent = selectedAnswer.textContent;
                 selectedBlank.classList.remove('selected');
                 selectedBlank.classList.add('correct');
@@ -393,11 +618,9 @@
                 selectedAnswer.classList.add('used');
                 selectedAnswer.style.display = 'none';
 
-                // Reset selections
                 selectedBlank = null;
                 selectedAnswer = null;
 
-                // Check if all answers are correct
                 const allCorrect = Array.from(document.querySelectorAll('.blank'))
                     .every(b => b.classList.contains('correct'));
                 if (allCorrect) {
@@ -407,7 +630,6 @@
                     }, 100);
                 }
             } else {
-                // Wrong match - deselect both
                 selectedBlank.classList.remove('selected');
                 selectedAnswer.classList.remove('selected');
                 selectedBlank = null;
@@ -480,7 +702,7 @@
             const input = document.getElementById('timerInput');
             input.value = timeLeft;
             dialog.style.display = 'block';
-}
+        }
 
         function hideTimerDialog() {
             document.getElementById('timerDialog').style.display = 'none';
@@ -506,31 +728,36 @@
             }, 1000);
         }
 
-        function resetGame() {
-            clearInterval(timer);
-            timeLeft = 90;
-            updateTimerDisplay();
-            
-            document.getElementById('questions').style.display = 'none';
-            document.getElementById('answers').style.display = 'none';
-            
-            selectedBlank = null;
-            selectedAnswer = null;
-            
-            // Update QUESTIONS_PER_GAME from input before selecting questions
-            const questionCountInput = document.getElementById('questionCount');
-            const newCount = parseInt(questionCountInput.value);
-            if (newCount && newCount >= 1 && newCount <= 20) {
-                QUESTIONS_PER_GAME = newCount;
-            } else {
-                questionCountInput.value = QUESTIONS_PER_GAME;
-            }
-            
-            questions = selectRandomQuestions();
-            createQuestionElements();
-            
-            isGameStarted = false;
+ function resetGame() {
+    clearInterval(timer);
+    timeLeft = 90;
+    updateTimerDisplay();
+    
+    document.getElementById('questions').style.display = 'none';
+    document.getElementById('answers').style.display = 'none';
+    
+    selectedBlank = null;
+    selectedAnswer = null;
+    
+    const questionCountInput = document.getElementById('questionCount');
+    const maxQuestions = lessonData[document.getElementById('lessonSelect').value].length;
+    let newCount = parseInt(questionCountInput.value);
+    
+    if (newCount && newCount >= 1) {
+        if (newCount > maxQuestions) {
+            newCount = maxQuestions;
+            questionCountInput.value = maxQuestions;
         }
+        QUESTIONS_PER_GAME = newCount;
+    } else {
+        questionCountInput.value = QUESTIONS_PER_GAME;
+    }
+    
+    questions = selectRandomQuestions();
+    createQuestionElements();
+    
+    isGameStarted = false;
+}
 
         // Event Listeners
         document.getElementById('timer').addEventListener('click', showTimerDialog);
@@ -555,14 +782,21 @@
             document.getElementById('darkModeBtn').textContent = isDarkMode ? '☀️' : '🌙';
         });
 
-        document.getElementById('questionCount').addEventListener('change', (e) => {
-            const newCount = parseInt(e.target.value);
-            if (newCount && newCount >= 1 && newCount <= 20) {
-                QUESTIONS_PER_GAME = newCount;
-            } else {
-                e.target.value = QUESTIONS_PER_GAME;
-            }
-        });
+document.getElementById('questionCount').addEventListener('change', (e) => {
+    const maxQuestions = lessonData[document.getElementById('lessonSelect').value].length;
+    let newCount = parseInt(e.target.value);
+    
+    if (newCount && newCount >= 1) {
+        // Nếu số câu nhập vào lớn hơn số câu có sẵn, gán bằng số câu tối đa
+        if (newCount > maxQuestions) {
+            newCount = maxQuestions;
+            e.target.value = maxQuestions;
+        }
+        QUESTIONS_PER_GAME = newCount;
+    } else {
+        e.target.value = QUESTIONS_PER_GAME;
+    }
+});
 
         document.getElementById('startBtn').addEventListener('click', () => {
             resetGame();
@@ -600,47 +834,9 @@
             isGameStarted = true;
         });
 
-        document.getElementById('dataBtn').addEventListener('click', async () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.txt';
-            
-            input.onchange = async (e) => {
-                const file = e.target.files[0];
-                const text = await file.text();
-                
-                allQuestions = text.split('\n')
-                    .filter(line => line.trim())
-                    .map(line => parseQuestion(line));
-                
-                usedQuestions.clear();
-                
-                questions = selectRandomQuestions();
-                createQuestionElements();
-                resetGame();
-            };
-            
-            input.click();
-        });
-
-        // Initialize with default questions
-        const defaultQuestions = [
-            "我在学校/学习/中文。",
-            "她/今天上午/在图书馆/看/书。",
-            "我们在公园/散步/。",
-            "他们明天晚上在家/做/饭。",
-            "我去年在/越南/工作。",
-            "我在商店/买/东西。",
-            "她在咖啡馆/喝/咖啡。",
-            "我们上周在/电影院/看电影。"
-        ];
-
-        // Initialize allQuestions with default questions
-        allQuestions = defaultQuestions.map(q => parseQuestion(q));
-        questions = selectRandomQuestions();
-        createQuestionElements();
+        // Khởi tạo ban đầu
+        loadLessonQuestions(1);
         resetGame();
     </script>
 </body>
 </html>
-        
