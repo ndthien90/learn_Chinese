@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sắp xếp từ tiếng Trung</title>
@@ -20,9 +18,9 @@
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
+            min-height: 550px;
             width: 100%;
-            min-height:500px;
         }
         h1 {
             font-family: Arial, sans-serif;
@@ -32,17 +30,15 @@
         }
         #studentName {
             font-family: Arial, sans-serif;
-            font-size: 22px;
-            height: 25px;
-            margin-top: 5px;
+            font-size: 24px;
             color: black;
             border: 2px solid #007bff;
             padding: 10px;
             border-radius: 5px;
             background-color: white;
-            width: 60%;
-            margin-left: auto;
-            margin-right: auto;
+            width: 90%;
+            margin: 0 auto;
+
             display: inline-block;
         }
         select {
@@ -50,7 +46,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            width: calc(50% - 24px);
+            width: calc(100% - 24px);
             font-size: 16px;
             background-color: white;
         }
@@ -58,7 +54,7 @@
             margin: 10px 0;
             padding: 10px 20px;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             background-color: #007bff;
             color: white;
             font-size: 16px;
@@ -101,17 +97,16 @@
         }
         .progress-container {
             width: 100%;
+            height: 20px;
             background-color: #f0f0f0;
             border-radius: 10px;
             margin: 20px 0;
             overflow: hidden;
         }
         .progress-bar {
-            height: 20px;
+            height: 100%;
             background-color: #4CAF50;
-            width: 0%;
             transition: width 0.3s ease;
-            border-radius: 10px;
         }
         .stats {
             display: flex;
@@ -123,7 +118,6 @@
             border-radius: 8px;
             border: 2px solid #007bff;
            color: white;
-           //width:100%;
         }
         .stat-item {
             background-color: #22a4e0;
@@ -134,166 +128,272 @@
             max-width: 150px;
             min-width: 120px
         }
-        .next-button {
-            background-color: #28a745;
-        }
-        .next-button:hover {
-            background-color: #218838;
-        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=KaiTi&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>Xếp từ thành câu</h1>
         <select id="lessonSelect" onchange="loadLesson()">
-            <option value="lesson1">Chọn bài tập</option>
+            <option value="lesson1">Bài 1: Chào hỏi</option>
+            <option value="lesson2">Bài 2: Bản thân</option>
+            <option value="lesson3">Bài 3: Gia đình</option>
+            <option value="lesson4">Bài 4: Sở thích</option>
+            <option value="lesson5">Bài 5: Quê hương</option>
+            <option value="lesson6">Bài 6: Sinh nhật</option>
+            <option value="lesson7">Bài 7: Thường ngày</option>
         </select>
         <button onclick="startNewGame()">Bắt đầu</button>
-        <div id="studentName">Tên học sinh</div>
-        
-        <div class="progress-container">
-            <div id="progressBar" class="progress-bar"></div>
-        </div>
-        
         <div class="stats">
-            <div class="stat-item">
-                Câu: <span id="currentQuestion">0</span>/<span id="totalQuestions">0</span>
-            </div>
-            <div class="stat-item" style="display:none;">
-                Đúng: <span id="correctAnswers">0</span>
-            </div>
-            <div class="stat-item">
-                Tỷ lệ: <span id="accuracy">0</span>%
-            </div>
+            <div class="stat-item">Câu: <span id="questionCount">0/0</span></div>
+            <div class="stat-item">Chính xác: <span id="accuracyRate">0%</span></div>
         </div>
-
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div id="studentName">Tên học sinh</div>
         <div id="wordContainer"></div>
         <div id="result"></div>
         <div id="message"></div>
+        <button onclick="nextQuestion()" id="nextButton" style="display: none;">Câu tiếp theo</button>
         <button onclick="resetGame()" id="resetButton" style="display: none;">Thử lại</button>
-        <button onclick="nextQuestion()" id="nextButton" class="next-button" style="display: none;">Câu tiếp theo</button>
     </div>
 
     <script>
+        const lessonData = {
+  lesson1: [
+    "你/好。",
+    "再/见。"
+  ],
+  lesson2: [
+    "你/叫/什么/名字？",
+    "我/叫/阮文明/，你/呢？",
+    "你/好/吗？",
+    "你/最近/怎么样？",
+    "你/最近/好/吗？",
+    "一/切/都/好",
+    "这/是/我/的/爸爸。",
+    "那/是/我/的/弟弟。",
+    "这/不/是/我/的/老师。",
+    "那/是/你/的/哥哥/吗？"
+  ],
+  lesson3: [
+    "你/有/弟弟/吗？",
+    "他/只/有/一/个/妹妹。",
+    "他/有没有/姐姐？",
+    "你/有/兄弟/姐妹/吗？",
+    "我/有/一/个/弟弟/和/一/个/妹妹。",
+    "我/没有/哥哥，/我/只/有/一/个/弟弟。",
+    "他/没有/哥哥，/我/也/没有/哥哥。",
+    "我/没有/兄弟姐妹，/我/是/独生子。",
+    "你/家/有/几口人？",
+    "我/家/有/四口人：/爸爸，/妈妈，/弟弟/和/我。",
+    "你/今年/多大？",
+    "他/今年/三十五/岁。",
+    "他/做/什么/工作？",
+    "我/弟弟/是/学生，/我/姐姐/是/老师。",
+    "他/不/工作，/他/是/学生。",
+    "他/哥哥/在/失业。",
+    "我和他/的/妈妈/都/是/医生。",
+    "我/哥哥/是/公安，/他/哥哥/是/部队。",
+    "我/爷爷/不/工作，/他/退休/了。"
+  ],
+  lesson4: [
+    "你/有/什么/爱好？",
+    "我/喜欢/去/旅游。",
+    "你/喜欢/听/音乐/吗？",
+    "她/不/喜欢/喝/咖啡。",
+    "你/哥哥/喜欢/吃/零食/吗？",
+    "你/喜欢/喝/什么/茶？",
+    "我/喜欢/喝/奶茶。",
+    "她/不/喜欢/吃/炒面，/她/喜欢/吃/炒饭。",
+    "我/不/喜欢/踢/足球，/我/喜欢/打/羽毛球。",
+    "我/喜欢/看/电影，/他/也/喜欢/听/音乐。",
+    "你/儿子/喜欢/喝/牛奶/吗？",
+    "牛奶/和/奶茶/他/都/喜欢/喝。",
+    "他/女儿/不/喜欢/玩/游戏，/他/女儿/喜欢/学习。",
+    "她/特别/喜欢/喝/奶茶。",
+    "他/很/喜欢/喝/茶，/但是/他/最不/喜欢/喝/奶茶。",
+    "你/爸爸/喜欢/喝/什么/饮料？",
+    "我/喜欢/喝/牛奶/和/奶茶。/但是/我/最/喜欢/喝/奶茶。",
+    "炒饭/和/炒面/他/都/特别/喜欢/吃。",
+    "他/最/喜欢/踢/足球/和/打/羽毛球。",
+    "他/爸爸/最/喜欢/喝/咖啡/和/去/旅游。",
+    "你/喜欢/吃/面包/还是/包子？",
+    "她/最/喜欢/吃/包子，/特别/好吃。",
+    "你/喜欢/吃/炒面/还是/炒饭？",
+    "我/很/喜欢/吃/炒面，/炒面/很/好吃。/你/呢？",
+    "我/不太/喜欢/喝/咖啡，/比较/喜欢/喝/果汁。"
+  ],
+  lesson5: [
+    "你的/国籍/是/什么？",
+    "你的/英语/老师/有/什么/国籍？",
+    "他的/国籍/是/中国。",
+    "他/有/美国/国籍。",
+    "她/有/几个/国籍？",
+    "她/有/两个/国籍。/一个/是/日本/国籍，/一个/是/韩国/国籍。",
+    "你/是/哪/国/人？",
+    "我/是/越南人。",
+    "他们/是/哪/国/人？",
+    "他们/都/是/中国/人？",
+    "他的/英语/老师/是/哪/国/人？",
+    "他的/英语/老师/是/美国/人。",
+    "他们/都/是/法国/人/吗？",
+    "我/是/法国人。/他/是/德国人。",
+    "你/妈妈/是不是/韩国/人？",
+    "我/爸爸/是/泰国人。/我/妈妈/是/日本人。",
+    "你/来自/哪/个/国家？",
+    "我/来自/越南。",
+    "你们/来自/哪/个/国家？",
+    "我/来自/日本，/她/来自/韩国。",
+    "他们/都/来自/法国/吗？",
+    "他的/英语/老师/来自/美国/吗？",
+    "他的/英语老师/来自/德国。",
+    "我/不/来自/韩国。/我/来自/中国。",
+    "我/来自/越南，/他/也/来自/越南。",
+    "我们/都/来自/德国。",
+    "你的/家乡/在/哪/里？",
+    "我的/家乡/在/北宁。",
+    "你/爸爸的/家乡/在/哪/里？",
+    "我/爸爸的/家乡/在/河内。",
+    "你/妈妈的/家乡/在/哪/儿？",
+    "我/妈妈的/家乡/在/北江。",
+    "你们的/家乡/在哪儿？",
+    "我的/家乡/在/海防。/他的/家乡/在/海阳。",
+    "你/是/哪/里/人？",
+    "我/是/北宁人。",
+    "他/是/河内人/吗？",
+    "你/朋友/是不是/北江人？",
+    "我/是/海防人，/他/也是/海防人。",
+    "我们/都是/海防人。",
+    "你/会/中文/吗？",
+    "我/会/中文。",
+    "他/不会/英语。",
+    "我/会/说/中文/和/写/汉字。",
+    "你/会/读/这个/汉字/吗？",
+    "我/不会/读/这个/汉字。",
+    "你/朋友/会/说/日语/吗？",
+    "日语/和/韩语/他/都会/说。",
+    "你/会/说/德语/吗？",
+    "我/不会/说/德语，/我/只会/说/法语。",
+    "他/会/写/泰语/吗？",
+    "他/只会/说，/不会/写。",
+    "你/会/几门/语言？",
+    "我/会/三门/语言：/越南语，/英语/和/日语。",
+    "你们/会不会/说/韩语？",
+    "你们/会/说/什么/语言？",
+    "我/会/说/德语，/他/会/说/法语。",
+    "你/会/读/这/个/字/吗？",
+    "这个/是/日文。/我/不会/读。",
+    "他/会不会/写/这/个/字？",
+    "你/会/做/饭/吗？",
+    "我/不会/做饭。",
+    "你/会/做/中国菜/吗？",
+    "我/喜欢/吃/中国菜，/但是/我/不会/做。",
+    "他/会不会/踢/足球？",
+    "他/喜欢/看/足球，/但是/他/不会/踢/足球。",
+    "你/爸爸/会/打/羽毛球/吗？",
+    "羽毛球/和/乒乓球/他/都/会/打。",
+    "你/朋友/会/开/汽车/吗？",
+    "他家/有/汽车，/但是/他/不会/开。",
+    "你/弟弟/会不会/骑/摩托车？",
+    "他/不会/骑/摩托车/但是/他/会/骑/电瓶车。",
+    "你/妈妈/会/唱歌/吗？",
+    "她/喜欢/听歌/但是/她/不会/唱歌。",
+    "她/很/会/做/中国菜。/她/做的/中国菜/都/特别/好吃。",
+    "我/很/喜欢/吃/中国菜，/特别是/麻辣香锅。",
+    "你/喜欢/吃/中国菜/和/泰国菜/吗？"
+  ],
+  lesson6: [
+    "今天/几/号？",
+    "今天/11/号。",
+    "明天/几/月/几/号？",
+    "明天/10/月/15/号。",
+    "今天/星期/几？",
+    "今天/星期/天。",
+    "昨天/星期/六。",
+    "后天/几月/几号，/星期几？",
+    "后天/10月/15号，/星期二。",
+    "前天/是/10月/10号/吗？",
+    "前天/是/10月/11号，/星期/五。",
+    "你的/生日/是/几月/几号？",
+    "我的/生日/是/8月/10号。",
+    "下个/星期三/是不是/你的/生日？",
+    "不是。/下个/星期四/是/我的/生日。",
+    "今天/是/谁的/生日？",
+    "今天/是/老师的/生日。",
+    "明天/是/国际/劳动节/吗？",
+    "明天/6月/1号/是/国际/儿童/节。",
+    "今天/是/星期/一/吗？",
+    "明天/是不是/星期四？",
+    "明天/是/星期/五，/6月/5号。",
+    "今天/是/星期六，/明天/是/星期天。",
+    "明天/是/我弟弟/的/生日。",
+    "昨天/星期六/是/我/好朋友的/生日。",
+    "下周/是/我爸爸/的/生日。",
+    "我/在/学校/学习/中文。",
+    "她/今天/上午/在/图书馆/看/书。",
+    "我们/在/公园/散步。",
+    "他们/明天/晚上/在/家/做/饭。",
+    "我/去年/在/越南/工作。",
+    "我/在/商店/买/东西。",
+    "她/在/咖啡馆/喝/咖啡。",
+    "我们/上周/在/电影院/看/电影。",
+    "我/下周三/去/美国/旅游。",
+    "我/下午/去/学校/踢/足球。",
+    "她/今天/去/商店/买/衣服。",
+    "我们/昨天/晚上/去/公园/跑步。",
+    "他们/上午/去/图书馆/借/书。",
+    "我/去/咖啡馆/喝/咖啡。",
+    "我/后天/去/朋友/家/玩。",
+    "他/去/电影院/看/电影。",
+    "我们/去/餐厅/吃/饭。",
+    "我/今天/在/家/学习/英语/和/汉语。",
+    "他/不/喜欢/去/餐厅/吃/饭。",
+    "你/今天/上午/去/图书馆/借/书/吗？",
+    "今天/是/周末,/我们/晚上/去/电影院/看/电影。",
+    "我们/今天/下午/去/他/家/吃/饭。",
+    "今天/是/二月/十四号，我/和/女朋友/去/商店/买/衣服。",
+    "我/和/他们/都/在/越南/学习/汉语。",
+    "她/喜欢/去/图书馆/看/书。"
+  ]
+};
+
         const students = [
-            'Nguyễn Đức Thành', 
-            'Nguyễn Khánh Phương', 
-            'Nguyễn Phương Nhi', 
-            'Nghiêm Diệu Linh', 
-            'Nguyễn Minh Hằng', 
-            'Nguyễn Đức Trung', 
-            'Hoàng Minh Thái', 
-            'Nguyễn Đức Bảo Phong', 
-            'Tạ Thị Ngọc Anh', 
-            'Vương Thanh Hà', 
-            'Hoàng Tuấn Thành', 
-            'Nguyễn Thị Trang', 
-            'Hoàng Thế Anh Quân', 
-            'Trịnh Công Minh', 
-            'Trịnh Anh Kiệt'
+            'Nguyễn Đức Thành', 'Nguyễn Khánh Phương', 'Nguyễn Phương Nhi',
+            'Nghiêm Diệu Linh', 'Nguyễn Minh Hằng', 'Nguyễn Đức Trung',
+            'Hoàng Minh Thái', 'Nguyễn Đức Bảo Phong', 'Tạ Thị Ngọc Anh',
+            'Vương Thanh Hà', 'Hoàng Tuấn Thành', 'Nguyễn Thị Trang',
+            'Hoàng Thế Anh Quân', 'Trịnh Công Minh', 'Trịnh Anh Kiệt'
         ];
 
-        let lessonData = {};
         let originalSentence = '';
         let shuffledWords = [];
         let userSentence = [];
         let currentLessonSentences = [];
         let currentQuestionIndex = 0;
-        let correctCount = 0;
-        let totalAttempts = 0;
-        let lessonTitles = [];
-
-        async function loadLessonFile(lessonNumber) {
-            try {
-                const response = await fetch(`data_wordgame/${lessonNumber}.txt`);
-                if (!response.ok) {
-                    throw new Error(`Failed to load lesson ${lessonNumber}`);
-                }
-                const text = await response.text();
-                return text.split('\n').filter(line => line.trim() !== '');
-            } catch (error) {
-                console.error(`Error loading lesson ${lessonNumber}:`, error);
-                return [];
-            }
-        }
-
-        async function initializeLessonData() {
-            // Đọc file list.txt trước
-            try {
-                const response = await fetch('data_wordgame/list.txt');
-                if (!response.ok) {
-                    throw new Error('Failed to load lesson list');
-                }
-                const text = await response.text();
-                lessonTitles = text.split('\n').filter(line => line.trim() !== '');
-            } catch (error) {
-                console.error('Error loading lesson list:', error);
-                lessonTitles = [];
-            }
-
-            // Tiếp tục đọc dữ liệu các bài học
-            for (let i = 1; i <= 20; i++) {
-                const lessonSentences = await loadLessonFile(i);
-                if (lessonSentences.length > 0) {
-                    lessonData[`lesson${i}`] = lessonSentences;
-                }
-            }
-            
-            updateLessonSelect();
-            loadLesson();
-        }
-
-        function updateLessonSelect() {
-            const lessonSelect = document.getElementById('lessonSelect');
-            lessonSelect.innerHTML = '';
-            
-            Object.keys(lessonData).forEach((lessonKey, index) => {
-                const option = document.createElement('option');
-                option.value = lessonKey;
-                const lessonNumber = lessonKey.replace('lesson', '');
-                // Sử dụng tên bài học từ file nếu có, nếu không sử dụng tên mặc định
-                const lessonTitle = lessonTitles[index] 
-                    ? lessonTitles[index]
-                    : `Bài ${lessonNumber}`;
-                option.textContent = lessonTitle;
-                lessonSelect.appendChild(option);
-            });
-        }
+        let correctAnswers = 0;
+        let totalQuestions = 0;
+        let totalAnswers = 0;
 
         function loadLesson() {
             const lessonSelect = document.getElementById('lessonSelect');
             const selectedLesson = lessonSelect.value;
             currentLessonSentences = [...lessonData[selectedLesson]];
             currentQuestionIndex = 0;
-            correctCount = 0;
-            totalAttempts = 0;
-            updateProgress();
-            document.getElementById('totalQuestions').textContent = currentLessonSentences.length;
-        }
-
-        function updateProgress() {
-            const progressBar = document.getElementById('progressBar');
-            const currentQuestion = document.getElementById('currentQuestion');
-            const correctAnswers = document.getElementById('correctAnswers');
-            const accuracy = document.getElementById('accuracy');
-            
-            const progress = ((currentQuestionIndex) / currentLessonSentences.length) * 100;
-            progressBar.style.width = `${progress}%`;
-            
-            currentQuestion.textContent = currentQuestionIndex;
-            correctAnswers.textContent = correctCount;
-            accuracy.textContent = totalAttempts > 0 
-                ? Math.round((correctCount / totalAttempts) * 100) 
-                : 0;
+            correctAnswers = 0;
+            totalAnswers = 0;
+            totalQuestions = currentLessonSentences.length;
+            updateStats();
         }
 
         function startNewGame() {
-            if (currentQuestionIndex >= currentLessonSentences.length) {
-                alert("Bạn đã hoàn thành tất cả câu hỏi trong bài học này!");
-                return;
-            }
-/*           let interval;
+            loadLesson();
+            showNextQuestion();
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('resetButton').style.display = 'inline-block';
+            updateProgressBar();
+
+            let interval;
             const duration = 1000;
             const endTime = Date.now() + duration;
             const studentNameDisplay = document.getElementById('studentName');
@@ -308,38 +408,26 @@
                     studentNameDisplay.textContent = finalStudent;
                 }
             }, 50);
-            */
-
-
-            originalSentence = currentLessonSentences[currentQuestionIndex];
-            separateAndShuffleWords();
-            document.getElementById('resetButton').style.display = 'inline-block';
-            document.getElementById('nextButton').style.display = 'none';
-            updateProgress();
         }
 
-        function nextQuestion() {           
+        function showNextQuestion() {
             if (currentQuestionIndex < currentLessonSentences.length) {
-                
-                startNewGame();
+                originalSentence = currentLessonSentences[currentQuestionIndex];
+                separateAndShuffleWords();
+                updateStats();
+                updateProgressBar();
             } else {
-                
-                alert(`Chúc mừng! Bạn đã hoàn thành bài học với tỷ lệ đúng: ${Math.round((correctCount / totalAttempts) * 100)}%`);
+                finishLesson();
             }
-            document.getElementById('nextButton').style.display = 'none';
         }
 
         function separateAndShuffleWords() {
             let words = originalSentence.split('/').filter(word => word.trim() !== '');
             
-            shuffledWords = [];
-            while (words.length > 0) {
-                const index = Math.floor(Math.random() * words.length);
-                const word = words.splice(index, 1)[0];
-                
-                if (shuffledWords.length === 0 || (shuffledWords[shuffledWords.length - 1] !== word)) {
-                    shuffledWords.push(word);
-                }
+            shuffledWords = [...words];
+            for (let i = shuffledWords.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledWords[i], shuffledWords[j]] = [shuffledWords[j], shuffledWords[i]];
             }
 
             userSentence = [];
@@ -377,33 +465,83 @@
             displayWords();
         }
 
-function checkSentence() {
-  const message = document.getElementById('message');
-  totalAttempts++;
+        function checkSentence() {
+            const message = document.getElementById('message');
+            const isCorrect = userSentence.join('') === originalSentence.replace(/\//g, '');
+            
+            if (isCorrect) {
+                
+                document.getElementById('resetButton').style.display = 'none';
+                message.textContent = 'Chúc mừng! Bạn đã sắp xếp đúng.';
+                message.style.color = 'green';
+                correctAnswers++;
+                currentQuestionIndex++;
+            } else {
+                message.textContent = 'Chưa đúng!';
+                message.style.color = 'red';
+            }
+            
+            totalAnswers++;
+            updateStats();
+            updateProgressBar();
+            document.getElementById('nextButton').style.display = 'inline-block';
+            if (correctAnswers === currentLessonSentences.length) {
+                finishLesson();
+               document.getElementById('nextButton').style.display = 'none';
+               document.getElementById('resetButton').style.display = 'none';
+           };
 
-  if (userSentence.join('') === originalSentence.replace(/\//g, '')) {
-            if (currentQuestionIndex < currentLessonSentences.length) {
-                  currentQuestionIndex++;
-                } 
-
-             message.textContent = 'Chúc mừng! Bạn đã sắp xếp đúng.';
-             message.style.color = 'green';
-              correctCount++;
-               
-               document.getElementById('nextButton').style.display = 'inline-block';
-  } else {
-    message.textContent = 'Chưa đúng, hãy thử lại!';
-    message.style.color = 'red';
-  }
-    updateProgress(); // Cập nhật progressbar ngay lập tức
-}
-
-        function resetGame() {
-            separateAndShuffleWords();
-            document.getElementById('nextButton').style.display = 'none';
         }
 
-        document.addEventListener('DOMContentLoaded', initializeLessonData);
+        function nextQuestion() {
+            if (currentQuestionIndex < currentLessonSentences.length) {
+                showNextQuestion();
+                document.getElementById('nextButton').style.display = 'none';
+               document.getElementById('resetButton').style.display = 'inline-block';
+            } else {
+                finishLesson();
+            }
+        }
+
+        function updateStats() {
+            const questionCountElement = document.getElementById('questionCount');
+            const accuracyRateElement = document.getElementById('accuracyRate');
+            
+            questionCountElement.textContent = `${currentQuestionIndex}/${totalQuestions}`;
+            const accuracy = currentQuestionIndex > 0 
+                ? Math.round((correctAnswers / totalAnswers) * 100) 
+                : 0;
+            accuracyRateElement.textContent = `${accuracy}%`;
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const progress = (currentQuestionIndex / totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function finishLesson() {
+            const container = document.getElementById('wordContainer');
+            container.innerHTML = `
+                <h2>Bài học hoàn thành!</h2>
+            `;
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('resetButton').style.display = 'none';
+        }
+
+        function resetGame() {
+            /*currentQuestionIndex = 0;
+            correctAnswers = 0;
+            loadLesson();
+            showNextQuestion();
+            document.getElementById('resetButton').style.display = 'none';*/
+            separateAndShuffleWords();
+
+        }
+
+        // Load initial lesson data
+        loadLesson();
     </script>
-</body>
-</html>
+
+
+</body></html>
