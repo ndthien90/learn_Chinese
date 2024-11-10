@@ -1,0 +1,6 @@
+nǐ yǒu dìdì ma? | 你有弟弟吗？ | Bạn có em trai không?  
+wǒ méiyǒu dìdì, wǒ zhǐyǒu yī gè gēgē. | 我没有弟弟，我只有一个哥哥。 | Tôi không có em trai, tôi chỉ có một anh trai.  
+nǐ gēgē jīnnián duō dà? | 你哥哥今年多大？ | Anh trai bạn năm nay bao nhiêu tuổi?  
+wǒ gēgē jīnnián 26 suì. | 我哥哥今年26岁。 | Anh trai tôi năm nay 26 tuổi.  
+tā zuò shénme gōngzuò? | 他做什么工作？ | Anh ấy làm nghề gì?  
+tā shì yīshēng. | 他是医生。 | Anh ấy là bác sĩ.

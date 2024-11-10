@@ -1,0 +1,6 @@
+nǐ zuò shénme gōngzuò? | 你做什么工作？ | Bạn làm nghề gì?  
+wǒ bù gōngzuò, wǒ shì xuéshēng. | 我不工作，我是学生。 | Tôi không làm việc, tôi là học sinh.  
+nǐmen bān yǒu duōshao gè xuéshēng? | 你们班有多少个学生？ | Lớp bạn có bao nhiêu học sinh?  
+wǒmen bān yǒu 35 gè xuéshēng. | 我们班有35个学生。 | Lớp tôi có 35 học sinh.  
+yǒu duōshao gè nánshēng duōshao gè nǚshēng ne? | 有多少个男生多少个女生呢？ | Có bao nhiêu nam sinh và bao nhiêu nữ sinh?  
+yǒu 20 gè nánshēng, 15 gè nǚshēng. | 有20个男生，15个女生。 | Có 20 nam sinh và 15 nữ sinh. 

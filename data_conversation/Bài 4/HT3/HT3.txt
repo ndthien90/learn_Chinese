@@ -1,0 +1,6 @@
+nǐ xǐhuān xuéxí ma? | 你喜欢学习吗？ | Bạn có thích học không?  
+wǒ bù tài xǐhuān xuéxí. nǐ xǐhuān wán yóuxì ma? | 我不太喜欢学习。你喜欢玩游戏吗？ | Tôi không thích học lắm. Bạn có thích chơi game không?  
+wǒ chāojí xǐhuān wán yóuxì. Nǐ xǐhuān yùndòng ma? | 我超级喜欢玩游戏。你喜欢运动吗？ | Tôi rất thích chơi game. Bạn có thích thể thao không?  
+wǒ bù tài xǐhuān yùndòng. nǐ ne? | 我不太喜欢运动。你呢？ | Tôi không thích thể thao lắm. Còn bạn?  
+wǒ hěn xǐhuān yùndòng, tèbié shì tī zúqiú. Nǐ xǐhuān shénme? | 我很喜欢运动，特别是踢足球。 你喜欢什么？| Tôi rất thích thể thao, đặc biệt là đá bóng.   Bạn thích gì?  
+wǒ xǐhuān chī chǎofàn, tèbié shì dàn chǎofàn. | 我喜欢吃炒饭，特别是蛋炒饭。 | Tôi thích ăn cơm chiên, đặc biệt là cơm chiên trứng.
