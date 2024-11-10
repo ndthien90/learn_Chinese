@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #2980b9, #8e44ad);
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            border-color: #3498db;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me input {
+            margin-right: 10px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #2980b9;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Tài khoản học tập</h2>
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="input-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Ghi nhớ đăng nhập</label>
+            </div>
+            <button type="submit" class="btn-login">Đăng nhập</button>
+            <div id="errorMessage" class="error-message">
+                Tên đăng nhập hoặc mật khẩu không đúng!
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Danh sách người dùng mẫu
+        const users = [
+            { username: 'admin', password: 'admin123' },
+            { username: 'user1', password: 'pass123' },
+            { username: 'user2', password: 'pass456' }
+        ];
+
+        // Kiểm tra cookie khi trang được tải
+        window.onload = function() {
+            const savedUsername = getCookie('username');
+            const savedPassword = getCookie('password');
+            
+            if (savedUsername && savedPassword) {
+                document.getElementById('username').value = savedUsername;
+                document.getElementById('password').value = savedPassword;
+                document.getElementById('remember').checked = true;
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Kiểm tra đăng nhập
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // Lưu cookie nếu chọn ghi nhớ đăng nhập
+                if (remember) {
+                    setCookie('username', username, 30);
+                    setCookie('password', password, 30);
+                } else {
+                    deleteCookie('username');
+                    deleteCookie('password');
+                }
+                
+                // Chuyển hướng đến trang chủ
+                window.location.href = 'home.html';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+            
+            return false;
+        }
+
+        // Hàm utility để làm việc với cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const cname = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(cname) == 0) {
+                    return c.substring(cname.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+    </script>
+</body>
+</html>
