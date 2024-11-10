@@ -1,0 +1,8 @@
+jīntiān jǐ hào? | 今天几号？ | Hôm nay là ngày mấy?  
+jīntiān shì 9 yuè 2 hào. | 今天是9月2号。 | Hôm nay là ngày 2 tháng 9.  
+9 yuè 2 hào shì shénme jiérì? | 9月2号是什么节日？ | Ngày 2 tháng 9 là lễ gì?  
+shì guóqìng jié. | 是国庆节。 | Là Ngày Quốc khánh.  
+nǐ guóqìng jié dǎsuàn zuò shénme? | 你国庆节打算做什么？ | Bạn dự định làm gì vào Ngày Quốc khánh?  
+wǒ shàngwǔ qù túshūguǎn kàn shū, xiàwǔ qù gōngyuán sànbù. | 我上午去图书馆看书，下午去公园散步。 | Tôi sẽ đi thư viện đọc sách vào buổi sáng, và đi công viên đi dạo vào buổi chiều.  
+wǎnshàng nǐ qù nǎr? | 晚上你去哪儿？ | Tối nay bạn đi đâu?  
+wǒ wǎnshàng qù cāntīng chī rìběn cài. | 我晚上去餐厅吃日本菜。 | Tối nay tôi đi nhà hàng ăn món Nhật.
