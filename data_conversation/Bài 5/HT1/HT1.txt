@@ -1,0 +1,8 @@
+nǐ hǎo, nǐ shì nǎ guó rén? | 你好，你是哪国人？ | Xin chào, bạn là người nước nào?  
+wǒ shì Yuènán rén. nǐ ne? | 我是越南人。你呢？ | Tôi là người Việt Nam. Còn bạn?  
+wǒ shì Zhōngguó rén. nǐ huì shuō zhōngwén ma? | 我是中国人。你会说中文吗？ | Tôi là người Trung Quốc. Bạn có nói tiếng Trung không?  
+wǒ huì shuō zhōngwén, dànshì wǒ bù huì xiě hànzì. | 我会说中文，但是我不会写汉字。 | Tôi biết nói tiếng Trung, nhưng tôi không biết viết chữ Hán.  
+nǐ bàba māma shì nǎ guó rén? | 你爸爸妈妈是哪国人？ | Bố mẹ bạn là người nước nào?  
+wǒ bàba shì Yuènán rén. wǒ māmā shì Zhōngguó rén. | 我爸爸是越南人。我妈妈是中国人。 | Bố tôi là người Việt Nam. Mẹ tôi là người Trung Quốc.  
+nǐ yǒu xiōngdì jiěmèi ma? tāmen huì bù huì shuō zhōngwén? | 你有兄弟姐妹吗？他们会不会说中文？ | Bạn có anh chị em không? Họ có biết nói tiếng Trung không?  
+wǒ yǒu yī gè dìdì, dànshì tā bù huì shuō zhōngwén. | 我有一个弟弟，但是他不会说中文。 | Tôi có một em trai, nhưng em ấy không biết nói tiếng Trung.

@@ -1,0 +1,16 @@
+nǐ hǎo! nǐ shì Zhōngguó rén ma? | 你好！你是中国人吗？ | Xin chào! Bạn có phải là người Trung Quốc không?  
+bù shì. wǒ shì Yuènán rén. nǐ ne? | 不是。我是越南人。你呢？ | Không phải. Tôi là người Việt Nam. Còn bạn?  
+wǒ shì Tàiguó rén. nǐ huì shuō zhōngwén ma? | 我是泰国人。你会说中文吗？ | Tôi là người Thái Lan. Bạn có nói tiếng Trung không?  
+wǒ huì shuō zhōngwén, yě huì xiě hànzì. | 我会说中文，也会写汉字。 | Tôi biết nói tiếng Trung và cũng biết viết chữ Hán.  
+nǐ zài Yuènán xuéxí zhōngwén ma? | 你在越南学习中文吗？ | Bạn có học tiếng Trung ở Việt Nam không?  
+bù shì. wǒ zài Zhōngguó xuéxí zhōngwén. nǐ huì shuō zhōngwén ma? | 不是。我在中国学习中文。你会说中文吗？ | Không. Tôi học tiếng Trung ở Trung Quốc. Bạn có nói tiếng Trung không?  
+wǒ zhǐ huì shuō zhōngwén, wǒ bù huì xiě hànzì. | 我只会说中文，我不会写汉字。 | Tôi chỉ biết nói tiếng Trung, tôi không biết viết chữ Hán.  
+nǐ bàba māma shì Zhōngguó rén ma? | 你爸爸妈妈是中国人吗？ | Bố mẹ bạn có phải là người Trung Quốc không?  
+wǒ bàba shì Tàiguó rén, wǒ māmā shì Zhōngguó rén. | 我爸爸是泰国人，我妈妈是中国人。 | Bố tôi là người Thái Lan, mẹ tôi là người Trung Quốc.  
+nǐ māmā huì zuò zhōngguó cài ma? | 你妈妈会做中国菜吗？ | Mẹ bạn có biết nấu món Trung Quốc không?  
+tā hěn huì zuò zhōngguó cài. tā zuò de zhōngguó cài dōu tèbié hǎochī. | 她很会做中国菜。她做的中国菜都特别好吃。 | Bà ấy nấu món Trung Quốc rất giỏi. Món bà ấy nấu đều rất ngon.  
+nǐ huì bù huì zuò Tàiguó cài? | 你会不会做泰国菜？ | Bạn có biết nấu món Thái không?  
+wǒ bù tài huì zuò. wǒ bàba huì zuò. nǐ xǐhuān chī zhōngguó cài hé Tàiguó cài ma? | 我不太会做。我爸爸会做。你喜欢吃中国菜和泰国菜吗？ | Tôi không biết nấu lắm. Bố tôi biết nấu. Bạn có thích ăn món Trung Quốc và món Thái không?  
+wǒ hěn xǐhuān chī zhōngguó cài, tèbié shì málà xiāngguō. | 我很喜欢吃中国菜，特别是麻辣香锅。 | Tôi rất thích ăn món Trung Quốc, đặc biệt là món lẩu cay.  
+Tàiguó cài ne? | 泰国菜呢？ | Còn món Thái thì sao?  
+wǒ yě hěn xǐhuān chī Tàiguó cài. | 我也很喜欢吃泰国菜。 | Tôi cũng rất thích ăn món Thái.
