@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng luyện hội thoại</title>
+    <style>
+        :root {
+            --primary-color: #0099cc;
+            --secondary-color: #ffa500;
+            --border-radius: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+
+        .app-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-height: 800px;
+        }
+
+        .conversation-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scroll-behavior: smooth;
+            background: white;
+            min-height: 0;
+        }
+
+        .lesson-header {
+            background-color: #fff;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lesson-selectors {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .lesson-title {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .lesson-selector {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            padding: 10px;
+        }
+
+        .message:hover {
+            opacity: 0.9;
+        }
+
+        .message.active {
+            opacity: 1;
+            transform: scale(1.02);
+            background-color: rgba(0, 153, 204, 0.05);
+            border-radius: var(--border-radius);
+        }
+
+        .message.active::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .avatar.A {
+            background-color: var(--primary-color);
+        }
+
+        .avatar.B {
+            background-color: var(--secondary-color);
+        }
+
+        .message-content {
+            flex-grow: 1;
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+
+        .pinyin {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .chinese {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .vietnamese {
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            padding: 5px;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        @keyframes highlight {
+            0% { background-color: rgba(0, 153, 204, 0.2); }
+            50% { background-color: rgba(0, 153, 204, 0.1); }
+            100% { background-color: rgba(0, 153, 204, 0.2); }
+        }
+
+        .message.playing {
+            animation: highlight 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .lesson-selectors {
+                flex-direction: column;
+            }
+
+            .controls {
+                padding: 15px;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="lesson-header">
+            <h1 class="lesson-title">Luyện hội thoại</h1>
+            <div class="lesson-selectors">
+                <select id="lessonGroupSelect" class="lesson-selector">
+                    <option value="Bài 1">Bài 1 Chào hỏi</option>
+                    <option value="Bài 2">Bài 2 Bản thân</option>
+                    <option value="Bài 3">Bài 3 Gia đình</option>
+                    <option value="Bài 4">Bài 4 Sở thích</option>
+                    <option value="Bài 5">Bài 5 Quê hương</option>
+                    <option value="Bài 6">Bài 6 Sinh nhật</option>
+                    <option value="Bài 7">Bài 7 Thường ngày</option>
+                </select>
+                <select id="conversationSelect" class="lesson-selector">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+        </div>
+
+        <div id="loading">Đang tải dữ liệu...</div>
+        <div id="error" class="error">Có lỗi xảy ra khi tải dữ liệu</div>
+
+        <div id="conversationContainer" class="conversation-container">
+            <!-- Messages will be dynamically added here -->
+        </div>
+
+        <div class="controls">
+            <button class="nav-button" id="prevBtn" onclick="previousConversation()">◀</button>
+            <button id="playBtn" onclick="playFullConversation()">
+                <span id="playIcon">▶</span> Nghe
+            </button>
+            <button class="nav-button" id="nextBtn" onclick="nextConversation()">▶</button>
+        </div>
+    </div>
+
+    <script>
+        let currentLessonGroup = 'Bài 1';
+        let currentHT = 1;
+        let currentAudio = null;
+        let currentDialog = 0;
+        let isPlaying = false;
+        let isPlayingFull = false;
+        let conversationData = [];
+        let lessonConfig = {
+            'Bài 1': 1,
+            'Bài 2': 2,
+            'Bài 3': 5,
+            'Bài 4': 5,
+            'Bài 5': 3,
+            'Bài 6': 7,
+            'Bài 7': 5
+        };
+
+        function updateConversationSelect(lessonGroup) {
+            const select = document.getElementById('conversationSelect');
+            select.innerHTML = '';
+            
+            const conversationCount = lessonConfig[lessonGroup];
+            for (let i = 1; i <= conversationCount; i++) {
+                const option = document.createElement('option');
+                option.value = `HT${i}`;
+                option.textContent = `Hội thoại ${i}`;
+                select.appendChild(option);
+            }
+        }
+
+        async function loadConversationData(lessonGroup, htNumber) {
+            try {
+                const container = document.getElementById('conversationContainer');
+                const loadingEl = document.getElementById('loading');
+                const errorEl = document.getElementById('error');
+                
+                container.style.opacity = '0.5';
+                loadingEl.style.display = 'block';
+                errorEl.style.display = 'none';
+
+                const htName = `HT${htNumber}`;
+                const response = await fetch(`data_conversation/${lessonGroup}/${htName}/${htName}.txt`);
+                if (!response.ok) throw new Error('Không thể tải dữ liệu');
+                
+                const text = await response.text();
+                const lines = text.trim().split('\n');
+                
+                conversationData = lines.map((line, index) => {
+                    const [pinyin, chinese, vietnamese] = line.split('|').map(part => part.trim());
+                    return {
+                        speaker: index % 2 === 0 ? 'A' : 'B',
+                        pinyin,
+                        chinese,
+                        vietnamese
+                    };
+                });
+
+                updateConversation();
+                updateNavigationButtons();
+                
+                container.style.opacity = '1';
+                loadingEl.style.display = 'none';
+            } catch (error) {
+                console.error('Error loading conversation data:', error);
+                document.getElementById('conversationContainer').style.opacity = '1';
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function createMessageElement(message, index) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${index === currentDialog ? 'active' : ''}`;
+            messageDiv.dataset.index = index;
+            messageDiv.innerHTML = `
+                <div class="avatar ${message.speaker}">${message.speaker}</div>
+                <div class="message-content">
+                    <div class="pinyin">${message.pinyin}</div>
+                    <div class="chinese">${message.chinese}</div>
+                    <div class="vietnamese">${message.vietnamese}</div>
+                </div>
+            `;
+
+            messageDiv.addEventListener('click', () => {
+                playSingleDialog(index);
+            });
+
+            return messageDiv;
+        }
+
+        function updateConversation() {
+            const container = document.getElementById('conversationContainer');
+            container.innerHTML = '';
+            conversationData.forEach((message, index) => {
+                container.appendChild(createMessageElement(message, index));
+            });
+        }
+
+        function updateNavigationButtons() {
+            const maxHT = lessonConfig[currentLessonGroup];
+            document.getElementById('prevBtn').disabled = currentHT === 1;
+            document.getElementById('nextBtn').disabled = currentHT === maxHT;
+            document.getElementById('conversationSelect').value = `HT${currentHT}`;
+        }
+
+        function previousConversation() {
+            if (currentHT > 1) {
+                stopCurrentAudio();
+                currentHT--;
+                loadConversationData(currentLessonGroup, currentHT);
+            }
+        }
+
+        function nextConversation() {
+            const maxHT = lessonConfig[currentLessonGroup];
+            if (currentHT < maxHT) {
+                stopCurrentAudio();
+                currentHT++;
+                loadConversationData(currentLessonGroup, currentHT);
+            }
+        }
+
+        function stopCurrentAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            isPlaying = false;
+            isPlayingFull = false;
+            document.getElementById('playIcon').textContent = '▶';
+            
+            document.querySelectorAll('.message').forEach(msg => {
+                msg.classList.remove('playing');
+                msg.classList.remove('active');
+            });
+        }
+
+        function scrollToMessage(message) {
+            const container = document.getElementById('conversationContainer');
+            if (!message || !container) return;
+
+            const containerHeight = container.clientHeight;
+            const scrollTop = container.scrollTop;
+            const messageTop = message.offsetTop;
+            const messageHeight = message.clientHeight;
+
+            const targetScroll = messageTop - (containerHeight - messageHeight) / 2;
+
+            container.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+        }
+
+        function playSingleDialog(index) {
+            stopCurrentAudio();
+            currentDialog = index;
+            
+            document.querySelectorAll('.message').forEach((msg, idx) => {
+                msg.classList.toggle('active', idx === index);
+            });
+
+            const htName = `HT${currentHT}`;
+            const audioPath = `data_conversation/${currentLessonGroup}/${htName}/audio/output_${index + 1}.mp3`;
+            currentAudio = new Audio(audioPath);
+            
+            currentAudio.onplay = () => {
+                const currentMessage = document.querySelectorAll('.message')[index];
+                currentMessage.classList.add('playing');
+                scrollToMessage(currentMessage);
+            };
+
+            currentAudio.onended = () => {
+                document.querySelectorAll('.message')[index].classList.remove('playing');
+            };
+            
+            currentAudio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                stopCurrentAudio();
+            });
+        }
+
+        async function playFullConversation() {
+            if (isPlayingFull) {
+                stopCurrentAudio();
+                return;
+            }
+
+            isPlayingFull = true;
+            currentDialog = 0;
+            document.getElementById('playIcon').textContent = '⏸';
+
+            for (let i = 0; i < conversationData.length; i++) {
+                if (!isPlayingFull) break;
+
+                currentDialog = i;
+                
+                const messages = document.querySelectorAll('.message');
+                messages.forEach((msg, idx) => {
+                    msg.classList.toggle('active', idx === i);
+});
+
+                const currentMessage = messages[i];
+                
+                const htName = `HT${currentHT}`;
+                const audioPath = `data_conversation/${currentLessonGroup}/${htName}/audio/output_${i + 1}.mp3`;
+                currentAudio = new Audio(audioPath);
+
+                try {
+                    await new Promise((resolve, reject) => {
+                        currentAudio.onplay = () => {
+                            currentMessage.classList.add('playing');
+                            scrollToMessage(currentMessage);
+                        };
+
+                        currentAudio.onended = () => {
+                            currentMessage.classList.remove('playing');
+                            resolve();
+                        };
+
+                        currentAudio.onerror = reject;
+                        currentAudio.play();
+                    });
+                } catch (error) {
+                    console.error('Error playing audio:', error);
+                    stopCurrentAudio();
+                    break;
+                }
+            }
+
+            if (isPlayingFull) {
+                stopCurrentAudio();
+            }
+        }
+
+        document.getElementById('lessonGroupSelect').addEventListener('change', (e) => {
+            currentLessonGroup = e.target.value;
+            updateConversationSelect(currentLessonGroup);
+            currentHT = 1; // Reset to first conversation when changing lesson
+            stopCurrentAudio();
+            loadConversationData(currentLessonGroup, currentHT);
+        });
+
+        document.getElementById('conversationSelect').addEventListener('change', (e) => {
+            currentHT = parseInt(e.target.value.replace('HT', ''));
+            stopCurrentAudio();
+            loadConversationData(currentLessonGroup, currentHT);
+        });
+
+        // Initialize the app
+        updateConversationSelect(currentLessonGroup);
+        loadConversationData(currentLessonGroup, currentHT);
+    </script>
+</body>
+</html>
