@@ -1,0 +1,10 @@
+xiǎohóng, nǐ xiàwǔ yǒu kòng ma? | 小红, 你下午有空吗？ | Tiểu Hồng, chiều bạn có rảnh không?
+xiàwǔ wǒ méi yǒu shénme shì, zěnme le? | 下午我没有什么事，怎么了？ | Chiều mình không có việc gì, có chuyện gì vậy?
+wǒ hé xiǎomíng xiàwǔ dǎsuàn qù chāoshì mǎi yīdiǎn dōngxī, nǐ qù ma? | 我和小明下午打算去超市买一点东西，你去吗？ | Mình và Tiểu Minh chiều định đi siêu thị mua một chút đồ, bạn đi không?
+hǎo, wǒ yě xiǎng qù. | 好，我也想去。 | Được, mình cũng muốn đi.
+nǐ dǎsuàn mǎi shénme? | 你打算买什么？ | Bạn định mua gì?
+wǒ xiǎng mǎi jǐ jiàn yīfú hé yīdiǎn chī de. | 我想买几件衣服和一点吃的。 | Mình muốn mua vài bộ quần áo và một chút đồ ăn.
+hǎo, nǐ xiàwǔ xiǎng shénme shíhòu qù? | 好，你下午想什么时候去？ | Được, chiều bạn muốn đi lúc nào?
+xiàwǔ sān diǎn zuǒyòu ba. | 下午三点左右吧。 | Khoảng 3 giờ chiều nhé.
+wǒ hé xiǎomíng cóng wǒ jiā chūfā. nǐ ne? | 我和小明从我家出发。你呢？ | Mình và Tiểu Minh xuất phát từ nhà mình. Còn bạn thì sao?
+wǒ zhōngwǔ zài xuéxiào kàn shū, xiàwǔ cóng xuéxiào chūfā ba. | 我中午在学校看书，下午从学校出发吧。 | Mình trưa ở trường đọc sách, chiều xuất phát từ trường nhé.
