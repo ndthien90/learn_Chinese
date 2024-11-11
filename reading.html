@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học tiếng Trung - Đọc hiểu</title>
+    <style>
+        :root {
+            --primary-color: #0099cc;
+            --secondary-color: #ff6633;
+            --success-color: #18c71e;
+            --danger-color: #f44336;
+            --purple-color: #993399;
+            --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .lesson-selector {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .dropdown-btn {
+            width: 100%;
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .dropdown-btn:hover {
+            background: #f0f9ff;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 100;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content div {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dropdown-content div:hover {
+            background: #f0f9ff;
+        }
+
+        .audio-control {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .audio-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            background: #007aa3;
+        }
+
+        .content {
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) #f0f0f0;
+        }
+
+        .content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .content::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .content::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .text-content {
+            line-height: 1.8;
+            font-size: 1.2rem;
+            white-space: pre-line;
+        }
+
+        .text-content p {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .text-content p:hover {
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+
+        .control-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-chinese { background: var(--success-color); }
+        .btn-pinyin { background: var(--primary-color); }
+        .btn-meaning { background: var(--secondary-color); }
+        .btn-quiz { background: var(--purple-color); }
+
+        .quiz-section {
+            padding: 15px;
+        }
+
+        .question {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .question h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .option {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option:hover {
+            border-color: var(--primary-color);
+            background: #f0f9ff;
+        }
+
+        .option.correct {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .option.incorrect {
+            background: var(--danger-color);
+            color: white;
+            border-color: var(--danger-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--primary-color);
+        }
+
+        .error {
+            color: var(--danger-color);
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                max-height: 350px;
+                padding: 15px;
+            }
+
+            .text-content {
+                font-size: 1rem;
+            }
+
+            .controls {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .control-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>Học tiếng Trung - Đọc hiểu</h1>
+            <div class="lesson-selector">
+                <div class="dropdown-btn" id="lessonDropdown">
+                    <span id="selectedLesson">Bài 1: Chào hỏi</span>
+                    <span>▼</span>
+                </div>
+                <div class="dropdown-content" id="lessonList">
+                    <!-- Lessons will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="audio-control">
+                <button class="audio-btn" id="playAudio">
+                    <span>🔊</span>
+                    <span>Nghe</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content" id="mainContent">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+
+        <div class="controls">
+            <button class="control-btn btn-chinese" data-mode="chinese">Đoạn văn</button>
+            <button class="control-btn btn-pinyin" data-mode="pinyin">Pinyin</button>
+            <button class="control-btn btn-meaning" data-mode="meaning">Nghĩa</button>
+            <button class="control-btn btn-quiz" data-mode="quiz">Bài tập</button>
+        </div>
+    </div>
+
+    <script>
+        class ChineseReader {
+            constructor() {
+                this.currentLesson = 1;
+                this.currentMode = 'chinese';
+                this.lessons = [
+                    { id: 1, title: 'Bài 1: Chào hỏi' },
+                    { id: 2, title: 'Bài 2: Bản thân' },
+                    { id: 3, title: 'Bài 3: Gia đình' },
+                    { id: 4, title: 'Bài 4: Sở thích' },
+                    { id: 5, title: 'Bài 5: Quê hương' },
+                    { id: 6, title: 'Bài 6: Sinh nhật' },
+                    { id: 7, title: 'Bài 7: Thường ngày' },
+                ];
+                this.lessonData = {
+                    chinese: '',
+                    pinyin: '',
+                    meaning: '',
+                    questions: [],
+                    answers: []
+                };
+
+                this.initializeElements();
+                this.setupEventListeners();
+                this.loadLesson(1);
+            }
+
+            initializeElements() {
+                this.elements = {
+                    lessonDropdown: document.getElementById('lessonDropdown'),
+                    lessonList: document.getElementById('lessonList'),
+                    selectedLesson: document.getElementById('selectedLesson'),
+                    mainContent: document.getElementById('mainContent'),
+                    playAudio: document.getElementById('playAudio'),
+                    controls: document.querySelector('.controls')
+                };
+
+                // Populate lesson list
+                this.lessons.forEach(lesson => {
+                    const div = document.createElement('div');
+                    div.textContent = lesson.title;
+                    div.dataset.id = lesson.id;
+                    this.elements.lessonList.appendChild(div);
+                });
+            }
+
+            setupEventListeners() {
+                // Dropdown toggle
+                this.elements.lessonDropdown.addEventListener('click', () => {
+                    this.elements.lessonList.classList.toggle('show');
+                });
+
+                // Lesson selection
+                this.elements.lessonList.addEventListener('click', (e) => {
+                    if (e.target.dataset.id) {
+                        const lessonId = parseInt(e.target.dataset.id);
+                        this.loadLesson(lessonId);
+                        this.elements.lessonList.classList.remove('show');
+                    }
+                });
+
+                // Mode switching
+                this.elements.controls.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('control-btn')) {
+                        this.switchMode(e.target.dataset.mode);
+                    }
+                });
+
+                // Audio playback
+                this.elements.playAudio.addEventListener('click', () => this.playAudio());
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.elements.lessonDropdown.contains(e.target)) {
+                        this.elements.lessonList.classList.remove('show');
+                    }
+                });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    const modes = ['chinese', 'pinyin', 'meaning', 'quiz'];
+                    if (e.key === 'ArrowRight') {
+                        const currentIndex = modes.indexOf(this.currentMode);
+                        const nextIndex = (currentIndex + 1) % modes.length;
+                        this.switchMode(modes[nextIndex]);
+                    }
+                });
+            }
+
+            async loadLesson(lessonId) {
+                this.currentLesson = lessonId;
+                this.elements.selectedLesson.textContent = this.lessons.find(l => l.id === lessonId).title;
+                this.elements.mainContent.innerHTML = '<div class="loading">Đang tải dữ liệu...</div>';
+
+                try {
+                    const basePath = `data_reading/Bài ${lessonId}/`;
+                    const [chinese, pinyin, meaning, questions, answers] = await Promise.all([
+                        this.fetchText(basePath + 'chinese.txt'),
+                        this.fetchText(basePath + 'pinyin.txt'),
+                        this.fetchText(basePath + 'meaning.txt'),
+                        this.fetchText(basePath + 'questions.txt'),
+                        this.fetchText(basePath + 'answers.txt')
+                    ]);
+
+                    this.lessonData = {
+                        chinese,
+                        pinyin,
+                        meaning,
+                        questions: questions.split('\n').filter(q => q.trim()),
+                        answers: this.parseAnswers(answers)
+                    };
+
+                    this.switchMode(this.currentMode);
+                } catch (error) {
+                    console.error('Error loading lesson:', error);
+                    this.elements.mainContent.innerHTML = '<div class="error">Không thể tải dữ liệu bài học</div>';
+                }
+            }
+
+            async fetchText(url) {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.text();
+            }
+
+parseAnswers(answersText) {
+    return answersText.split('\n')
+        .filter(a => a.trim())
+        .map(a => {
+            const parts = a.split('|');
+            return {
+                options: parts.slice(0, -1), // Lấy tất cả các phần tử trừ phần tử cuối
+                correct: parseInt(parts[parts.length - 1]) - 1 // Chuyển đổi về index (0-based)
+            };
+        });
+}
+            switchMode(mode) {
+                this.currentMode = mode;
+                const content = this.elements.mainContent;
+                content.className = 'content fade-in';
+
+                switch(mode) {
+                    case 'chinese':
+                    case 'pinyin':
+                    case 'meaning':
+                        content.innerHTML = this.formatText(this.lessonData[mode]);
+                        break;
+                    case 'quiz':
+                        content.innerHTML = this.createQuiz();
+                        break;
+                }
+
+                // Update button states
+                document.querySelectorAll('.control-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.mode === mode);
+                });
+            }
+
+            formatText(text) {
+                return `<div class="text-content">
+                    ${text.split('\n')
+                        .filter(line => line.trim())
+                        .map(line => `<p>${line}</p>`)
+                        .join('')}
+                </div>`;
+            }
+
+createQuiz() {
+    return `<div class="quiz-section">
+        ${this.lessonData.questions.map((question, index) => `
+            <div class="question" data-index="${index}">
+                <h3>Câu ${index + 1}</h3>
+                <p>${question}</p>
+                <div class="options">
+                    ${this.lessonData.answers[index].options.map((option, i) => `
+                        <div class="option" data-question="${index}" data-option="${i}">
+                            ${String.fromCharCode(65 + i)}. ${option}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('')}
+    </div>`;
+}
+
+            playAudio() {
+                const audio = new Audio(`data_reading/Bài ${this.currentLesson}/${this.currentLesson}.mp3`);
+                audio.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                    alert('Không thể phát âm thanh. Vui lòng kiểm tra lại kết nối.');
+                });
+            }
+        }
+
+        // Initialize the app
+ document.addEventListener('DOMContentLoaded', () => {
+    const app = new ChineseReader();
+    
+    // Handle quiz answers
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('option') && !e.target.classList.contains('disabled')) {
+            const questionIndex = parseInt(e.target.dataset.question);
+            const selectedOption = parseInt(e.target.dataset.option);
+            const correctAnswer = app.lessonData.answers[questionIndex].correct;
+            
+            // Lấy tất cả các option trong câu hỏi hiện tại
+            const options = document.querySelectorAll(`[data-question="${questionIndex}"]`);
+            
+            // Disable tất cả các option sau khi đã chọn
+            options.forEach(option => {
+                option.classList.add('disabled');
+            });
+            
+            // Thêm class correct/incorrect cho option được chọn
+            if (selectedOption === correctAnswer) {
+                e.target.classList.add('correct');
+            } else {
+                e.target.classList.add('incorrect');
+                // Hiển thị đáp án đúng
+                options[correctAnswer].classList.add('correct');
+            }
+        }
+    });
+});
+    </script>
+
+
+</body></html>
