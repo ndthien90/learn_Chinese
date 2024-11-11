@@ -86,7 +86,7 @@
 
         .image-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             aspect-ratio: 1;
             border: 2px solid #3498db;
             border-radius: 10px;
@@ -114,7 +114,7 @@
             border: 2px solid #3498db;
             border-radius: 8px;
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             text-align: center;
             min-height: 60px;
             transition: box-shadow 0.3s;
@@ -167,9 +167,19 @@
                 this.lessonData = null;
                 this.isAnswerShown = false;
                 this.isLessonStarted = false;
+                this.currentAudio = null; // Thêm biến để theo dõi audio đang phát
+            }
+
+            stopCurrentAudio() {
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                    this.currentAudio.currentTime = 0;
+                    this.currentAudio = null;
+                }
             }
 
             async loadLessonData(lessonNumber) {
+                this.stopCurrentAudio(); // Dừng audio khi load bài mới
                 try {
                     const response = await fetch(`data_makeSentence/Bài ${lessonNumber}/data.txt`);
                     if (!response.ok) {
@@ -194,21 +204,24 @@
             }
 
             handleNoData() {
+                this.stopCurrentAudio(); // Dừng audio khi không có dữ liệu
                 const textDisplay = document.querySelector('.text-display');
                 const imageContainer = document.querySelector('.image-container img');
                 textDisplay.innerHTML = '<div class="hint">Đang cập nhật.....</div>';
-                imageContainer.src = ''; // Xóa hình ảnh hiện tại
+                imageContainer.src = '';
                 this.isLessonStarted = false;
                 this.updateStartButton();
                 this.lessonData = null;
             }
 
             clearDisplay() {
+                this.stopCurrentAudio(); // Dừng audio khi xóa màn hình
                 const textDisplay = document.querySelector('.text-display');
                 textDisplay.textContent = '';
             }
 
             showCurrentQuestion() {
+                this.stopCurrentAudio(); // Dừng audio khi hiển thị câu mới
                 if (!this.lessonData || !this.lessonData[this.currentQuestion]) {
                     this.handleNoData();
                     return;
@@ -217,10 +230,7 @@
                 const imageContainer = document.querySelector('.image-container img');
                 const textDisplay = document.querySelector('.text-display');
                 
-                // Update image
                 imageContainer.src = `data_makeSentence/Bài ${this.currentLesson}/img/${this.currentQuestion + 1}.png`;
-                
-                // Show hint
                 textDisplay.innerHTML = `<div class="hint">Gợi ý: ${this.lessonData[this.currentQuestion].hint}</div>`;
                 this.isAnswerShown = false;
             }
@@ -232,13 +242,13 @@
                 const currentData = this.lessonData[this.currentQuestion];
                 
                 if (!this.isAnswerShown) {
-                    // Show answer and play audio
+                    this.stopCurrentAudio(); // Dừng audio trước khi phát audio mới
                     textDisplay.innerHTML = `<div class="sentence">${currentData.sentence}</div>`;
-                    const audio = new Audio(`data_makeSentence/Bài ${this.currentLesson}/audio/output_${this.currentQuestion + 1}.mp3`);
-                    audio.play();
+                    this.currentAudio = new Audio(`data_makeSentence/Bài ${this.currentLesson}/audio/output_${this.currentQuestion + 1}.mp3`);
+                    this.currentAudio.play();
                     this.isAnswerShown = true;
                 } else {
-                    // Show hint again
+                    this.stopCurrentAudio(); // Dừng audio khi ẩn câu trả lời
                     textDisplay.innerHTML = `<div class="hint">Gợi ý: ${currentData.hint}</div>`;
                     this.isAnswerShown = false;
                 }
@@ -247,11 +257,12 @@
             nextQuestion() {
                 if (!this.lessonData) return;
                 
+                this.stopCurrentAudio(); // Dừng audio khi chuyển câu
+                
                 if (this.currentQuestion < this.lessonData.length - 1) {
                     this.currentQuestion++;
                     this.showCurrentQuestion();
                 } else {
-                    // Reset to initial state
                     this.currentQuestion = 0;
                     this.isLessonStarted = false;
                     this.clearDisplay();
@@ -263,12 +274,10 @@
                 const startBtn = document.querySelector('.start-btn');
                 if (!this.isLessonStarted || !this.lessonData) {
                     startBtn.textContent = 'Bắt đầu';
-	startBtn.style.backgroundColor = '#2ecc71';
                     startBtn.disabled = !this.lessonData;
                     startBtn.style.opacity = this.lessonData ? '1' : '0.5';
                 } else {
                     startBtn.textContent = 'Tiếp';
-	startBtn.style.backgroundColor = 'orange';
                     startBtn.disabled = false;
                     startBtn.style.opacity = '1';
                 }
