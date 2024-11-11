@@ -55,12 +55,12 @@
             background-color: #2ecc71;
             color: white;
             border: none;
-            padding: 8px 10px;
+            padding: 8px 20px;
             border-radius: 8px;
             cursor: pointer;
             min-width: 100px;
             transition: all 0.3s;
-            font-size: 14px;
+            font-size: 18px;
         }
 
         .start-btn:hover {
@@ -76,7 +76,7 @@
             border: 1px solid #ccc;
             outline: none;
             transition: border-color 0.3s;
-            font-size: 14px;
+            font-size: 18px;
         }
 
         .lesson-select:focus {
@@ -86,7 +86,7 @@
 
         .image-container {
             width: 100%;
-            max-width: 550px;
+            max-width: 600px;
             aspect-ratio: 1;
             border: 2px solid #3498db;
             border-radius: 10px;
@@ -114,7 +114,7 @@
             border: 2px solid #3498db;
             border-radius: 8px;
             width: 100%;
-            max-width: 550px;
+            max-width: 600px;
             text-align: center;
             min-height: 60px;
             transition: box-shadow 0.3s;
@@ -172,7 +172,13 @@
             async loadLessonData(lessonNumber) {
                 try {
                     const response = await fetch(`data_makeSentence/Bài ${lessonNumber}/data.txt`);
+                    if (!response.ok) {
+                        throw new Error('Không tìm thấy dữ liệu');
+                    }
                     const text = await response.text();
+                    if (!text.trim()) {
+                        throw new Error('Dữ liệu trống');
+                    }
                     this.lessonData = text.split('\n').map(line => {
                         const [sentence, hint] = line.split('|');
                         return { sentence: sentence.trim(), hint: hint.trim() };
@@ -180,10 +186,21 @@
                     this.currentQuestion = 0;
                     this.isLessonStarted = false;
                     this.updateStartButton();
-                    this.clearDisplay();
+                    this.showCurrentQuestion();
                 } catch (error) {
                     console.error('Error loading lesson data:', error);
+                    this.handleNoData();
                 }
+            }
+
+            handleNoData() {
+                const textDisplay = document.querySelector('.text-display');
+                const imageContainer = document.querySelector('.image-container img');
+                textDisplay.innerHTML = '<div class="hint">Đang cập nhật.....</div>';
+                imageContainer.src = ''; // Xóa hình ảnh hiện tại
+                this.isLessonStarted = false;
+                this.updateStartButton();
+                this.lessonData = null;
             }
 
             clearDisplay() {
@@ -192,7 +209,10 @@
             }
 
             showCurrentQuestion() {
-                if (!this.lessonData || !this.lessonData[this.currentQuestion]) return;
+                if (!this.lessonData || !this.lessonData[this.currentQuestion]) {
+                    this.handleNoData();
+                    return;
+                }
                 
                 const imageContainer = document.querySelector('.image-container img');
                 const textDisplay = document.querySelector('.text-display');
@@ -206,7 +226,7 @@
             }
 
             toggleAnswer() {
-                if (!this.isLessonStarted) return;
+                if (!this.isLessonStarted || !this.lessonData) return;
                 
                 const textDisplay = document.querySelector('.text-display');
                 const currentData = this.lessonData[this.currentQuestion];
@@ -225,6 +245,8 @@
             }
 
             nextQuestion() {
+                if (!this.lessonData) return;
+                
                 if (this.currentQuestion < this.lessonData.length - 1) {
                     this.currentQuestion++;
                     this.showCurrentQuestion();
@@ -239,16 +261,20 @@
 
             updateStartButton() {
                 const startBtn = document.querySelector('.start-btn');
-                if (!this.isLessonStarted) {
+                if (!this.isLessonStarted || !this.lessonData) {
                     startBtn.textContent = 'Bắt đầu';
-                    startBtn.style.backgroundColor = '#2ecc71'; // Màu xanh
+                    startBtn.disabled = !this.lessonData;
+                    startBtn.style.opacity = this.lessonData ? '1' : '0.5';
                 } else {
                     startBtn.textContent = 'Tiếp';
-                    startBtn.style.backgroundColor = 'orange'; // Màu cam
+                    startBtn.disabled = false;
+                    startBtn.style.opacity = '1';
                 }
             }
 
             handleStartButtonClick() {
+                if (!this.lessonData) return;
+                
                 if (!this.isLessonStarted) {
                     this.isLessonStarted = true;
                     this.showCurrentQuestion();
