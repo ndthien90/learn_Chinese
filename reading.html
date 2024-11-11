@@ -330,6 +330,7 @@
     <script>
         class ChineseReader {
             constructor() {
+                this.currentAudio = null;
                 this.currentLesson = 1;
                 this.currentMode = 'chinese';
                 this.lessons = [
@@ -512,13 +513,20 @@ createQuiz() {
     </div>`;
 }
 
-            playAudio() {
-                const audio = new Audio(`data_reading/Bài ${this.currentLesson}/${this.currentLesson}.mp3`);
-                audio.play().catch(error => {
-                    console.error('Error playing audio:', error);
-                    alert('Không thể phát âm thanh. Vui lòng kiểm tra lại kết nối.');
-                });
-            }
+playAudio() {
+    // Nếu đang phát, dừng audio hiện tại
+    if (this.currentAudio) {
+        this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
+    }
+    
+    // Tạo và phát audio mới
+    this.currentAudio = new Audio(`data_reading/Bài ${this.currentLesson}/${this.currentLesson}.mp3`);
+    this.currentAudio.play().catch(error => {
+        console.error('Error playing audio:', error);
+        alert('Không thể phát âm thanh. Vui lòng kiểm tra lại kết nối.');
+    });
+}
         }
 
         // Initialize the app
