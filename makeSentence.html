@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhìn hình đặt câu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+        }
+
+        .app-container {
+            background: #fcfcfc;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 460px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .app-container:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15), 
+                        0 8px 8px rgba(0,0,0,0.15);
+        }
+
+        .header {
+            color: #ff0000;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .start-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 100px;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .start-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .lesson-select {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s;
+            font-size: 18px;
+        }
+
+        .lesson-select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .text-display {
+            margin-top: 10px;
+            padding: 15px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            min-height: 60px;
+            transition: box-shadow 0.3s;
+            font-size:22px;
+        }
+
+        .text-display:hover {
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .hint {
+            color: #666;
+        }
+
+        .sentence {
+            color: red;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">Nhìn hình đặt câu</div>
+        
+        <div class="controls">
+            <button class="start-btn">Bắt đầu</button>
+            <select class="lesson-select">
+                <option value="1">Bài 1 Chào hỏi</option>
+                <option value="2">Bài 2 Bản thân</option>
+                <option value="3">Bài 3 Gia đình</option>
+                <option value="4">Bài 4 Sở thích</option>
+                <option value="5">Bài 5 Quê hương</option>
+                <option value="6">Bài 6 Sinh nhật</option>
+                <option value="7">Bài 7 Thường ngày</option>
+            </select>
+        </div>
+
+        <div class="image-container">
+            <img src="path_to_image/1.png" alt="Exercise Image">
+        </div>
+
+        <div class="text-display"></div>
+    </div>
+
+    <script>
+        class LessonManager {
+            constructor() {
+                this.currentLesson = 1;
+                this.currentQuestion = 0;
+                this.lessonData = null;
+                this.isAnswerShown = false;
+                this.isLessonStarted = false;
+            }
+
+            async loadLessonData(lessonNumber) {
+                try {
+                    const response = await fetch(`data_makeSentence/Bài ${lessonNumber}/data.txt`);
+                    const text = await response.text();
+                    this.lessonData = text.split('\n').map(line => {
+                        const [sentence, hint] = line.split('|');
+                        return { sentence: sentence.trim(), hint: hint.trim() };
+                    });
+                    this.currentQuestion = 0;
+                    this.isLessonStarted = false;
+                    this.updateStartButton();
+                    this.clearDisplay();
+                } catch (error) {
+                    console.error('Error loading lesson data:', error);
+                }
+            }
+
+            clearDisplay() {
+                const textDisplay = document.querySelector('.text-display');
+                textDisplay.textContent = '';
+            }
+
+            showCurrentQuestion() {
+                if (!this.lessonData || !this.lessonData[this.currentQuestion]) return;
+                
+                const imageContainer = document.querySelector('.image-container img');
+                const textDisplay = document.querySelector('.text-display');
+                
+                // Update image
+                imageContainer.src = `data_makeSentence/Bài ${this.currentLesson}/img/${this.currentQuestion + 1}.png`;
+                
+                // Show hint
+                textDisplay.innerHTML = `<div class="hint">Gợi ý: ${this.lessonData[this.currentQuestion].hint}</div>`;
+                this.isAnswerShown = false;
+            }
+
+            toggleAnswer() {
+                if (!this.isLessonStarted) return;
+                
+                const textDisplay = document.querySelector('.text-display');
+                const currentData = this.lessonData[this.currentQuestion];
+                
+                if (!this.isAnswerShown) {
+                    // Show answer and play audio
+                    textDisplay.innerHTML = `<div class="sentence">${currentData.sentence}</div>`;
+                    const audio = new Audio(`data_makeSentence/Bài ${this.currentLesson}/audio/output_${this.currentQuestion + 1}.mp3`);
+                    audio.play();
+                    this.isAnswerShown = true;
+                } else {
+                    // Show hint again
+                    textDisplay.innerHTML = `<div class="hint">Gợi ý: ${currentData.hint}</div>`;
+                    this.isAnswerShown = false;
+                }
+            }
+
+            nextQuestion() {
+                if (this.currentQuestion < this.lessonData.length - 1) {
+                    this.currentQuestion++;
+                    this.showCurrentQuestion();
+                } else {
+                    // Reset to initial state
+                    this.currentQuestion = 0;
+                    this.isLessonStarted = false;
+                    this.clearDisplay();
+                }
+                this.updateStartButton();
+            }
+
+            updateStartButton() {
+                const startBtn = document.querySelector('.start-btn');
+                if (!this.isLessonStarted) {
+                    startBtn.textContent = 'Bắt đầu';
+                    startBtn.style.backgroundColor = '#2ecc71'; // Màu xanh
+                } else {
+                    startBtn.textContent = 'Tiếp';
+                    startBtn.style.backgroundColor = 'orange'; // Màu cam
+                }
+            }
+
+            handleStartButtonClick() {
+                if (!this.isLessonStarted) {
+                    this.isLessonStarted = true;
+                    this.showCurrentQuestion();
+                } else {
+                    this.nextQuestion();
+                }
+                this.updateStartButton();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const lessonManager = new LessonManager();
+            const startBtn = document.querySelector('.start-btn');
+            const lessonSelect = document.querySelector('.lesson-select');
+            const imageContainer = document.querySelector('.image-container');
+
+            startBtn.addEventListener('click', () => {
+                lessonManager.handleStartButtonClick();
+            });
+
+            lessonSelect.addEventListener('change', () => {
+                lessonManager.currentLesson = parseInt(lessonSelect.value);
+                lessonManager.loadLessonData(lessonManager.currentLesson);
+            });
+
+            imageContainer.addEventListener('click', () => {
+                lessonManager.toggleAnswer();
+            });
+
+            // Load initial lesson
+            lessonManager.loadLessonData(1);
+        });
+    </script>
+
+
+</body></html>
