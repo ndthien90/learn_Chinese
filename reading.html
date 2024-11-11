@@ -254,6 +254,9 @@
             text-align: center;
             padding: 20px;
         }
+.audio-btn.playing {
+    background: #007aa3;
+}
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -309,8 +312,8 @@
             </div>
             <div class="audio-control">
                 <button class="audio-btn" id="playAudio">
-                    <span>🔊</span>
-                    <span>Nghe</span>
+    	<span id="audioIcon">🔊</span>
+    	<span id="audioText">Nghe</span>
                 </button>
             </div>
         </div>
@@ -331,6 +334,7 @@
         class ChineseReader {
             constructor() {
                 this.currentAudio = null;
+                this.isPlaying = false;
                 this.currentLesson = 1;
                 this.currentMode = 'chinese';
                 this.lessons = [
@@ -362,7 +366,9 @@
                     selectedLesson: document.getElementById('selectedLesson'),
                     mainContent: document.getElementById('mainContent'),
                     playAudio: document.getElementById('playAudio'),
-                    controls: document.querySelector('.controls')
+                    controls: document.querySelector('.controls'),
+                   audioIcon: document.getElementById('audioIcon'),
+                   audioText: document.getElementById('audioText')
                 };
 
                 // Populate lesson list
@@ -418,6 +424,14 @@
             }
 
             async loadLesson(lessonId) {
+    	if (this.currentAudio) {
+        	     this.currentAudio.pause();
+        	     this.currentAudio.currentTime = 0;
+        	     this.isPlaying = false;
+        	     this.elements.audioIcon.textContent = '🔊';
+        	     this.elements.audioText.textContent = 'Nghe';
+        	     this.elements.playAudio.classList.remove('playing');
+   	 }
                 this.currentLesson = lessonId;
                 this.elements.selectedLesson.textContent = this.lessons.find(l => l.id === lessonId).title;
                 this.elements.mainContent.innerHTML = '<div class="loading">Đang tải dữ liệu...</div>';
@@ -514,18 +528,41 @@ createQuiz() {
 }
 
 playAudio() {
-    // Nếu đang phát, dừng audio hiện tại
-    if (this.currentAudio) {
+    if (this.isPlaying && this.currentAudio) {
+        // Nếu đang phát, dừng audio
         this.currentAudio.pause();
         this.currentAudio.currentTime = 0;
+        this.isPlaying = false;
+        this.elements.audioIcon.textContent = '🔊';
+        this.elements.audioText.textContent = 'Nghe';
+        this.elements.playAudio.classList.remove('playing');
+    } else {
+        // Nếu đang dừng, bắt đầu phát
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+            this.currentAudio.currentTime = 0;
+        }
+        
+        this.currentAudio = new Audio(`data_reading/Bài ${this.currentLesson}/${this.currentLesson}.mp3`);
+        
+        // Thêm event listener để cập nhật UI khi audio kết thúc
+        this.currentAudio.addEventListener('ended', () => {
+            this.isPlaying = false;
+            this.elements.audioIcon.textContent = '🔊';
+            this.elements.audioText.textContent = 'Nghe';
+            this.elements.playAudio.classList.remove('playing');
+        });
+
+        this.currentAudio.play().then(() => {
+            this.isPlaying = true;
+            this.elements.audioIcon.textContent = '⏹️';
+            this.elements.audioText.textContent = 'Dừng';
+            this.elements.playAudio.classList.add('playing');
+        }).catch(error => {
+            console.error('Error playing audio:', error);
+            alert('Không thể phát âm thanh. Vui lòng kiểm tra lại kết nối.');
+        });
     }
-    
-    // Tạo và phát audio mới
-    this.currentAudio = new Audio(`data_reading/Bài ${this.currentLesson}/${this.currentLesson}.mp3`);
-    this.currentAudio.play().catch(error => {
-        console.error('Error playing audio:', error);
-        alert('Không thể phát âm thanh. Vui lòng kiểm tra lại kết nối.');
-    });
 }
         }
 
