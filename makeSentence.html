@@ -274,10 +274,12 @@
                 const startBtn = document.querySelector('.start-btn');
                 if (!this.isLessonStarted || !this.lessonData) {
                     startBtn.textContent = 'Bắt đầu';
+	startBtn.style.backgroundColor = '#2ecc71';
                     startBtn.disabled = !this.lessonData;
                     startBtn.style.opacity = this.lessonData ? '1' : '0.5';
                 } else {
                     startBtn.textContent = 'Tiếp';
+ 	startBtn.style.backgroundColor = 'orange';
                     startBtn.disabled = false;
                     startBtn.style.opacity = '1';
                 }
