@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #2196f3, #e91e63);
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #2196f3;
+            outline: none;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            color: #666;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:valid ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            background: white;
+            padding: 0 5px;
+            color: #2196f3;
+        }
+
+        .remember-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remember-box input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 1.5rem;
+        }
+
+        .forgot-password a {
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background: #2196f3;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: #1976d2;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .register-link a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginForm">
+        <div class="login-header">
+            <h1>Tài khoản học tập</h1>
+            <p>Chào mừng bạn quay trở lại!</p>
+        </div>
+        
+        <form id="login-form" onsubmit="return validateLogin(event)">
+            <div class="error-message" id="errorMessage">
+                Tên đăng nhập hoặc mật khẩu không đúng!
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="username" required="">
+                <label for="username">Tên đăng nhập</label>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" required="">
+                <label for="password">Mật khẩu</label>
+            </div>
+
+            <div class="remember-container">
+                <div class="remember-box">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Ghi nhớ tài khoản</label>
+                </div>
+                <div class="remember-box">
+                    <input type="checkbox" id="autoLogin">
+                    <label for="autoLogin">Tự động đăng nhập</label>
+                </div>
+            </div>
+
+            <div class="forgot-password" style="display:none">
+                <a href="#">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="login-button">Đăng nhập</button>
+
+            <div class="register-link" style="display:none">
+                <p>Chưa có tài khoản? <a href="#">Đăng ký ngay</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Tài khoản mặc định
+        const DEFAULT_USERNAME = "std_chinese";
+        const DEFAULT_PASSWORD = "123456";
+
+        // Kiểm tra auto login khi tải trang
+        window.onload = function() {
+            const savedAutoLogin = localStorage.getItem('autoLogin');
+            const savedUsername = localStorage.getItem('username');
+            const savedPassword = localStorage.getItem('password');
+
+            if (savedAutoLogin === 'true' && savedUsername && savedPassword) {
+                document.getElementById('username').value = savedUsername;
+                document.getElementById('password').value = savedPassword;
+                document.getElementById('autoLogin').checked = true;
+                document.getElementById('rememberMe').checked = true;
+                login(savedUsername, savedPassword);
+            } else if (localStorage.getItem('rememberMe') === 'true') {
+                document.getElementById('username').value = savedUsername || '';
+                document.getElementById('rememberMe').checked = true;
+            }
+        }
+
+        function validateLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            const autoLogin = document.getElementById('autoLogin').checked;
+
+            if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+                // Lưu thông tin nếu chọn ghi nhớ
+                if (rememberMe) {
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('rememberMe', 'true');
+                } else {
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('rememberMe');
+                }
+
+                // Lưu thông tin nếu chọn tự động đăng nhập
+                if (autoLogin) {
+                    localStorage.setItem('password', password);
+                    localStorage.setItem('autoLogin', 'true');
+                } else {
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('autoLogin');
+                }
+
+                // Chuyển hướng đến trang home.html
+                window.location.href = 'home.html';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        function login(username, password) {
+            if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+                window.location.href = 'home.html';
+            }
+        }
+    </script>
+
+
+</body></html>
