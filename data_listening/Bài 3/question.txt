@@ -1,66 +1,66 @@
-你好吗？ | Nǐ hǎo ma?
+他好吗？ | tā hǎo ma?
 再见！ | Zàijiàn!
-你叫什么名字？ | Nǐ jiào shénme míngzì?
-你要喝什么？ | Nǐ yào hē shénme?
-你喜欢吃什么？ | Nǐ xǐhuān chī shénme?
-你家有几口人？ | Nǐ jiā yǒu jǐ kǒu rén?
-你喜欢什么颜色？ | Nǐ xǐhuān shénme yánsè?
-你今年几岁？ | Nǐ jīnnián jǐ suì?
-你做什么工作？ | Nǐ zuò shénme gōngzuò?
-你喜欢喝什么饮料？ | Nǐ xǐhuān hē shénme yǐnliào?
+他叫什么名字？ | tā jiào shénme míngzì?
+他要喝什么？ | tā yào hē shénme?
+他喜欢吃什么？ | tā xǐhuān chī shénme?
+他家有几口人？ | tā jiā yǒu jǐ kǒu rén?
+他喜欢什么颜色？ | tā xǐhuān shénme yánsè?
+他今年几岁？ | tā jīnnián jǐ suì?
+他做什么工作？ | tā zuò shénme gōngzuò?
+他喜欢喝什么饮料？ | tā xǐhuān hē shénme yǐnliào?
 今天是几号？ | Jīntiān shì jǐ hào?
-你喜欢什么水果？ | Nǐ xǐhuān shénme shuǐguǒ?
-你明天去哪里？ | Nǐ míngtiān qù nǎlǐ?
-你喜欢看电影吗？ | Nǐ xǐhuān kàn diànyǐng ma?
-你会说汉语吗？ | Nǐ huì shuō hànyǔ ma?
-你喜欢什么食物？ | Nǐ xǐhuān shénme shíwù?
-你家有几个人？ | Nǐ jiā yǒu jǐ gè rén?
-你今天几点起床？ | Nǐ jīntiān jǐ diǎn qǐchuáng?
-你晚上做什么？ | Nǐ wǎnshang zuò shénme?
-你觉得汉语难吗？ | Nǐ juédé hànyǔ nán ma?
-你喜欢上网吗？ | Nǐ xǐhuān shàngwǎng ma?
-你喜欢狗还是猫？ | Nǐ xǐhuān gǒu háishì māo?
-你想去哪里旅游？ | Nǐ xiǎng qù nǎlǐ lǚyóu?
-你喜欢打球吗？ | Nǐ xǐhuān dǎ qiú ma?
-你今天有课吗？ | Nǐ jīntiān yǒu kè ma?
-你喜欢什么饮料？ | Nǐ xǐhuān shénme yǐnliào?
-你家附近有什么？ | Nǐ jiā fùjìn yǒu shénme?
-你喜欢什么电影？ | Nǐ xǐhuān shénme diànyǐng?
-你喜欢什么音乐？ | Nǐ xǐhuān shénme yīnyuè?
-你会骑自行车吗？ | Nǐ huì qí zìxíngchē ma?
-你想要什么？ | Nǐ xiǎng yào shénme?
-你会做饭吗？ | Nǐ huì zuò fàn ma?
-你喜欢旅游吗？ | Nǐ xǐhuān lǚyóu ma?
-你喜欢看书吗？ | Nǐ xǐhuān kàn shū ma?
-你觉得汉语怎么样？ | Nǐ juédé hànyǔ zěnme yàng?
-你喜欢吃水果吗？ | Nǐ xǐhuān chī shuǐguǒ ma?
-你喜欢喝果汁吗？ | Nǐ xǐhuān hē guǒzhī ma?
-你今天几点上课？ | Nǐ jīntiān jǐ diǎn shàngkè?
-你喜欢什么季节？ | Nǐ xǐhuān shénme jìjié?
-你喜欢哪个国家？ | Nǐ xǐhuān nǎge guójiā?
-你喜欢什么动物？ | Nǐ xǐhuān shénme dòngwù?
-你会游泳吗？ | Nǐ huì yóuyǒng ma?
-你喜欢吃什么点心？ | Nǐ xǐhuān chī shénme diǎnxīn?
-你喜欢去哪里玩？ | Nǐ xǐhuān qù nǎlǐ wán?
-你家有宠物吗？ | Nǐ jiā yǒu chǒngwù ma?
-你喜欢什么颜色？ | Nǐ xǐhuān shénme yánsè?
-你会弹钢琴吗？ | Nǐ huì tán gāngqín ma?
-你喜欢喝什么茶？ | Nǐ xǐhuān hē shénme chá?
-你想吃什么？ | Nǐ xiǎng chī shénme?
-你喜欢哪个职业？ | Nǐ xǐhuān nǎge zhíyè?
-你喜欢看电视吗？ | Nǐ xǐhuān kàn diànshì ma?
-你会说几种语言？ | Nǐ huì shuō jǐ zhǒng yǔyán?
-你最喜欢的食物是什么？ | Nǐ zuì xǐhuān de shíwù shì shénme?
-你今天有什么计划？ | Nǐ jīntiān yǒu shénme jìhuà?
-你喜欢什么节日？ | Nǐ xǐhuān shénme jiérì?
-你觉得这个地方怎么样？ | Nǐ juédé zhège dìfāng zěnme yàng?
-你通常几点吃晚饭？ | Nǐ tōngcháng jǐ diǎn chī wǎnfàn?
-你喜欢上什么课？ | Nǐ xǐhuān shàng shénme kè?
-你每天学习多久？ | Nǐ měitiān xuéxí duōjiǔ?
-你喜欢参加活动吗？ | Nǐ xǐhuān cānjiā huódòng ma?
-你家有几辆车？ | Nǐ jiā yǒu jǐ liàng chē?
-你喜欢去哪里度假？ | Nǐ xǐhuān qù nǎlǐ dùjià?
-你喜欢什么水果？ | Nǐ xǐhuān shénme shuǐguǒ?
-你觉得学习汉语重要吗？ | Nǐ juédé xuéxí hànyǔ zhòngyào ma?
-你喜欢什么运动？ | Nǐ xǐhuān shénme yùndòng?
-你会做哪些菜？ | Nǐ huì zuò nǎxiē cài?
+他喜欢什么水果？ | tā xǐhuān shénme shuǐguǒ?
+他明天去哪里？ | tā míngtiān qù nǎlǐ?
+他喜欢看电影吗？ | tā xǐhuān kàn diànyǐng ma?
+他会说汉语吗？ | tā huì shuō hànyǔ ma?
+他喜欢什么食物？ | tā xǐhuān shénme shíwù?
+他家有几个人？ | tā jiā yǒu jǐ gè rén?
+他今天几点起床？ | tā jīntiān jǐ diǎn qǐchuáng?
+他晚上做什么？ | tā wǎnshang zuò shénme?
+他觉得汉语难吗？ | tā juédé hànyǔ nán ma?
+他喜欢上网吗？ | tā xǐhuān shàngwǎng ma?
+他喜欢狗还是猫？ | tā xǐhuān gǒu háishì māo?
+他想去哪里旅游？ | tā xiǎng qù nǎlǐ lǚyóu?
+他喜欢打球吗？ | tā xǐhuān dǎ qiú ma?
+他今天有课吗？ | tā jīntiān yǒu kè ma?
+他喜欢什么饮料？ | tā xǐhuān shénme yǐnliào?
+他家附近有什么？ | tā jiā fùjìn yǒu shénme?
+他喜欢什么电影？ | tā xǐhuān shénme diànyǐng?
+他喜欢什么音乐？ | tā xǐhuān shénme yīnyuè?
+他会骑自行车吗？ | tā huì qí zìxíngchē ma?
+他想要什么？ | tā xiǎng yào shénme?
+他会做饭吗？ | tā huì zuò fàn ma?
+他喜欢旅游吗？ | tā xǐhuān lǚyóu ma?
+他喜欢看书吗？ | tā xǐhuān kàn shū ma?
+他觉得汉语怎么样？ | tā juédé hànyǔ zěnme yàng?
+他喜欢吃水果吗？ | tā xǐhuān chī shuǐguǒ ma?
+他喜欢喝果汁吗？ | tā xǐhuān hē guǒzhī ma?
+他今天几点上课？ | tā jīntiān jǐ diǎn shàngkè?
+他喜欢什么季节？ | tā xǐhuān shénme jìjié?
+他喜欢哪个国家？ | tā xǐhuān nǎge guójiā?
+他喜欢什么动物？ | tā xǐhuān shénme dòngwù?
+他会游泳吗？ | tā huì yóuyǒng ma?
+他喜欢吃什么点心？ | tā xǐhuān chī shénme diǎnxīn?
+他喜欢去哪里玩？ | tā xǐhuān qù nǎlǐ wán?
+他家有宠物吗？ | tā jiā yǒu chǒngwù ma?
+他喜欢什么颜色？ | tā xǐhuān shénme yánsè?
+他会弹钢琴吗？ | tā huì tán gāngqín ma?
+他喜欢喝什么茶？ | tā xǐhuān hē shénme chá?
+他想吃什么？ | tā xiǎng chī shénme?
+他喜欢哪个职业？ | tā xǐhuān nǎge zhíyè?
+他喜欢看电视吗？ | tā xǐhuān kàn diànshì ma?
+他会说几种语言？ | tā huì shuō jǐ zhǒng yǔyán?
+他最喜欢的食物是什么？ | tā zuì xǐhuān de shíwù shì shénme?
+他今天有什么计划？ | tā jīntiān yǒu shénme jìhuà?
+他喜欢什么节日？ | tā xǐhuān shénme jiérì?
+他觉得这个地方怎么样？ | tā juédé zhège dìfāng zěnme yàng?
+他通常几点吃晚饭？ | tā tōngcháng jǐ diǎn chī wǎnfàn?
+他喜欢上什么课？ | tā xǐhuān shàng shénme kè?
+他每天学习多久？ | tā měitiān xuéxí duōjiǔ?
+他喜欢参加活动吗？ | tā xǐhuān cānjiā huódòng ma?
+他家有几辆车？ | tā jiā yǒu jǐ liàng chē?
+他喜欢去哪里度假？ | tā xǐhuān qù nǎlǐ dùjià?
+他喜欢什么水果？ | tā xǐhuān shénme shuǐguǒ?
+他觉得学习汉语重要吗？ | tā juédé xuéxí hànyǔ zhòngyào ma?
+他喜欢什么运动？ | tā xǐhuān shénme yùndòng?
+他会做哪些菜？ | tā huì zuò nǎxiē cài?
