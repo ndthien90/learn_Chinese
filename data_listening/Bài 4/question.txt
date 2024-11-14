@@ -1,0 +1,15 @@
+他是学生吗？| tā shì xué sheng ma?
+他喝什么茶？| tā hē shén me chá?
+他爸爸做什么工作？| tā bà ba zuò shén me gōng zuò?
+他今天有什么计划？| tā jīn tiān yǒu shén me jì huà?
+他喜欢看电影吗？| tā xǐ huān kàn diàn yǐng ma?
+他住在哪儿？| tā zhù zài nǎr?
+他朋友都喜欢什么？| tā péngyou dōu xǐ huān shén me?
+他家有几只宠物？| tā jiā yǒu jǐ zhī chǒng wù?
+他早饭吃什么？| tā zǎo fàn chī shén me?
+他喜欢做什么菜？| tā xǐ huān zuò shén me cài?
+他们的课有多少节？| tā men de kè yǒu duō shǎo jié?
+他和谁一起去？| tā hé shéi yī qǐ qù?
+他最喜欢什么运动？| tā zuì xǐ huān shén me yùn dòng?
+他喜欢听什么类型的音乐？| tā xǐ huān tīng shén me lèi xíng de yīn yuè?
+他什么时候过生日？| tā shén me shí hòu guò shēng rì?

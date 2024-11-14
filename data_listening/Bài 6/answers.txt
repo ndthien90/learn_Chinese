@@ -1,0 +1,11 @@
+去看电影, 去公园跑步, 去图书馆看书, 去学校看书 | qù kàn diànyǐng, qù gōngyuán pǎobù, qù túshūguǎn kànshū, qù xuéxiào kànshū |3
+星期二, 星期三, 星期天, 星期六 | xīngqī èr, xīngqī sān, xīngqī tiān, xīngqī liù | 2
+星期天，朋友家, 星期五，朋友家, 星期五，学校, 星期四，朋友家 | xīngqī tiān, péngyǒu jiā, xīngqī wǔ, péngyǒu jiā, xīngqī wǔ, xuéxiào, xīngqī sì, péngyǒu jiā | 1
+商店, 超市, 学校, 书店 | shāngdiàn, chāoshì, xuéxiào, shūdiàn | 0
+星期一, 星期二, 星期四, 星期三 | xīngqī yī, xīngqī èr, xīngqī sì, xīngqī sān | 2
+他好朋友, 他朋友, 他女朋友, 他妈妈 | tā hǎo péngyǒu, tā péngyǒu, tā nǚ péngyǒu, tā māmā | 1
+玩游戏, 打羽毛球, 看书, 踢足球 | wán yóuxì, dǎ yǔmáoqiú, kànshū, tī zúqiú | 3
+看英语书, 借英语书, 借中文书, 看中文书 | kàn yīngyǔ shū, jiè yīngyǔ shū, jiè zhōngwén shū, kàn zhōngwén shū | 1
+十月五号, 十月八号, 十月六号, 十月七号 | shí yuè wǔ hào, shí yuè bā hào, shí yuè liù hào, shí yuè qī hào | 2
+看电影, 玩游戏, 听音乐, 学习编程 | kàn diànyǐng, wán yóuxì, tīng yīnyuè, xuéxí biānchéng | 0
+国际妇女节, 国际儿童节, 情人节, 元旦 | guójì fùnǚ jié, guójì értóng jié, qíngrén jié, yuándàn | 1

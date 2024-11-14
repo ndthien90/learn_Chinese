@@ -1,0 +1,50 @@
+超市, 医院, 学校, 图书馆 | chāoshì, yīyuàn, xuéxiào, túshūguǎn | 0
+二号, 三号, 一号, 四号 | èrhào, sān hào, yī hào, sì hào | 0
+星期三, 星期四, 星期一, 星期二 | xīngqīsān, xīngqīsì, xīngqīyī, xīngqīèr | 0
+水果, 蔬菜, 米饭, 面条 | shuǐguǒ, shūcài, mǐfàn, miàntiáo | 0
+中文作业, 数学作业, 英语作业, 科学作业 | zhōngwén zuòyè, shùxué zuòyè, yīngyǔ zuòyè, kēxué zuòyè | 0
+有空, 没空, 不知道, 很忙 | yǒu kòng, méi kòng, bù zhīdào, hěn máng | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+很好, 很冷, 下雨, 很热 | hěn hǎo, hěn lěng, xià yǔ, hěn rè | 0
+七点半, 七点, 六点, 八点 | qī diǎn bàn, qī diǎn, liù diǎn, bā diǎn | 0
+两种, 一种, 三种, 四种 | liǎng zhǒng, yī zhǒng, sān zhǒng, sì zhǒng | 0
+四口, 三口, 五口, 六口 | sì kǒu, sān kǒu, wǔ kǒu, liù kǒu | 0
+篮球, 足球, 游泳, 乒乓球 | lánqiú, zúqiú, yóuyǒng, pīngpāngqiú | 0
+去图书馆, 去朋友家, 去博物馆, 去商场 | qù túshūguǎn, qù péngyǒu jiā, qù bówùguǎn, qù shāngchǎng | 0
+茶, 可乐, 果汁, 啤酒 | chá, kělè, guǒzhī, píjiǔ | 0
+常常去, 不常去, 偶尔去, 从不去 | chángcháng qù, bù cháng qù, ǒu'ěr qù, cóng bù qù | 0
+六点, 七点, 八点, 五点 | liù diǎn, qī diǎn, bā diǎn, wǔ diǎn | 0
+流行音乐, 古典音乐, 摇滚音乐, 爵士音乐 | liúxíng yīnyuè, gǔdiǎn yīnyuè, yáoguǐn yīnyuè, juéshì yīnyuè | 0
+北京, 上海, 广州, 深圳 | běijīng, shànghǎi, guǎngzhōu, shēnzhèn | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+春天, 夏天, 秋天, 冬天 | chūntiān, xiàtiān, qiūtiān, dōngtiān | 0
+去朋友家, 玩游戏, 上学, 看书 | qù péngyǒu jiā, wán yóuxì, shàngxué, kàn shū | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+商场, 超市, 便利店, 市场 | shāngchǎng, chāoshì, biànlìdiàn, shìchǎng | 0
+会, 不会, 会一点, 会很多 | huì, bù huì, huì yīdiǎn, huì hěnduō | 0
+蓝色, 红色, 绿色, 黄色 | lánsè, hóngsè, lǜsè, huángsè | 0
+有一个, 没有, 有两个, 有三个 | yǒu yī gè, méi yǒu, yǒu liǎng gè, yǒu sān gè | 0
+米饭, 面条, 包子, 饺子 | mǐfàn, miàntiáo, bāozi, jiǎozi | 0
+有, 没有, 不知道, 有一点 | yǒu, méi yǒu, bù zhīdào, yǒu yīdiǎn | 0
+老师, 朋友, 家人, 同学 | lǎoshī, péngyǒu, jiārén, tóngxué | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+三个, 一个, 两个, 四个 | sān gè, yī gè, liǎng gè, sì gè | 0
+披萨, 汉堡, 意大利面, 面包 | pīsà, hànbǎo, yìdàlìmiàn, miànbāo | 0
+会, 不会, 会一点, 会很多 | huì, bù huì, huì yīdiǎn, huì hěnduō | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+常常, 不常, 偶尔, 从不 | chángcháng, bù cháng, ǒu'ěr, cóng bù | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+会, 不会, 会一点, 会很多 | huì, bù huì, huì yīdiǎn, huì hěnduō | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+六点, 七点, 八点, 五点 | liù diǎn, qī diǎn, bā diǎn, wǔ diǎn | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+三个, 一个, 两个, 四个 | sān gè, yī gè, liǎng gè, sì gè | 0
+披萨, 汉堡, 意大利面, 面包 | pīsà, hànbǎo, yìdàlìmiàn, miànbāo | 0
+会, 不会, 会一点, 会很多 | huì, bù huì, huì yīdiǎn, huì hěnduō | 0
+早上, 晚上, 中午, 下午 | zǎoshang, wǎnshang, zhōngwǔ, xiàwǔ | 0
+快餐店, 中餐馆, 西餐馆, 自助餐 | kuàicān diàn, zhōngcān guǎn, xīcān guǎn, zìzhùcān | 0
+喜欢, 不喜欢, 有点喜欢, 非常喜欢 | xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, fēicháng xǐhuān | 0
+是的, 不是, 不知道, 有 | shì de, bù shì, bù zhīdào, yǒu | 0
+两年, 一年, 三年, 四年 | liǎng nián, yī nián, sān nián, sì nián | 0
+春节, 中秋节, 圣诞节, 感恩节 | chūnjié, zhōngqiūjié, shèngdànjié, gǎn'ēnjié | 0
+会, 不会, 会一点, 会很多 | huì, bù huì, huì yīdiǎn, huì hěnduō | 0

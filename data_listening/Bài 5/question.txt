@@ -1,0 +1,50 @@
+明天你去哪里？ | Míngtiān nǐ qù nǎlǐ?
+后天是几号？ | Hòutiān shì jǐ hào?
+今天是星期几？ | Jīntiān shì xīngqī jǐ?
+你喜欢吃什么？ | Nǐ xǐhuān chī shénme?
+你要做什么作业？ | Nǐ yào zuò shénme zuòyè?
+你周末有空吗？ | Nǐ zhōumò yǒu kòng ma?
+你喜欢看电影吗？ | Nǐ xǐhuān kàn diànyǐng ma?
+明天的天气怎么样？ | Míngtiān de tiānqì zěnme yàng?
+你几点去上学？ | Nǐ jǐ diǎn qù shàngxué?
+你会说几种语言？ | Nǐ huì shuō jǐ zhǒng yǔyán?
+你家有几口人？ | Nǐ jiā yǒu jǐ kǒu rén?
+你最喜欢的运动是什么？ | Nǐ zuì xǐhuān de yùndòng shì shénme?
+你明天有什么计划？ | Nǐ míngtiān yǒu shénme jìhuà?
+你喜欢喝什么饮料？ | Nǐ xǐhuān hē shénme yǐnliào?
+你常常去公园吗？ | Nǐ chángcháng qù gōngyuán ma?
+你几点吃晚饭？ | Nǐ jǐ diǎn chī wǎnfàn?
+你喜欢哪种音乐？ | Nǐ xǐhuān nǎ zhǒng yīnyuè?
+你住在哪里？ | Nǐ zhù zài nǎlǐ?
+你喜欢旅行吗？ | Nǐ xǐhuān lǚxíng ma?
+你最喜欢的季节是什么？ | Nǐ zuì xǐhuān de jìjié shì shénme?
+你星期天会做什么？ | Nǐ xīngqītiān huì zuò shénme?
+你喜欢养宠物吗？ | Nǐ xǐhuān yǎng chǒngwù ma?
+你常常去哪里购物？ | Nǐ chángcháng qù nǎlǐ gòuwù?
+你会弹钢琴吗？ | Nǐ huì tán gāngqín ma?
+你喜欢什么颜色？ | Nǐ xǐhuān shénme yánsè?
+你有兄弟姐妹吗？ | Nǐ yǒu xiōngdì jiěmèi ma?
+你最喜欢的食物是什么？ | Nǐ zuì xǐhuān de shíwù shì shénme?
+你今天有课吗？ | Nǐ jīntiān yǒu kè ma?
+你明天会见谁？ | Nǐ míngtiān huì jiàn shéi?
+你喜欢阅读吗？ | Nǐ xǐhuān yuèdú ma?
+你有多少个好朋友？ | Nǐ yǒu duōshǎo gè hǎo péngyǒu?
+你明天想吃什么？ | Nǐ míngtiān xiǎng chī shénme?
+你会游泳吗？ | Nǐ huì yóuyǒng ma?
+你喜欢冬天吗？ | Nǐ xǐhuān dōngtiān ma?
+你常常上网吗？ | Nǐ chángcháng shàngwǎng ma?
+你喜欢踢足球吗？ | Nǐ xǐhuān tī zúqiú ma?
+你会做饭吗？ | Nǐ huì zuò fàn ma?
+你喜欢参加派对吗？ | Nǐ xǐhuān cānjiā pàiduì ma?
+你每天几点起床？ | Nǐ měitiān jǐ diǎn qǐchuáng?
+你喜欢看书吗？ | Nǐ xǐhuān kàn shū ma?
+你有多少个好朋友？ | Nǐ yǒu duōshǎo gè hǎo péngyǒu?
+你明天想吃什么？ | Nǐ míngtiān xiǎng chī shénme?
+你会骑自行车吗？ | Nǐ huì qí zìxíngchē ma?
+你喜欢早上还是晚上？ | Nǐ xǐhuān zǎoshang háishì wǎnshang?
+你常去哪个餐厅？ | Nǐ cháng qù nǎge cāntīng?
+你喜欢逛街吗？ | Nǐ xǐhuān guàngjiē ma?
+你明天要上课吗？ | Nǐ míngtiān yào shàngkè ma?
+你学了多久中文？ | Nǐ xuéle duōjiǔ zhōngwén?
+你喜欢什么节日？ | Nǐ xǐhuān shénme jiérì?
+你会说英语吗？ | Nǐ huì shuō yīngyǔ ma?

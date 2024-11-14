@@ -1,0 +1,24 @@
+下午, 上午, 晚上, 一整天|xiàwǔ, shàngwǔ, wǎnshàng, yī zhěng tiān|0
+去看电影, 还没有, 去学习, 去购物|qù kàn diànyǐng, hái méiyǒu, qù xuéxí, qù gòuwù|1
+两点半, 三点, 四点半, 五点 |liǎng diǎn bàn, sān diǎn, sì diǎn bàn, wǔ diǎn|0
+五点, 六点, 七点, 八点|wǔ diǎn, liù diǎn, qī diǎn, bā diǎn|1
+十八岁, 二十多岁, 三十岁, 四十岁|shíbā suì, èrshí duō suì, sānshí suì, sìshí suì|1
+因为忙, 因为有课, 因为想买衣服, 因为不喜欢|yīnwèi máng, yīnwèi yǒu kè, yīnwèi xiǎng mǎi yīfú, yīnwèi bù xǐhuān|2
+三点, 四点半, 五点, 六点|sān diǎn, sì diǎn bàn, wǔ diǎn, liù diǎn|1
+一个月, 一个星期, 一个多星期, 三天|yī ge yuè, yī ge xīngqī, yī ge duō xīngqī, sān tiān|2
+半年, 一年多, 两年, 三年|bàn nián, yī nián duō, liǎng nián, sān nián|1
+六点, 七点半, 八点, 九点半|liù diǎn, qī diǎn bàn, bā diǎn, jiǔ diǎn bàn|1
+六点, 七点, 八点多, 九点|liù diǎn, qī diǎn, bā diǎn duō, jiǔ diǎn|2
+一节, 两节, 三节, 四节|yī jié, liǎng jié, sān jié, sì jié|2
+中国餐厅, 日本餐厅, 快餐店, 自助餐厅|zhōngguó cāntīng, rìběn cāntīng, kuàicān diàn, zìzhù cāntīng|0
+明天, 后天, 七点半, 六点|míngtiān, hòutiān, qī diǎn bàn, liù diǎn|2
+七点, 八点半, 八点, 九点|qī diǎn, bā diǎn bàn, bā diǎn, jiǔ diǎn|1
+九点, 十点到十点半, 十一点, 十二点|jiǔ diǎn, shí diǎn dào shí diǎn bàn, shíyī diǎn, shí'èr diǎn|1
+包子, 炒饭, 面条, 汉堡|bāozi, chǎofàn, miàntiáo, hànbǎo|0
+不常去, 常去, 不去, 每天都去|bù cháng qù, cháng qù, bù qù, měitiān dōu qù|0
+两节, 三节, 四节, 五节|liǎng jié, sān jié, sì jié, wǔ jié|1
+包子, 炒饭, 面条, 粽子|bāozi, chǎofàn, miàntiáo, zòngzi|1
+明年, 今年, 后年, 上个月|míngnián, jīnnián, hòunián, shàng ge yuè|1
+看电视, 睡觉, 听音乐, 读书|kàn diànshì, shuìjiào, tīng yīnyuè, dúshū|0
+六点, 七点一刻, 八点, 九点|liù diǎn, qī diǎn yīkè, bā diǎn, jiǔ diǎn|1
+十件, 十多件, 二十件, 三十件|shí jiàn, shí duō jiàn, èrshí jiàn, sānshí jiàn|1

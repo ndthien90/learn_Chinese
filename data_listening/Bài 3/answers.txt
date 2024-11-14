@@ -1,0 +1,66 @@
+很好, 谢谢, 不错, 还行 | Hěn hǎo, xièxiè, bùcuò, hái xíng | 0
+再见, 明天见, 拜拜, 走了 | Zàijiàn, míngtiān jiàn, bàibài, zǒule | 0
+小明, 小红, 大刚, 小丽 | Xiǎomíng, Xiǎohóng, Dàgāng, Xiǎolì | 0
+茶, 咖啡, 水, 果汁 | Chá, kāfēi, shuǐ, guǒzhī | 0
+米饭, 面条, 包子, 水饺 | Mǐfàn, miàntiáo, bāozi, shuǐjiǎo | 0
+四, 五, 六, 三 | Sì, wǔ, liù, sān | 0
+红色, 蓝色, 绿色, 黄色 | Hóngsè, lánsè, lǜsè, huángsè | 1
+八岁, 十岁, 十二岁, 六岁 | Bā suì, shí suì, shí'èr suì, liù suì | 0
+医生, 教师, 工程师, 护士 | Yīshēng, jiàoshī, gōngchéngshī, hùshi | 0
+牛奶, 果汁, 茶, 啤酒 | Niúnǎi, guǒzhī, chá, píjiǔ | 0
+十号, 二十号, 三十号, 一号 | Shí hào, èrshí hào, sānshí hào, yī hào | 0
+苹果, 橙子, 香蕉, 西瓜 | Píngguǒ, chéngzi, xiāngjiāo, xīguā | 0
+图书馆, 学校, 商店, 医院 | Túshūguǎn, xuéxiào, shāngdiàn, yīyuàn | 0
+喜欢, 不喜欢, 有点喜欢, 不太喜欢 | Xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, bù tài xǐhuān | 0
+会, 不会, 有点会, 还在学 | Huì, bù huì, yǒudiǎn huì, hái zài xué | 0
+炒饭, 炒面, 饺子, 炖汤 | Chǎofàn, chǎomiàn, jiǎozi, dùntāng | 0
+五个人, 三个人, 四个人, 六个人 | Wǔ gèrén, sān gèrén, sì gèrén, liù gèrén | 0
+六点, 七点, 八点, 九点 | Liù diǎn, qī diǎn, bā diǎn, jiǔ diǎn | 0
+看书, 看电视, 上网, 听音乐 | Kàn shū, kàn diànshì, shàngwǎng, tīng yīnyuè | 0
+不难, 难, 很难, 有点难 | Bù nán, nán, hěn nán, yǒudiǎn nán | 0
+喜欢, 不喜欢, 有点喜欢, 有点不喜欢 | Xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, yǒudiǎn bù xǐhuān | 0
+狗, 猫, 兔子, 龟 | Gǒu, māo, tùzi, guī | 0
+日本, 韩国, 美国, 中国 | Rìběn, Hánguó, Měiguó, Zhōngguó | 0
+篮球, 足球, 网球, 羽毛球 | Lánqiú, zúqiú, wǎngqiú, yǔmáoqiú | 0
+三节, 两节, 一节, 四节 | Sān jié, liǎng jié, yī jié, sì jié | 0
+茶, 咖啡, 果汁, 牛奶 | Chá, kāfēi, guǒzhī, niúnǎi | 0
+公园, 商店, 学校, 图书馆 | Gōngyuán, shāngdiàn, xuéxiào, túshūguǎn | 0
+动作片, 喜剧, 爱情片, 科幻片 | Dòngzuò piàn, xǐjù, àiqíng piàn, kēhuàn piàn | 0
+流行音乐, 古典音乐, 爵士乐, 摇滚乐 | Liúxíng yīnyuè, gǔdiǎn yīnyuè, juéshì yuè, yáogǔn yuè | 0
+会, 不会, 有点会, 还在学 | Huì, bù huì, yǒudiǎn huì, hái zài xué | 0
+玩具, 书, 食物, 衣服 | Wánjù, shū, shíwù, yīfú | 0
+会, 不会, 有点会, 还在学 | Huì, bù huì, yǒudiǎn huì, hái zài xué | 0
+非常喜欢, 喜欢, 不太喜欢, 不喜欢 | Fēicháng xǐhuān, xǐhuān, bù tài xǐhuān, bù xǐhuān | 0
+喜欢, 不喜欢, 有点喜欢, 有点不喜欢 | Xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, yǒudiǎn bù xǐhuān | 0
+很好, 一般, 不好, 有点难 | Hěn hǎo, yìbān, bù hǎo, yǒudiǎn nán | 0
+水果, 蔬菜, 肉类, 糖果 | Shuǐguǒ, shūcài, ròulèi, tángguǒ | 0
+果汁, 牛奶, 茶, 冰水 | Guǒzhī, niúnǎi, chá, bīng shuǐ | 0
+九点, 八点, 七点, 六点 | Jiǔ diǎn, bā diǎn, qī diǎn, liù diǎn | 0
+看书, 听音乐, 看电视, 上网 | Kàn shū, tīng yīnyuè, kàn diànshì, shàngwǎng | 0
+不重要, 一般, 重要, 非常重要 | Bù zhòngyào, yìbān, zhòngyào, fēicháng zhòngyào | 0
+运动, 游戏, 看书, 听音乐 | Yùndòng, yóuxì, kàn shū, tīng yīnyuè | 0
+有, 没有, 不知道, 不确定 | Yǒu, méiyǒu, bù zhīdào, bù quèdìng | 0
+很好, 一般, 不太好, 不好 | Hěn hǎo, yìbān, bù tài hǎo, bù hǎo | 0
+吃, 喝, 看, 玩 | Chī, hē, kàn, wán | 0
+一辆, 两辆, 三辆, 四辆 | Yī liàng, liǎng liàng, sān liàng, sì liàng | 0
+海边, 山上, 城市, 乡村 | Hǎibiān, shān shàng, chéngshì, xiāngcūn | 0
+西瓜, 苹果, 橙子, 香蕉 | Xīguā, píngguǒ, chéngzi, xiāngjiāo | 0
+重要, 不重要, 一般, 有点重要 | Zhòngyào, bù zhòngyào, yìbān, yǒudiǎn zhòngyào | 0
+打篮球, 打羽毛球, 打乒乓球, 游泳 | Dǎ lánqiú, dǎ yǔmáoqiú, dǎ pīngpāng qiú, yóuyǒng | 0
+会, 不会, 有点会, 还在学 | Huì, bù huì, yǒudiǎn huì, hái zài xué | 0
+小, 中, 大, 特大 | Xiǎo, zhōng, dà, tèdà | 0
+热, 温暖, 凉, 冷 | Rè, wēnnuǎn, liáng, lěng | 0
+电影, 小说, 音乐, 游戏 | Diànyǐng, xiǎoshuō, yīnyuè, yóuxì | 0
+听, 看, 说, 写 | Tīng, kàn, shuō, xiě | 0
+好, 不好, 一般, 很好 | Hǎo, bù hǎo, yìbān, hěn hǎo | 0
+书, 杂志, 报纸, 文具 | Shū, zázhì, bàozhǐ, wénjù | 0
+听, 看, 玩, 学 | Tīng, kàn, wán, xué | 0
+三, 四, 五, 六 | Sān, sì, wǔ, liù | 0
+不太会, 会, 有点会, 不会 | Bù tài huì, huì, yǒudiǎn huì, bù huì | 0
+重要, 不重要, 一般, 不太重要 | Zhòngyào, bù zhòngyào, yìbān, bù tài zhòngyào | 0
+吃, 喝, 写, 读 | Chī, hē, xiě, dú | 0
+好, 不好, 一般, 很好 | Hǎo, bù hǎo, yìbān, hěn hǎo | 0
+有, 没有, 不知道, 不确定 | Yǒu, méiyǒu, bù zhīdào, bù quèdìng | 0
+对, 不对, 一般, 不太对 | Duì, bù duì, yìbān, bù tài duì | 0
+喜欢, 不喜欢, 有点喜欢, 有点不喜欢 | Xǐhuān, bù xǐhuān, yǒudiǎn xǐhuān, yǒudiǎn bù xǐhuān | 0
+会, 不会, 有点会, 还在学 | Huì, bù huì, yǒudiǎn huì, hái zài xué | 0

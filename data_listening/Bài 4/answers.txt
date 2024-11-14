@@ -1,0 +1,15 @@
+是的, 不是, 可能, 不知道 | shì de, bù shì, kě néng, bù zhī dào | 0
+红茶, 绿茶, 花茶, 奶茶 | hóng chá, lǜ chá, huā chá, nǎi chá | 1
+医生, 教师, 工程师, 农民 | yī shēng, jiào shī, gōng chéng shī, nóng mín | 0
+去商店, 去图书馆, 去学校, 去公园 | qù shāng diàn, qù tú shū guǎn, qù xué xiào, qù gōng yuán | 1
+不喜欢, 喜欢, 有时, 从来不 | bù xǐ huān, xǐ huān, yǒu shí, cóng lái bù | 1
+胡志明市, 河内, 海防, 芽庄 | hú zhì míng shì, hé nèi, hǎi fáng, yá zhuāng | 1
+音乐, 运动, 电影, 书籍 | yīn yuè, yùn dòng, diàn yǐng, shū jí | 1
+一只, 两只, 没有, 三只 | yī zhī, liǎng zhī, méi yǒu, sān zhī | 2
+米饭, 面包和牛奶, 包子, 水果 | mǐ fàn, miàn bāo hé niú nǎi, bāo zi, shuǐ guǒ | 1
+炒饭, 面条, 汤, 沙拉 | chǎo fàn, miàn tiáo, tāng, shā lā | 0
+四节, 五节, 六节, 七节 | sì jié, wǔ jié, liù jié, qī jié | 2
+家人, 朋友, 同学, 老师 | jiā rén, péng yǒu, tóng xué, lǎo shī | 1
+足球, 篮球, 羽毛球, 游泳 | zú qiú, lán qiú, yǔ máo qiú, yóu yǒng | 2
+古典音乐, 流行音乐, 摇滚音乐, 民谣 | gǔ diǎn yīn yuè, liú xíng yīn yuè, yáo gǔn yīn yuè, mín yáo | 1
+一月, 七月, 十月, 十二月 | yī yuè, qī yuè, shí yuè, shí èr yuè | 1
