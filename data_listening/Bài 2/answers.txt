@@ -1,0 +1,15 @@
+美国人, 日本人, 中国人, 韩国人 | Měiguó rén, Rìběn rén, Zhōngguó rén, Hángúo rén | 2
+中国国籍, 日本国籍, 德国国籍, 美国国籍 | Zhōngguó guójí, Rìběn guójí, Déguó guójí, Měiguó guójí | 3
+一个国籍, 两个国籍, 三个国籍, 四个国籍 | Yí gè guójí, Liǎng gè guójí, Sān gè guójí, Sì gè guójí | 1
+都是法国人, 法国和德国人, 都是德国人, 都是美国人 | Dōu shì Fǎguó rén, Fǎguó hé Déguó rén, Dōu shì Déguó rén, Dōu shì Měiguó rén | 1
+都是泰国人, 都是日本人, 泰国和日本人, 韩国和日本人 | Dōu shì Tàiguó rén, Dōu shì Rìběn rén, Tàiguó hé Rìběn rén, Hánguó hé Rìběn rén | 2
+都来自日本, 日本和韩国, 都来自韩国, 都来自中国 | Dōu láizì Rìběn, Rìběn hé Hánguó, Dōu láizì Hánguó, Dōu láizì Zhōngguó | 1
+美国, 中国, 法国, 德国 | Měiguó, Zhōngguó, Fǎguó, Déguó | 3
+不会做, 会做一点, 会做很多, 完全不会 | Bú huì zuò, Huì zuò yīdiǎn, Huì zuò hěnduō, Wánquán bú huì | 2
+在河内, 在海防, 在北宁, 在北江 | Zài Hénèi, Zài Hǎifáng, Zài Běiníng, Zài Běijiāng | 2
+在北江, 在北宁, 在海防, 在海阳 | Zài Běijiāng, Zài Běiníng, Zài Hǎifáng, Zài Hǎiyáng | 2
+海防人, 河内人, 北宁人, 北江人 | Hǎifáng rén, Hénèi rén, Běiníng rén, Běijiāng rén | 0
+海阳人, 北宁人, 海防人, 北江人 | Hǎiyáng rén, Běiníng rén, Hǎifáng rén, Běijiāng rén | 0
+会说和会写, 会说不会写, 不会说不会写, 只会写 | Huì shuō hé huì xiě, Huì shuō bú huì xiě, Bú huì shuō bú huì xiě, Zhǐ huì xiě | 1
+会说英语, 不会英语, 会一点英语, 英语说得很好 | Huì shuō Yīngyǔ, Bú huì Yīngyǔ, Huì yīdiǎn Yīngyǔ, Yīngyǔ shuō de hěn hǎo | 1
+只会说, 只会写, 会说和写, 都不会 | Zhǐ huì shuō, Zhǐ huì xiě, Huì shuō hé xiě, Dōu bú huì | 2
