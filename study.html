@@ -259,12 +259,12 @@
 
         document.getElementById('lessonSelect').addEventListener('change', function() {
             const lessonNumber = this.value;
-            const pdfPath = `data_study/Bài/Bài ${lessonNumber}.pdf`;
+            const pdfPath = `data_study/Bài ${lessonNumber}.pdf`;
             loadPDF(pdfPath);
         });
 
         // Load default lesson
-        loadPDF('data_study/Bài/Bài 1.pdf');
+        loadPDF('data_study/Bài 1.pdf');
 
         // Xử lý khi thay đổi kích thước màn hình
         let resizeTimeout;
