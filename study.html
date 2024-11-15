@@ -108,7 +108,7 @@
             </select>
             <div class="zoom-controls">
                 <button class="zoom-button" id="zoomOut">-</button>
-                <span id="zoomLevel">100%</span>
+                <span id="zoomLevel">200%</span>
                 <button class="zoom-button" id="zoomIn">+</button>
             </div>
         </div>
@@ -122,7 +122,7 @@
 
     <script>
         let currentPDF = null;
-        let currentScale = 1.0;
+        let currentScale = 2.0;
         const ZOOM_STEP = 0.1;
 
         async function loadPDF(lessonNumber) {
