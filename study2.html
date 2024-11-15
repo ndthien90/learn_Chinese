@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vui học tiếng Trung</title>
@@ -10,31 +7,10 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
     <style>
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f0f0f0;
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --border-color: #dddddd;
-            --shadow-color: rgba(0, 0, 0, 0.2);
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2d2d2d;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --border-color: #404040;
-            --shadow-color: rgba(0, 0, 0, 0.4);
-        }
-
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
@@ -45,17 +21,9 @@
 
         .header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding: 10px 0;
-            position: relative;
-        }
-        .header h1 {
-            color: #ff0000;
-            margin: 0;
-            text-align: center;
-            font-size: 36px;
         }
 
         .controls {
@@ -63,51 +31,33 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            gap: 10px;
         }
 
         .lesson-selector {
             padding: 8px;
             font-size: 16px;
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
         }
 
         .zoom-controls {
             display: none;
             gap: 10px;
-            align-items: center;
         }
 
-        .zoom-button, .theme-toggle {
+        .zoom-button {
             padding: 5px 10px;
             cursor: pointer;
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .zoom-button:hover, .theme-toggle:hover {
-            background-color: var(--border-color);
         }
 
         .pdf-container {
-            background: var(--bg-secondary);
+            background: #f0f0f0;
             padding: 5px;
             min-height: calc(100vh - 150px);
-            border-radius: 8px;
         }
 
         .pdf-page {
             margin: 10px auto;
-            box-shadow: 0 2px 5px var(--shadow-color);
-            background: var(--bg-primary);
-            border-radius: 4px;
-            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: white;
         }
 
         .pdf-page canvas {
@@ -121,13 +71,12 @@
             text-align: center;
             padding: 20px;
             font-size: 18px;
-            color: var(--text-secondary);
         }
 
         #progressBar {
             width: 100%;
             height: 4px;
-            background: var(--bg-secondary);
+            background: #f0f0f0;
             margin-top: 10px;
             border-radius: 2px;
             overflow: hidden;
@@ -139,35 +88,22 @@
             width: 0%;
             transition: width 0.3s ease;
         }
-
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .theme-icon {
-            font-size: 18px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Vui học tiếng Trung</h1>
-            <button class="theme-toggle" id="themeToggle">
-                <span class="theme-icon">🌓</span>
-            </button>
         </div>
 
         <div class="controls">
             <select class="lesson-selector" id="lessonSelect">
                 <option value="2">Bài 2 Bản thân</option>
                 <option value="3">Bài 3 Gia đình</option>
-                <option value="4">Bài 4 Sở thích</option>
-                <option value="5">Bài 5 Quê hương</option>
-                <option value="6">Bài 6 Sinh nhật</option>
-                <option value="7">Bài 7 Thường ngày</option>
+	<option value="4">Bài 4 Sở thích</option>
+	<option value="5">Bài 5 Quê hương</option>
+	<option value="6">Bài 6 Sinh nhật</option>
+	<option value="7">Bài 7 Thường ngày</option>
             </select>
             <div class="zoom-controls">
                 <button class="zoom-button" id="zoomOut">-</button>
@@ -187,24 +123,6 @@
         let currentPDF = null;
         let currentScale = 2.0;
         const ZOOM_STEP = 0.1;
-
-        // Theme handling
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-        }
-
-        function toggleTheme() {
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-        }
-
-        // Initialize theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-
-        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
         async function loadPDF(lessonNumber) {
             const url = `data_study/Bài ${lessonNumber}.pdf`;
@@ -281,5 +199,6 @@
         // Load initial PDF
         loadPDF(2);
     </script>
-</body>
-</html>
+
+
+</body></html>
