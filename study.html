@@ -170,7 +170,7 @@
             </select>
             <div class="zoom-controls">
                 <button class="zoom-button" id="zoomOut">-</button>
-                <button class="zoom-button" id="zoomReset">100%</button>
+                <button class="zoom-button" id="zoomReset">200%</button>
                 <button class="zoom-button" id="zoomIn">+</button>
             </div>
         </div>
@@ -182,7 +182,7 @@
 
     <script>
         let currentPDF = null;
-        let currentScale = 1;
+        let currentScale = 2;
         const SCALE_STEP = 0.1;
         const MAX_SCALE = 3;
         const MIN_SCALE = 0.5;
@@ -223,7 +223,7 @@
         });
 
         document.getElementById('zoomReset').addEventListener('click', () => {
-            currentScale = 1;
+            currentScale = 2;
             reloadPDFWithScale();
         });
 
