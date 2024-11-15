@@ -1,132 +1,70 @@
-<!DOCTYPE html><html lang="vi" data-theme="light"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vui học tiếng Trung</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
     <style>
-        :root[data-theme="light"] {
-            --bg-color: #f0f8ff;
-            --text-color: #000000;
-            --box-bg: #ffffff;
-            --border-color: #1e90ff;
-        }
-
-        :root[data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --box-bg: #2d2d2d;
-            --border-color: #4a4a4a;
-        }
-
-        * {
-            box-sizing: border-box;
+        body {
             margin: 0;
             padding: 0;
-        }
-
-        body {
             font-family: Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            overflow-x: hidden;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 20px;
         }
 
         .header {
-            text-align: center;
-            color: #ff0000;
-            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
-            position: sticky;
-            top: 0;
-            background-color: var(--bg-color);
-            padding: 10px 0;
-            z-index: 100;
-        }
-
-        .theme-toggle {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
         }
 
         .controls {
-            position: sticky;
-            top: 60px;
-            z-index: 99;
-            background-color: var(--bg-color);
-            padding: 10px 0;
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .lesson-selector {
-            flex: 1;
-            min-width: 200px;
             padding: 8px;
             font-size: 16px;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
-            background-color: var(--box-bg);
-            color: var(--text-color);
         }
 
         .zoom-controls {
             display: flex;
-            gap: 5px;
+            gap: 10px;
         }
 
         .zoom-button {
             padding: 5px 10px;
-            font-size: 16px;
             cursor: pointer;
-            background-color: var(--box-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            color: var(--text-color);
         }
 
-        .content-box {
-            background: var(--box-bg);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        #pdfContainer {
-            width: 100%;
+        .pdf-container {
+            background: #f0f0f0;
+            padding: 20px;
+            min-height: calc(100vh - 150px);
         }
 
         .pdf-page {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            max-width: 100%;
-            overflow: hidden;
+            margin: 10px auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: white;
         }
 
         .pdf-page canvas {
-            max-width: 100% !important;
-            height: auto !important;
-            touch-action: manipulation;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
         }
 
         .loading {
@@ -135,31 +73,27 @@
             font-size: 18px;
         }
 
-        @media (max-width: 768px) {
-            .header {
-                font-size: 20px;
-            }
+        #progressBar {
+            width: 100%;
+            height: 4px;
+            background: #f0f0f0;
+            margin-top: 10px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
 
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .zoom-controls {
-                justify-content: center;
-            }
-
-            .lesson-selector {
-                width: 100%;
-            }
+        #progressFill {
+            height: 100%;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            Vui học tiếng Trung
-            <button class="theme-toggle" id="themeToggle" aria-label="Chuyển đổi giao diện">🌙</button>
+            <h1>Vui học tiếng Trung</h1>
         </div>
 
         <div class="controls">
@@ -167,155 +101,104 @@
                 <option value="1">Bài 1 Chào hỏi</option>
                 <option value="2">Bài 2 Bản thân</option>
                 <option value="3">Bài 3 Gia đình</option>
-				<option value="4">Bài 4 Sở thích</option>
-				<option value="5">Bài 5 Quê hương</option>
-				<option value="6">Bài 6 Sinh nhật</option>
-				<option value="7">Bài 7 Thường ngày</option>
+	<option value="4">Bài 4 Sở thích</option>
+	<option value="5">Bài 5 Quê hương</option>
+	<option value="6">Bài 6 Sinh nhật</option>
+	<option value="7">Bài 7 Thường ngày</option>
             </select>
             <div class="zoom-controls">
                 <button class="zoom-button" id="zoomOut">-</button>
-                <button class="zoom-button" id="zoomReset">200%</button>
+                <span id="zoomLevel">100%</span>
                 <button class="zoom-button" id="zoomIn">+</button>
             </div>
         </div>
 
-        <div class="content-box">
-            <div id="pdfContainer"></div>
+        <div id="progressBar" style="display: none;">
+            <div id="progressFill"></div>
         </div>
+
+        <div id="pdfViewer" class="pdf-container"></div>
     </div>
 
     <script>
         let currentPDF = null;
-        let currentScale = 2;
-        const SCALE_STEP = 0.1;
-        const MAX_SCALE = 3;
-        const MIN_SCALE = 0.5;
+        let currentScale = 1.0;
+        const ZOOM_STEP = 0.1;
 
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        
-        // Theme handling
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
+        async function loadPDF(lessonNumber) {
+            const url = `data_study/Bài ${lessonNumber}.pdf`;
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const container = document.getElementById('pdfViewer');
 
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
+            progressBar.style.display = 'block';
+            container.innerHTML = '<div class="loading">Đang tải...</div>';
 
-        function updateThemeIcon(theme) {
-            themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
+            try {
+                const loadingTask = pdfjsLib.getDocument(url);
+                
+                loadingTask.onProgress = function(progress) {
+                    const percent = (progress.loaded / progress.total * 100) || 0;
+                    progressFill.style.width = `${percent}%`;
+                };
+
+                const pdf = await loadingTask.promise;
+                currentPDF = pdf;
+                container.innerHTML = '';
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const pageContainer = document.createElement('div');
+                    pageContainer.className = 'pdf-page';
+                    container.appendChild(pageContainer);
+
+                    const page = await pdf.getPage(pageNum);
+                    const canvas = document.createElement('canvas');
+                    pageContainer.appendChild(canvas);
+
+                    const viewport = page.getViewport({ scale: currentScale });
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+                }
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                container.innerHTML = '<div class="loading">Lỗi khi tải PDF</div>';
+            } finally {
+                progressBar.style.display = 'none';
+            }
         }
 
-        // Zoom controls
+        function updateZoomLevel() {
+            document.getElementById('zoomLevel').textContent = `${Math.round(currentScale * 100)}%`;
+        }
+
         document.getElementById('zoomIn').addEventListener('click', () => {
-            if (currentScale < MAX_SCALE) {
-                currentScale += SCALE_STEP;
-                reloadPDFWithScale();
-            }
+            currentScale += ZOOM_STEP;
+            updateZoomLevel();
+            const currentLesson = document.getElementById('lessonSelect').value;
+            loadPDF(currentLesson);
         });
 
         document.getElementById('zoomOut').addEventListener('click', () => {
-            if (currentScale > MIN_SCALE) {
-                currentScale -= SCALE_STEP;
-                reloadPDFWithScale();
+            if (currentScale > ZOOM_STEP) {
+                currentScale -= ZOOM_STEP;
+                updateZoomLevel();
+                const currentLesson = document.getElementById('lessonSelect').value;
+                loadPDF(currentLesson);
             }
         });
 
-        document.getElementById('zoomReset').addEventListener('click', () => {
-            currentScale = 2;
-            reloadPDFWithScale();
+        document.getElementById('lessonSelect').addEventListener('change', (e) => {
+            loadPDF(e.target.value);
         });
 
-        function reloadPDFWithScale() {
-            document.getElementById('zoomReset').textContent = `${Math.round(currentScale * 100)}%`;
-            if (currentPDF) {
-                renderAllPages();
-            }
-        }
-
-        async function loadPDF(path) {
-            const container = document.getElementById('pdfContainer');
-            container.innerHTML = '<div class="loading">Đang tải PDF</div>';
-
-            try {
-                const loadingTask = pdfjsLib.getDocument(path);
-                currentPDF = await loadingTask.promise;
-                await renderAllPages();
-            } catch (error) {
-                console.error('Error loading PDF:', error);
-                container.innerHTML = 'Lỗi khi tải PDF';
-            }
-        }
-
-        async function renderAllPages() {
-            const container = document.getElementById('pdfContainer');
-            container.innerHTML = '';
-
-            for (let pageNum = 1; pageNum <= currentPDF.numPages; pageNum++) {
-                const pageContainer = document.createElement('div');
-                pageContainer.className = 'pdf-page';
-                const canvas = document.createElement('canvas');
-                pageContainer.appendChild(canvas);
-                container.appendChild(pageContainer);
-                
-                await renderPage(pageNum, canvas);
-            }
-        }
-
-        async function renderPage(pageNumber, canvas) {
-            try {
-                const page = await currentPDF.getPage(pageNumber);
-                const context = canvas.getContext('2d');
-
-                // Calculate the best scale for the current viewport
-                const viewport = page.getViewport({ scale: 1 });
-                const containerWidth = canvas.parentElement.clientWidth;
-                const baseScale = containerWidth / viewport.width;
-                
-                // Apply current zoom level
-                const finalScale = baseScale * currentScale;
-                const scaledViewport = page.getViewport({ scale: finalScale });
-
-                canvas.width = scaledViewport.width;
-                canvas.height = scaledViewport.height;
-
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: scaledViewport,
-                    enableWebGL: true
-                };
-
-                await page.render(renderContext);
-            } catch (error) {
-                console.error('Error rendering page:', error);
-            }
-        }
-
-        // Event listeners
-        document.getElementById('lessonSelect').addEventListener('change', function() {
-            const lessonNumber = this.value;
-            const pdfPath = `data_study/Bài ${lessonNumber}.pdf`;
-            loadPDF(pdfPath);
-        });
-
-        // Load default lesson
-        loadPDF('data_study/Bài 1.pdf');
-
-        // Handle window resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                if (currentPDF) {
-                    renderAllPages();
-                }
-            }, 200);
-        });
+        // Load initial PDF
+        loadPDF(1);
     </script>
 
 
