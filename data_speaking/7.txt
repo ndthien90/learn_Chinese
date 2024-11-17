@@ -1,0 +1,264 @@
+现在几点？
+Xiànzài jǐ diǎn?
+Bây giờ là mấy giờ?
+/#
+现在是10点一刻。
+Xiànzài shì shí diǎn yī kè.
+Bây giờ là 10 giờ 15 phút.
+/#
+现在是下午3点多吗？
+Xiànzài shì xiàwǔ sān diǎn duō ma?
+Bây giờ có phải là khoảng 3 giờ chiều không?
+/#
+现在是下午4点半了。
+Xiànzài shì xiàwǔ sì diǎn bàn le.
+Bây giờ là 4 giờ 30 phút chiều.
+/#
+你是什么时候出生的？
+Nǐ shì shénme shíhòu chūshēng de?
+Bạn sinh vào lúc nào?
+/#
+我是2008年6月25号出生的。
+Wǒ shì 2008 nián 6 yuè 25 hào chūshēng de.
+Tôi sinh ngày 25 tháng 6 năm 2008.
+/#
+我下午5点半左右去公园跑步。
+Wǒ xiàwǔ wǔ diǎn bàn zuǒyòu qù gōngyuán pǎobù.
+Tôi sẽ đi chạy bộ ở công viên vào khoảng 5 giờ 30 phút chiều.
+/#
+我爸爸去年在美国工作。
+Wǒ bàba qùnián zài Měiguó gōngzuò.
+Bố tôi đã làm việc ở Mỹ năm ngoái.
+/#
+你明天有空吗？
+Nǐ míngtiān yǒu kòng ma?
+Ngày mai bạn có rảnh không?
+/#
+我明天上午去学校，下午才有空。
+Wǒ míngtiān shàngwǔ qù xuéxiào, xiàwǔ cái yǒu kòng.
+Ngày mai tôi đi học vào buổi sáng, buổi chiều mới rảnh.
+/#
+我明天下午还没有什么打算。
+Wǒ míngtiān xiàwǔ hái méiyǒu shénme dǎsuàn.
+Chiều mai tôi vẫn chưa có kế hoạch gì.
+/#
+你下午几点去学校打羽毛球？
+Nǐ xiàwǔ jǐ diǎn qù xuéxiào dǎ yǔmáoqiú?
+Chiều bạn đi học cầu lông lúc mấy giờ?
+/#
+你明天5点半去公园跑步吗？
+Nǐ míngtiān wǔ diǎn bàn qù gōngyuán pǎobù ma?
+Ngày mai bạn có đi chạy bộ ở công viên lúc 5 giờ 30 phút không?
+/#
+我平时6点才起床。
+Wǒ píngshí liù diǎn cái qǐchuáng.
+Tôi thường dậy lúc 6 giờ.
+/#
+他今年20多岁了。
+Tā jīnnián èrshí duō suì le.
+Anh ấy năm nay hơn 20 tuổi.
+/#
+我们明天下午一点半去喝咖啡，你想去吗？
+Wǒmen míngtiān xiàwǔ yī diǎn bàn qù hē kāfēi, nǐ xiǎng qù ma?
+Ngày mai chúng tôi đi uống cà phê lúc 1 giờ 30 phút chiều, bạn muốn đi không?
+/#
+你明天去日本旅游吗？
+Nǐ míngtiān qù Rìběn lǚyóu ma?
+Ngày mai bạn có đi du lịch Nhật Bản không?
+/#
+我和女友打算去日本一个多星期才回来。
+Wǒ hé nǚyǒu dǎsuàn qù Rìběn yīgè duō xīngqī cái huílái.
+Tôi và bạn gái dự định đi Nhật Bản hơn một tuần mới về.
+/#
+他去中国工作一年多了。
+Tā qù Zhōngguó gōngzuò yī nián duō le.
+Anh ấy đã đi làm ở Trung Quốc hơn một năm.
+/#
+明天是小明的生日，我们几点去他家呢？
+Míngtiān shì Xiǎomíng de shēngrì, wǒmen jǐ diǎn qù tā jiā ne?
+Ngày mai là sinh nhật của Tiểu Minh, chúng ta sẽ đi nhà cậu ấy lúc mấy giờ?
+/#
+我想早一点去学校。
+Wǒ xiǎng zǎo yīdiǎn qù xuéxiào.
+Tôi muốn đi học sớm một chút.
+/#
+你们晚上打算去看几点的电影？
+Nǐmen wǎnshàng dǎsuàn qù kàn jǐ diǎn de diànyǐng?
+Các bạn dự định đi xem phim lúc mấy giờ tối?
+/#
+我上午有两节英语课，下午有三节韩语课。
+Wǒ shàngwǔ yǒu liǎng jié Yīngyǔ kè, xiàwǔ yǒu sān jié Hányǔ kè.
+Tôi có hai tiết tiếng Anh vào buổi sáng, ba tiết tiếng Hàn vào buổi chiều.
+/#
+明天是周末了，你想几点去中国餐厅吃饭？
+Míngtiān shì zhōumò le, nǐ xiǎng jǐ diǎn qù Zhōngguó cāntīng chīfàn?
+Ngày mai là cuối tuần, bạn muốn đi ăn ở nhà hàng Trung Quốc lúc mấy giờ?
+/#
+我和女朋友一起去看电影。
+Wǒ hé nǚpéngyǒu yīqǐ qù kàn diànyǐng.
+Tôi và bạn gái cùng đi xem phim.
+/#
+你平时几点起床，几点睡觉？
+Nǐ píngshí jǐ diǎn qǐchuáng, jǐ diǎn shuìjiào?
+Bạn thường dậy lúc mấy giờ, đi ngủ lúc mấy giờ?
+/#
+我平时早上6点起床，晚上10点到10点半睡觉。
+Wǒ píngshí zǎoshang liù diǎn qǐchuáng, wǎnshàng 10 diǎn dào 10 diǎn bàn shuìjiào.
+Tôi thường dậy lúc 6 giờ sáng, đi ngủ lúc 10 giờ đến 10 giờ 30 phút tối.
+/#
+你平时早饭吃什么菜？
+Nǐ píngshí zǎofàn chī shénme cài?
+Bạn thường ăn món gì cho bữa sáng?
+/#
+我早饭喜欢吃包子，有时候也吃面条。
+Wǒ zǎofàn xǐhuān chī bāozi, yǒu shíhòu yě chī miàntiáo.
+Tôi thích ăn báo vào bữa sáng, có lúc cũng ăn mì.
+/#
+你尝去公园跑步吗？
+Nǐ cháng qù gōngyuán pǎobù ma?
+Bạn có thường đi chạy bộ ở công viên không?
+/#
+我每天有5节课。
+Wǒ měitiān yǒu wǔ jié kè.
+Tôi có năm tiết học mỗi ngày.
+/#
+我晚上常看电视和学习中文。
+Wǒ wǎnshàng cháng kàn diànshì hé xuéxí zhōngwén.
+Tôi thường xem tivi và học tiếng Trung vào buổi tối.
+/#
+明天去河内玩，我们几点出发？
+Míngtiān qù Hánội wán, wǒmen jǐ diǎn chūfā?
+Ngày mai đi chơi Hà Nội, chúng ta xuất phát lúc mấy giờ?
+/#
+我们明天早上7点一刻出发。
+Wǒmen míngtiān zǎoshang qī diǎn yī kè chūfā.
+Chúng tôi sẽ xuất phát lúc 7 giờ 15 phút sáng mai.
+/#
+他们昨天在超市买了多少件衣服呢？
+Tāmen zuótiān zài chāoshì mǎile duōshao jiàn yīfú ne?
+Họ đã mua bao nhiêu bộ quần áo ở siêu thị hôm qua?
+/#
+他们下午一点半上课，下午4点半下课。
+Tāmen xiàwǔ yī diǎn bàn shàngkè, xiàwǔ sì diǎn bàn xiàkè.
+Họ có tiết học lúc 1 giờ 30 phút chiều, tan học lúc 4 giờ 30 phút chiều.
+/#
+我爸爸每天5点半左右回家。
+Wǒ bàba měitiān wǔ diǎn bàn zuǒyòu huí jiā.
+Bố tôi về nhà vào khoảng 5 giờ 30 phút mỗi ngày.
+/#
+下午五点以后，我都有空。
+Xiàwǔ wǔ diǎn yǐhòu wǒ dōu yǒu kòng.
+Sau 5 giờ chiều, tôi đều có thời gian rảnh.
+/#
+下课以后，我们一起去公园跑步。
+Xiàkè yǐhòu, wǒmen yīqǐ qù gōngyuán pǎobù.
+Sau khi tan học, chúng ta cùng đi chạy bộ ở công viên.
+/#
+3个小时后，我去中国旅游。
+Sān gè xiǎoshí hòu, wǒ qù Zhōngguó lǚyóu.
+Sau ba giờ nữa, tôi sẽ đi du lịch Trung Quốc.
+/#
+睡觉以前，我常看电影或者听音乐。
+Shuìjiào yǐqián, wǒ cháng kàn diànyǐng huòzhě tīng yīnyuè.
+Trước khi đi ngủ, tôi thường xem phim hoặc nghe nhạc.
+/#
+你快一点吃，他们都去上课了。
+Nǐ kuài yīdiǎn chī, tāmen dōu qù shàngkè le.
+Bạn ăn nhanh lên, họ đều đi học hết rồi.
+/#
+明天你早一点来吧。
+Míngtiān nǐ zǎo yīdiǎn lái ba.
+Ngày mai bạn đến sớm một chút nhé.
+/#
+我们明天晚一点出发。
+Wǒmen míngtiān wǎn yīdiǎn chūfā.
+Chúng tôi sẽ khởi hành muộn một chút vào ngày mai.
+/#
+超市的开门时间是从早上8点到晚上9点。
+Chāoshì de kāimén shíjiān shì cóng zǎoshang 8 diǎn dào wǎnshàng 9 diǎn.
+Thời gian mở cửa của siêu thị là từ 8 giờ sáng đến 9 giờ tối.
+/#
+从星期一到星期五，我都有3节韩语课。
+Cóng xīngqī yī dào xīngqī wǔ, wǒ dōu yǒu sān jié Hányǔ kè.
+Từ thứ Hai đến thứ Sáu, tôi có ba tiết tiếng Hàn.
+/#
+从8点到现在都25分钟了，他还没来。
+Cóng 8 diǎn dào xiànzài dōu 25 fēnzhōng le, tā hái méi lái.
+Đã 25 phút từ 8 giờ đến giờ này, anh ấy vẫn chưa đến.
+/#
+从昨天到现在都快一天了。
+Cóng zuótiān dào xiànzài dōu kuài yītiān le.
+Từ hôm qua đến giờ đã gần một ngày rồi.
+/#
+从小到大他都很喜欢学习英语。
+Cóng xiǎo dào dà tā dōu hěn xǐhuān xuéxí Yīngyǔ.
+Từ nhỏ đến lớn, anh ấy rất thích học tiếng Anh.
+/#
+从6岁到现在，他学了四门语言。
+Cóng 6 suì dào xiànzài, tā xué le sìmén yǔyán.
+Từ 6 tuổi đến giờ, anh ấy đã học bốn thứ tiếng.
+/#
+从家到学校，我吃了两个包子。
+Cóng jiā dào xuéxiào, wǒ chī le liǎng gè bāozi.
+Từ nhà đến trường, tôi đã ăn hai cái bánh bao.
+/#
+从晚上7点到现在，我喝了两杯咖啡。
+Cóng wǎnshàng 7 diǎn dào xiànzài, wǒ hē le liǎng bēi kāfēi.
+Từ 7 giờ tối đến giờ này, tôi đã uống hai tách cà phê.
+/#
+我早上有时候去跑步，有时候去散步。
+Wǒ zǎoshang yǒu shíhòu qù pǎobù, yǒu shíhòu qù sànbù.
+Vào buổi sáng, có lúc tôi đi chạy bộ, có lúc tôi đi dạo.
+/#
+他早饭有时候喜欢吃面包，有时候喜欢吃包子。
+Tā zǎofàn yǒu shíhòu xǐhuān chī miànbāo, yǒu shíhòu xǐhuān chī bāozi.
+Anh ấy có lúc thích ăn bánh mì, có lúc thích ăn bánh bao cho bữa sáng.
+/#
+上课的时候，他有时候看书，有时候玩手机。
+Shàngkè de shíhòu, tā yǒu shíhòu kàn shū, yǒu shíhòu wán shǒujī.
+Trong giờ học, anh ấy có lúc đọc sách, có lúc chơi điện thoại.
+/#
+下课以后，我有时候去踢足球，有时候去打羽毛球。
+Xiàkè yǐhòu, wǒ yǒu shíhòu qù tī zúqiú, yǒu shíhòu qù dǎ yǔmáoqiú.
+Sau khi tan học, có lúc tôi đi đá bóng, có lúc tôi chơi cầu lông.
+/#
+跑步的时候我喜欢听音乐。
+Pǎobù de shíhòu wǒ xǐhuān tīng yīnyuè.
+Khi chạy bộ, tôi thích nghe nhạc.
+/#
+洗澡的时候我喜欢唱歌。
+Xǐzǎo de shíhòu wǒ xǐhuān chànggē.
+Khi tắm, tôi thích hát.
+/#
+在家的时候我喜欢玩游戏和看电影。
+Zài jiā de shíhòu wǒ xǐhuān wán yóuxì hé kàn diànyǐng.
+Khi ở nhà, tôi thích chơi game và xem phim.
+/#
+上课的时候，他喜欢睡觉。
+Shàngkè de shíhòu, tā xǐhuān shuìjiào.
+Trong giờ học, anh ấy thích ngủ.
+/#
+我平时早上7点起床，晚上10点睡觉。
+Wǒ píngshí zǎoshang 7 diǎn qǐchuáng, wǎnshàng 10 diǎn shuìjiào.
+Tôi thường dậy lúc 7 giờ sáng, đi ngủ lúc 10 giờ tối.
+/#
+我周末常去公园跑步。
+Wǒ zhōumò cháng qù gōngyuán pǎobù.
+Cuối tuần tôi thường đi chạy bộ ở công viên.
+/#
+他晚上常看电影和听音乐。
+Tā wǎnshàng cháng kàn diànyǐng hé tīng yīnyuè.
+Anh ấy thường xem phim và nghe nhạc vào buổi tối.
+/#
+我们家早饭常吃包子。
+Wǒmen jiā zǎofàn cháng chī bāozi.
+Gia đình tôi thường ăn bánh bao cho bữa sáng.
+/#
+他的朋友下课以后常去打羽毛球。
+Tā de péngyǒu xiàkè yǐhòu cháng qù dǎ yǔmáoqiú.
+Bạn của anh ấy thường đi chơi cầu lông sau khi tan học.
+/#
+我每天起床以后常去公园散步。
+Wǒ měitiān qǐchuáng yǐhòu cháng qù gōngyuán sànbù.
+Mỗi ngày sau khi dậy, tôi thường đi dạo ở công viên.
+/#
