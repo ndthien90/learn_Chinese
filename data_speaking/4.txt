@@ -1,0 +1,72 @@
+你有什么爱好？
+Nǐ yǒu shénme àihào?
+Bạn có sở thích gì?
+/#
+我喜欢去旅游。
+Wǒ xǐhuān qù lǚyóu.
+Tôi thích đi du lịch.
+/#
+你喜欢听音乐吗？
+Nǐ xǐhuān tīng yīnyuè ma?
+Bạn thích nghe nhạc không?
+/#
+她不喜欢喝咖啡。
+Tā bù xǐhuān hē kāfēi.
+Cô ấy không thích uống cà phê.
+/#
+你哥哥喜欢吃零食吗？
+Nǐ gēge xǐhuān chī língshí ma?
+Anh trai bạn có thích ăn vặt không?
+/#
+你喜欢喝什么茶？
+Nǐ xǐhuān hē shénme chá?
+Bạn thích uống trà gì?
+/#
+她不喜欢吃炒面，她喜欢吃炒饭。
+Tā bù xǐhuān chī chǎomiàn, tā xǐhuān chī chǎofàn.
+Cô ấy không thích ăn mì xào, cô ấy thích ăn cơm chiên.
+/#
+我不喜欢踢足球，我喜欢打羽毛球。
+Wǒ bù xǐhuān tī zúqiú, wǒ xǐhuān dǎ yǔmáoqiú.
+Tôi không thích đá bóng, tôi thích chơi cầu lông.
+/#
+我喜欢看电影，他也喜欢听音乐。
+Wǒ xǐhuān kàn diànyǐng, tā yě xǐhuān tīng yīnyuè.
+Tôi thích xem phim, anh ấy cũng thích nghe nhạc.
+/#
+你儿子喜欢喝牛奶吗？
+Nǐ érzi xǐhuān hē niúnǎi ma?
+Con trai bạn có thích uống sữa không?
+/#
+牛奶和奶茶他都喜欢喝。
+Niúnǎi hé nǎichá tā dōu xǐhuān hē.
+Anh ấy thích uống cả sữa và trà sữa.
+/#
+他女儿不喜欢玩游戏，他女儿喜欢学习。
+Tā nǚ'ér bù xǐhuān wán yóuxì, tā nǚ'ér xǐhuān xuéxí.
+Con gái anh ấy không thích chơi game, cô ấy thích học.
+/#
+她特别喜欢喝奶茶。
+Tā tèbié xǐhuān hē nǎichá.
+Cô ấy đặc biệt thích uống trà sữa.
+/#
+他很喜欢喝茶，但是他最不喜欢喝奶茶。
+Tā hěn xǐhuān hē chá, dànshì tā zuì bù xǐhuān hē nǎichá.
+Anh ấy rất thích uống trà, nhưng anh ấy không thích uống trà sữa nhất.
+/#
+我喜欢喝牛奶和奶茶。但是我最喜欢喝奶茶。
+Wǒ xǐhuān hē niúnǎi hé nǎichá. Dànshì wǒ zuì xǐhuān hē nǎichá.
+Tôi thích uống sữa và trà sữa. Nhưng tôi thích uống trà sữa nhất.
+/#
+炒饭和炒面他都特别喜欢吃。
+Chǎofàn hé chǎomiàn tā dōu tèbié xǐhuān chī.
+Anh ấy thích ăn cả cơm chiên và mì xào.
+/#
+你喜欢吃炒面还是炒饭？
+Nǐ xǐhuān chī chǎomiàn háishì chǎofàn?
+Bạn thích ăn mì xào hay cơm chiên?
+/#
+我很喜欢吃炒面，炒面很好吃。
+Wǒ hěn xǐhuān chī chǎomiàn, chǎomiàn hěn hǎochī.
+Tôi rất thích ăn mì xào, mì xào rất ngon.
+/#
