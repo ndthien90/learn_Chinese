@@ -460,24 +460,18 @@ const lessonData = {
 ]
 };
 
+// Khai báo các biến toàn cục
 let sentences = [];
 let currentSentenceIndex = 0;
 let recognition;
 let recording = false;
 let speechTimeout;
-
-const recordBtn = document.querySelector(".record");
-const nextBtn = document.querySelector(".next");
-const targetChinese = document.getElementById("target-chinese");
-const targetPinyin = document.getElementById("target-pinyin");
-const targetMeaning = document.getElementById("target-meaning");
-const speechResult = document.getElementById("speech-result");
-const scoreDisplay = document.getElementById("score");
-const progressBar = document.getElementById("progress");
-const lessonSelect = document.getElementById("lessonSelect");
+let lastResult = ''; // Thêm biến để theo dõi kết quả cuối cùng
+let resultBuffer = ''; // Buffer để tích lũy kết quả
 
 const MAX_SPEECH_TIME = 30000; // 30 giây
 
+// Hàm xử lý dữ liệu bài học
 function loadLessonData(lessonNumber) {
     try {
         sentences = lessonData[lessonNumber] || [];
@@ -492,18 +486,7 @@ function loadLessonData(lessonNumber) {
     }
 }
 
-lessonSelect.addEventListener('change', (e) => {
-    if (e.target.value) {
-        clearAndResetData();
-        loadLessonData(parseInt(e.target.value));
-    } else {
-        sentences = [];
-        clearAndResetData();
-        loadSentence();
-    }
-});
-
-// Các hàm còn lại giữ nguyên như cũ
+// Hàm cập nhật thanh tiến trình
 function updateProgress() {
     if (sentences.length > 0) {
         const progress = ((currentSentenceIndex + 1) / sentences.length) * 100;
@@ -513,6 +496,7 @@ function updateProgress() {
     }
 }
 
+// Hàm xóa và reset dữ liệu
 function clearAndResetData() {
     if (recording) {
         stopRecording();
@@ -521,12 +505,15 @@ function clearAndResetData() {
     scoreDisplay.innerHTML = "";
     recordBtn.classList.remove("recording");
     recordBtn.querySelector("p").innerHTML = "Bắt đầu nói";
+    lastResult = ''; // Reset biến lastResult
+    resultBuffer = ''; // Reset buffer
     
     if (speechTimeout) {
         clearTimeout(speechTimeout);
     }
 }
 
+// Hàm load câu mới
 function loadSentence() {
     clearAndResetData();
     updateProgress();
@@ -543,14 +530,17 @@ function loadSentence() {
     }
 }
 
+// Hàm làm sạch text
 function cleanText(text) {
     return text.replace(/[.,?!，。？！\s]/g, '').toLowerCase();
 }
 
+// Hàm phân đoạn chữ Hán
 function segmentChinese(text) {
     return Array.from(text);
 }
 
+// Hàm so sánh text
 function compareTexts(original, spoken) {
     const cleanOriginal = cleanText(original);
     const cleanSpoken = cleanText(spoken);
@@ -578,6 +568,37 @@ function compareTexts(original, spoken) {
     return { result, score };
 }
 
+// Hàm xử lý kết quả speech recognition
+function processSpeechResult(results) {
+    // Lấy kết quả mới nhất
+    const latestResult = Array.from(results)
+        .map(result => result[0].transcript)
+        .join('');
+    
+    // Nếu kết quả mới giống kết quả cũ, bỏ qua
+    if (latestResult === lastResult) {
+        return;
+    }
+    
+    // Kiểm tra xem kết quả mới có chứa kết quả cũ không
+    if (latestResult.includes(lastResult) && lastResult !== '') {
+        // Chỉ lấy phần mới được thêm vào
+        resultBuffer = latestResult.replace(lastResult, '');
+    } else {
+        // Nếu là kết quả hoàn toàn mới, cập nhật buffer
+        resultBuffer = latestResult;
+    }
+    
+    // Cập nhật lastResult
+    lastResult = latestResult;
+    
+    // So sánh và hiển thị kết quả
+    const comparison = compareTexts(sentences[currentSentenceIndex].chinese, resultBuffer);
+    speechResult.innerHTML = comparison.result;
+    scoreDisplay.innerHTML = `Điểm số: ${comparison.score}/100`;
+}
+
+// Hàm bắt đầu nhận diện giọng nói
 function startSpeechRecognition() {
     if (sentences.length === 0) {
         alert("Vui lòng chọn bài học trước khi bắt đầu.");
@@ -588,7 +609,7 @@ function startSpeechRecognition() {
         recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'zh-CN';
         recognition.interimResults = true;
-        recognition.continuous = true;
+        recognition.continuous = false; // Thay đổi thành false để tránh lặp
 
         recordBtn.classList.add("recording");
         recordBtn.querySelector("p").innerHTML = "Đang nghe...";
@@ -600,14 +621,7 @@ function startSpeechRecognition() {
         }, MAX_SPEECH_TIME);
 
         recognition.onresult = (event) => {
-            const results = Array.from(event.results)
-                .map(result => result[0].transcript)
-                .join('');
-            
-            const comparison = compareTexts(sentences[currentSentenceIndex].chinese, results);
-            
-            speechResult.innerHTML = comparison.result;
-            scoreDisplay.innerHTML = `Điểm số: ${comparison.score}/100`;
+            processSpeechResult(event.results);
         };
 
         recognition.onend = () => {
@@ -639,6 +653,7 @@ function startSpeechRecognition() {
     }
 }
 
+// Hàm dừng ghi âm
 function stopRecording() {
     if (recognition) {
         recognition.stop();
@@ -649,27 +664,42 @@ function stopRecording() {
     recording = false;
 }
 
-recordBtn.addEventListener("click", () => {
-    if (!recording) {
-        recording = true;
-        speechResult.innerHTML = "";
-        startSpeechRecognition();
-    } else {
-        stopRecording();
-    }
-});
-
-nextBtn.addEventListener("click", () => {
-    if (sentences.length > 0) {
-        currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
-        loadSentence();
-    } else {
-        alert("Vui lòng chọn bài học trước khi chuyển câu.");
-    }
-});
-
-// Khởi tạo ứng dụng
+// Khởi tạo sự kiện
 document.addEventListener('DOMContentLoaded', () => {
+    const recordBtn = document.querySelector(".record");
+    const nextBtn = document.querySelector(".next");
+    const lessonSelect = document.getElementById("lessonSelect");
+    
+    recordBtn.addEventListener("click", () => {
+        if (!recording) {
+            recording = true;
+            startSpeechRecognition();
+        } else {
+            stopRecording();
+        }
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (sentences.length > 0) {
+            currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+            loadSentence();
+        } else {
+            alert("Vui lòng chọn bài học trước khi chuyển câu.");
+        }
+    });
+
+    lessonSelect.addEventListener('change', (e) => {
+        if (e.target.value) {
+            clearAndResetData();
+            loadLessonData(parseInt(e.target.value));
+        } else {
+            sentences = [];
+            clearAndResetData();
+            loadSentence();
+        }
+    });
+
+    // Khởi tạo giao diện
     targetChinese.textContent = "Vui lòng chọn bài học";
     targetPinyin.textContent = "";
     targetMeaning.textContent = "";
