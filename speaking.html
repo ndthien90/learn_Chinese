@@ -297,7 +297,6 @@
         let currentSentenceScore = 0;
         let recognition = null;
         let isRecording = false;
-        let accumulatedText = ''; // Thêm biến để lưu trữ văn bản tích lũy
 
         const startButton = document.getElementById('startButton');
         const stopButton = document.getElementById('stopButton');
@@ -320,16 +319,15 @@
             recognition.lang = 'zh-CN';
 
             recognition.onresult = (event) => {
-                const lastResult = event.results[event.results.length - 1];
-                if (lastResult.isFinal) {
-                    accumulatedText += lastResult[0].transcript;
-                    compareResult(accumulatedText);
-                }
+                const transcript = event.results[event.results.length - 1][0].transcript;
+                compareResult(transcript);
             };
 
             recognition.onend = () => {
                 if (isRecording) {
                     recognition.start(); // Restart if still recording
+                } else {
+                    resetRecordingButtons();
                 }
             };
         }
@@ -351,13 +349,11 @@
                 updateScores();
                 nextButton.disabled = true;
                 document.getElementById('spokenText').innerHTML = '';
-                accumulatedText = ''; // Reset accumulated text
             }
         });
 
         startButton.onclick = () => {
             if (!isRecording && recognition) {
-                accumulatedText = ''; // Reset accumulated text when starting new recording
                 document.getElementById('spokenText').innerHTML = '';
                 recognition.start();
                 isRecording = true;
@@ -372,7 +368,6 @@
             if (isRecording) {
                 isRecording = false;
                 recognition.stop();
-                compareResult(accumulatedText); // Final comparison when stopping
                 resetRecordingButtons();
             }
         };
@@ -383,7 +378,6 @@
                 updateDisplay();
                 nextButton.disabled = true;
                 document.getElementById('spokenText').innerHTML = '';
-                accumulatedText = ''; // Reset accumulated text for next sentence
             } else {
                 document.getElementById('targetSentence').textContent = 'Lesson completed!';
                 document.getElementById('pinyin').textContent = '';
@@ -429,11 +423,9 @@
             document.getElementById('spokenText').innerHTML = spokenHTML;
 
             // Calculate scores
-            if (!isRecording) { // Only update score when recording is stopped
-                currentSentenceScore = Math.round((correctCount / expectedChars.length) * 100);
-                totalScore += currentSentenceScore;
-                updateScores();
-            }
+            currentSentenceScore = Math.round((correctCount / expectedChars.length) * 100);
+            totalScore += currentSentenceScore;
+            updateScores();
         }
     </script>
 
