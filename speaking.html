@@ -1,130 +1,268 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese Learning App</title>
+    <title>Chinese Speaking Practice</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        select {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        #targetSentence {
-            font-size: 24px;
-            margin: 20px 0;
-        }
-        #pinyin, #meaning {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #666;
-        }
-        #spokenText {
-            font-size: 24px;
-            margin: 20px 0;
-            min-height: 36px;
-        }
-        .correct {
-            color: #4CAF50;
-        }
-        .incorrect {
-            color: #f44336;
-        }
-        .record-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-        .record-button.recording {
-            background-color: #f44336;
-            animation: pulse 1.5s infinite;
-        }
-        .record-button.not-recording {
-            background-color: #4CAF50;
-        }
-        #nextButton {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-            animation: none;
-        }
-        .record-button.not-recording:hover:not(:disabled) {
-            background-color: #45a049;
-        }
-        .record-button.recording:hover:not(:disabled) {
-            background-color: #da190b;
-        }
-        #nextButton:hover:not(:disabled) {
-            background-color: #1976D2;
-        }
-        #sentenceScore, #totalScore {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+body {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 0.5rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.lesson-select {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: white;
+}
+
+.practice-container {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.target-sentence {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.pinyin {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    gap: 1rem;
+    margin: 20px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 0 1 auto;
+    min-width: 100px;
+    max-width: 150px;
+    transition: all 0.3s ease;
+}
+
+.record {
+    background: #4CAF50;
+    color: white;
+}
+
+.record.recording {
+    background: #f44336;
+    animation: pulse 1.5s infinite;
+}
+
+.next {
+    background: #2196F3;
+    color: white;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.result-container {
+    margin-top: 1.5rem;
+}
+
+.your-speech {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 60px;
+}
+
+.incorrect {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 0 3px;
+    border-radius: 3px;
+}
+
+.score {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    text-align: center;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.meaning {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #4CAF50;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.loading {
+    text-align: center;
+    padding: 1rem;
+    color: #666;
+    font-style: italic;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .btn-container {
+        flex-direction: row;
+        gap: 0.5rem;
+        margin: 15px 0;
+    }
+    
+    button {
+        padding: 0.75rem 1rem;
+        min-width: 80px;
+        font-size: 0.9rem;
+    }
+
+    .target-sentence {
+        font-size: 1.5rem;
+        padding: 0.75rem;
+    }
+
+    .pinyin {
+        font-size: 1.1rem;
+    }
+
+    .your-speech {
+        font-size: 1.2rem;
+        padding: 0.75rem;
+    }
+
+    .score {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+    }
+
+    .meaning {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 1.25rem;
+    }
+
+    button {
+        min-width: 90px;
+    }
+}
     </style>
 </head>
 <body>
-    <h1>Chinese Learning App</h1>
-    <select id="lessonSelect">
-        <option value="">Select a lesson</option>
-    </select>
-
     <div class="container">
-        <div id="targetSentence"></div>
-        <div id="pinyin"></div>
-        <div id="meaning"></div>
+        <h1>Luyện Nói Tiếng Trung</h1>
         
-        <div id="spokenText"></div>
-        
-        <button id="recordButton" class="record-button not-recording">Start Recording</button>
-        <button id="nextButton" disabled>Next Sentence</button>
-        
-        <div id="sentenceScore">Current Score: 0/100</div>
-        <div id="totalScore" style="display:none;">Total Score: 0/100</div>
+        <select class="lesson-select" id="lessonSelect">
+            <option value="">Chọn bài học</option>
+            <option value="1">Bài 1 Chào hỏi</option>
+            <option value="2">Bài 2 Bản thân</option>
+            <option value="3">Bài 3 Gia đình</option>
+            <option value="4">Bài 4 Sở thích</option>
+            <option value="5">Bài 5 Quê hương</option>
+            <option value="6">Bài 6 Sinh nhật</option>
+            <option value="7">Bài 7 Thường ngày</option>
+        </select>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="practice-container">
+            <div class="target-sentence" id="target-chinese"></div>
+            <div class="pinyin" id="target-pinyin"></div>
+            <div class="meaning" id="target-meaning"></div>
+        </div>
+        <div class="result-container">
+            <h3>Câu của bạn:</h3>
+            <div class="your-speech" id="speech-result"></div>
+            <div class="score" id="score"></div>
+        </div>
+        <div class="btn-container">
+            <button class="record">
+                <p>Nói</p>
+            </button>
+            <button class="next">Tiếp</button>
+        </div>
     </div>
 
     <script>
-        const lessonData = {
+// Thêm dữ liệu bài học trực tiếp trong JavaScript
+const lessonData = {
  1: [
     { chinese: "你好", pinyin: "Nǐ hǎo", meaning: "Xin chào" },
     { chinese: "再见", pinyin: "Zàijiàn", meaning: "Tạm biệt" },
@@ -319,166 +457,225 @@
     { chinese: "我们家早饭常吃包子。", pinyin: "Wǒmen jiā zǎofàn cháng chī bāozi.", meaning: "Gia đình tôi thường ăn bánh bao cho bữa sáng." },
     { chinese: "他的朋友下课以后常去打羽毛球。", pinyin: "Tā de péngyǒu xiàkè yǐhòu cháng qù dǎ yǔmáoqiú.", meaning: "Bạn của anh ấy thường đi chơi cầu lông sau khi tan học." },
     { chinese: "我每天起床以后常去公园散步。", pinyin: "Wǒ měitiān qǐchuáng yǐhòu cháng qù gōngyuán sànbù.", meaning: "Mỗi ngày sau khi dậy, tôi thường đi dạo ở công viên." },
-],
-        };
+]
+};
 
-        let currentLesson = [];
-        let currentSentenceIndex = 0;
-        let totalScore = 0;
-        let currentSentenceScore = 0;
-        let recognition = null;
-        let isRecording = false;
-        let lastSpeechTime = 0;
-        let accumulatedText = '';
-        let speechTimeout = null;
+let sentences = [];
+let currentSentenceIndex = 0;
+let recognition;
+let recording = false;
+let speechTimeout;
 
-        const recordButton = document.getElementById('recordButton');
-        const nextButton = document.getElementById('nextButton');
-        const lessonSelect = document.getElementById('lessonSelect');
+const recordBtn = document.querySelector(".record");
+const nextBtn = document.querySelector(".next");
+const targetChinese = document.getElementById("target-chinese");
+const targetPinyin = document.getElementById("target-pinyin");
+const targetMeaning = document.getElementById("target-meaning");
+const speechResult = document.getElementById("speech-result");
+const scoreDisplay = document.getElementById("score");
+const progressBar = document.getElementById("progress");
+const lessonSelect = document.getElementById("lessonSelect");
 
-        // Initialize lesson select
-        Object.keys(lessonData).forEach(lessonNumber => {
-            const option = document.createElement('option');
-            option.value = lessonNumber;
-            option.textContent = `Bài ${lessonNumber}`;
-            lessonSelect.appendChild(option);
-        });
+const MAX_SPEECH_TIME = 30000; // 30 giây
 
-        // Initialize speech recognition
-        if ('webkitSpeechRecognition' in window) {
-            recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.lang = 'zh-CN';
-
-            recognition.onresult = (event) => {
-                const lastResult = event.results[event.results.length - 1];
-                clearTimeout(speechTimeout);
-                
-                if (lastResult.isFinal) {
-                    const newText = lastResult[0].transcript;
-                    // Nếu đã có văn bản tích lũy và thời gian từ lần nói cuối cùng < 3 giây
-                    if (accumulatedText && (Date.now() - lastSpeechTime) < 3000) {
-                        accumulatedText += newText;
-                    } else {
-                        accumulatedText = newText;
-                    }
-                    lastSpeechTime = Date.now();
-                    
-                    // Đặt timeout để chờ người dùng nói tiếp
-                    speechTimeout = setTimeout(() => {
-                        if (isRecording) {
-                            compareResult(accumulatedText);
-                        }
-                    }, 2000);
-                }
-            };
-
-            recognition.onend = () => {
-                if (isRecording) {
-                    recognition.start();
-                }
-            };
+function loadLessonData(lessonNumber) {
+    try {
+        sentences = lessonData[lessonNumber] || [];
+        if (sentences.length === 0) {
+            throw new Error('Không tìm thấy dữ liệu bài học');
         }
+        currentSentenceIndex = 0;
+        loadSentence();
+    } catch (error) {
+        console.error('Error loading lesson data:', error);
+        alert('Không thể tải dữ liệu bài học. Vui lòng thử lại sau.');
+    }
+}
 
-        function toggleRecording() {
-            if (!isRecording) {
-                // Bắt đầu ghi âm
-                accumulatedText = '';
-                document.getElementById('spokenText').innerHTML = '';
-                recognition.start();
-                isRecording = true;
-                recordButton.textContent = 'Stop Recording';
-                recordButton.classList.remove('not-recording');
-                recordButton.classList.add('recording');
-                nextButton.disabled = true;
+lessonSelect.addEventListener('change', (e) => {
+    if (e.target.value) {
+        clearAndResetData();
+        loadLessonData(parseInt(e.target.value));
+    } else {
+        sentences = [];
+        clearAndResetData();
+        loadSentence();
+    }
+});
+
+// Các hàm còn lại giữ nguyên như cũ
+function updateProgress() {
+    if (sentences.length > 0) {
+        const progress = ((currentSentenceIndex + 1) / sentences.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    } else {
+        progressBar.style.width = '0%';
+    }
+}
+
+function clearAndResetData() {
+    if (recording) {
+        stopRecording();
+    }
+    speechResult.innerHTML = "";
+    scoreDisplay.innerHTML = "";
+    recordBtn.classList.remove("recording");
+    recordBtn.querySelector("p").innerHTML = "Bắt đầu nói";
+    
+    if (speechTimeout) {
+        clearTimeout(speechTimeout);
+    }
+}
+
+function loadSentence() {
+    clearAndResetData();
+    updateProgress();
+    
+    if (sentences.length > 0) {
+        const sentence = sentences[currentSentenceIndex];
+        targetChinese.textContent = sentence.chinese;
+        targetPinyin.textContent = sentence.pinyin;
+        targetMeaning.textContent = sentence.meaning;
+    } else {
+        targetChinese.textContent = "Vui lòng chọn bài học";
+        targetPinyin.textContent = "";
+        targetMeaning.textContent = "";
+    }
+}
+
+function cleanText(text) {
+    return text.replace(/[.,?!，。？！\s]/g, '').toLowerCase();
+}
+
+function segmentChinese(text) {
+    return Array.from(text);
+}
+
+function compareTexts(original, spoken) {
+    const cleanOriginal = cleanText(original);
+    const cleanSpoken = cleanText(spoken);
+
+    const originalChars = segmentChinese(cleanOriginal);
+    const spokenChars = segmentChinese(cleanSpoken);
+
+    let result = '';
+    let correctCount = 0;
+    
+    const maxLength = Math.max(originalChars.length, spokenChars.length);
+    
+    for (let i = 0; i < maxLength; i++) {
+        if (i < spokenChars.length) {
+            if (i < originalChars.length && spokenChars[i] === originalChars[i]) {
+                result += spokenChars[i];
+                correctCount++;
             } else {
-                // Dừng ghi âm
-                isRecording = false;
-                recognition.stop();
-                clearTimeout(speechTimeout);
-                compareResult(accumulatedText);
-                recordButton.textContent = 'Start Recording';
-                recordButton.classList.remove('recording');
-                recordButton.classList.add('not-recording');
-                nextButton.disabled = false;
+                result += `<span class="incorrect">${spokenChars[i]}</span>`;
             }
         }
+    }
 
-        lessonSelect.addEventListener('change', (e) => {
-            if (e.target.value) {
-                currentLesson = lessonData[e.target.value];
-                currentSentenceIndex = 0;
-                totalScore = 0;
-                updateDisplay();
-                updateScores();
-                nextButton.disabled = true;
-                document.getElementById('spokenText').innerHTML = '';
-                accumulatedText = '';
-                if (isRecording) {
-                    toggleRecording();
-                }
-            }
-        });
+    const score = Math.round((correctCount / originalChars.length) * 100);
+    return { result, score };
+}
 
-        recordButton.onclick = toggleRecording;
+function startSpeechRecognition() {
+    if (sentences.length === 0) {
+        alert("Vui lòng chọn bài học trước khi bắt đầu.");
+        return;
+    }
 
-        nextButton.onclick = () => {
-            currentSentenceIndex++;
-            if (currentSentenceIndex < currentLesson.length) {
-                updateDisplay();
-                nextButton.disabled = true;
-                document.getElementById('spokenText').innerHTML = '';
-                accumulatedText = '';
-            } else {
-                document.getElementById('targetSentence').textContent = 'Lesson completed!';
-                document.getElementById('pinyin').textContent = '';
-                document.getElementById('meaning').textContent = '';
-                document.getElementById('spokenText').innerHTML = '';
-                recordButton.disabled = true;
-                nextButton.disabled = true;
-            }
-        };
+    try {
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'zh-CN';
+        recognition.interimResults = true;
+        recognition.continuous = true;
 
-        function updateDisplay() {
-            if (currentLesson.length > 0 && currentSentenceIndex < currentLesson.length) {
-                const current = currentLesson[currentSentenceIndex];
-                document.getElementById('targetSentence').textContent = current.chinese;
-                document.getElementById('pinyin').textContent = current.pinyin;
-                document.getElementById('meaning').textContent = current.meaning;
-            }
-        }
+        recordBtn.classList.add("recording");
+        recordBtn.querySelector("p").innerHTML = "Đang nghe...";
+        
+        recognition.start();
 
-        function updateScores() {
-            document.getElementById('sentenceScore').textContent = `Current Score: ${currentSentenceScore}/100`;
-            const averageScore = currentSentenceIndex > 0 ? 
-                Math.round(totalScore / currentSentenceIndex) : 0;
-            document.getElementById('totalScore').textContent = `Total Score: ${averageScore}/100`;
-        }
+        speechTimeout = setTimeout(() => {
+            stopRecording();
+        }, MAX_SPEECH_TIME);
 
-        function compareResult(spoken) {
-            const current = currentLesson[currentSentenceIndex];
-            const expectedChars = current.chinese.split('');
-            const spokenChars = spoken.split('');
+        recognition.onresult = (event) => {
+            const results = Array.from(event.results)
+                .map(result => result[0].transcript)
+                .join('');
             
-            let spokenHTML = '';
-            let correctCount = 0;
+            const comparison = compareTexts(sentences[currentSentenceIndex].chinese, results);
+            
+            speechResult.innerHTML = comparison.result;
+            scoreDisplay.innerHTML = `Điểm số: ${comparison.score}/100`;
+        };
 
-            spokenChars.forEach((char, index) => {
-                const isCorrect = index < expectedChars.length && char === expectedChars[index];
-                spokenHTML += `<span class="${isCorrect ? 'correct' : 'incorrect'}">${char}</span>`;
-                if (isCorrect) correctCount++;
-            });
-
-            document.getElementById('spokenText').innerHTML = spokenHTML;
-
-            if (!isRecording) {
-                currentSentenceScore = Math.round((correctCount / expectedChars.length) * 100);
-                totalScore += currentSentenceScore;
-                updateScores();
-                nextButton.disabled = false;
+        recognition.onend = () => {
+            if (recording) {
+                recognition.start();
+            } else {
+                stopRecording();
             }
-        }
+        };
+
+        recognition.onerror = (event) => {
+            clearTimeout(speechTimeout);
+            stopRecording();
+            
+            const errorMessages = {
+                'no-speech': "Không phát hiện được giọng nói. Vui lòng thử lại.",
+                'audio-capture': "Không tìm thấy microphone. Hãy đảm bảo microphone được kết nối.",
+                'not-allowed': "Vui lòng cho phép truy cập microphone để sử dụng ứng dụng.",
+                'network': "Lỗi kết nối mạng. Vui lòng kiểm tra kết nối internet.",
+                'aborted': "Đã hủy ghi âm.",
+            };
+            
+            alert(errorMessages[event.error] || `Đã xảy ra lỗi: ${event.error}`);
+        };
+
+    } catch (error) {
+        console.error(error);
+        alert("Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói.");
+    }
+}
+
+function stopRecording() {
+    if (recognition) {
+        recognition.stop();
+    }
+    clearTimeout(speechTimeout);
+    recordBtn.classList.remove("recording");
+    recordBtn.querySelector("p").innerHTML = "Bắt đầu nói";
+    recording = false;
+}
+
+recordBtn.addEventListener("click", () => {
+    if (!recording) {
+        recording = true;
+        speechResult.innerHTML = "";
+        startSpeechRecognition();
+    } else {
+        stopRecording();
+    }
+});
+
+nextBtn.addEventListener("click", () => {
+    if (sentences.length > 0) {
+        currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+        loadSentence();
+    } else {
+        alert("Vui lòng chọn bài học trước khi chuyển câu.");
+    }
+});
+
+// Khởi tạo ứng dụng
+document.addEventListener('DOMContentLoaded', () => {
+    targetChinese.textContent = "Vui lòng chọn bài học";
+    targetPinyin.textContent = "";
+    targetMeaning.textContent = "";
+    progressBar.style.width = '0%';
+});
+
     </script>
 </body>
 </html>
