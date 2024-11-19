@@ -1,0 +1,913 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Speaking Practice - Enhanced</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f5f5;
+            padding: 0.5rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+
+        .lesson-select {
+            margin-bottom: 1.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .practice-container {
+            margin-bottom: 0.5rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .target-sentence {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .pinyin {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            margin: 20px;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            flex: 0 1 auto;
+            min-width: 100px;
+            max-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .record {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .record.recording {
+            background: #f44336;
+            animation: pulse 1.5s infinite;
+        }
+
+        .next {
+            background: #2196F3;
+            color: white;
+        }
+
+        .play-sample {
+            background: #9c27b0;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timer {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .progress-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #ddd;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress {
+            height: 100%;
+            background: #4CAF50;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .result-container {
+            margin-top: 1.5rem;
+        }
+
+        .your-speech {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            padding: 0rem;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 60px;
+        }
+
+        /* Thêm các style mới cho việc so sánh */
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 0rem;
+        }
+
+        .original-text, .spoken-text {
+            font-size: 1.4rem;
+            padding: 1rem;
+            background: #fff;
+            //border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 60px;
+        }
+
+        .text-label {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .correct {
+            color: #2e7d32;
+        }
+
+        .incorrect {
+            color: #c62828;
+            background-color: #ffebee;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* Thêm animation cho các ký tự sai */
+        @keyframes highlight {
+            0% { background-color: #ffebee; }
+            50% { background-color: #ffcdd2; }
+            100% { background-color: #ffebee; }
+        }
+
+        .incorrect {
+            animation: highlight 2s infinite;
+        }
+
+        .stats-container {
+            display:none;
+            //display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .feedback {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .feedback.good {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .feedback.average {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .feedback.poor {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            button {
+                width: 100%;
+                max-width: none;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Luyện Nói Tiếng Trung</h1>
+        
+        <select class="lesson-select" id="lessonSelect">
+            <option value="">Chọn bài học</option>
+            <option value="1">Bài 1: Chào hỏi (Sơ cấp)</option>
+            <option value="2">Bài 2: Bản thân (Sơ cấp)</option>
+            <option value="3">Bài 3: Gia đình (Sơ cấp)</option>
+            <option value="4">Bài 4: Sở thích (Trung cấp)</option>
+            <option value="5">Bài 5: Quê hương (Trung cấp)</option>
+            <option value="6">Bài 6: Sinh nhật (Trung cấp)</option>
+            <option value="7">Bài 7: Thường ngày (Cao cấp)</option>
+        </select>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0/0 câu</div>
+        </div>
+
+        <div class="practice-container">
+            <div class="target-sentence" id="target-chinese"></div>
+            <div class="pinyin" id="target-pinyin"></div>
+            <div class="meaning" id="target-meaning"></div>
+        </div>
+
+        <div class="audio-controls">
+            <button class="play-sample" id="playPronunciation">
+                <span>Nghe mẫu</span>
+            </button>
+        </div>
+
+        <div class="timer" id="timer"></div>
+
+        <div class="result-container">
+            <h3>Câu của bạn:</h3>
+            <div class="your-speech" id="speech-result"></div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value" id="accuracy">0%</div>
+                <div class="stat-label">Độ chính xác</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="completed">0</div>
+                <div class="stat-label">Câu đã hoàn thành</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="streak">0</div>
+                <div class="stat-label">Chuỗi đúng</div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="record" id="recordButton">
+                <span>Bắt đầu nói</span>
+            </button>
+            <button class="next" id="nextButton">Tiếp theo</button>
+        </div>
+    </div>
+
+    <script>
+        // Expanded lesson data
+        const lessonData = {
+1: [
+    { chinese: "你好", pinyin: "Nǐ hǎo", meaning: "Xin chào" },
+    { chinese: "再见", pinyin: "Zàijiàn", meaning: "Tạm biệt" },
+],
+2: [
+    { chinese: "你叫什么名字？", pinyin: "Nǐ jiào shénme míngzì?", meaning: "Bạn tên gì?" },
+    { chinese: "我叫阮文明，你呢？", pinyin: "Wǒ jiào Ruǎn Wénmíng, nǐ ne?", meaning: "Tôi tên là Nguyễn Văn Minh, còn bạn?" },
+    { chinese: "你好吗？", pinyin: "Nǐ hǎo ma?", meaning: "Bạn có khỏe không?" },
+    { chinese: "你最近怎么样？", pinyin: "Nǐ zuìjìn zěnme yàng?", meaning: "Dạo này bạn thế nào?" },
+    { chinese: "你最近好吗？", pinyin: "Nǐ zuìjìn hǎo ma?", meaning: "Dạo này bạn có khỏe không?" },
+    { chinese: "一切都好。", pinyin: "Yīqiè dōu hǎo.", meaning: "Mọi thứ đều tốt." },
+    { chinese: "这是我的爸爸。", pinyin: "Zhè shì wǒ de bàba.", meaning: "Đây là bố tôi." },
+    { chinese: "那是我的弟弟。", pinyin: "Nà shì wǒ de dìdi.", meaning: "Đó là em trai tôi." },
+    { chinese: "这不是我的老师。", pinyin: "Zhè bù shì wǒ de lǎoshī.", meaning: "Đây không phải là giáo viên của tôi." },
+    { chinese: "那是你的哥哥吗？", pinyin: "Nà shì nǐ de gēge ma?", meaning: "Đó có phải là anh trai của bạn không?" },
+],
+3: [
+    { chinese: "你有弟弟吗？", pinyin: "Nǐ yǒu dìdi ma?", meaning: "Bạn có em trai không?" },
+    { chinese: "他只有一个妹妹。", pinyin: "Tā zhǐ yǒu yīgè mèimei.", meaning: "Anh ấy chỉ có một em gái." },
+    { chinese: "他有没有姐姐？", pinyin: "Tā yǒu méiyǒu jiějie?", meaning: "Anh ấy có chị gái không?" },
+    { chinese: "你有兄弟姐妹吗？", pinyin: "Nǐ yǒu xiōngdì jiěmèi ma?", meaning: "Bạn có anh chị em không?" },
+    { chinese: "我有一个弟弟和一个妹妹。", pinyin: "Wǒ yǒu yīgè dìdi hé yīgè mèimei.", meaning: "Tôi có một em trai và một em gái." },
+    { chinese: "我没有哥哥，我只有一个弟弟。", pinyin: "Wǒ méiyǒu gēge, wǒ zhǐ yǒu yīgè dìdi.", meaning: "Tôi không có anh trai, tôi chỉ có một em trai." },
+    { chinese: "他没有哥哥，我也没有哥哥。", pinyin: "Tā méiyǒu gēge, wǒ yě méiyǒu gēge.", meaning: "Anh ấy không có anh trai, tôi cũng không có anh trai." },
+    { chinese: "我没有兄弟姐妹，我是独生子。", pinyin: "Wǒ méiyǒu xiōngdì jiěmèi, wǒ shì dúshēngzǐ.", meaning: "Tôi không có anh chị em, tôi là con một." },
+    { chinese: "你家有几口人？", pinyin: "Nǐ jiā yǒu jǐ kǒu rén?", meaning: "Gia đình bạn có mấy người?" },
+    { chinese: "我有四口人：爸爸，妈妈，弟弟和我。", pinyin: "Wǒ yǒu sì kǒu rén: bàba, māmā, dìdi hé wǒ.", meaning: "Gia đình tôi có bốn người: bố, mẹ, em trai và tôi." },
+    { chinese: "你今年多大？", pinyin: "Nǐ jīnnián duōdà?", meaning: "Năm nay bạn bao nhiêu tuổi?" },
+    { chinese: "他今年三十五岁。", pinyin: "Tā jīnnián sānshíwǔ suì.", meaning: "Năm nay anh ấy 35 tuổi." },
+    { chinese: "他做什么工作？", pinyin: "Tā zuò shénme gōngzuò?", meaning: "Anh ấy làm nghề gì?" },
+    { chinese: "我弟弟是学生，我姐姐是老师。", pinyin: "Wǒ dìdi shì xuésheng, wǒ jiějie shì lǎoshī.", meaning: "Em trai tôi là học sinh, chị gái tôi là giáo viên." },
+    { chinese: "他不工作，他是学生。", pinyin: "Tā bù gōngzuò, tā shì xuésheng.", meaning: "Anh ấy không làm việc, anh ấy là học sinh." },
+    { chinese: "他哥哥在失业。", pinyin: "Tā gēge zài shīyè.", meaning: "Anh trai anh ấy đang thất nghiệp." },
+    { chinese: "我和他的妈妈都是医生。", pinyin: "Wǒ hé tā de māmā dōu shì yīshēng.", meaning: "Tôi và mẹ của anh ấy đều là bác sĩ." },
+    { chinese: "我爷爷不工作，他退休了。", pinyin: "Wǒ yéyé bù gōngzuò, tā tuìxiū le.", meaning: "Ông tôi không làm việc, ông ấy đã nghỉ hưu." },
+],
+4: [
+    { chinese: "你有什么爱好？", pinyin: "Nǐ yǒu shénme àihào?", meaning: "Bạn có sở thích gì?" },
+    { chinese: "我喜欢去旅游。", pinyin: "Wǒ xǐhuān qù lǚyóu.", meaning: "Tôi thích đi du lịch." },
+    { chinese: "你喜欢听音乐吗？", pinyin: "Nǐ xǐhuān tīng yīnyuè ma?", meaning: "Bạn thích nghe nhạc không?" },
+    { chinese: "他不喜欢喝咖啡。", pinyin: "Tā bù xǐhuān hē kāfēi.", meaning: "Cô ấy không thích uống cà phê." },
+    { chinese: "你哥哥喜欢吃零食吗？", pinyin: "Nǐ gēge xǐhuān chī língshí ma?", meaning: "Anh trai bạn có thích ăn vặt không?" },
+    { chinese: "你喜欢喝什么茶？", pinyin: "Nǐ xǐhuān hē shénme chá?", meaning: "Bạn thích uống trà gì?" },
+    { chinese: "他不喜欢吃炒面，他喜欢吃炒饭。", pinyin: "Tā bù xǐhuān chī chǎomiàn, tā xǐhuān chī chǎofàn.", meaning: "Cô ấy không thích ăn mì xào, cô ấy thích ăn cơm chiên." },
+    { chinese: "我不喜欢踢足球，我喜欢打羽毛球。", pinyin: "Wǒ bù xǐhuān tī zúqiú, wǒ xǐhuān dǎ yǔmáoqiú.", meaning: "Tôi không thích đá bóng, tôi thích chơi cầu lông." },
+    { chinese: "我喜欢看电影，他也喜欢听音乐。", pinyin: "Wǒ xǐhuān kàn diànyǐng, tā yě xǐhuān tīng yīnyuè.", meaning: "Tôi thích xem phim, anh ấy cũng thích nghe nhạc." },
+    { chinese: "你儿子喜欢喝牛奶吗？", pinyin: "Nǐ érzi xǐhuān hē niúnǎi ma?", meaning: "Con trai bạn có thích uống sữa không?" },
+    { chinese: "牛奶和奶茶他都喜欢喝。", pinyin: "Niúnǎi hé nǎichá tā dōu xǐhuān hē.", meaning: "Anh ấy thích uống cả sữa và trà sữa." },
+    { chinese: "他女儿不喜欢玩游戏，他女儿喜欢学习。", pinyin: "Tā nǚ'ér bù xǐhuān wán yóuxì, tā nǚ'ér xǐhuān xuéxí.", meaning: "Con gái anh ấy không thích chơi game, cô ấy thích học." },
+    { chinese: "他特别喜欢喝奶茶。", pinyin: "Tā tèbié xǐhuān hē nǎichá.", meaning: "Cô ấy đặc biệt thích uống trà sữa." },
+    { chinese: "他很喜欢喝茶，但是他最不喜欢喝奶茶。", pinyin: "Tā hěn xǐhuān hē chá, dànshì tā zuì bù xǐhuān hē nǎichá.", meaning: "Anh ấy rất thích uống trà, nhưng anh ấy không thích uống trà sữa nhất." },
+    { chinese: "我喜欢喝牛奶和奶茶。但是我最喜欢喝奶茶。", pinyin: "Wǒ xǐhuān hē niúnǎi hé nǎichá. Dànshì wǒ zuì xǐhuān hē nǎichá.", meaning: "Tôi thích uống sữa và trà sữa. Nhưng tôi thích uống trà sữa nhất." },
+    { chinese: "炒饭和炒面他都特别喜欢吃。", pinyin: "Chǎofàn hé chǎomiàn tā dōu tèbié xǐhuān chī.", meaning: "Anh ấy thích ăn cả cơm chiên và mì xào." },
+    { chinese: "你喜欢吃炒面还是炒饭？", pinyin: "Nǐ xǐhuān chī chǎomiàn háishì chǎofàn?", meaning: "Bạn thích ăn mì xào hay cơm chiên?" },
+    { chinese: "我很喜欢吃炒面，炒面很好吃。", pinyin: "Wǒ hěn xǐhuān chī chǎomiàn, chǎomiàn hěn hǎochī.", meaning: "Tôi rất thích ăn mì xào, mì xào rất ngon." },
+],
+5: [
+    { chinese: "你的国籍是什么？", pinyin: "Nǐ de guójí shì shénme?", meaning: "Quốc tịch của bạn là gì?" },
+    { chinese: "你的英语老师有什么国籍？", pinyin: "Nǐ de yīngyǔ lǎoshī yǒu shénme guójí?", meaning: "Giáo viên tiếng Anh của bạn có quốc tịch gì?" },
+    { chinese: "他的国籍是中国。", pinyin: "Tā de guójí shì Zhōngguó.", meaning: "Quốc tịch của anh ấy là Trung Quốc." },
+    { chinese: "他有美国国籍。", pinyin: "Tā yǒu Měiguó guójí.", meaning: "Anh ấy có quốc tịch Mỹ." },
+    { chinese: "他有几个国籍？", pinyin: "Tā yǒu jǐ gè guójí?", meaning: "Cô ấy có mấy quốc tịch?" },
+    { chinese: "他有两个国籍，一个是日本国籍，一个是韩国国籍。", pinyin: "Tā yǒu liǎng gè guójí, yīgè shì Rìběn guójí, yīgè shì Hánguó guójí.", meaning: "Cô ấy có hai quốc tịch, một là quốc tịch Nhật Bản, một là quốc tịch Hàn Quốc." },
+    { chinese: "你是哪国人？", pinyin: "Nǐ shì nǎ guó rén?", meaning: "Bạn là người nước nào?" },
+    { chinese: "我是越南人。", pinyin: "Wǒ shì Yuènán rén.", meaning: "Tôi là người Việt Nam." },
+    { chinese: "他们都是中国人吗？", pinyin: "Tāmen dōu shì Zhōngguó rén ma?", meaning: "Họ đều là người Trung Quốc sao?" },
+    { chinese: "你妈妈是不是韩国人？", pinyin: "Nǐ māmā shì bù shì Hánguó rén?", meaning: "Mẹ bạn có phải là người Hàn Quốc không?" },
+    { chinese: "我爸爸是泰国人。我妈妈是日本人。", pinyin: "Wǒ bàba shì Tàiguó rén. Wǒ māmā shì Rìběn rén.", meaning: "Bố tôi là người Thái. Mẹ tôi là người Nhật." },
+    { chinese: "你来自哪个国家？", pinyin: "Nǐ láizì nǎge guójiā?", meaning: "Bạn đến từ nước nào?" },
+    { chinese: "你们来自哪个国家？", pinyin: "Nǐmen láizì nǎge guójiā?", meaning: "Các bạn đến từ nước nào?" },
+    { chinese: "他们都来自法国吗？", pinyin: "Tāmen dōu láizì Fàguó ma?", meaning: "Họ đều đến từ Pháp sao?" },
+    { chinese: "你的家乡在哪里？", pinyin: "Nǐ de jiāxiāng zài nǎlǐ?", meaning: "Quê bạn ở đâu?" },
+    { chinese: "我的家乡在北宁。", pinyin: "Wǒ de jiāxiāng zài Běiníng.", meaning: "Quê tôi ở Bắc Ninh." },
+    { chinese: "你会说中文吗？", pinyin: "Nǐ huì shuō zhōngwén ma?", meaning: "Bạn có nói tiếng Trung không?" },
+    { chinese: "我会说中文，也会写汉字。", pinyin: "Wǒ huì shuō zhōngwén, yě huì xiě hànzì.", meaning: "Tôi biết nói tiếng Trung và cũng biết viết chữ Hán." },
+    { chinese: "你会读这个汉字吗？", pinyin: "Nǐ huì dú zhège hànzì ma?", meaning: "Bạn có biết đọc chữ Hán này không?" },
+    { chinese: "你朋友会说日语吗？", pinyin: "Nǐ péngyǒu huì shuō Rìyǔ ma?", meaning: "Bạn của bạn có biết nói tiếng Nhật không?" },
+    { chinese: "日语和韩语他都会说。", pinyin: "Rìyǔ hé Hányǔ tā dōu huì shuō.", meaning: "Anh ấy biết nói cả tiếng Nhật và tiếng Hàn." },
+    { chinese: "我不会说德语，我只会说法语。", pinyin: "Wǒ bù huì shuō Déyǔ, wǒ zhǐ huì shuō Fǎyǔ.", meaning: "Tôi không biết nói tiếng Đức, tôi chỉ biết nói tiếng Pháp." },
+    { chinese: "你会几门语言？", pinyin: "Nǐ huì jǐ mén yǔyán?", meaning: "Bạn biết mấy thứ tiếng?" },
+    { chinese: "我会三门语言：越南语，英语和日语。", pinyin: "Wǒ huì sān mén yǔyán: Yuènán yǔ, Yīngyǔ hé Rìyǔ.", meaning: "Tôi biết ba thứ tiếng: tiếng Việt, tiếng Anh và tiếng Nhật." },
+    { chinese: "你们会不会说韩语？", pinyin: "Nǐmen huì bù huì shuō Hányǔ?", meaning: "Các bạn có biết nói tiếng Hàn không?" },
+    { chinese: "你们会说什么语言？", pinyin: "Nǐmen huì shuō shénme yǔyán?", meaning: "Các bạn biết nói ngôn ngữ gì?" },
+    { chinese: "你会做饭吗？", pinyin: "Nǐ huì zuò fàn ma?", meaning: "Bạn có biết nấu ăn không?" },
+    { chinese: "你会做中国菜吗？", pinyin: "Nǐ huì zuò Zhōngguó cài ma?", meaning: "Bạn có biết làm món Trung Quốc không?" },
+    { chinese: "我喜欢吃中国菜，但是我不会做。", pinyin: "Wǒ xǐhuān chī Zhōngguó cài, dànshì wǒ bù huì zuò.", meaning: "Tôi thích ăn món Trung Quốc, nhưng tôi không biết làm." },
+    { chinese: "他会不会踢足球？", pinyin: "Tā huì bù huì tī zúqiú?", meaning: "Anh ấy có biết đá bóng không?" },
+    { chinese: "他喜欢看足球，但是他不会踢足球。", pinyin: "Tā xǐhuān kàn zúqiú, dànshì tā bù huì tī zúqiú.", meaning: "Anh ấy thích xem bóng đá, nhưng anh ấy không biết đá bóng." },
+    { chinese: "你爸爸会打羽毛球吗？", pinyin: "Nǐ bàba huì dǎ yǔmáoqiú ma?", meaning: "Bố bạn có biết chơi cầu lông không?" },
+    { chinese: "他家有汽车，但是他不会开。", pinyin: "Tā jiā yǒu qìchē, dànshì tā bù huì kāi.", meaning: "Nhà anh ấy có ô tô, nhưng anh ấy không biết lái." },
+    { chinese: "你弟弟会不会骑摩托车？", pinyin: "Nǐ dìdi huì bù huì qí mótuōchē?", meaning: "Em trai bạn có biết lái xe máy không?" },
+    { chinese: "你妈妈会唱歌吗？", pinyin: "Nǐ māmā huì chànggē ma?", meaning: "Mẹ bạn có biết hát không?" },
+    { chinese: "他做的中国菜都特别好吃。", pinyin: "Tā zuò de Zhōngguó cài dōu tèbié hǎochī.", meaning: "Món Trung Quốc mà cô ấy làm đều rất ngon." },
+    { chinese: "我很喜欢吃中国菜，特别是麻辣香锅。", pinyin: "Wǒ hěn xǐhuān chī Zhōngguó cài, tèbié shì málàxiāngguō.", meaning: "Tôi rất thích ăn món Trung Quốc, đặc biệt là lẩu麻辣." },
+    { chinese: "你喜欢吃中国菜和泰国菜吗？", pinyin: "Nǐ xǐhuān chī Zhōngguó cài hé Tàiguó cài ma?", meaning: "Bạn có thích ăn món Trung Quốc và món Thái không?" },
+],
+6: [
+    { chinese: "今天几号？", pinyin: "Jīntiān jǐ hào?", meaning: "Hôm nay ngày mấy?" },
+    { chinese: "今天星期几？", pinyin: "Jīntiān xīngqī jǐ?", meaning: "Hôm nay thứ mấy?" },
+    { chinese: "今天星期四，明天星期五。", pinyin: "Jīntiān xīngqī sì, míngtiān xīngqī wǔ.", meaning: "Hôm nay thứ Năm, mai là thứ Sáu." },
+    { chinese: "下个星期三是我的生日。", pinyin: "Xiàge xīngqī sān shì wǒ de shēngrì.", meaning: "Thứ Tư tuần sau là sinh nhật của tôi." },
+    { chinese: "今天是谁的生日？", pinyin: "Jīntiān shì shéi de shēngrì?", meaning: "Hôm nay là sinh nhật của ai?" },
+    { chinese: "明天6月1号是国际儿童节。", pinyin: "Míngtiān 6 yuè 1 hào shì guójì értóng jié.", meaning: "Ngày mai 1 tháng 6 là Ngày Quốc tế Thiếu nhi." },
+    { chinese: "今天4月30号，明天是国际劳动节。", pinyin: "Jīntiān 4 yuè 30 hào, míngtiān shì guójì láodòng jié.", meaning: "Hôm nay là ngày 30 tháng 4, mai là Ngày Quốc tế Lao động." },
+    { chinese: "今天5号星期一，下个星期一是12号。", pinyin: "Jīntiān 5 hào xīngqī yī, xiàge xīngqī yī shì 12 hào.", meaning: "Hôm nay là ngày 5 thứ Hai, thứ Hai tuần sau là ngày 12." },
+    { chinese: "今天是星期六，明天是星期天。", pinyin: "Jīntiān shì xīngqī liù, míngtiān shì xīngqī tiān.", meaning: "Hôm nay là thứ Bảy, mai là Chủ Nhật." },
+    { chinese: "我在学校学习中文。", pinyin: "Wǒ zài xuéxiào xuéxí zhōngwén.", meaning: "Tôi học tiếng Trung ở trường." },
+    { chinese: "他今天上午在图书馆看书。", pinyin: "Tā jīntiān shàngwǔ zài túshūguǎn kàn shū.", meaning: "Hôm nay buổi sáng cô ấy đọc sách ở thư viện." },
+    { chinese: "我们在公园散步。", pinyin: "Wǒmen zài gōngyuán sànbù.", meaning: "Chúng tôi đi dạo ở công viên." },
+    { chinese: "他们明天晚上在家做饭。", pinyin: "Tāmen míngtiān wǎnshàng zài jiā zuò fàn.", meaning: "Họ sẽ nấu ăn ở nhà vào tối mai." },
+    { chinese: "我去年在越南工作。", pinyin: "Wǒ qùnián zài Yuènán gōngzuò.", meaning: "Năm ngoái tôi làm việc ở Việt Nam." },
+    { chinese: "我在商店买东西。", pinyin: "Wǒ zài shāngdiàn mǎi dōngxī.", meaning: "Tôi mua sắm ở cửa hàng." },
+    { chinese: "他在咖啡馆喝咖啡。", pinyin: "Tā zài kāfēiguǎn hē kāfēi.", meaning: "Cô ấy uống cà phê ở quán cà phê." },
+    { chinese: "我们上周在电影院看电影。", pinyin: "Wǒmen shàng zhōu zài diànyǐngyuàn kàn diànyǐng.", meaning: "Chúng tôi đã xem phim ở rạp chiếu phim tuần trước." },
+    { chinese: "我下周三去美国旅游。", pinyin: "Wǒ xià zhōu sān qù Měiguó lǚyóu.", meaning: "Tôi sẽ đi du lịch Mỹ vào thứ Tư tuần sau." },
+    { chinese: "我下午去学校踢足球。", pinyin: "Wǒ xiàwǔ qù xuéxiào tī zúqiú.", meaning: "Tôi đi đá bóng ở trường vào buổi chiều." },
+    { chinese: "他今天去商店买衣服。", pinyin: "Tā jīntiān qù shāngdiàn mǎi yīfú.", meaning: "Hôm nay cô ấy đi mua sắm quần áo." },
+    { chinese: "我们昨天晚上去公园跑步。", pinyin: "Wǒmen zuótiān wǎnshàng qù gōngyuán pǎobù.", meaning: "Tối qua chúng tôi đã đi chạy bộ ở công viên." },
+    { chinese: "他们上午去图书馆借书。", pinyin: "Tāmen shàngwǔ qù túshūguǎn jiè shū.", meaning: "Họ đã đến thư viện mượn sách vào buổi sáng." },
+    { chinese: "我后天去朋友家玩。", pinyin: "Wǒ hòutiān qù péngyǒu jiā wán.", meaning: "Ngày kia tôi sẽ đến nhà bạn chơi." },
+    { chinese: "我们去餐厅吃饭。", pinyin: "Wǒmen qù cāntīng chīfàn.", meaning: "Chúng tôi đi ăn ở nhà hàng." },
+    { chinese: "我今天在家学习英语和汉语。", pinyin: "Wǒ jīntiān zài jiā xuéxí Yīngyǔ hé Hànyǔ.", meaning: "Hôm nay tôi học tiếng Anh và tiếng Trung ở nhà." },
+    { chinese: "他不喜欢去餐厅吃饭。", pinyin: "Tā bù xǐhuān qù cāntīng chīfàn.", meaning: "Anh ấy không thích đi ăn ở nhà hàng." },
+    { chinese: "今天是周末，我们晚上去电影院看电影。", pinyin: "Jīntiān shì zhōumò, wǒmen wǎnshàng qù diànyǐngyuàn kàn diànyǐng.", meaning: "Hôm nay là cuối tuần, tối nay chúng tôi sẽ đi xem phim ở rạp." },
+    { chinese: "我和他们都在越南学习汉语。", pinyin: "Wǒ hé tāmen dōu zài Yuènán xuéxí Hànyǔ.", meaning: "Tôi và họ đều học tiếng Trung ở Việt Nam." },
+    { chinese: "他喜欢去图书馆看书。", pinyin: "Tā xǐhuān qù túshūguǎn kàn shū.", meaning: "Cô ấy thích đến thư viện đọc sách." },
+],
+7: [
+    { chinese: "现在几点？", pinyin: "Xiànzài jǐ diǎn?", meaning: "Bây giờ là mấy giờ?" },
+    { chinese: "现在是10点一刻。", pinyin: "Xiànzài shì shí diǎn yī kè.", meaning: "Bây giờ là 10 giờ 15 phút." },
+    { chinese: "现在是下午3点多吗？", pinyin: "Xiànzài shì xiàwǔ sān diǎn duō ma?", meaning: "Bây giờ có phải là khoảng 3 giờ chiều không?" },
+    { chinese: "现在是下午4点半了。", pinyin: "Xiànzài shì xiàwǔ sì diǎn bàn le.", meaning: "Bây giờ là 4 giờ 30 phút chiều." },
+    { chinese: "你是什么时候出生的？", pinyin: "Nǐ shì shénme shíhòu chūshēng de?", meaning: "Bạn sinh vào lúc nào?" },
+    { chinese: "我是2008年6月25号出生的。", pinyin: "Wǒ shì 2008 nián 6 yuè 25 hào chūshēng de.", meaning: "Tôi sinh ngày 25 tháng 6 năm 2008." },
+    { chinese: "我下午5点半左右去公园跑步。", pinyin: "Wǒ xiàwǔ wǔ diǎn bàn zuǒyòu qù gōngyuán pǎobù.", meaning: "Tôi sẽ đi chạy bộ ở công viên vào khoảng 5 giờ 30 phút chiều." },
+    { chinese: "我爸爸去年在美国工作。", pinyin: "Wǒ bàba qùnián zài Měiguó gōngzuò.", meaning: "Bố tôi đã làm việc ở Mỹ năm ngoái." },
+    { chinese: "你明天有空吗？", pinyin: "Nǐ míngtiān yǒu kòng ma?", meaning: "Ngày mai bạn có rảnh không?" },
+    { chinese: "我明天上午去学校，下午才有空。", pinyin: "Wǒ míngtiān shàngwǔ qù xuéxiào, xiàwǔ cái yǒu kòng.", meaning: "Ngày mai tôi đi học vào buổi sáng, buổi chiều mới rảnh." },
+    { chinese: "我明天下午还没有什么打算。", pinyin: "Wǒ míngtiān xiàwǔ hái méiyǒu shénme dǎsuàn.", meaning: "Chiều mai tôi vẫn chưa có kế hoạch gì." },
+    { chinese: "你下午几点去学校打羽毛球？", pinyin: "Nǐ xiàwǔ jǐ diǎn qù xuéxiào dǎ yǔmáoqiú?", meaning: "Chiều bạn đi học cầu lông lúc mấy giờ?" },
+    { chinese: "你明天5点半去公园跑步吗？", pinyin: "Nǐ míngtiān wǔ diǎn bàn qù gōngyuán pǎobù ma?", meaning: "Ngày mai bạn có đi chạy bộ ở công viên lúc 5 giờ 30 phút không?" },
+    { chinese: "我平时6点才起床。", pinyin: "Wǒ píngshí liù diǎn cái qǐchuáng.", meaning: "Tôi thường dậy lúc 6 giờ." },
+    { chinese: "他今年20多岁了。", pinyin: "Tā jīnnián èrshí duō suì le.", meaning: "Anh ấy năm nay hơn 20 tuổi." },
+    { chinese: "我们明天下午一点半去喝咖啡，你想去吗？", pinyin: "Wǒmen míngtiān xiàwǔ yī diǎn bàn qù hē kāfēi, nǐ xiǎng qù ma?", meaning: "Ngày mai chúng tôi đi uống cà phê lúc 1 giờ 30 phút chiều, bạn muốn đi không?" },
+    { chinese: "你明天去日本旅游吗？", pinyin: "Nǐ míngtiān qù Rìběn lǚyóu ma?", meaning: "Ngày mai bạn có đi du lịch Nhật Bản không?" },
+    { chinese: "我和女友打算去日本一个多星期才回来。", pinyin: "Wǒ hé nǚyǒu dǎsuàn qù Rìběn yīgè duō xīngqī cái huílái.", meaning: "Tôi và bạn gái dự định đi Nhật Bản hơn một tuần mới về." },
+    { chinese: "他去中国工作一年多了。", pinyin: "Tā qù Zhōngguó gōngzuò yī nián duō le.", meaning: "Anh ấy đã đi làm ở Trung Quốc hơn một năm." },
+    { chinese: "明天是小明的生日，我们几点去他家呢？", pinyin: "Míngtiān shì Xiǎomíng de shēngrì, wǒmen jǐ diǎn qù tā jiā ne?", meaning: "Ngày mai là sinh nhật của Tiểu Minh, chúng ta sẽ đi nhà cậu ấy lúc mấy giờ?" },
+    { chinese: "我想早一点去学校。", pinyin: "Wǒ xiǎng zǎo yīdiǎn qù xuéxiào.", meaning: "Tôi muốn đi học sớm một chút." },
+    { chinese: "你们晚上打算去看几点的电影？", pinyin: "Nǐmen wǎnshàng dǎsuàn qù kàn jǐ diǎn de diànyǐng?", meaning: "Các bạn dự định đi xem phim lúc mấy giờ tối?" },
+    { chinese: "我上午有两节英语课，下午有三节韩语课。", pinyin: "Wǒ shàngwǔ yǒu liǎng jié Yīngyǔ kè, xiàwǔ yǒu sān jié Hányǔ kè.", meaning: "Tôi có hai tiết tiếng Anh vào buổi sáng, ba tiết tiếng Hàn vào buổi chiều." },
+    { chinese: "明天是周末了，你想几点去中国餐厅吃饭？", pinyin: "Míngtiān shì zhōumò le, nǐ xiǎng jǐ diǎn qù Zhōngguó cāntīng chīfàn?", meaning: "Ngày mai là cuối tuần, bạn muốn đi ăn ở nhà hàng Trung Quốc lúc mấy giờ?" },
+    { chinese: "我和女朋友一起去看电影。", pinyin: "Wǒ hé nǚpéngyǒu yīqǐ qù kàn diànyǐng.", meaning: "Tôi và bạn gái cùng đi xem phim." },
+    { chinese: "你平时几点起床，几点睡觉？", pinyin: "Nǐ píngshí jǐ diǎn qǐchuáng, jǐ diǎn shuìjiào?", meaning: "Bạn thường dậy lúc mấy giờ, đi ngủ lúc mấy giờ?" },
+    { chinese: "我平时早上6点起床，晚上10点到10点半睡觉。", pinyin: "Wǒ píngshí zǎoshang liù diǎn qǐchuáng, wǎnshàng 10 diǎn dào 10 diǎn bàn shuìjiào.", meaning: "Tôi thường dậy lúc 6 giờ sáng, đi ngủ lúc 10 giờ đến 10 giờ 30 phút tối." },
+    { chinese: "你平时早饭吃什么菜？", pinyin: "Nǐ píngshí zǎofàn chī shénme cài?", meaning: "Bạn thường ăn món gì cho bữa sáng?" },
+    { chinese: "我早饭喜欢吃包子，有时候也吃面条。", pinyin: "Wǒ zǎofàn xǐhuān chī bāozi, yǒu shíhòu yě chī miàntiáo.", meaning: "Tôi thích ăn báo vào bữa sáng, có lúc cũng ăn mì." },
+    { chinese: "你尝去公园跑步吗？", pinyin: "Nǐ cháng qù gōngyuán pǎobù ma?", meaning: "Bạn có thường đi chạy bộ ở công viên không?" },
+    { chinese: "我每天有5节课。", pinyin: "Wǒ měitiān yǒu wǔ jié kè.", meaning: "Tôi có năm tiết học mỗi ngày." },
+    { chinese: "我晚上常看电视和学习中文。", pinyin: "Wǒ wǎnshàng cháng kàn diànshì hé xuéxí zhōngwén.", meaning: "Tôi thường xem tivi và học tiếng Trung vào buổi tối." },
+    { chinese: "明天去河内玩，我们几点出发？", pinyin: "Míngtiān qù Hánội wán, wǒmen jǐ diǎn chūfā?", meaning: "Ngày mai đi chơi Hà Nội, chúng ta xuất phát lúc mấy giờ?" },
+    { chinese: "我们明天早上7点一刻出发。", pinyin: "Wǒmen míngtiān zǎoshang qī diǎn yī kè chūfā.", meaning: "Chúng tôi sẽ xuất phát lúc 7 giờ 15 phút sáng mai." },
+    { chinese: "他们昨天在超市买了多少件衣服呢？", pinyin: "Tāmen zuótiān zài chāoshì mǎile duōshao jiàn yīfú ne?", meaning: "Họ đã mua bao nhiêu bộ quần áo ở siêu thị hôm qua?" },
+    { chinese: "他们下午一点半上课，下午4点半下课。", pinyin: "Tāmen xiàwǔ yī diǎn bàn shàngkè, xiàwǔ sì diǎn bàn xiàkè.", meaning: "Họ có tiết học lúc 1 giờ 30 phút chiều, tan học lúc 4 giờ 30 phút chiều." },
+    { chinese: "我爸爸每天5点半左右回家。", pinyin: "Wǒ bàba měitiān wǔ diǎn bàn zuǒyòu huí jiā.", meaning: "Bố tôi về nhà vào khoảng 5 giờ 30 phút mỗi ngày." },
+    { chinese: "下午五点以后，我都有空。", pinyin: "Xiàwǔ wǔ diǎn yǐhòu wǒ dōu yǒu kòng.", meaning: "Sau 5 giờ chiều, tôi đều có thời gian rảnh." },
+    { chinese: "下课以后，我们一起去公园跑步。", pinyin: "Xiàkè yǐhòu, wǒmen yīqǐ qù gōngyuán pǎobù.", meaning: "Sau khi tan học, chúng ta cùng đi chạy bộ ở công viên." },
+    { chinese: "3个小时后，我去中国旅游。", pinyin: "Sān gè xiǎoshí hòu, wǒ qù Zhōngguó lǚyóu.", meaning: "Sau ba giờ nữa, tôi sẽ đi du lịch Trung Quốc." },
+    { chinese: "睡觉以前，我常看电影或者听音乐。", pinyin: "Shuìjiào yǐqián, wǒ cháng kàn diànyǐng huòzhě tīng yīnyuè.", meaning: "Trước khi đi ngủ, tôi thường xem phim hoặc nghe nhạc." },
+    { chinese: "你快一点吃，他们都去上课了。", pinyin: "Nǐ kuài yīdiǎn chī, tāmen dōu qù shàngkè le.", meaning: "Bạn ăn nhanh lên, họ đều đi học hết rồi." },
+    { chinese: "明天你早一点来吧。", pinyin: "Míngtiān nǐ zǎo yīdiǎn lái ba.", meaning: "Ngày mai bạn đến sớm một chút nhé." },
+    { chinese: "我们明天晚一点出发。", pinyin: "Wǒmen míngtiān wǎn yīdiǎn chūfā.", meaning: "Chúng tôi sẽ khởi hành muộn một chút vào ngày mai." },
+    { chinese: "超市的开门时间是从早上8点到晚上9点。", pinyin: "Chāoshì de kāimén shíjiān shì cóng zǎoshang 8 diǎn dào wǎnshàng 9 diǎn.", meaning: "Thời gian mở cửa của siêu thị là từ 8 giờ sáng đến 9 giờ tối." },
+    { chinese: "从星期一到星期五，我都有3节韩语课。", pinyin: "Cóng xīngqī yī dào xīngqī wǔ, wǒ dōu yǒu sān jié Hányǔ kè.", meaning: "Từ thứ Hai đến thứ Sáu, tôi có ba tiết tiếng Hàn." },
+    { chinese: "从8点到现在都25分钟了，他还没来。", pinyin: "Cóng 8 diǎn dào xiànzài dōu 25 fēnzhōng le, tā hái méi lái.", meaning: "Đã 25 phút từ 8 giờ đến giờ này, anh ấy vẫn chưa đến." },
+    { chinese: "从昨天到现在都快一天了。", pinyin: "Cóng zuótiān dào xiànzài dōu kuài yītiān le.", meaning: "Từ hôm qua đến giờ đã gần một ngày rồi." },
+    { chinese: "从小到大他都很喜欢学习英语。", pinyin: "Cóng xiǎo dào dà tā dōu hěn xǐhuān xuéxí Yīngyǔ.", meaning: "Từ nhỏ đến lớn, anh ấy rất thích học tiếng Anh." },
+    { chinese: "从6岁到现在，他学了四门语言。", pinyin: "Cóng 6 suì dào xiànzài, tā xué le sìmén yǔyán.", meaning: "Từ 6 tuổi đến giờ, anh ấy đã học bốn thứ tiếng." },
+    { chinese: "从家到学校，我吃了两个包子。", pinyin: "Cóng jiā dào xuéxiào, wǒ chī le liǎng gè bāozi.", meaning: "Từ nhà đến trường, tôi đã ăn hai cái bánh bao." },
+    { chinese: "从晚上7点到现在，我喝了两杯咖啡。", pinyin: "Cóng wǎnshàng 7 diǎn dào xiànzài, wǒ hē le liǎng bēi kāfēi.", meaning: "Từ 7 giờ tối đến giờ này, tôi đã uống hai tách cà phê." },
+    { chinese: "我早上有时候去跑步，有时候去散步。", pinyin: "Wǒ zǎoshang yǒu shíhòu qù pǎobù, yǒu shíhòu qù sànbù.", meaning: "Vào buổi sáng, có lúc tôi đi chạy bộ, có lúc tôi đi dạo." },
+    { chinese: "他早饭有时候喜欢吃面包，有时候喜欢吃包子。", pinyin: "Tā zǎofàn yǒu shíhòu xǐhuān chī miànbāo, yǒu shíhòu xǐhuān chī bāozi.", meaning: "Anh ấy có lúc thích ăn bánh mì, có lúc thích ăn bánh bao cho bữa sáng." },
+    { chinese: "上课的时候，他有时候看书，有时候玩手机。", pinyin: "Shàngkè de shíhòu, tā yǒu shíhòu kàn shū, yǒu shíhòu wán shǒujī.", meaning: "Trong giờ học, anh ấy có lúc đọc sách, có lúc chơi điện thoại." },
+    { chinese: "下课以后，我有时候去踢足球，有时候去打羽毛球。", pinyin: "Xiàkè yǐhòu, wǒ yǒu shíhòu qù tī zúqiú, yǒu shíhòu qù dǎ yǔmáoqiú.", meaning: "Sau khi tan học, có lúc tôi đi đá bóng, có lúc tôi chơi cầu lông." },
+    { chinese: "跑步的时候我喜欢听音乐。", pinyin: "Pǎobù de shíhòu wǒ xǐhuān tīng yīnyuè.", meaning: "Khi chạy bộ, tôi thích nghe nhạc." },
+    { chinese: "洗澡的时候我喜欢唱歌。", pinyin: "Xǐzǎo de shíhòu wǒ xǐhuān chànggē.", meaning: "Khi tắm, tôi thích hát." },
+    { chinese: "在家的时候我喜欢玩游戏和看电影。", pinyin: "Zài jiā de shíhòu wǒ xǐhuān wán yóuxì hé kàn diànyǐng.", meaning: "Khi ở nhà, tôi thích chơi game và xem phim." },
+    { chinese: "上课的时候，他喜欢睡觉。", pinyin: "Shàngkè de shíhòu, tā xǐhuān shuìjiào.", meaning: "Trong giờ học, anh ấy thích ngủ." },
+    { chinese: "我平时早上7点起床，晚上10点睡觉。", pinyin: "Wǒ píngshí zǎoshang 7 diǎn qǐchuáng, wǎnshàng 10 diǎn shuìjiào.", meaning: "Tôi thường dậy lúc 7 giờ sáng, đi ngủ lúc 10 giờ tối." },
+    { chinese: "我周末常去公园跑步。", pinyin: "Wǒ zhōumò cháng qù gōngyuán pǎobù.", meaning: "Cuối tuần tôi thường đi chạy bộ ở công viên." },
+    { chinese: "他晚上常看电影和听音乐。", pinyin: "Tā wǎnshàng cháng kàn diànyǐng hé tīng yīnyuè.", meaning: "Anh ấy thường xem phim và nghe nhạc vào buổi tối." },
+    { chinese: "我们家早饭常吃包子。", pinyin: "Wǒmen jiā zǎofàn cháng chī bāozi.", meaning: "Gia đình tôi thường ăn bánh bao cho bữa sáng." },
+    { chinese: "他的朋友下课以后常去打羽毛球。", pinyin: "Tā de péngyǒu xiàkè yǐhòu cháng qù dǎ yǔmáoqiú.", meaning: "Bạn của anh ấy thường đi chơi cầu lông sau khi tan học." },
+    { chinese: "我每天起床以后常去公园散步。", pinyin: "Wǒ měitiān qǐchuáng yǐhòu cháng qù gōngyuán sànbù.", meaning: "Mỗi ngày sau khi dậy, tôi thường đi dạo ở công viên." },
+]
+        };
+// Constants
+const MAX_SPEECH_TIME = 15000; // 15 seconds
+
+class ChineseSpeakingApp {
+    constructor() {
+        this.initializeProperties();
+        this.initializeElements();
+        this.setupSpeechRecognition();
+        this.attachEventListeners();
+        this.loadInitialState();
+    }
+
+    initializeProperties() {
+        this.sentences = [];
+        this.currentSentenceIndex = 0;
+        this.recording = false;
+        this.speechTimeout = null;
+        this.timerInterval = null;
+        this.lastRecognizedText = '';
+        this.streakCount = 0;
+        this.totalAccuracy = 0;
+        this.completedCount = 0;
+    }
+
+    initializeElements() {
+        // Get all DOM elements
+        this.elements = {
+            recordBtn: document.getElementById("recordButton"),
+            nextBtn: document.getElementById("nextButton"),
+            playPronunciationBtn: document.getElementById("playPronunciation"),
+            targetChinese: document.getElementById("target-chinese"),
+            targetPinyin: document.getElementById("target-pinyin"),
+            targetMeaning: document.getElementById("target-meaning"),
+            speechResult: document.getElementById("speech-result"),
+            progressBar: document.getElementById("progress"),
+            progressText: document.getElementById("progress-text"),
+            timer: document.getElementById("timer"),
+            lessonSelect: document.getElementById("lessonSelect"),
+            accuracyDisplay: document.getElementById("accuracy"),
+            completedDisplay: document.getElementById("completed"),
+            streakDisplay: document.getElementById("streak"),
+            feedback: document.getElementById("feedback")
+        };
+    }
+
+    setupSpeechRecognition() {
+        if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+            alert('Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói.');
+            return;
+        }
+
+        this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        this.recognition.lang = 'zh-CN';
+        this.recognition.interimResults = true;
+        this.recognition.continuous = false;
+
+        this.recognition.onresult = (event) => this.handleSpeechResult(event);
+        this.recognition.onend = () => this.handleSpeechEnd();
+        this.recognition.onerror = (event) => this.handleSpeechError(event);
+    }
+
+    attachEventListeners() {
+        this.elements.recordBtn.addEventListener('click', () => this.toggleRecording());
+        this.elements.nextBtn.addEventListener('click', () => this.nextSentence());
+        this.elements.lessonSelect.addEventListener('change', (e) => this.handleLessonChange(e));
+        this.elements.playPronunciationBtn.addEventListener('click', () => this.playPronunciation());
+    }
+
+    loadInitialState() {
+        this.loadSentence();
+    }
+
+    // Timer Management
+    startTimer() {
+        this.clearTimer();
+        
+        let timeLeft = MAX_SPEECH_TIME / 1000;
+        this.elements.timer.textContent = `${timeLeft}s`;
+
+        this.timerInterval = setInterval(() => {
+            timeLeft--;
+            this.elements.timer.textContent = `${timeLeft}s`;
+            
+            if (timeLeft <= 0) {
+                this.stopRecording();
+            }
+        }, 1000);
+    }
+
+    clearTimer() {
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+        this.elements.timer.textContent = '';
+    }
+
+    // Recording Management
+    startRecording() {
+        if (this.sentences.length === 0) {
+            alert("Vui lòng chọn bài học trước khi bắt đầu.");
+            return;
+        }
+
+        this.recording = true;
+        this.elements.recordBtn.classList.add("recording");
+        this.elements.recordBtn.querySelector("span").textContent = "Đang nghe...";
+        
+        this.recognition.start();
+        this.startTimer();
+
+        this.speechTimeout = setTimeout(() => {
+            this.stopRecording();
+        }, MAX_SPEECH_TIME);
+    }
+
+    stopRecording() {
+        this.recording = false;
+        this.elements.recordBtn.classList.remove("recording");
+        this.elements.recordBtn.querySelector("span").textContent = "Bắt đầu nói";
+        
+        this.recognition.stop();
+        
+        if (this.speechTimeout) {
+            clearTimeout(this.speechTimeout);
+            this.speechTimeout = null;
+        }
+        
+        this.clearTimer();
+    }
+
+    toggleRecording() {
+        if (!this.recording) {
+            this.startRecording();
+        } else {
+            this.stopRecording();
+        }
+    }
+
+    // Speech Recognition Handlers
+    handleSpeechResult(event) {
+        const transcript = Array.from(event.results)
+            .map(result => result[0].transcript)
+            .join('');
+
+        this.lastRecognizedText = transcript;
+        const comparison = this.compareTexts(
+            this.sentences[this.currentSentenceIndex].chinese, 
+            transcript
+        );
+        
+        this.elements.speechResult.innerHTML = comparison.result;
+        this.updateFeedback(comparison.score);
+        this.updateStats(comparison.score);
+    }
+
+    handleSpeechEnd() {
+        if (this.recording) {
+            this.stopRecording();
+        }
+    }
+
+    handleSpeechError(event) {
+        console.error('Speech recognition error:', event.error);
+        this.stopRecording();
+        alert('Có lỗi xảy ra với nhận dạng giọng nói. Vui lòng thử lại.');
+    }
+
+    // Audio Playback
+    playPronunciation() {
+        if (this.sentences.length > 0) {
+            const lessonNumber = this.elements.lessonSelect.value;
+            const audioPath = `data_speaking/Bài ${lessonNumber}/${this.currentSentenceIndex + 1}.mp3`;
+            
+            const audio = new Audio(audioPath);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                alert('Không thể phát âm thanh. Vui lòng kiểm tra lại file âm thanh.');
+            });
+        }
+    }
+
+    // Lesson Management
+    handleLessonChange(e) {
+        if (e.target.value) {
+            this.loadLessonData(parseInt(e.target.value));
+        } else {
+            this.sentences = [];
+            this.loadSentence();
+        }
+    }
+
+    loadLessonData(lessonNumber) {
+        try {
+            this.sentences = lessonData[lessonNumber] || [];
+            if (this.sentences.length === 0) {
+                throw new Error('Không tìm thấy dữ liệu bài học');
+            }
+            this.currentSentenceIndex = 0;
+            this.updateProgress();
+            this.loadSentence();
+        } catch (error) {
+            console.error('Error loading lesson data:', error);
+            alert('Không thể tải dữ liệu bài học. Vui lòng thử lại sau.');
+        }
+    }
+
+    // Navigation
+    nextSentence() {
+        if (this.currentSentenceIndex < this.sentences.length - 1) {
+            this.currentSentenceIndex++;
+            this.loadSentence();
+        } else {
+            alert('Chúc mừng! Bạn đã hoàn thành bài học.');
+            this.currentSentenceIndex = 0;
+            this.loadSentence();
+        }
+    }
+
+    // UI Updates
+    loadSentence() {
+        if (this.recording) {
+            this.stopRecording();
+        }
+        
+        this.elements.speechResult.innerHTML = "";
+        this.elements.feedback.className = 'feedback';
+        this.elements.feedback.textContent = '';
+        this.lastRecognizedText = '';
+        
+        this.updateProgress();
+        
+        if (this.sentences.length > 0) {
+            const sentence = this.sentences[this.currentSentenceIndex];
+            this.elements.targetChinese.textContent = sentence.chinese;
+            this.elements.targetPinyin.textContent = sentence.pinyin;
+            this.elements.targetMeaning.textContent = sentence.meaning;
+        } else {
+            this.elements.targetChinese.textContent = "Vui lòng chọn bài học";
+            this.elements.targetPinyin.textContent = "";
+            this.elements.targetMeaning.textContent = "";
+        }
+    }
+
+    updateProgress() {
+        if (this.sentences.length > 0) {
+            const progress = ((this.currentSentenceIndex + 1) / this.sentences.length) * 100;
+            this.elements.progressBar.style.width = `${progress}%`;
+            this.elements.progressText.textContent = 
+                `${this.currentSentenceIndex + 1}/${this.sentences.length} câu`;
+        } else {
+            this.elements.progressBar.style.width = '0%';
+            this.elements.progressText.textContent = '0/0 câu';
+        }
+    }
+
+    updateStats(accuracy) {
+        this.totalAccuracy = (this.totalAccuracy * this.completedCount + accuracy) / 
+                            (this.completedCount + 1);
+        this.completedCount++;
+        
+        if (accuracy >= 80) this.streakCount++;
+        else this.streakCount = 0;
+
+        this.elements.accuracyDisplay.textContent = `${Math.round(this.totalAccuracy)}%`;
+        this.elements.completedDisplay.textContent = this.completedCount;
+        this.elements.streakDisplay.textContent = this.streakCount;
+    }
+
+    updateFeedback(score) {
+        const feedback = this.elements.feedback;
+        if (score >= 80) {
+            feedback.className = 'feedback good';
+            feedback.textContent = 'Tuyệt vời! Phát âm rất tốt!';
+        } else if (score >= 60) {
+            feedback.className = 'feedback average';
+            feedback.textContent = 'Khá tốt! Cố gắng thêm nhé!';
+        } else {
+            feedback.className = 'feedback poor';
+            feedback.textContent = 'Cần cải thiện thêm. Hãy thử lại!';
+        }
+    }
+
+    // Text Comparison
+compareTexts(original, spoken) {
+    // Hàm để tách chuỗi thành mảng các ký tự, giữ lại dấu câu cho hiển thị
+    const separateTextAndPunctuation = (text) => {
+        const chars = [];
+        const punctuations = new Map(); // Lưu vị trí của dấu câu
+        
+        Array.from(text).forEach((char, index) => {
+            if (/[。，！？!?,.]/.test(char)) {
+                punctuations.set(chars.length - 1, char);
+            } else {
+                chars.push(char);
+            }
+        });
+        
+        return { chars, punctuations };
+    };
+
+    // Xử lý câu gốc và câu nói
+    const { chars: originalChars, punctuations: originalPunct } = separateTextAndPunctuation(original);
+    const { chars: spokenChars } = separateTextAndPunctuation(spoken);
+
+    let resultHtml = '';
+    let correctCount = 0;
+    
+    resultHtml += '<div class="spoken-text">';
+    
+    const maxLength = Math.max(originalChars.length, spokenChars.length);
+    let currentSpokenIndex = 0;
+
+    for (let i = 0; i < maxLength; i++) {
+        // Xử lý ký tự hiện tại
+        if (currentSpokenIndex < spokenChars.length) {
+            const spokenChar = spokenChars[currentSpokenIndex].toLowerCase();
+            const originalChar = i < originalChars.length ? originalChars[i].toLowerCase() : '';
+
+            if (originalChar === spokenChar) {
+                resultHtml += `<span class="correct">${spokenChars[currentSpokenIndex]}</span>`;
+                correctCount++;
+                
+                // Thêm dấu câu nếu có ở vị trí này trong câu gốc
+                if (originalPunct.has(i)) {
+                    resultHtml += `<span class="correct">${originalPunct.get(i)}</span>`;
+                }
+            } else {
+                resultHtml += `<span class="incorrect">${spokenChars[currentSpokenIndex]}</span>`;
+            }
+            currentSpokenIndex++;
+        } else if (i < originalChars.length) {
+            // Hiển thị dấu gạch dưới cho các ký tự còn thiếu
+            resultHtml += '<span class="incorrect">_</span>';
+        }
+    }
+
+    resultHtml += '</div>';
+
+    // Tính điểm dựa trên số ký tự đúng (không tính dấu câu)
+    const score = Math.round((correctCount / originalChars.length) * 100);
+    return { result: resultHtml, score };
+}
+}
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', () => {
+    window.chineseSpeakingApp = new ChineseSpeakingApp();
+});
+    </script>
+
+
+</body></html>
