@@ -855,7 +855,7 @@ compareTexts(original, spoken) {
         const punctuations = new Map(); // Lưu vị trí của dấu câu
         
         Array.from(text).forEach((char, index) => {
-            if (/[。，！？!?,.:]/.test(char)) {
+            if (/[。，！？：!?,.:]/.test(char)) {
                 punctuations.set(chars.length - 1, char);
             } else {
                 chars.push(char);
