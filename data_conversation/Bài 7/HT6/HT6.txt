@@ -1,7 +1,6 @@
 míngtiān shì zhōumò le, wǒmen wǎn yīdiǎn qǐchuáng ba.|明天是周末了，我们晚一点起床吧。|Ngày mai là cuối tuần rồi, chúng ta dậy muộn một chút nhé.
 nǐ míngtiān bù shì hé péngyǒu qù pǎobù ma?|你明天不是和朋友去跑步吗？|Ngày mai con không phải đi chạy bộ với bạn bè à?
-duìle. tāmen shuō míngtiān zǎoshang liù diǎn bàn qù pǎobù.|对了。他们说明天早上六点半去跑步。|Đúng rồi. Các bạn ý nói sáng mai sáu giờ rưỡi đi chạy bộ.
-pāobù huílái hái yīqǐ qù chī zǎofàn ne.|跑步回来还一起去吃早饭呢。|Chạy bộ về còn đi ăn sáng cùng nhau nữa.
+duìle. tāmen shuō míngtiān zǎoshang liù diǎn bàn qù pǎobù. pāobù huílái hái yīqǐ qù chī zǎofàn ne.|对了。他们说明天早上六点半去跑步。跑步回来还一起去吃早饭呢。|Đúng rồi. Các bạn ý nói sáng mai sáu giờ rưỡi đi chạy bộ. Chạy bộ về còn đi ăn sáng cùng nhau nữa.
 nà nǐ míngtiān bù zài jiā chī zǎofàn ma?|那你明天不在家吃早饭吗？|Vậy con ngày mai không ăn sáng ở nhà à?
 duì. nǐ hé bàba yīqǐ chī zǎofàn ba.|对。你和爸爸一起吃早饭吧。|Vâng. mẹ ăn sáng cùng bố nhé.
 nà nǐ shàngwǔ jǐ diǎn huí jiā ne, zhōngwǔ zài jiā chīfàn ma?|那你上午几点回家呢，中午在家吃饭吗？|Vậy con buổi sáng mấy giờ về nhà, trưa có ăn cơm ở nhà không?
