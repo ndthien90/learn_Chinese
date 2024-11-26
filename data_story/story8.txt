@@ -2,31 +2,84 @@
 在一个偏远的小村庄里，有一位特殊的老师。他是一名聋哑人，但他坚持为村里的孩子们上课，教他们识字、读书和写字。起初，很多孩子对他并不理解，觉得他无法用语言表达，教学一定会很无趣。但渐渐地，他们发现，这位老师用手语和真心让每一个孩子都感受到学习的乐趣。他用绘图、肢体语言甚至用微笑表达知识，孩子们在他的课堂上学到了许多，也被他对教育的热忱深深感动。多年后，很多学生走出了村庄，成了有用之才，但他们始终记得这位“无声的老师”。
 寓意：教育的力量不在于语言，而在于爱与坚持。
 2. Từ vựng
-偏远 (piānyuǎn): Hẻo lánh, xa xôi.
-特殊 (tèshū): Đặc biệt.
-聋哑人 (lóng yǎ rén): Người điếc và câm.
-坚持 (jiānchí): Kiên trì.
-上课 (shàngkè): Dạy học.
-识字 (shí zì): Nhận chữ, biết chữ.
-读书 (dúshū): Đọc sách.
-写字 (xiězì): Viết chữ.
-起初 (qǐchū): Ban đầu.
-不理解 (bù lǐjiě): Không hiểu.
-无法 (wúfǎ): Không thể.
-语言 (yǔyán): Ngôn ngữ.
-表达 (biǎodá): Diễn đạt.
-无趣 (wúqù): Không thú vị, nhàm chán.
-渐渐地 (jiànjiàn de): Dần dần.
-手语 (shǒuyǔ): Ngôn ngữ ký hiệu.
-真心 (zhēn xīn): Chân thành, thật lòng.
-乐趣 (lèqù): Niềm vui, thú vị.
-绘图 (huìtú): Vẽ hình.
-肢体语言 (zhītǐ yǔyán): Ngôn ngữ cơ thể.
-微笑 (wēixiào): Nụ cười.
-热忱 (rèchén): Nhiệt huyết.
-有用之才 (yǒuyòng zhī cái): Người tài có ích.
-始终 (shǐzhōng): Luôn luôn, suốt từ đầu đến cuối.
-记得 (jìdé): Nhớ.
+在 (zài): Tại
+一个 (yī gè): Một
+偏远 (piānyuǎn): Hẻo lánh
+小村庄 (xiǎo cūnzhuāng): Làng nhỏ
+里 (lǐ): Ở
+有 (yǒu): Có
+一位 (yī wèi): Một (người)
+特殊 (tèshū): Đặc biệt
+老师 (lǎoshī): Giáo viên
+他 (tā): Ông ấy
+是 (shì): Là
+聋哑人 (lóngyǎrén): Người khiếm thính và câm
+但 (dàn): Nhưng
+坚持 (jiānchí): Kiên trì
+为 (wèi): Để
+村里 (cūnlǐ): Trong làng
+孩子们 (háizimen): Trẻ em
+上课 (shàngkè): Dạy học
+教 (jiào): Dạy
+识字 (shízì): Nhận biết chữ
+读书 (dúshū): Đọc sách
+写字 (xiězì): Viết chữ
+起初 (qǐchū): Ban đầu
+很多 (hěnduō): Nhiều
+对 (duì): Đối với
+并不 (bìng bù): Không
+理解 (lǐjiě): Hiểu
+觉得 (juéde): Cảm thấy
+无法 (wúfǎ): Không thể
+用 (yòng): Dùng
+语言 (yǔyán): Ngôn ngữ
+表达 (biǎodá): Thể hiện
+教学 (jiàoxué): Giảng dạy
+一定 (yīdìng): Nhất định
+会 (huì): Sẽ
+无趣 (wúqù): Chán nản
+渐渐 (jiànjiàn): Dần dần
+发现 (fāxiàn): Phát hiện
+这位 (zhè wèi): Vị này
+手语 (shǒuyǔ): Ngôn ngữ ký hiệu
+真心 (zhēnxīn): Tấm lòng chân thành
+让 (ràng): Khiến
+每一个 (měi yī gè): Mỗi một
+感受到 (gǎnshòudào): Cảm nhận được
+学习 (xuéxí): Học
+乐趣 (lèqù): Niềm vui
+绘图 (huìtú): Vẽ
+肢体语言 (zhītǐ yǔyán): Ngôn ngữ cơ thể
+甚至 (shènzhì): Thậm chí
+微笑 (wēixiào): Nụ cười
+知识 (zhīshì): Kiến thức
+课堂 (kètáng): Lớp học
+学到了 (xué dào le): Học được
+许多 (xǔduō): Nhiều
+也 (yě): Cũng
+被 (bèi): Bị
+教育 (jiàoyù): Giáo dục
+热忱 (rèchén): Nhiệt huyết
+深深 (shēn shēn): Sâu sắc
+感动 (gǎndòng): Cảm động
+多年后 (duōnián hòu): Nhiều năm sau
+学生 (xuéshēng): Học sinh
+走出 (zǒuchū): Ra ngoài
+成了 (chéngle): Trở thành
+有用之才 (yǒuyòng zhī cái): Người có ích
+始终 (shǐzhōng): Vẫn luôn
+记得 (jìde): Nhớ
+“无声的老师” (wúshēng de lǎoshī): "Giáo viên không lời"
+Tóm tắt
+寓意 (yùyì): Ý nghĩa
+教育 (jiàoyù): Giáo dục
+力量 (lìliàng): Sức mạnh
+不在于 (bù zàiyú): Không nằm ở
+语言 (yǔyán): Ngôn ngữ
+而在于 (ér zàiyú): Mà nằm ở
+爱 (ài): Tình yêu
+与 (yǔ): Và
+坚持 (jiānchí): Kiên trì
 3. Ngữ pháp
 Câu diễn tả sự bắt đầu với 起初 (qǐchū)
 Cấu trúc này được dùng để chỉ một sự kiện bắt đầu hoặc tình huống ban đầu:

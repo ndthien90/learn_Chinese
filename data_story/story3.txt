@@ -2,32 +2,84 @@
 一位六十多岁的老人，年轻时因为生活所迫放弃了学习音乐的梦想。退休后，他决定重新追逐自己的梦想，报名参加了钢琴课。然而，他的朋友和家人却嘲笑他，认为他年纪大了，不该再浪费时间在这些“无用”的事情上。老人却没有动摇，他每天坚持练习，不断努力改进技艺。五年后，他不仅学会了弹奏许多优美的曲子，还成为了当地音乐会的特邀表演者。他用自己的故事告诉大家：“梦想不分年龄，只要开始，就永远不晚。”
 寓意：追逐梦想从来没有过晚，只要心中有热情，就能创造奇迹。
 2. Từ vựng
-老人 (lǎorén): Người già, cụ già.
-年轻时 (niánqīng shí): Khi còn trẻ.
-生活所迫 (shēnghuó suǒ pò): Bị áp lực từ cuộc sống.
-放弃 (fàngqì): Từ bỏ.
-梦想 (mèngxiǎng): Ước mơ.
-退休 (tuìxiū): Nghỉ hưu.
-决定 (juédìng): Quyết định.
-追逐 (zhuīzhú): Theo đuổi.
-报名 (bàomíng): Đăng ký.
-钢琴课 (gāngqín kè): Lớp học piano.
-嘲笑 (cháoxiào): Chế nhạo, cười nhạo.
-浪费时间 (làngfèi shíjiān): Lãng phí thời gian.
-无用 (wúyòng): Vô dụng, không có ích.
-动摇 (dòngyáo): Lung lay, dao động.
-坚持 (jiānchí): Kiên trì.
-练习 (liànxí): Luyện tập.
-改进 (gǎijìn): Cải thiện, nâng cao.
-技艺 (jìyì): Kỹ nghệ, kỹ năng.
-弹奏 (tánzòu): Biểu diễn (nhạc cụ).
-优美 (yōuměi): Hay, đẹp, duyên dáng.
-曲子 (qǔzi): Bản nhạc.
-音乐会 (yīnyuèhuì): Buổi hòa nhạc.
-特邀表演者 (tèyāo biǎoyǎnzhě): Nghệ sĩ biểu diễn được mời đặc biệt.
-年龄 (niánlíng): Tuổi tác.
-热情 (rèqíng): Nhiệt huyết.
-奇迹 (qíjì): Kỳ tích, điều kỳ diệu.
+追梦 (zhuī mèng): Theo đuổi giấc mơ
+老人 (lǎorén): Người già
+一位 (yī wèi): Một
+六十多岁 (liùshí duō suì): Hơn sáu mươi tuổi
+年轻 (niánqīng): Trẻ, thanh niên
+时 (shí): Thời gian
+因为 (yīnwèi): Bởi vì
+生活 (shēnghuó): Cuộc sống
+所迫 (suǒ pò): Bị ép buộc
+放弃 (fàngqì): Bỏ qua, từ bỏ
+学习 (xuéxí): Học
+音乐 (yīnyuè): Âm nhạc
+梦想 (mèngxiǎng): Giấc mơ
+退休 (tuìxiū): Nghỉ hưu
+决定 (juédìng): Quyết định
+重新 (chóngxīn): Lại, một lần nữa
+追逐 (zhuīzhú): Theo đuổi
+报名 (bàomíng): Đăng ký
+参加 (cānjiā): Tham gia
+钢琴 (gāngqín): Piano
+课 (kè): Lớp học
+然而 (rán'ér): Tuy nhiên
+朋友 (péngyǒu): Bạn bè
+家人 (jiārén): Gia đình
+嘲笑 (cháoxiào): Châm chọc, chế nhạo
+年纪 (niánjì): Tuổi tác
+大了 (dà le): Lớn rồi
+不该 (bù gāi): Không nên
+再 (zài): Lại
+浪费 (làngfèi): Lãng phí
+时间 (shíjiān): Thời gian
+在 (zài): Vào
+这些 (zhèxiē): Những cái này
+无用 (wúyòng): Vô dụng
+事情 (shìqíng): Việc
+动摇 (dòngyáo): Dao động, lung lay
+每天 (měitiān): Mỗi ngày
+坚持 (jiānchí): Kiên trì
+练习 (liànxí): Luyện tập
+不断 (bùduàn): Không ngừng
+努力 (nǔlì): Nỗ lực
+改进 (gǎijìn): Cải thiện
+技艺 (jìyì): Kỹ năng
+五年 (wǔ nián): Năm năm
+后 (hòu): Sau
+不仅 (bùjǐn): Không chỉ
+学会 (xuéhuì): Học được
+弹奏 (tánzòu): Biểu diễn (đàn)
+许多 (xǔduō): Nhiều
+优美 (yōuměi): Xinh đẹp, thanh nhã
+曲子 (qǔzi): Bản nhạc
+还 (hái): Còn
+成为 (chéngwéi): Trở thành
+当地 (dāngdì): Địa phương
+音乐会 (yīnyuèhuì): Buổi hòa nhạc
+特邀 (tè yāo): Mời đặc biệt
+表演者 (biǎoyǎn zhě): Người biểu diễn
+用 (yòng): Dùng
+故事 (gùshì): Câu chuyện
+告诉 (gàosù): Nói với
+大家 (dàjiā): Mọi người
+不分 (bù fēn): Không phân biệt
+年龄 (niánlíng): Độ tuổi
+只要 (zhǐyào): Chỉ cần
+开始 (kāishǐ): Bắt đầu
+永远 (yǒngyuǎn): Mãi mãi
+不晚 (bù wǎn): Không muộn
+寓意 (yùyì): Ý nghĩa
+追逐 (zhuīzhú): Theo đuổi
+从来 (cónglái): Từ trước đến nay
+没有 (méiyǒu): Không có
+过 (guò): Qua
+心中 (xīnzhōng): Trong lòng
+热情 (rèqíng): Nhiệt tình, nhiệt huyết
+就 (jiù): Thì
+能 (néng): Có thể
+创造 (chuàngzào): Tạo ra
+奇迹 (qíjì): Kỳ tích
 3. Ngữ pháp
 原因状语从句 (Câu trạng ngữ chỉ nguyên nhân):
 因为生活所迫放弃了学习音乐的梦想

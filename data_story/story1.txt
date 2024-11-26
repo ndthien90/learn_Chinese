@@ -2,29 +2,93 @@
 一个年轻人自小害怕失败。他总觉得自己不够聪明，不够优秀，常常在尝试前就选择退缩。一天，他在公园散步时，无意间注意到一只小蜘蛛。它在尝试爬上一堵高墙，但每次爬到一半都会滑落下来。然而，小蜘蛛并没有放弃，一次又一次地努力，终于成功地爬到了墙顶。年轻人看到这一幕，深受启发。他开始反思自己的生活，决定不再畏惧失败，而是学会从失败中吸取教训，继续前行。最终，他在工作和生活中都取得了令人瞩目的成就。
 寓意：失败是成功的垫脚石，只要坚持，总会有到达顶峰的一天。
 2. Từ vựng
-年轻人 (niánqīngrén): Người trẻ, thanh niên.
-害怕 (hàipà): Sợ hãi.
-失败 (shībài): Thất bại.
-聪明 (cōngmíng): Thông minh.
-优秀 (yōuxiù): Xuất sắc, ưu tú.
-退缩 (tuìsuō): Lùi bước, từ bỏ.
-公园 (gōngyuán): Công viên.
-散步 (sànbù): Đi dạo.
-无意间 (wú yì jiān): Vô tình, không cố ý.
-注意到 (zhùyì dào): Chú ý, nhận thấy.
-小蜘蛛 (xiǎo zhīzhū): Con nhện nhỏ.
-爬 (pá): Leo, trèo.
-高墙 (gāo qiáng): Tường cao.
-滑落 (huáluò): Trượt xuống.
-放弃 (fàngqì): Từ bỏ.
-努力 (nǔlì): Nỗ lực, cố gắng.
-成功 (chénggōng): Thành công.
-启发 (qǐfā): Thức tỉnh, khai sáng.
-反思 (fǎnsī): Suy ngẫm lại.
-吸取 (xīqǔ): Hấp thụ, rút ra.
-教训 (jiàoxùn): Bài học.
-前行 (qiánxíng): Tiến lên, tiếp tục đi.
-成就 (chéngjiù): Thành tựu.
+一个 (yī gè): Một
+年轻人 (niánqīngrén): Người trẻ, thanh niên
+自小 (zìxiǎo): Từ nhỏ
+害怕 (hàipà): Sợ hãi
+失败 (shībài): Thất bại
+他 (tā): Anh ấy
+总 (zǒng): Luôn, thường
+觉得 (juédé): Cảm thấy
+自己 (zìjǐ): Bản thân
+不够 (bùgòu): Không đủ
+聪明 (cōngmíng): Thông minh
+优秀 (yōuxiù): Xuất sắc, ưu tú
+常常 (chángcháng): Thường thường
+在 (zài): Tại, ở
+尝试 (chángshì): Thử nghiệm
+前 (qián): Trước
+选择 (xuǎnzé): Lựa chọn
+退缩 (tuìsuō): Rút lui
+一天 (yītiān): Một ngày
+公园 (gōngyuán): Công viên
+散步 (sànbù): Đi dạo
+时 (shí): Khi
+无意间 (wúyìjiān): Vô tình
+注意到 (zhùyìdào): Chú ý đến
+一只 (yī zhī): Một con
+小 (xiǎo): Nhỏ, bé
+蜘蛛 (zhīzhū): Nhện
+它 (tā): Nó
+尝试 (chángshì): Thử
+爬 (pá): Leo
+上 (shàng): Lên
+一堵 (yī dǔ): Một bức
+高墙 (gāoqiáng): Tường cao
+但 (dàn): Nhưng
+每次 (měicì): Mỗi lần
+爬到 (pádào): Leo đến
+一半 (yībàn): Nửa
+都 (dōu): Đều
+会 (huì): Sẽ
+滑落 (huáluò): Trượt xuống
+下来 (xiàlái): Xuống
+然而 (rán'ér): Tuy nhiên
+并 (bìng): Cũng
+没有 (méiyǒu): Không có
+放弃 (fàngqì): Bỏ cuộc
+一次 (yīcì): Một lần
+又 (yòu): Lại
+努力 (nǔlì): Nỗ lực
+终于 (zhōngyú): Cuối cùng
+成功 (chénggōng): Thành công
+到 (dào): Đến
+墙顶 (qiángdǐng): Đỉnh tường
+看到 (kàndào): Thấy
+这一幕 (zhè yī mù): Cảnh tượng này
+深受 (shēnshòu): Rất được
+启发 (qǐfā): Khơi dậy
+开始 (kāishǐ): Bắt đầu
+反思 (fǎnsī): Suy ngẫm
+生活 (shēnghuó): Cuộc sống
+决定 (juédìng): Quyết định
+不再 (bù zài): Không còn
+畏惧 (wèijù): Sợ hãi
+而是 (ér shì): Mà là
+学会 (xuéhuì): Học cách
+从 (cóng): Từ
+吸取 (xīqǔ): Rút ra
+教训 (jiàoxun): Bài học
+继续 (jìxù): Tiếp tục
+前行 (qiánxíng): Tiến bước
+最终 (zuìzhōng): Cuối cùng
+工作 (gōngzuò): Công việc
+和 (hé): Và
+取得 (qǔdé): Đạt được
+令人 (lìng rén): Khiến người
+瞩目 (zhǔmù): Chú ý
+成就 (chéngjiù): Thành tựu
+寓意 (yùyì): Ý nghĩa
+成功 (chénggōng): Thành công
+垫脚石 (diànjiǎoshí): Đá kê chân
+只要 (zhǐyào): Chỉ cần
+坚持 (jiānchí): Kiên trì
+总会 (zǒng huì): Chắc chắn sẽ
+有 (yǒu): Có
+到达 (dàodá): Đến được
+顶峰 (dǐngfēng): Đỉnh cao
+的 (de): Của
+一天 (yītiān): Một ngày
 3. Ngữ pháp
 Câu với "害怕" (hàipà):
 “他总觉得自己不够聪明，不够优秀，常常在尝试前就选择退缩。”

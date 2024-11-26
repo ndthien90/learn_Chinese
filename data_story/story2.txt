@@ -2,26 +2,101 @@
 一个单亲母亲每天早出晚归，打几份工来维持生计，为她的孩子创造更好的生活条件。孩子常常抱怨母亲为什么总是那么忙碌，很少陪伴他。一次，他偷偷跟着母亲去工作，发现她在烈日下弯腰劳作，一天下来，脚上全是水泡，手也被磨出了血。孩子第一次看到母亲的辛苦，眼泪止不住地流。他跑过去抱住母亲，哭着说：“妈妈，对不起，我以后一定会更加努力，不让您再这么辛苦。”从那天起，他用尽全力学习和工作，最终实现了梦想，为母亲提供了安稳的晚年生活。
 寓意：母爱是无私的，为了孩子的未来，她们愿意付出一切。
 2. Từ vựng
-单亲母亲 (dānqīn mǔqīn): Mẹ đơn thân.
-早出晚归 (zǎochū wǎnguī): Đi sớm về khuya.
-维持生计 (wéichí shēngjì): Duy trì cuộc sống.
-创造 (chuàngzào): Tạo ra, sáng tạo.
-条件 (tiáojiàn): Điều kiện.
-抱怨 (bàoyuàn): Phàn nàn, trách móc.
-忙碌 (mánglù): Bận rộn.
-烈日 (lièrì): Nắng gắt, ánh mặt trời chói chang.
-弯腰 (wānyāo): Cúi lưng, gập người.
-劳作 (láozuò): Lao động.
-水泡 (shuǐpào): Phồng rộp, mụn nước.
-磨出血 (mó chūxuè): Bị mài chảy máu.
-辛苦 (xīnkǔ): Cực khổ, vất vả.
-眼泪 (yǎnlèi): Nước mắt.
-止不住 (zhǐbùzhù): Không kìm được, không dừng lại được.
-努力 (nǔlì): Nỗ lực, cố gắng.
-安稳 (ānwěn): Ổn định, an toàn.
-晚年生活 (wǎnnián shēnghuó): Cuộc sống tuổi già.
-无私 (wúsī): Vô tư, không ích kỷ.
-付出 (fùchū): Hi sinh, cống hiến.
+一个 (yī gè): Một
+单亲 (dānqīn): Đơn thân
+母亲 (mǔqīn): Mẹ
+每天 (měitiān): Mỗi ngày
+早出晚归 (zǎo chū wǎn guī): Đi sớm về muộn
+打 (dǎ): Làm (công việc)
+几(jǐ ): Vài, mấy
+份 (fèn): Phần, suất
+工 (gōng): Công việc
+来 (lái): Để
+维持 (wéichí): Duy trì
+生计 (shēngjì): Sinh kế, kế sinh nhai
+为 (wèi): Để
+她 (tā): Cô ấy
+孩子 (háizi): Đứa trẻ
+创造 (chuàngzào): Tạo ra
+更好 (gèng hǎo): Tốt hơn
+生活条件 (shēnghuó tiáojiàn): Điều kiện sống
+生活 (shēnghuó ): Sinh sống, cuộc sống
+条件 tiáojiàn): Điều kiện
+常常 (chángcháng): Thường xuyên
+抱怨 (bàoyuàn): Phàn nàn
+为什么 (wèishénme): Tại sao
+总是 (zǒng shì): Luôn luôn
+那么 (nàme): Như vậy
+忙碌 (mánglù): Bận rộn
+很少 (hěn shǎo): Rất ít
+陪伴 (péibàn): Cùng ở bên
+他 (tā): Anh ấy
+一次 (yīcì): Một lần
+偷偷 (tōutōu): Lén lút
+跟着 (gēnzhe): Theo dõi
+去 (qù): Đi
+工作 (gōngzuò): Làm việc
+发现 (fāxiàn): Phát hiện
+她 (tā): Cô ấy
+烈日 (lièrì): Nắng gắt
+下 (xià): Dưới
+弯腰 (wān yāo): Cúi xuống
+劳作 (láozuò): Lao động, làm việc chân tay
+一天下来 (yī tiān xiàlái): Cả một ngày
+脚上 (jiǎo shàng): Trên chân
+全是 (quán shì): Đều là
+水泡 (shuǐpào): Bọng nước
+手 (shǒu): Tay
+也 (yě): Cũng
+被磨出 (bèi mó chū): Bị mài ra
+血 (xuè): Máu
+第一次 (dì yī cì): Lần đầu tiên
+看到 (kàn dào): Thấy
+辛苦 (xīnkǔ): Khó khăn
+眼泪 (yǎnlèi): Nước mắt
+止不住 (zhǐ bù zhù): Không ngừng lại
+流 (liú): Chảy
+他 (tā): Anh ấy
+跑过去 (pǎo guòqù): Chạy tới
+抱住 (bào zhù): Ôm chặt
+哭着 (kūzhe): Khóc
+说 (shuō): Nói
+妈妈 (māmā): Mẹ
+对不起 (duìbùqǐ): Xin lỗi
+以后 (yǐhòu): Sau này
+一定 (yīdìng): Nhất định
+会 (huì): Sẽ
+更加 (gèngjiā): Càng thêm
+努力 (nǔlì): Nỗ lực
+不让 (bù ràng): Không để
+您 (nín): Ngài (lịch sự)
+再 (zài): Lại
+这么 (zhème): Như vậy
+辛苦 (xīnkǔ): Khó khăn
+从那天起 (cóng nà tiān qǐ): Từ ngày đó trở đi
+用尽全力 (yòng jìn quánlì): Dùng hết sức lực
+学习 (xuéxí): Học tập
+和 (hé): Và
+工作 (gōngzuò): Làm việc
+最终 (zuìzhōng): Cuối cùng
+实现 (shíxiàn): Thực hiện
+梦想 (mèngxiǎng): Giấc mơ
+为 (wèi): Để
+提供 (tígōng): Cung cấp
+安稳 (ānwěn): Ổn định
+晚年 (wǎnián): Cuộc sống về già
+生活 (shēnghuó): Cuộc sống
+寓意 (yùyì): Ngụ ý
+母爱 (mǔ ài): Tình mẹ
+是 (shì): Là
+无私 (wúsī): Vô tư
+为了 (wèile): Vì
+孩子的 (háizi de): Của đứa trẻ
+未来 (wèilái): Tương lai
+她们 (tāmen): Họ (nữ)
+愿意 (yuànyì): Sẵn lòng
+付出 (fùchū): Hy sinh
+一切 (yīqiè): Tất cả.
 3. Ngữ pháp
 并列动词结构 (Cấu trúc động từ liên tiếp):
 早出晚归: Biểu thị hai hành động song song.

@@ -2,33 +2,113 @@
 一个年轻时因事故失明的男人，从未停止对生活的热爱。他决定挑战一项常人都难以完成的任务——攀登高山。起初，周围的人都劝他放弃，认为这是不可能完成的事情。然而，他却说：“眼睛看不到，但心灵可以感受到。”在朋友的协助下，他克服了重重困难，经历了无数次跌倒与站起，终于到达了山顶。当他站在山顶时，深吸一口清新的空气，脸上露出了满足的微笑。他说：“虽然我看不到风景，但我能感受到心灵的高度。”
 寓意：生活的限制并不来自外界，而是源于自己的内心，只要心中有信念，就能战胜一切。
 2. Từ vựng
-盲人 (mángrén): Người mù.
-年轻时 (niánqīng shí): Khi còn trẻ.
-因事故 (yīn shìgù): Do tai nạn.
-失明 (shīmíng): Mù, mất thị lực.
-挑战 (tiǎozhàn): Thử thách.
-常人 (chángrén): Người bình thường.
-完成 (wánchéng): Hoàn thành.
-任务 (rènwù): Nhiệm vụ.
-攀登 (pāndēng): Leo trèo.
-高山 (gāoshān): Núi cao.
-劝 (quàn): Khuyên.
-放弃 (fàngqì): Từ bỏ.
-感受到 (gǎnshòu dào): Cảm nhận được.
-协助 (xiézhù): Hỗ trợ.
-克服 (kèfú): Vượt qua.
-重重困难 (chóngchóng kùnnán): Muôn vàn khó khăn.
-经历 (jīnglì): Trải qua.
-跌倒 (diēdǎo): Ngã.
-站起 (zhànqǐ): Đứng lên.
-山顶 (shāndǐng): Đỉnh núi.
-清新的空气 (qīngxīn de kōngqì): Không khí trong lành.
-满足的微笑 (mǎnzú de wéixiào): Nụ cười mãn nguyện.
-风景 (fēngjǐng): Phong cảnh.
-心灵的高度 (xīnlíng de gāodù): Chiều cao của tâm hồn.
-信念 (xìnniàn): Niềm tin.
-战胜 (zhànshèng): Chiến thắng.
-限制 (xiànzhì): Giới hạn.
+一个 (yī gè): Một
+年轻 (niánqīng): Trẻ, thanh niên
+时 (shí): Thời gian
+因为 (yīnwèi): Bởi vì
+事故 (shìgù): Tai nạn
+失明 (shīmíng): Bị mù
+男人 (nánrén): Người đàn ông
+从未 (cóngwèi): Chưa bao giờ
+停止 (tíngzhǐ): Dừng lại
+对 (duì): Đối với
+生活 (shēnghuó): Cuộc sống
+热爱 (rè'ài): Yêu thích mãnh liệt
+他 (tā): Anh ấy
+决定 (juédìng): Quyết định
+挑战 (tiǎozhàn): Thách thức
+一项 (yī xiàng): Một nhiệm vụ
+常人 (chángrén): Người bình thường
+都 (dōu): Đều
+难以 (nányǐ): Khó có thể
+完成 (wánchéng): Hoàn thành
+任务 (rènwu): Nhiệm vụ
+攀登 (pāndēng): Leo núi
+高山 (gāoshān): Núi cao
+起初 (qǐchū): Ban đầu
+周围 (zhōuwéi): Xung quanh
+人 (rén): Người
+劝 (quàn): Khuyên
+放弃 (fàngqì): Bỏ qua, từ bỏ
+认为 (rènwéi): Cho rằng
+这是 (zhè shì): Đây là
+不可能 (bù kěnéng): Không thể
+完成 (wánchéng): Hoàn thành
+的 (de): (trợ từ sở hữu)
+事情 (shìqíng): Việc
+然而 (rán'ér): Tuy nhiên
+他说 (tā shuō): Anh ấy nói
+眼睛 (yǎnjīng): Mắt
+看不到 (kàn bù dào): Không nhìn thấy
+但 (dàn): Nhưng
+心灵 (xīnlíng): Tâm hồn
+可以 (kěyǐ): Có thể
+感受到 (gǎnshòudào): Cảm nhận được
+在 (zài): Tại
+朋友 (péngyǒu): Bạn bè
+的 (de): (trợ từ sở hữu)
+协助 (xiézhù): Hỗ trợ
+下 (xià): Dưới
+克服 (kèfú): Vượt qua
+重重 (zhòngzhòng): Nhiều lớp, chồng chất
+困难 (kùnnán): Khó khăn
+经历 (jīnglì): Trải qua
+无数 (wúshù): Vô số
+次 (cì): Lần
+跌倒 (diēdǎo): Ngã
+与 (yǔ): Và
+站起 (zhànqǐ): Đứng dậy
+终于 (zhōngyú): Cuối cùng
+到达 (dàodá): Đến
+山顶 (shāndǐng): Đỉnh núi
+当 (dāng): Khi
+他 (tā): Anh ấy
+站 (zhàn): Đứng
+在 (zài): Tại
+山顶 (shāndǐng): Đỉnh núi
+时 (shí): Thời gian
+深吸 (shēn xī): Hít sâu
+一口 (yī kǒu): Một hơi
+清新 (qīngxīn): Tươi mới
+的 (de): (trợ từ sở hữu)
+空气 (kōngqì): Không khí
+脸上 (liǎn shàng): Trên mặt
+露出 (lòuchū): Lộ ra
+满足 (mǎnzú): Hài lòng
+的 (de): (trợ từ sở hữu)
+微笑 (wēixiào): Nụ cười
+他说 (tā shuō): Anh ấy nói
+虽然 (suīrán): Mặc dù
+我 (wǒ): Tôi
+看不到 (kàn bù dào): Không nhìn thấy
+风景 (fēngjǐng): Cảnh vật
+但 (dàn): Nhưng
+我 (wǒ): Tôi
+能 (néng): Có thể
+感受到 (gǎnshòudào): Cảm nhận được
+心灵 (xīnlíng): Tâm hồn
+的 (de): (trợ từ sở hữu)
+高度 (gāodù): Độ cao
+寓意 (yùyì): Ngụ ý
+生活 (shēnghuó): Cuộc sống
+的 (de): (trợ từ sở hữu)
+限制 (xiànzhì): Giới hạn
+并不 (bìng bù): Không
+来自 (lái zì): Từ
+外界 (wàijiè): Thế giới bên ngoài
+而是 (ér shì): Mà là
+源于 (yuán yú): Nguồn gốc từ
+自己 (zìjǐ): Bản thân
+的 (de): (trợ từ sở hữu)
+内心 (nèixīn): Nội tâm
+只要 (zhǐyào): Chỉ cần
+心中 (xīnzhōng): Trong lòng
+有 (yǒu): Có
+信念 (xìnniàn): Niềm tin
+就 (jiù): Thì
+能 (néng): Có thể
+战胜 (zhànshèng): Vượt qua
+一切 (yīqiè): Tất cả
 3. Ngữ pháp
 原因状语从句 (Câu trạng ngữ chỉ nguyên nhân):
 因为事故失明

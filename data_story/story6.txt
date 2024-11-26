@@ -2,28 +2,99 @@
 一个农夫的村庄多年来饱受干旱，土地贫瘠，庄稼难以生长。一天，他在村里的荒地上种下了一棵小树，并每天细心地照料它。村民们嘲笑他说：“这片地根本种不出东西，你这是浪费时间。”但农夫却不以为然，日复一日地坚持给小树浇水、施肥。几年后，这棵小树不仅茁壮成长，还吸引了更多的植物生长。十年后，这片荒地竟然变成了郁郁葱葱的绿洲，为村民们带来了新的希望和生计。
 寓意：耐心与坚持是改变困境的力量，只要种下希望，总会有收获的那一天。
 2. Từ vựng
-农夫 (nóngfū): Nông dân
-村庄 (cūnzhuāng): Làng, thôn
+一个 (yī gè): Một
+农夫 (nóngfū): Người nông dân
+的 (de): (trợ từ sở hữu)
+村庄 (cūnzhuāng): Làng
+多年来 (duōnián lái): Nhiều năm qua
+饱受 (bǎoshòu): Chịu đựng
 干旱 (gānhàn): Hạn hán
-土地贫瘠 (tǔdì pínjí): Đất đai cằn cỗi
-庄稼 (zhuāngjià): Cây trồng, mùa màng
-生长 (shēngzhǎng): Sinh trưởng, lớn lên
-荒地 (huāngdì): Đất hoang, đất bỏ hoang
-种下 (zhòngxià): Trồng xuống
-小树 (xiǎo shù): Cây non
-细心 (xìxīn): Tỉ mỉ, cẩn thận
+土地 (tǔdì): Đất đai
+贫瘠 (pínjí): Cằn cỗi
+庄稼 (zhuāngjià): Cây trồng
+难以 (nányǐ): Khó có thể
+生长 (shēngzhǎng): Tăng trưởng
+一天 (yītiān): Một ngày
+他 (tā): Anh ấy
+在 (zài): Tại
+村里 (cūnlǐ): Trong làng
+荒地 (huāngdì): Đất hoang
+上 (shàng): Trên
+种下 (zhòng xià): Gieo trồng
+一棵 (yī kē): Một cây (lượng từ cho cây)
+小树 (xiǎo shù): Cây nhỏ
+并 (bìng): Và
+每天 (měitiān): Mỗi ngày
+细心 (xìxīn): Tỉ mỉ
+地 (de): (trợ từ)
 照料 (zhàoliào): Chăm sóc
+它 (tā): Nó
 村民 (cūnmín): Dân làng
-嘲笑 (cháoxiào): Cười nhạo
+嘲笑 (cháoxiào): Châm chọc, chế nhạo
+说 (shuō): Nói
+这片 (zhè piàn): Mảnh đất này
+根本 (gēnběn): Căn bản
+种不出 (zhòng bù chū): Không thể trồng ra
+东西 (dōngxi): Thứ gì đó
+你 (nǐ): Bạn
+这是 (zhè shì): Đây là
 浪费 (làngfèi): Lãng phí
-坚持 (jiānchí): Kiên trì, kiên quyết
-浇水 (jiāoshuǐ): Tưới nước
+时间 (shíjiān): Thời gian
+但 (dàn): Nhưng
+农夫 (nóngfū): Người nông dân
+却 (què): Lại
+不以为然 (bù yǐ wéi rán): Không để tâm
+日复一日 (rì fù yī rì): Ngày qua ngày
+坚持 (jiānchí): Kiên trì
+给 (gěi): Cho
+小树 (xiǎo shù): Cây nhỏ
+浇水 (jiāo shuǐ): Tưới nước
 施肥 (shīféi): Bón phân
-茁壮成长 (zhuózhuàng chéngzhǎng): Lớn lên mạnh mẽ, phát triển khỏe mạnh
-吸引 (xīyǐn): Hấp dẫn, thu hút
-绿洲 (lǜzhōu): Ốc đảo, khu vực xanh tươi
+几年 (jǐ nián): Vài năm
+后 (hòu): Sau
+这棵 (zhè kē): Cây này
+小树 (xiǎo shù): Cây nhỏ
+不仅 (bùjǐn): Không chỉ
+茁壮 (zhuózhuàng): Khỏe mạnh
+成长 (chéngzhǎng): Tăng trưởng
+还 (hái): Còn
+吸引 (xīyǐn): Hấp dẫn
+更多 (gèng duō): Nhiều hơn
+植物 (zhíwù): Thực vật
+生长 (shēngzhǎng): Tăng trưởng
+十年 (shí nián): Mười năm
+后 (hòu): Sau
+这片 (zhè piàn): Mảnh đất này
+荒地 (huāngdì): Đất hoang
+竟然 (jìngrán): Thật sự
+变成 (biànchéng): Trở thành
+郁郁葱葱 (yùyùcōngcōng): Xanh tươi tốt
+的 (de): (trợ từ sở hữu)
+绿洲 (lǜzhōu): Ốc đảo xanh
+为 (wèi): Đem lại
+村民 (cūnmín): Dân làng
+带来 (dàilái): Mang đến
+新的 (xīn de): Mới
 希望 (xīwàng): Hy vọng
+和 (hé): Và
 生计 (shēngjì): Sinh kế
+寓意 (yùyì): Ý nghĩa
+耐心 (nàixīn): Kiên nhẫn
+与 (yǔ): Và
+坚持 (jiānchí): Kiên trì
+是 (shì): Là
+改变 (gǎibiàn): Thay đổi
+困境 (kùnjìng): Tình huống khó khăn
+的 (de): (trợ từ sở hữu)
+力量 (lìliàng): Sức mạnh
+只要 (zhǐyào): Chỉ cần
+种下 (zhòngxià): Gieo trồng
+希望 (xīwàng): Hy vọng
+总会 (zǒng huì): Sẽ luôn
+有 (yǒu): Có
+收获 (shōuhuò): Gặt hái
+的 (de): (trợ từ sở hữu)
+那一天 (nà yītiān): Ngày đó
 3. Ngữ pháp
 时间状语从句 (Câu trạng ngữ chỉ thời gian)
 Cấu trúc: 一天 + hành động

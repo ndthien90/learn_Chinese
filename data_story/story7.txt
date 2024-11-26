@@ -2,36 +2,91 @@
 一个热爱滑冰的女孩，在一场严重的车祸中失去了双腿。起初，她陷入深深的绝望，甚至一度想要放弃生命。然而，她在医院看了一场电视节目，节目中一位双腿截肢的舞者正在舞台上翩翩起舞。那一刻，她的内心重新燃起了希望。女孩开始学习使用假肢，经过无数次的摔倒和努力，终于重新站在冰面上。在一次全国比赛中，她用自己独特的表演征服了评委和观众。她告诉大家：“人生虽然有不完美，但热爱和信念会让你创造属于自己的奇迹。”
 寓意：失去某些东西，并不意味着失去一切，只要内心强大，就能克服一切困难。
 2. Từ vựng
-热爱 (rè'ài): Yêu thích, đam mê.
-滑冰 (huábīng): Trượt băng.
-车祸 (chēhuò): Tai nạn giao thông.
-失去 (shīqù): Mất đi.
-双腿 (shuāngtuǐ): Hai chân.
-绝望 (juéwàng): Tuyệt vọng.
-放弃 (fàngqì): Từ bỏ.
-生命 (shēngmìng): Cuộc sống, sinh mệnh.
-电视节目 (diànshì jiémù): Chương trình truyền hình.
-截肢 (jiézhī): Cắt cụt (chân tay).
-舞者 (wǔ zhě): Vũ công.
-舞台 (wǔtái): Sân khấu.
-翩翩起舞 (piānpiān qǐ wǔ): Nhảy múa duyên dáng.
-内心 (nèi xīn): Nội tâm, trái tim.
-燃起 (rán qǐ): Thắp lên, bùng lên.
-希望 (xīwàng): Hy vọng.
-假肢 (jiǎzhī): Chân tay giả.
-摔倒 (shuāidǎo): Ngã.
-努力 (nǔlì): Nỗ lực, cố gắng.
-重新 (chóngxīn): Làm lại, bắt đầu lại.
-全国比赛 (quánguó bǐsài): Cuộc thi toàn quốc.
-独特 (dútè): Đặc biệt, riêng biệt.
-表演 (biǎoyǎn): Biểu diễn.
-征服 (zhēngfú): Chinh phục.
-评委 (píngwěi): Giám khảo.
-观众 (guānzhòng): Khán giả.
-不完美 (bù wánměi): Không hoàn hảo.
-热爱 (rè'ài): Đam mê.
-信念 (xìnniàn): Niềm tin.
-奇迹 (qíjì): Kỳ tích.
+一个 (yī gè): Một
+热爱 (rè'ài): Yêu thích mãnh liệt
+滑冰 (huábīng): Trượt băng
+的 (de): (trợ từ sở hữu)
+女孩 (nǚhái): Cô gái
+在 (zài): Tại
+一场 (yī chǎng): Một trận
+严重 (yánzhòng): Nghiêm trọng
+车祸 (chēhuò): Tai nạn xe
+中 (zhōng): Trong
+失去 (shīqù): Mất đi
+双腿 (shuāngtuǐ): Cả hai chân
+起初 (qǐchū): Ban đầu
+她 (tā): Cô ấy
+陷入 (xiànrù): Rơi vào
+深深 (shēn shēn): Sâu sắc
+绝望 (juéwàng): Tuyệt vọng
+甚至 (shènzhì): Thậm chí
+一度 (yī dù): Một thời điểm
+想要 (xiǎngyào): Muốn
+放弃 (fàngqì): Từ bỏ
+生命 (shēngmìng): Sự sống
+然而 (rán'ér): Tuy nhiên
+医院 (yīyuàn): Bệnh viện
+看了 (kànle): Đã xem
+电视节目 (diànshì jiémù): Chương trình truyền hình
+节目中 (jiémù zhōng): Trong chương trình
+一位 (yī wèi): Một (người)
+截肢 (jiézhī): Cắt cụt
+舞者 (wǔzhě): Vũ công
+正在 (zhèngzài): Đang
+舞台 (wǔtái): Sân khấu
+上 (shàng): Trên
+翩翩起舞 (piānpiān qǐwǔ): Nhảy múa uyển chuyển
+那一刻 (nà yī kè): Khoảnh khắc đó
+内心 (nèixīn): Tâm hồn
+重新 (chóngxīn): Lại, một lần nữa
+燃起 (ránqǐ): Bùng cháy
+希望 (xīwàng): Hy vọng
+开始 (kāishǐ): Bắt đầu
+学习 (xuéxí): Học
+使用 (shǐyòng): Sử dụng
+假肢 (jiǎzhī): Chi giả
+经过 (jīngguò): Trải qua
+无数次 (wúshù cì): Vô số lần
+摔倒 (shuāidǎo): Ngã
+努力 (nǔlì): Nỗ lực
+终于 (zhōngyú): Cuối cùng
+站 (zhàn): Đứng
+冰面 (bīngmiàn): Mặt băng
+全国 (quánguó): Toàn quốc
+比赛 (bǐsài): Cuộc thi
+用 (yòng): Dùng
+自己 (zìjǐ): Bản thân
+独特 (dútè): Đặc biệt
+表演 (biǎoyǎn): Biểu diễn
+征服 (zhēngfú): Chinh phục
+评委 (píngwěi): Ban giám khảo
+观众 (guānzhòng): Khán giả
+告诉 (gàosù): Nói với
+大家 (dàjiā): Mọi người
+人生 (rénshēng): Cuộc sống
+虽然 (suīrán): Mặc dù
+有 (yǒu): Có
+不完美 (bù wánměi): Không hoàn hảo
+但 (dàn): Nhưng
+和 (hé): Và
+信念 (xìnniàn): Niềm tin
+会 (huì): Sẽ
+让 (ràng): Khiến
+创造 (chuàngzào): Tạo ra
+属于 (shǔyú): Thuộc về
+奇迹 (qíjì): Kỳ tích
+寓意 (yùyì): Ý nghĩa
+某些 (mǒuxiē): Một số
+东西 (dōngxi): Thứ gì đó
+并不 (bìng bù): Không
+意味着 (yìwèizhe): Có nghĩa là
+一切 (yīqiè): Tất cả
+只要 (zhǐyào): Chỉ cần
+内心 (nèixīn): Tâm hồn
+强大 (qiángdà): Mạnh mẽ
+就能 (jiù néng): Thì có thể
+克服 (kèfú): Vượt qua
+困难 (kùnnán): Khó khăn
 3. Ngữ pháp
 Câu điều kiện với 虽然...但... (Suīrán... dàn...)
 Cấu trúc này được dùng để diễn tả sự nhượng bộ hoặc điều kiện đối lập, như trong câu:
