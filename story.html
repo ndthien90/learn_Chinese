@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học tiếng Trung - Đọc hiểu</title>
+    <style>
+        :root {
+            /* Light mode colors */
+            --primary-color: #0099cc;
+            --secondary-color: #ff6633;
+            --success-color: #18c71e;
+            --danger-color: #f44336;
+            --purple-color: #993399;
+            --bg-color: #f5f5f5;
+            --content-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #eeeeee;
+            --hover-bg: #f0f9ff;
+            --paragraph-bg: #f8f9fa;
+            --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --bg-color: #1a1a1a;
+            --content-bg: #2d2d2d;
+            --text-color: #ffffff;
+            --border-color: #404040;
+            --hover-bg: #3d3d3d;
+            --paragraph-bg: #363636;
+            --shadow-sm: 0 2px 5px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .app-container {
+            background: var(--content-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover-bg);
+        }
+
+        .lesson-selector {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .dropdown-btn {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--content-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .dropdown-btn:hover {
+            background: var(--hover-bg);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--content-bg);
+            border: 2px solid var(--primary-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 100;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content div {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .dropdown-content div:hover {
+            background: var(--hover-bg);
+        }
+
+        .audio-control {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        .audio-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .text-content {
+            line-height: 1.8;
+            font-size: 1.2rem;
+            white-space: pre-line;
+        }
+
+        .text-content p {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--paragraph-bg);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: var(--paragraph-bg);
+        }
+
+        .control-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .control-btn:hover {
+            opacity: 1;
+        }
+
+        .control-btn.active {
+            opacity: 1;
+        }
+
+        .btn-text { background: var(--success-color); }
+        .btn-vocabulary { background: var(--primary-color); }
+        .btn-grammar { background: var(--secondary-color); }
+        .btn-meaning { background: var(--purple-color); }
+
+        /* Loading and Error styles */
+        .loading, .error {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .error {
+            color: var(--danger-color);
+        }
+
+        @media (max-width: 600px) {
+            .app-container {
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <h1>Bài học cuộc sống</h1>
+            <div class="lesson-selector">
+                <div class="dropdown-btn" id="lessonDropdown">
+                    <span id="selectedLesson">Câu chuyện 1</span>
+                    <span>▼</span>
+                </div>
+                <div class="dropdown-content" id="lessonList">
+                    <!-- Stories will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="audio-control">
+                <button class="audio-btn" id="playAudio">
+                    <span id="audioIcon">🔊</span>
+                    <span id="audioText">Nghe</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content" id="mainContent">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+
+        <div class="controls">
+            <button class="control-btn btn-text" data-mode="text">Đoạn văn</button>
+            <button class="control-btn btn-vocabulary" data-mode="vocabulary">Từ vựng</button>
+            <button class="control-btn btn-grammar" data-mode="grammar">Ngữ pháp</button>
+            <button class="control-btn btn-meaning" data-mode="meaning">Pinyin/Nghĩa</button>
+        </div>
+    </div>
+
+    <script>
+        class ChineseReader {
+            constructor() {
+                // Khởi tạo trạng thái
+                this.currentStory = 1;
+                this.currentMode = 'text';
+                this.currentAudio = null;
+                this.isPlaying = false;
+                this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+                // Dữ liệu câu chuyện
+this.stories = [
+    {
+        "id": 1,
+        "title": "Bài học 1:  Ôm lấy thất bại"
+    },
+    {
+        "id": 2,
+        "title": "Bài học 2: Những bước chân của mẹ"
+    },
+    {
+        "id": 3,
+        "title": "Bài học 3: Người già theo đuổi ước mơ"
+    },
+    {
+        "id": 4,
+        "title": "Bài học 4: Người mù leo núi"
+    },
+    {
+        "id": 5,
+        "title": "Bài học 5: Kỳ tích của hạc giấy"
+    },
+    {
+        "id": 6,
+        "title": "Bài học 6: Người nông dân và cây non"
+    },
+    {
+        "id": 7,
+        "title": "Bài học 7: Vũ công trên băng"
+    },
+    {
+        "id": 8,
+        "title": "Bài học 8: Người thầy không lời"
+    },
+    {
+        "id": 9,
+        "title": "Bài học 9: Vòng tay của anh em"
+    },
+    {
+        "id": 10,
+        "title": "Bài học 10: Hành trình vượt núi đến trường"
+    },
+    {
+        "id": 11,
+        "title": "Bài học 11: Ông lão và đàn hải âu"
+    },
+    {
+        "id": 12,
+        "title": "Bài học 12: Người họa sĩ không bao giờ bỏ cuộc"
+    },
+    {
+        "id": 13,
+        "title": "Bài học 13: Đại bàng gãy cánh"
+    },
+    {
+        "id": 14,
+        "title": "Bài học 14: Ngọn hải đăng của cha"
+    },
+    {
+        "id": 15,
+        "title": "Bài học 15: Đứa trẻ bán hoa"
+    }
+];
+
+                this.storyData = {
+                    text: '',
+                    vocabulary: '',
+                    grammar: '',
+                    pinyin: '',
+                    meaning: ''
+                };
+
+                this.initializeElements();
+                this.setupEventListeners();
+                this.loadStory(1);
+                this.initializeTheme();
+            }
+
+            initializeElements() {
+                this.elements = {
+                    lessonDropdown: document.getElementById('lessonDropdown'),
+                    lessonList: document.getElementById('lessonList'),
+                    selectedLesson: document.getElementById('selectedLesson'),
+                    mainContent: document.getElementById('mainContent'),
+                    playAudio: document.getElementById('playAudio'),
+                    audioIcon: document.getElementById('audioIcon'),
+                    audioText: document.getElementById('audioText'),
+                    themeToggle: document.getElementById('themeToggle')
+                };
+
+                // Tạo danh sách câu chuyện
+                this.stories.forEach(story => {
+                    const div = document.createElement('div');
+                    div.textContent = story.title;
+                    div.dataset.id = story.id;
+                    this.elements.lessonList.appendChild(div);
+                });
+            }
+
+            initializeTheme() {
+                if (this.isDarkMode) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    this.elements.themeToggle.textContent = '☀️';
+                }
+            }
+
+            setupEventListeners() {
+                // Theme toggle
+                this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
+
+                // Dropdown toggle
+                this.elements.lessonDropdown.addEventListener('click', () => {
+                    this.elements.lessonList.classList.toggle('show');
+                });
+
+                // Story selection
+                this.elements.lessonList.addEventListener('click', (e) => {
+                    if (e.target.dataset.id) {
+                        const storyId = parseInt(e.target.dataset.id);
+                        this.stopAudio();
+                        this.loadStory(storyId);
+                        this.elements.lessonList.classList.remove('show');
+                    }
+                });
+
+                // Mode switching
+                document.querySelector('.controls').addEventListener('click', (e) => {
+                    if (e.target.classList.contains('control-btn')) {
+                        this.switchMode(e.target.dataset.mode);
+                        // Update active button
+                        document.querySelectorAll('.control-btn').forEach(btn => {
+                            btn.classList.toggle('active', btn.dataset.mode === e.target.dataset.mode);
+                        });
+                    }
+                });
+
+                // Audio control
+                this.elements.playAudio.addEventListener('click', () => this.toggleAudio());
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.elements.lessonDropdown.contains(e.target)) {
+                        this.elements.lessonList.classList.remove('show');
+                    }
+                });
+            }
+
+            toggleTheme() {
+                this.isDarkMode = !this.isDarkMode;
+                document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+                this.elements.themeToggle.textContent = this.isDarkMode ? '☀️' : '🌙';
+                localStorage.setItem('darkMode', this.isDarkMode);
+            }
+
+            async loadStory(storyId) {
+                this.currentStory = storyId;
+                this.elements.selectedLesson.textContent = this.stories.find(s => s.id === storyId).title;
+                this.elements.mainContent.innerHTML = '<div class="loading">Đang tải dữ liệu...</div>';
+
+                try {
+                    const response = await fetch(`data_story/story${storyId}.txt`);
+                    const content = await response.text();
+                    
+                    // Parse content sections
+                    const sections = this.parseStoryContent(content);
+                    this.storyData = sections;
+                    
+                    this.switchMode(this.currentMode);
+                } catch (error) {
+                    console.error('Error loading story:', error);
+                    this.elements.mainContent.innerHTML = '<div class="error">Không thể tải dữ liệu bài học</div>';
+                }
+            }
+
+            parseStoryContent(content) {
+                const sections = {
+                    text: '',
+                    vocabulary: '',
+                    grammar: '',
+                    pinyin: '',
+                    meaning: ''
+                };
+
+                const parts = content.split(/\d+\./);
+                
+                if (parts.length > 1) {
+                    sections.text = parts[1].trim();
+                    sections.vocabulary = parts[2].trim();
+                    sections.grammar = parts[3].trim();
+                    sections.pinyin = parts[4].trim();
+                    sections.meaning = parts[5].trim();
+                }
+
+                return sections;
+            }
+
+            switchMode(mode) {
+                this.currentMode = mode;
+                const content = this.elements.mainContent;
+                
+                switch(mode) {
+                    case 'text':
+                        content.innerHTML = this.formatText(this.storyData.text);
+                        break;
+                    case 'vocabulary':
+                        content.innerHTML = this.formatSingleContent(this.storyData.vocabulary);
+                        break;
+                    case 'grammar':
+                        content.innerHTML = this.formatSingleContent(this.storyData.grammar);
+                        break;
+                    case 'meaning':
+content.innerHTML = this.formatText(this.storyData.pinyin + '\n\n' + this.storyData.meaning);
+                        break;
+                }
+
+                // Update active button state
+                document.querySelectorAll('.control-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.mode === mode);
+                });
+            }
+
+            formatText(text) {
+                if (!text) return '<div class="text-content"><p>Không có nội dung</p></div>';
+                return `<div class="text-content">
+                    ${text.split('\n')
+                        .filter(line => line.trim())
+                        .map(line => `<p>${line}</p>`)
+                        .join('')}
+                </div>`;
+            }
+
+            formatSingleContent(text) {
+                if (!text) return '<div class="text-content"><p>Không có nội dung</p></div>';
+                return `<div class="text-content"><p>${text.replace(/\n/g, '<br>')}</p></div>`;
+            }
+
+            toggleAudio() {
+                if (this.isPlaying) {
+                    this.stopAudio();
+                } else {
+                    this.playAudio();
+                }
+            }
+
+            playAudio() {
+                if (this.currentAudio) {
+                    this.currentAudio.play();
+                } else {
+                    this.currentAudio = new Audio(`data_story/story${this.currentStory}.mp3`);
+                    
+                    // Xử lý sự kiện khi audio kết thúc
+                    this.currentAudio.addEventListener('ended', () => {
+                        this.stopAudio();
+                    });
+
+                    this.currentAudio.play().catch(error => {
+                        console.error('Error playing audio:', error);
+                        alert('Không thể phát âm thanh. Vui lòng kiểm tra lại kết nối.');
+                        this.stopAudio();
+                        return;
+                    });
+                }
+                
+                this.isPlaying = true;
+                this.elements.audioIcon.textContent = '⏸️';
+                this.elements.audioText.textContent = 'Dừng';
+            }
+
+            stopAudio() {
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                    this.currentAudio.currentTime = 0;
+                }
+                this.isPlaying = false;
+                this.elements.audioIcon.textContent = '🔊';
+                this.elements.audioText.textContent = 'Nghe';
+                this.currentAudio = null;
+            }
+        }
+
+        // Initialize the app when the document is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = new ChineseReader();
+        });
+    </script>
+</body>
+</html>
