@@ -1,0 +1,10 @@
+Nǐ xǐhuān shénme yàng de tiānqì?|你喜欢什么样的天气？|Bạn thích kiểu thời tiết như thế nào?
+Wǒ xǐhuān qíngtiān, bù lěng yě bù rè.|我喜欢晴天，不冷也不热。|Mình thích trời nắng, không lạnh cũng không nóng.
+Nà rúguǒ tiānqì tài rè le, nǐ hùi zěnme zuò?|那如果天气太热了，你会怎么做？|Vậy nếu thời tiết quá nóng, bạn sẽ làm gì?
+Wǒ huì kāi kōngtiáo huòzhě qù yóuyǒng. Nǐ ne?|我会开空调或者去游泳。你呢？|Mình sẽ bật điều hòa hoặc đi bơi. Còn bạn?
+Wǒ bù xǐhuān tài rè de tiānqì, tèbié shì xiàtiān de zhōngwǔ.|我不喜欢太热的天气，特别是夏天的中午。|Mình không thích thời tiết quá nóng, đặc biệt là buổi trưa mùa hè.
+Nà dōngtiān ne? Nǐ xǐhuān dōngtiān ma?|那冬天呢？你喜欢冬天吗？|Vậy mùa đông thì sao? Bạn có thích mùa đông không?
+Yě bù xǐhuān, dōngtiān tài lěng le, yǒu shíhòu hái huì gǎnmào.|也不喜欢，冬天太冷了，有时候还会感冒。|Mình cũng không thích, mùa đông lạnh quá, thỉnh thoảng còn bị cảm cúm nữa.
+Nà nǐ zuì xǐhuān nǎge jìjié?|那你最喜欢哪个季节？|Vậy bạn thích mùa nào nhất?
+Wǒ zuì xǐhuān chūntiān, yīnwèi tiānqì hěn shūfú, jǐngsè yě hěn piàoliang.|我最喜欢春天，因为天气很舒服，景色也很漂亮。|Mình thích mùa xuân nhất, vì thời tiết rất thoải mái, cảnh sắc cũng rất đẹp.
+Duì, chūntiān hěn měi!|对，春天很美！|Đúng vậy, mùa xuân rất đẹp!

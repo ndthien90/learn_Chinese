@@ -1,0 +1,10 @@
+Zhōumò nǐ yǒu shénme jìhuà?|周末你有什么计划？|Cuối tuần bạn có kế hoạch gì?
+Wǒ xiǎng qù hǎibiān wán. Nǐ ne?|我想去海边玩。你呢？|Mình muốn đi biển chơi. Còn bạn thì sao?
+Wǒ yě xiǎng qù hǎibiān. Nǐ zhīdào zhōumò de tiānqì zěnme yàng ma?|我也想去海边。你知道周末的天气怎么样吗？|Mình cũng muốn đi biển. Bạn biết thời tiết cuối tuần thế nào không?
+Tīng tiānqì yùbào shuō, zhōuliù shì qíngtiān, hěn shìhé chūqù wán.|听天气预报说，周六是晴天，很适合出去玩。|Nghe dự báo thời tiết nói, thứ Bảy trời nắng, rất thích hợp để đi chơi.
+Nà tài hǎo le! Wǒmen yīqǐ qù ba.|那太好了！我们一起去吧。|Vậy tốt quá rồi! Chúng ta cùng đi nhé.
+Hǎo a! Nǐ juédé jǐ diǎn chūfā bǐjiào hǎo ne?|好啊！你觉得几点出发比较好呢？|Được! Bạn cho rằng mấy giờ xuất phát thì tốt?
+Zǎoshang qī diǎn duō ba, zhèyàng kěyǐ duō wán yī huìr.|早上七点多吧，这样可以多玩一会儿。|Khoảng 7 giờ sáng, như vậy có thể chơi lâu hơn một chút.
+Duìle, wǒmen yào dài shénme dōngxi ma?|对了，我们要带什么东西吗？|Đúng rồi, chúng ta cần mang theo những gì?
+Dài yīxiē fángshàishuā, màozi hé shuǐ ba.|带一些防晒霜、帽子和水吧。|Mang theo một ít kem chống nắng, mũ và nước nhé.
+Hǎo, wǒ yě dài yīxiē shuǐguǒ hé língshí.|好，我也带一些水果和零食。|Được, mình cũng mang theo một ít trái cây và đồ ăn vặt.

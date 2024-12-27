@@ -1,0 +1,11 @@
+Zuìjìn tiānqì biàn lěng le, nǐ yǒu hòu yīfú ma?|最近天气变冷了，你有厚衣服吗？|Gần đây thời tiết trở lạnh, bạn có áo ấm không?
+Wǒ méiyǒu, wǒ zhèngzài xiǎng mǎi yī jiàn xīn wàitào.|我没有，我正在想买一件新外套。|Mình không có, đang nghĩ mua một chiếc áo khoác mới.
+Nà nǐ xiǎng mǎi shénme yánsè de wàitào?|那你想买什么颜色的外套？|Vậy bạn muốn mua áo khoác màu gì?
+Wǒ xǐhuān hēisè huòzhě lánsè de, nǐ juédé ne?|我喜欢黑色或者蓝色的，你觉得呢？|Mình thích màu đen hoặc màu xanh, bạn thấy sao?
+Lánsè hěn shìhé dōngtiān.|蓝色很适合冬天。|Màu xanh rất phù hợp với mùa đông.
+Hǎo zhǔyì! Wǒmen xiàwǔ qù shāngchǎng kànkàn ba.|好主意！我们下午去商场看看吧。|Ý hay! Chiều nay chúng ta đi xem ở trung tâm thương mại nhé.
+Nǐ zhīdào jīntiān shāngchǎng de tiānqì zěnme yàng ma?|你知道今天商场的天气怎么样吗？|Bạn biết thời tiết ở trung tâm thương mại hôm nay thế nào không?
+Yīnggāi huì yǒudiǎn lěng, tīng shuō yǒu fēng.|应该会有点冷，听说有风。|Có lẽ sẽ hơi lạnh, nghe nói có gió.
+Nà wǒmen duō chuān yīdiǎn ba.|那我们多穿一点吧。|Vậy chúng ta mặc thêm một chút nhé.
+Hǎo de, shùnbiàn qù mǎi yī tiáo wéijīn ba, zuìjìn fēng hěn dà.|好的，顺便去买一条围巾吧，最近风很大。|Được, tiện thể mua một chiếc khăn quàng cổ nhé, gần đây gió rất lớn.
+Méi wèntí.|没问题。|Không vấn đề gì.

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải lên File Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Cho phép xuống dòng */
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tải lên Hàng Loạt File Text</h1>
+    <input type="file" id="fileInput" multiple="" accept=".txt">
+    <button id="processFiles">Xử lý File</button>
+    <button id="downloadData" style="display:none;">Tải về Dữ liệu</button>
+    <h2>Dữ liệu đầu ra:</h2>
+    <pre id="output"></pre>
+
+    <script>
+        let lessonData = {};
+
+        document.getElementById('processFiles').addEventListener('click', () => {
+            const files = document.getElementById('fileInput').files;
+            lessonData = {}; // Reset dữ liệu mỗi lần xử lý
+            let currentLesson = 1;
+
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    const content = event.target.result;
+                    const entries = content.split('/#').filter(entry => entry.trim() !== '');
+
+                    lessonData[currentLesson] = entries.map(entry => {
+                        const lines = entry.trim().split('\n');
+                        return {
+                            chinese: lines[0].trim(),
+                            pinyin: lines[1] ? lines[1].trim() : '',
+                            meaning: lines[2] ? lines[2].trim() : ''
+                        };
+                    });
+
+                    currentLesson++;
+                    
+                    // Hiển thị dữ liệu
+                    const formattedOutput = Object.keys(lessonData)
+                        .map(key => {
+                            return `${key}: [\n` +
+                                lessonData[key].map(item => {
+                                    return `    { chinese: "${item.chinese}", pinyin: "${item.pinyin}", meaning: "${item.meaning}" }`;
+                                }).join(',\n') +
+                                `\n]`;
+                        })
+                        .join(',\n');
+
+                    document.getElementById('output').textContent = `{\n${formattedOutput}\n}`;
+                    document.getElementById('downloadData').style.display = 'block'; // Hiện nút tải về
+                };
+
+                reader.readAsText(file);
+            });
+        });
+
+        document.getElementById('downloadData').addEventListener('click', () => {
+            // Tạo định dạng đầu ra tùy chỉnh
+            let customOutput = '';
+            Object.keys(lessonData).forEach(key => {
+                customOutput += `${key}: [\n`;
+                lessonData[key].forEach(item => {
+                    customOutput += `    { chinese: "${item.chinese}", pinyin: "${item.pinyin}", meaning: "${item.meaning}" },\n`;
+                });
+                customOutput += `],\n`;
+            });
+
+            // Tạo Blob và tải về
+            const blob = new Blob([customOutput], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'lessonData.txt'; // Đổi tên file nếu cần
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+
+
+</body></html>

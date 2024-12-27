@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải lên File TXT và Chuyển đổi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Tải lên File TXT và Chuyển đổi</h1>
+<input type="file" id="fileInput" multiple="" accept=".txt">
+<button id="convertButton">Chuyển đổi</button>
+
+<script>
+    document.getElementById('convertButton').addEventListener('click', async () => {
+        const files = document.getElementById('fileInput').files;
+        const lessons = {};
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const text = await file.text();
+            // Chuyển đổi nội dung thành mảng, loại bỏ ký tự \r
+            const sentences = text.split('\n').map(line => line.replace(/\r/g, '').trim()).filter(line => line !== '');
+            lessons[`lesson${i + 1}`] = sentences;
+        }
+
+        // Tạo tệp JSON để tải xuống
+        const jsonBlob = new Blob([JSON.stringify(lessons, null, 2).replace(/"lesson(\d+)"/g, 'lesson$1')], { type: 'application/json' });
+        const url = URL.createObjectURL(jsonBlob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'converted_lessons.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,328 @@
+今天天气怎么样？
+Jīntiān tiānqì zěnme yàng?
+Hôm nay thời tiết thế nào？
+/#
+天气预报说今天多云。
+Tiānqì yùbào shuō jīntiān duōyún.
+Dự báo thời tiết nói hôm nay nhiều mây。
+/#
+这个周末的气温多少度？
+Zhège zhōumò de qìwēn duōshao dù?
+Nhiệt độ vào cuối tuần này là bao nhiêu độ？
+/#
+一年有四个季节：春季、夏季、秋季和冬季。
+Yī nián yǒu sì gè jìjié: chūnjì, xiàjì, qiūjì hé dōngjì.
+Một năm có bốn mùa: mùa Xuân,  mùa Hạ, mùa Thu và mùa Đông。
+/#
+今天晚上最低气温是10度。
+Jīntiān wǎnshàng zuìdī qìwēn shì shí dù.
+Nhiệt độ thấp nhất vào tối nay là 10 độ。
+/#
+夏天的最高温度是40度。
+Xiàtiān de zuìgāo wēndù shì sìshí dù.
+Nhiệt độ cao nhất vào mùa hè là 40 độ。
+/#
+我早上喜欢晒太阳。
+Wǒ zǎoshang xǐhuān shài tàiyáng.
+Tôi thích tắm nắng vào buổi sáng。
+/#
+夏天我们都喜欢去游泳。
+Xiàtiān wǒmen dōu xǐhuān qù yóuyǒng.
+Mùa hè chúng tôi đều thích đi bơi。
+/#
+春天是花开的季节。
+Chūntiān shì huā kāi de jìjié.
+Mùa xuân là mùa hoa nở。
+/#
+秋天的天气很舒服，不冷也不热。
+Qiūtiān de tiānqì hěn shūfu, bù lěng yě bù rè.
+Thời tiết mùa thu rất dễ chịu, không lạnh cũng không nóng。
+/#
+冬天气温很低，有时候会下雪。
+Dōngtiān qìwēn hěn dī, yǒu shíhòu huì xià xuě.
+Mùa đông nhiệt độ rất thấp, đôi khi sẽ có tuyết。
+/#
+他上课的时候总是喜欢睡觉。
+Tā shàngkè de shíhòu zǒng shì xǐhuān shuìjiào.
+Anh ấy luôn thích ngủ trong giờ học。
+/#
+她总是很准时。
+Tā zǒng shì hěn zhǔnshí.
+Cô ấy luôn rất đúng giờ。
+/#
+他经常去公园跑步。
+Tā jīngcháng qù gōngyuán pǎobù.
+Anh ấy thường xuyên đi công viên chạy bộ。
+/#
+我爸爸经常不睡午觉。
+Wǒ bàba jīngcháng bù shuì wǔjiào.
+Bố tôi thường không ngủ trưa。
+/#
+我中午偶尔才在家吃饭。
+Wǒ zhōngwǔ ǒu'ěr cái zài jiā chīfàn.
+Tôi thỉnh thoảng mới ăn cơm ở nhà vào buổi trưa。
+/#
+他很准时，他上课从不迟到。
+Tā hěn zhǔnshí, tā shàngkè cóng bù chídào.
+Anh ấy rất đúng giờ, chưa bao giờ đến lớp muộn。
+/#
+他不喜欢学习，所以他很少去图书馆借书。
+Tā bù xǐhuān xuéxí, suǒyǐ tā hěn shǎo qù túshūguǎn jiè shū.
+Anh ấy không thích học, vì vậy anh ấy ít khi đến thư viện mượn sách。
+/#
+现在我们都有手机，所以我们不常看电视了。
+Xiànzài wǒmen dōu yǒu shǒujī, suǒyǐ wǒmen bù cháng kàn diànshìle.
+Bây giờ chúng tôi đều có điện thoại, nên ít khi xem tivi。
+/#
+他每天都去公园跑步。
+Tā měitiān dōu qù gōngyuán pǎobù.
+Anh ấy đi công viên chạy bộ mỗi ngày。
+/#
+今天能下雨吗？
+Jīntiān néng xià yǔ ma?
+Hôm nay có thể mưa không?
+/#
+上课的时候我们不能说话。
+Shàngkè de shíhòu wǒmen bù néng shuōhuà.
+Trong giờ học chúng ta không thể nói chuyện。
+/#
+你可以去，也可以不去。
+Nǐ kěyǐ qù, yě kěyǐ bù qù.
+Bạn có thể đi, cũng có thể không đi。
+/#
+上课的时候不可以吃零食。
+Shàngkè de shíhòu bù kěyǐ chī língshí.
+Trong giờ học không được ăn vặt。
+/#
+天气预报说下午可能下雨。
+Tiānqì yùbào shuō xiàwǔ kěnéng xià yǔ.
+Dự báo thời tiết nói buổi chiều khả năng có mưa。
+/#
+他今天可能没有空。
+Tā jīntiān kěnéng méiyǒu kòng.
+Hôm nay anh ấy khả năng không rảnh。
+/#
+明天是我的生日，她不可能不来。
+Míngtiān shì wǒ de shēngrì, tā bù kěnéng bù lái.
+Ngày mai là sinh nhật tôi, cô ấy không thể không đến。
+/#
+我觉得他明天会来。
+Wǒ juédé tā míngtiān huì lái.
+Tôi cho rằng anh ấy ngày mai sẽ đến 。
+/#
+明天是周末会有很多人去公园玩。
+Míngtiān zhōumò huì yǒu hěnduō rén qù gōngyuán wán.
+Ngày mai là cuối tuần sẽ có nhiều người đi công viên chơi。
+/#
+明天我不会迟到。
+Míngtiān wǒ bù huì chídào.
+Ngày mai tôi sẽ không đến muộn。
+/#
+我要学习法语。
+Wǒ yào xuéxí fǎyǔ.
+Tôi muốn học tiếng Pháp。
+/#
+明天可能有雷阵雨，你最好不要去。
+Míngtiān kěnéng yǒu léizhèn yǔ, nǐ zuì hǎo bùyào qù.
+Ngày mai khả năng có mưa kèm sấm sét, bạn tốt nhất không nên đi。
+/#
+我想去日本旅游,但是没有时间。
+Wǒ xiǎng qù Rìběn lǚyóu, dànshì méiyǒu shíjiān.
+Tôi muốn đi du lịch Nhật Bản, nhưng không có thời gian。
+/#
+我很想她。
+Wǒ hěn xiǎng tā.
+Tôi rất nhớ cô ấy。
+/#
+明天是我的生日，你必须来哦。
+Míngtiān shì wǒ de shēngrì, nǐ bìxū lái ó.
+Ngày mai là sinh nhật tôi, bạn nhất định phải đến nhé。
+/#
+他今天不会来，你不必等他了。
+Tā jīntiān bù huì lái, nǐ bù bì děng tāle.
+Hôm nay anh ấy sẽ không đến, bạn không cần đợi anh ấy nữa。
+/#
+我们应该早睡早起。
+Wǒmen yīnggāi zǎo shuì zǎo qǐ.
+Chúng ta nên ngủ sớm dậy sớm。
+/#
+这件衣服不好看，你不应该买。
+Zhè jiàn yīfú bù hǎokàn, nǐ bù yīnggāi mǎi.
+Chiếc áo này không đẹp, bạn không nên mua。
+/#
+你在做什么？
+Nǐ zài zuò shénme?
+Bạn đang làm gì？
+/#
+我正在家做饭呢。
+Wǒ zhèngzài jiā zuò fàn ne.
+Tôi đang nấu ăn ở nhà。
+/#
+你在看什么书呢？
+Nǐ zài kàn shénme shū ne?
+Bạn đang đọc sách gì vậy？
+/#
+他在图书馆做什么呢？
+Tā zài túshūguǎn zuò shénme ne?
+Anh ấy đang làm gì ở thư viện vậy？
+/#
+我没在看电影, 我在学习呢。
+Wǒ méi zài kàn diànyǐng, Wǒ zài xuéxí ne.
+Tôi không xem phim, tôi đang học。
+/#
+我那个时候正在洗澡。
+Wǒ nàgè shíhòu zhèngzài xǐzǎo.
+Lúc đó tôi đang tắm。
+/#
+我出去的时候，他正在听音乐。
+Wǒ chū qù de shíhòu, tā zhèngzài tīng yīnyuè.
+Khi tôi ra ngoài, anh ấy đang nghe nhạc。
+/#
+今天天气很好，我要出去跑步。
+Jīntiān tiānqì hěn hǎo, wǒ yào chūqù pǎobù.
+Hôm nay thời tiết rất đẹp, tôi muốn ra ngoài chạy bộ。
+/#
+明天去河内玩，你们怎么去？
+Míngtiān qù Hénèi wán, nǐmen zěnme qù?
+Ngày mai đi Hà Nội chơi, các bạn đi như thế nào？
+/#
+我们坐飞机去中国。
+Wǒmen zuò fēijī qù Zhōngguó.
+Chúng tôi đi máy bay đến Trung Quốc。
+/#
+你知道那个汉字怎么读吗？
+Nǐ zhīdào nàgè hànzì zěnme dú ma?
+Bạn biết chữ Hán đó đọc thế nào không？
+/#
+这件衣服多好看啊！你买吧。
+Zhè jiàn yīfú duō hǎokàn a! Nǐ mǎi ba.
+Chiếc áo này đẹp quá! Bạn mua đi。
+/#
+下雨以后，空气多清新啊！
+Xià yǔ yǐhòu, kōngqì duō qīngxīn a!
+Sau khi mưa, không khí trong lành biết bao!
+/#
+今天多热啊！我们去游泳吧。
+Jīntiān duō rè a! Wǒmen qù yóuyǒng ba.
+Hôm nay nóng quá! Chúng ta đi bơi đi。
+/#
+今天的天气变热了。
+Jīntiān de tiānqì biàn rèle.
+Thời tiết hôm nay nóng lên rồi.
+/#
+今天又下雨又刮风。
+Jīntiān yòu xià yǔ yòu guā fēng.
+Hôm nay vừa mưa vừa gió。
+/#
+今天他又迟到了。
+Jīntiān tā yòu chídào le.
+Hôm nay anh ấy lại đến muộn rồi。
+/#
+他上午去了图书馆，现在又去了。
+Tā shàngwǔ qùle túshūguǎn, xiànzài yòu qùle.
+Anh ấy buổi sáng đã đi thư viện, bây giờ lại đi nữa rồi。
+/#
+她前天买了一件衣服，今天又买了两件。
+Tā qiántiān mǎile yī jiàn yīfú, jīntiān yòu mǎile liǎng jiàn.
+Cô ấy hôm kia đã mua một chiếc áo, hôm nay lại mua hai chiếc nữa。
+/#
+他刚才喝了一杯咖啡，现在又喝了一杯。
+Tā gāngcái hēle yī bēi kāfēi, xiànzài yòu hēle yī bēi.
+Anh ấy vừa uống một cốc cà phê, bây giờ lại uống thêm một cốc nữa。
+/#
+这个菜很好吃，你再吃一点吧。
+Zhège cài hěn hǎochī, nǐ zài chī yīdiǎn ba.
+Món này rất ngon, bạn ăn thêm một chút nữa đi。
+/#
+他今天没有时间，我们明天再来吧。
+Tā jīntiān méiyǒu shíjiān, wǒmen míngtiān zài lái ba.
+Hôm nay anh ấy không có thời gian, chúng ta ngày mai lại đến nhé。
+/#
+你明天再去超市买一些水果吧。
+Nǐ míngtiān zài qù chāoshì mǎi yīxiē shuǐguǒ ba.
+Ngày mai bạn lại đi siêu thị mua ít trái cây nhé。
+/#
+今天我买了一本汉语书，明天我打算再买一本。
+Jīntiān wǒ mǎile yī běn hànyǔ shū, míngtiān wǒ dǎsuàn zài mǎi yī běn.
+Hôm nay tôi đã mua một cuốn sách tiếng Trung, ngày mai tôi dự định mua thêm một cuốn nữa。
+/#
+这个再好喝，我也不喝。
+Zhège zài hǎo hē, wǒ yě bù hē.
+Cái này dù ngon đến đâu, tôi cũng không uống。
+/#
+温度再低一点，就能下雪。
+Wēndù zài dī yīdiǎn, jiù néng xià xuě.
+Nhiệt độ nếu thấp thêm một chút nữa, thì có thể rơi tuyết được。
+/#
+我以前看过这部电影。
+Wǒ yǐqián kàn guò zhè bù diànyǐng.
+Tôi trước đây từng xem  qua bộ phim này 。
+/#
+我吃过北京烤鸭。
+Wǒ chī guò Běijīng kǎoyā.
+Tôi từng ăn vịt quay Bắc Kinh。
+/#
+我没吃过中国菜。
+Wǒ méi chī guò Zhōngguó cài.
+Tôi chưa từng ăn món ăn Trung Quốc。
+/#
+我没看过这本书。
+Wǒ méi kàn guò zhè běn shū.
+Tôi chưa từng đọc cuốn sách này。
+/#
+这个天气很适合出去玩。
+Zhège tiānqì hěn shìhé chūqù wán.
+Thời tiết này rất thích hợp để ra ngoài chơi。
+/#
+这么冷的天气不适合去北京旅游。
+Zhème lěng de tiānqì bù shìhé qù Běijīng lǚyóu.
+Thời tiết lạnh như thế này không thích hợp để đi du lịch Bắc Kinh。
+/#
+这件衣服不适合冬天穿。
+Zhè jiàn yīfú bù shìhé dōngtiān chuān.
+Chiếc áo này không thích hợp để mặc vào mùa đông。
+/#
+这些饮料不适合小孩子喝。
+Zhèxiē yǐnliào bù shìhé xiǎoháizi hē.
+Những đồ uống này không phù hợp cho trẻ nhỏ。
+/#
+冬天不适合去游泳。
+Dōngtiān bù shìhé qù yóuyǒng.
+Mùa đông không thích hợp để đi bơi.
+/#
+天气变冷了，我们应该多穿衣服。
+Tiānqì biàn lěngle, wǒmen yīnggāi duō chuān yīfú.
+Thời tiết đã trở lạnh, chúng ta nên mặc nhiều áo hơn.
+/#
+冬天来了，我们应该多喝热水。
+Dōngtiān láile, wǒmen yīnggāi duō hē rè shuǐ.
+Mùa đông đã đến, chúng ta nên uống nhiều nước nóng.
+/#
+你生病了，要多休息。
+Nǐ shēngbìngle, yào duō xiūxí.
+Bạn bị ốm, cần nghỉ ngơi nhiều hơn.
+/#
+你应该少说话，多做事。
+Nǐ yīnggāi shǎo shuōhuà, duō zuò shì.
+Bạn nên nói ít làm nhiều.
+/#
+学习汉语的时候要多写汉字。
+Xuéxí hànyǔ de shíhòu yào duō xiě hànzì.
+Khi học tiếng Trung, cần viết nhiều chữ Hán.
+/#
+明天去旅游，你多买一些水果吧。
+Míngtiān qù lǚyóu, nǐ duō mǎi yīxiē shuǐguǒ ba.
+Ngày mai đi du lịch, bạn hãy mua thêm một ít trái cây nhé.
+/#
+小孩子应该少看电视。
+Xiǎoháizi yīnggāi shǎo kàn diànshì.
+Trẻ nhỏ nên ít xem tivi.
+/#
+我们晚上应该少吃零食。
+Wǒmen wǎnshàng yīnggāi shǎo chī língshí.
+Chúng ta nên ít ăn đồ ăn vặt vào buổi tối.
+/#
+我们冬天应该少喝冷饮。
+Wǒmen dōngtiān yīnggāi shǎo hē lěngyǐn.
+Chúng ta nên  ít uống đồ uống lạnh vào mùa đông.
+/#
