@@ -1,0 +1,34 @@
+很凉快, 很热, 很闷, 很冷|hěn liángkuai, hěn rè, hěn mèn, hěn lěng|0
+早上, 中午, 下午, 晚上|zǎoshang, zhōngwǔ, xiàwǔ, wǎnshàng|2
+多喝奶茶, 多喝水, 多喝热水, 多喝冷水|duō hē nǎichá, duō hē shuǐ, duō hē rè shuǐ, duō hē lěng shuǐ|1
+电影院, 书店, 学校, 医院|diànyǐngyuàn, shūdiàn, xuéxiào, yīyuàn|3
+不太好, 很好, 很不好, 非常好|bù tài hǎo, hěn hǎo, hěn bù hǎo, fēicháng hǎo|0
+感冒了, 天气不好, 天气很好, 没有时间|gǎnmào le, tiānqì bù hǎo, tiānqì hěn hǎo, méiyǒu shíjiān|1
+水果，零食，饮料, 礼物，零食，饮料, 水果，奶茶，衣服, 水果，书，雨伞|shuǐguǒ, língshí, yǐnliào, lǐwù, língshí, yǐnliào, shuǐguǒ, nǎichá, yīfu, shuǐguǒ, shū, yǔsǎn|0
+雷阵雨，下雨了, 下雨，她没有时间, 雷阵雨，她朋友没有时间, 雷阵雨， 天气不好|léizhènyǔ, xiàyǔ le, xiàyǔ, tā méiyǒu shíjiān, léizhènyǔ, tā péngyou méiyǒu shíjiān, léizhènyǔ, tiānqì bù hǎo|2
+骑车去, 开车去, 坐飞机去, 坐火车去|qíchē qù, kāichē qù, zuò fēijī qù, zuò huǒchē qù|1
+下大雨，雨伞, 下小雨，衣服, 下雪，雨伞, 刮风，水果|xià dàyǔ, yǔsǎn, xià xiǎoyǔ, yīfu, xiàxuě, yǔsǎn, guā fēng, shuǐguǒ|0
+七点, 七点半, 六点, 六点半|qī diǎn, qī diǎn bàn, liù diǎn, liù diǎn bàn|2
+多喝冷水，多吃水果, 多喝热水，多吃零食, 多喝凉水，多吃炒饭, 多喝热水，多吃水果|duō hē lěng shuǐ, duō chī shuǐguǒ, duō hē rè shuǐ, duō chī língshí, duō hē liáng shuǐ, duō chī chǎofàn, duō hē rè shuǐ, duō chī shuǐguǒ|3
+漂亮，很好, 漂亮，不好, 好看，很热, 很美， 很闷|piàoliang, hěn hǎo, piàoliang, bù hǎo, hǎokàn, hěn rè, hěn měi, hěn mèn|0
+看日出，少穿衣服, 看日落，多穿衣服, 看日出，多穿衣服, 看风景，多穿衣服|kàn rìchū, shǎo chuān yīfu, kàn rìluò, duō chuān yīfu, kàn rìchū, duō chuān yīfu, kàn fēngjǐng, duō chuān yīfu|2
+看下雪, 看下雨, 堆雪人, 看电影|kàn xiàxuě, kàn xiàyǔ, duī xuěrén, kàn diànyǐng|2
+去海边游泳, 去山上看日出, 去山上看日落, 去公园散步|qù hǎibiān yóuyǒng, qù shānshàng kàn rìchū, qù shānshàng kàn rìluò, qù gōngyuán sànbù|0
+天气变凉快了，好多了, 天气变冷了，好多了, 天气变热了，好多了, 天气冷了，还没好|tiānqì biàn liángkuai le, hǎo duō le, tiānqì biàn lěng le, hǎo duō le, tiānqì biàn rè le, hǎo duō le, tiānqì lěng le, hái méi hǎo|1
+去河内野餐, 去山上野餐, 去公园野餐, 去海边野餐|qù hénèi yěcān, qù shānshàng yěcān, qù gōngyuán yěcān, qù hǎibiān yěcān|2
+不喜欢, 不想去, 没时间, 天气不好|bù xǐhuan, bù xiǎng qù, méi shíjiān, tiānqì bù hǎo|2
+想学习中文, 想和咖啡, 想喝奶茶, 想学习韩语|xiǎng xuéxí zhōngwén, xiǎng hē kāfēi, xiǎng hē nǎichá, xiǎng xuéxí hányǔ|0
+炒饭, 炒面, 中国菜, 韩国菜|chǎofàn, chǎomiàn, zhōngguó cài, hánguó cài|2
+喝水, 喝冷水, 吃零食, 看书|hē shuǐ, hē lěng shuǐ, chī língshí, kàn shū|2
+会去, 不会去, 不知道, 不能去|huì qù, bú huì qù, bù zhīdào, bù kěnéng qù|3
+看书, 学习, 借书, 听音乐|kàn shū, xuéxí, jiè shū, tīng yīnyuè|2
+学校, 图书馆, 奶茶店, 商店|xuéxiào, túshūguǎn, nǎichá diàn, shāngdiàn|3
+做炒饭, 做炒面, 做奶茶, 做包子|zuò chǎofàn, zuò chǎomiàn, zuò nǎichá, zuò bāozi|0
+听音乐, 玩手机, 学习汉语, 学习英语|tīng yīnyuè, wán shǒujī, xuéxí hànyǔ, xuéxí yīngyǔ|3
+看书, 看电影, 听音乐, 玩游戏|kàn shū, kàn diànyǐng, tīng yīnyuè, wán yóuxì|2
+洗澡, 洗手, 洗衣服, 洗脸|xǐzǎo, xǐshǒu, xǐ yīfu, xǐliǎn|2
+学习日语, 看电影, 学习韩语, 喝咖啡|xuéxí rìyǔ, kàn diànyǐng, xuéxí hányǔ, hē kāfēi|2
+周一, 周三, 周五, 周末|zhōuyī, zhōusān, zhōuwǔ, zhōumò|3
+便宜但是不好吃, 又便宜又好吃, 又便宜又好看, 又便宜又好喝|piányi dànshì bù hǎochī, yòu piányi yòu hǎochī, yòu piányi yòu hǎokàn, yòu piányi yòu hǎohē|1
+没有想借的书, 买那本书了, 不想借了, 书不好看|méiyǒu xiǎng jiè de shū, mǎi nà běn shū le, bù xiǎng jiè le, shū bù hǎokàn|1
+多出去玩, 多看电视, 多玩游戏, 多吃零食|duō chūqù wán, duō kàn diànshì, duō wán yóuxì, duō chī língshí|0
