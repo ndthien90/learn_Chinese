@@ -5,7 +5,7 @@
 女的身体怎么样？|Nǚ de shēntǐ zěnme yàng?
 他为什么今天不会来？|Tā wèi shénme jīntiān bù huì lái?
 他们下午想去商店买什么？|Tāmen xiàwǔ xiǎng qù shāngdiàn mǎi shénme?
-星期六天气怎么样？女的问什么今天不能出去玩？|Xīngqīliù tiānqì zěnme yàng? Nǚ de wèn shénme jīntiān bù néng chūqù wán?
+星期六天气怎么样？女的为什么今天不能出去玩？|Xīngqīliù tiānqì zěnme yàng? Nǚ de wèi shénme jīntiān bù néng chūqù wán?
 他们今天怎么去朋友家？|Tāmen jīntiān zěnme qù péngyou jiā?
 明天下午天气怎么样？女的去男的家要带什么东西？|Míngtiān xiàwǔ tiānqì zěnme yàng? Nǚ de qù nán de jiā yào dài shénme dōngxi?
 女的明天几点起床？|Nǚ de míngtiān jǐ diǎn qǐchuáng?
@@ -16,7 +16,7 @@
 夏天的时候可以做什么|Xiàtiān de shíhou kěyǐ zuò shénme?
 女的为什么感冒了？现在好了吗？|Nǚ de wèishénme gǎnmào le? Xiànzài hǎo le ma?
 他们明天打算做什么？|Tāmen míngtiān dǎsuàn zuò shénme?
-他们问什么不常去游泳？|Tāmen wèn shénme bù cháng qù yóuyǒng?
+他们为什么不常去游泳？|Tāmen wèi shénme bù cháng qù yóuyǒng?
 男的为什么去咖啡馆？|Nán de wèishénme qù kāfēi guǎn?
 他们在吃什么？|Tāmen zài chī shénme?
 上课的时候不能做什么？|Shàngkè de shíhou bù néng zuò shénme?
