@@ -3,7 +3,7 @@
 太热的天气应该做什么？|Tài rè de tiānqì yīnggāi zuò shénme?
 女的明天要去哪儿？|Nǚ de míngtiān yào qù nǎr?
 女的身体怎么样？|Nǚ de shēntǐ zěnme yàng?
-他问什么今天不会来？|Tā wèn shénme jīntiān bù huì lái?
+他为什么今天不会来？|Tā wèi shénme jīntiān bù huì lái?
 他们下午想去商店买什么？|Tāmen xiàwǔ xiǎng qù shāngdiàn mǎi shénme?
 星期六天气怎么样？女的问什么今天不能出去玩？|Xīngqīliù tiānqì zěnme yàng? Nǚ de wèn shénme jīntiān bù néng chūqù wán?
 他们今天怎么去朋友家？|Tāmen jīntiān zěnme qù péngyou jiā?
