@@ -14,7 +14,7 @@
 看日出，少穿衣服, 看日落，多穿衣服, 看日出，多穿衣服, 看风景，多穿衣服|kàn rìchū, shǎo chuān yīfu, kàn rìluò, duō chuān yīfu, kàn rìchū, duō chuān yīfu, kàn fēngjǐng, duō chuān yīfu|2
 看下雪, 看下雨, 堆雪人, 看电影|kàn xiàxuě, kàn xiàyǔ, duī xuěrén, kàn diànyǐng|2
 去海边游泳, 去山上看日出, 去山上看日落, 去公园散步|qù hǎibiān yóuyǒng, qù shānshàng kàn rìchū, qù shānshàng kàn rìluò, qù gōngyuán sànbù|0
-天气变凉快了，好多了, 天气变冷了，好多了, 天气变热了，好多了, 天气冷了，还没好|tiānqì biàn liángkuai le, hǎo duō le, tiānqì biàn lěng le, hǎo duō le, tiānqì biàn rè le, hǎo duō le, tiānqì lěng le, hái méi hǎo|1
+天气变凉快了，好多了, 天气变冷了，好多了, 天气变热了，好多了, 天气冷了，还没好|tiānqì biàn liángkuai le，hǎo duō le, tiānqì biàn lěng le，hǎo duō le, tiānqì biàn rè le，hǎo duō le, tiānqì lěng le，hái méi hǎo|1
 去河内野餐, 去山上野餐, 去公园野餐, 去海边野餐|qù hénèi yěcān, qù shānshàng yěcān, qù gōngyuán yěcān, qù hǎibiān yěcān|2
 不喜欢, 不想去, 没时间, 天气不好|bù xǐhuan, bù xiǎng qù, méi shíjiān, tiānqì bù hǎo|2
 想学习中文, 想和咖啡, 想喝奶茶, 想学习韩语|xiǎng xuéxí zhōngwén, xiǎng hē kāfēi, xiǎng hē nǎichá, xiǎng xuéxí hányǔ|0
