@@ -4,14 +4,14 @@
 电影院, 书店, 学校, 医院|diànyǐngyuàn, shūdiàn, xuéxiào, yīyuàn|3
 不太好, 很好, 很不好, 非常好|bù tài hǎo, hěn hǎo, hěn bù hǎo, fēicháng hǎo|0
 感冒了, 天气不好, 天气很好, 没有时间|gǎnmào le, tiānqì bù hǎo, tiānqì hěn hǎo, méiyǒu shíjiān|1
-水果，零食，饮料, 礼物，零食，饮料, 水果，奶茶，衣服, 水果，书，雨伞|shuǐguǒ, língshí, yǐnliào, lǐwù, língshí, yǐnliào, shuǐguǒ, nǎichá, yīfu, shuǐguǒ, shū, yǔsǎn|0
+水果，零食，饮料, 礼物，零食，饮料, 水果，奶茶，衣服, 水果，书，雨伞|shuǐguǒ，língshí，yǐnliào, lǐwù，língshí，yǐnliào, shuǐguǒ，nǎichá，yīfu, shuǐguǒ，shū，yǔsǎn|0
 雷阵雨，下雨了, 下雨，她没有时间, 雷阵雨，她朋友没有时间, 雷阵雨， 天气不好|léizhènyǔ, xiàyǔ le, xiàyǔ, tā méiyǒu shíjiān, léizhènyǔ, tā péngyou méiyǒu shíjiān, léizhènyǔ, tiānqì bù hǎo|2
 骑车去, 开车去, 坐飞机去, 坐火车去|qíchē qù, kāichē qù, zuò fēijī qù, zuò huǒchē qù|1
-下大雨，雨伞, 下小雨，衣服, 下雪，雨伞, 刮风，水果|xià dàyǔ, yǔsǎn, xià xiǎoyǔ, yīfu, xiàxuě, yǔsǎn, guā fēng, shuǐguǒ|0
+下大雨，雨伞, 下小雨，衣服, 下雪，雨伞, 刮风，水果|xià dàyǔ，yǔsǎn, xià xiǎoyǔ，yīfu, xiàxuě，yǔsǎn, guā fēng，shuǐguǒ|0
 七点, 七点半, 六点, 六点半|qī diǎn, qī diǎn bàn, liù diǎn, liù diǎn bàn|2
-多喝冷水，多吃水果, 多喝热水，多吃零食, 多喝凉水，多吃炒饭, 多喝热水，多吃水果|duō hē lěng shuǐ, duō chī shuǐguǒ, duō hē rè shuǐ, duō chī língshí, duō hē liáng shuǐ, duō chī chǎofàn, duō hē rè shuǐ, duō chī shuǐguǒ|3
-漂亮，很好, 漂亮，不好, 好看，很热, 很美， 很闷|piàoliang, hěn hǎo, piàoliang, bù hǎo, hǎokàn, hěn rè, hěn měi, hěn mèn|0
-看日出，少穿衣服, 看日落，多穿衣服, 看日出，多穿衣服, 看风景，多穿衣服|kàn rìchū, shǎo chuān yīfu, kàn rìluò, duō chuān yīfu, kàn rìchū, duō chuān yīfu, kàn fēngjǐng, duō chuān yīfu|2
+多喝冷水，多吃水果, 多喝热水，多吃零食, 多喝凉水，多吃炒饭, 多喝热水，多吃水果|duō hē lěng shuǐ， duō chī shuǐguǒ, duō hē rè shuǐ，duō chī língshí, duō hē liáng shuǐ，duō chī chǎofàn, duō hē rè shuǐ， duō chī shuǐguǒ|3
+漂亮，很好, 漂亮，不好, 好看，很热, 很美， 很闷|piàoliang，hěn hǎo, piàoliang，bù hǎo, hǎokàn，hěn rè, hěn měi，hěn mèn|0
+看日出，少穿衣服, 看日落，多穿衣服, 看日出，多穿衣服, 看风景，多穿衣服|kàn rìchū，shǎo chuān yīfu, kàn rìluò，duō chuān yīfu, kàn rìchū，duō chuān yīfu, kàn fēngjǐng，duō chuān yīfu|2
 看下雪, 看下雨, 堆雪人, 看电影|kàn xiàxuě, kàn xiàyǔ, duī xuěrén, kàn diànyǐng|2
 去海边游泳, 去山上看日出, 去山上看日落, 去公园散步|qù hǎibiān yóuyǒng, qù shānshàng kàn rìchū, qù shānshàng kàn rìluò, qù gōngyuán sànbù|0
 天气变凉快了，好多了, 天气变冷了，好多了, 天气变热了，好多了, 天气冷了，还没好|tiānqì biàn liángkuai le，hǎo duō le, tiānqì biàn lěng le，hǎo duō le, tiānqì biàn rè le，hǎo duō le, tiānqì lěng le，hái méi hǎo|1
