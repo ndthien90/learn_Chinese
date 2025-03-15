@@ -1,0 +1,10 @@
+ nǐ hǎo, qǐng wèn shūcài qū zài nǎlǐ?|你好，请问蔬菜区在哪里？|Xin chào, xin hỏi khu rau củ ở đâu?
+shūcài qū jiù zài shuǐguǒ qū pángbiān.|蔬菜区就在水果区旁边。|Khu rau củ ở ngay bên cạnh khu trái cây.
+xièxiè! zhèlǐ de huángguā duōshao qián yī jīn?|谢谢！这里的黄瓜多少钱一斤？|Cảm ơn! Dưa chuột  ở đây giá bao nhiêu một cân?
+huángguā sān kuài qián yī jīn, jīntiān de shūcài dōu hěn xīnxiān.|黄瓜三块钱一斤，今天的蔬菜都很新鲜。|Dưa chuột ba tệ một cân, rau củ hôm nay rất tươi ngon.
+tài hǎole, wǒ mǎi liǎng jīn. hái yǒu fānqié ma?|太好了，我买两斤。还有番茄吗？|Tuyệt quá, tôi mua hai cân. Còn cà chua không?
+yǒu de, fānqié zài huángguā de duìmiàn.|有的，番茄在黄瓜的对面。|Có, cà chua ở đối diện Dưa chuột.
+wǒ kàn dào le, zhèlǐ de fānqié hěn dà. duōshao qián yī jīn?|我看到了，这里的番茄很大。多少钱一斤？|Tôi nhìn thấy, cà chua ở đây rất to. Giá bao nhiêu một cân?
+fānqié wǔ kuài qián yī jīn.|番茄五块钱一斤。|Cà chua năm tệ một cân.
+hǎo de, nà wǒ yě mǎi liǎng jīn. jīntiān yǒu dài zi ma?|好的，那我也买两斤。今天有袋子吗？|Ok, vậy tôi cũng mua hai cân. Hôm nay có túi không?
+yǒu de, dài zi zài shūcài qū pángbiān.|有的，袋子在蔬菜区旁边。|Có, túi ở bên cạnh khu rau củ.

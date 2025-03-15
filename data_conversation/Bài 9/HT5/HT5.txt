@@ -1,0 +1,10 @@
+nǐmen de píngguǒ duōshao qián yī jīn?|你们的苹果多少钱一斤？|Táo của các bạn giá bao nhiêu một cân?
+wǔ kuài qián yī jīn.|五块钱一斤。|Năm tệ một cân.
+xiāngjiāo ne?|香蕉呢？|Còn chuối thì sao?
+xiāngjiāo sān kuài qián yī jīn.|香蕉三块钱一斤。|Chuối ba tệ một cân.
+wǒ mǎi liǎng jīn píngguǒ hé yī jīn xiāngjiāo.|我买两斤苹果和一斤香蕉。|Tôi mua hai cân táo và một cân chuối.
+hǎo de, yī gòng shísān kuài.|好的，一共十三块。|Vâng, tổng cộng là mười ba tệ.
+wǒ kěyǐ yòng shǒujī fùkuǎn ma?|我可以用手机付款吗？|Tôi có thể thanh toán bằng điện thoại không?
+kěyǐ, sǎo zhège èrwéimǎ jiù xíngle.|可以，扫这个二维码就行了。|Có, quét mã QR này là được.
+qián fù hǎole.|钱付好了。|Tiền trả xong rồi.
+xièxiè!|谢谢！|Cảm ơn!

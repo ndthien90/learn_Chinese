@@ -1,0 +1,12 @@
+nǐ hǎo, qǐng wèn zhè jiàn hóngsè de wàitào duōshao qián?|你好，请问这件红色的外套多少钱？|Xin chào, cái áo khoác màu đỏ này giá bao nhiêu?
+nǐ hǎo, yuánjià shì sān bǎi kuài, xiànzài zhǐ yào liǎng bǎi wǔshí kuài.|你好，原价是三百块，现在只要两百五十块。|Xin chào, giá gốc là ba trăm tệ, bây giờ chỉ còn hai trăm năm mươi tệ.
+kàn qǐlái hěn piàoliang, yǒu qítā yánsè ma?|看起来很漂亮，有其他颜色吗？|Trông rất đẹp, có màu sắc khác không?
+yǒu de, zhège kuǎnshì hái yǒu hēisè de hé lán sè de, nín kěyǐ kàn kàn.|有的，这个款式还有黑色的和蓝色的，您可以看看。|Có, mẫu này còn có màu đen và màu xanh, bạn có thể xem thử.
+wǒ juédé hēisè de hěn shìhé wǒ, wǒ kěyǐ shì yīxià ma?|我觉得黑色的很适合我，我可以试一下吗？|Tôi nghĩ màu đen rất hợp với tôi, tôi có thể thử một chút không?
+dāngrán kěyǐ, shìyījiān zài zuǒbiān.|当然可以，试衣间在左边。|Tất nhiên rồi, phòng thử đồ ở bên trái.
+wǒ shìle yīxià, chǐcùn yǒudiǎn dà, hái yǒu xiǎo yī kuǎn de ma?|我试了一下，尺寸有点大，还有小一码的吗？|Tôi đã thử qua, kích cỡ có chút lớn, còn nhỏ hơn một mã không?
+yǒu de, qǐng nín shāo děng.|有的，请您稍等。|Có, xin bạn vui lòng chờ một chút.
+zhè jiàn zhènghǎo, nà wǒ jiù yào zhè yī jiàn hēisè de ba.|这件正好，那我就要这一件黑色的吧。|Cái này vừa vặn, vậy tôi sẽ lấy cái áo khoác đen này.
+hǎo de, qǐng nín dào shōuyín tái fùkuǎn.|好的，请您到收银台付款。|Vâng, mời bạn đến quầy thu ngân để thanh toán.
+wǒ kěyǐ shuā kǎ fùkuǎn ma?|我可以刷卡付款吗？|Tôi có thể thanh toán bằng thẻ không?
+nǐ fù xiànjīn huòzhě shuā kǎ dōu kěyǐ?|你付现金或者刷卡都可以？|Bạn có thể thanh toán bằng tiền mặt hoặc quẹt thẻ đều được.

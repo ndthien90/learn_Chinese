@@ -1,0 +1,12 @@
+nǐ hǎo, qǐng wèn nǐmen yǒu shénme tuījiàn de cài ma?|你好，请问你们有什么推荐的菜吗？|Xin chào, xin hỏi các bạn có món nào giới thiệu không?
+yǒu de, wǒmen zhèlǐ de běijīng kǎoyā tèbié hǎochī.|有的，我们这里的北京烤鸭特别好吃。|Có, vịt quay Bắc Kinh ở đây đặc biệt ngon.
+běijīng kǎoyā zěnme mài ne?|北京烤鸭怎么卖呢？|Vịt quay Bắc Kinh bán thế nào?
+bù guì, sānshí kuài qián yī jīn.|不贵，三十块钱一斤。|Không đắt, ba mươi tệ một cân.
+nà wǒ jiù yào běijīng kǎoyā ba.|那我就要北京烤鸭吧。|Vậy tôi sẽ lấy vịt quay Bắc Kinh.
+hǎo de, nǐ yào duōshao?|好的，你要多少？|Được rồi, bạn muốn bao nhiêu?
+wǒ yào yī jīn.|我要一斤。|Tôi muốn một cân.
+nǐ hái yào bié de ma?|你还要别的吗？|Bạn còn cần gì khác không?
+wǒ hái yào yī wǎn mǐfàn, yī bēi kělè.|我还要一碗米饭，一杯可乐。|Tôi còn muốn một bát cơm, một cốc cola.
+hǎo de, yī gòng sānshíwǔ kuài.|好的，一共三十五块。|Được rồi, tổng cộng là ba mươi lăm tệ.
+gěi nǐ sìshí kuài.|给你四十块。|Đưa bạn bốn mươi tệ.
+hǎo de, zhǎo nǐ wǔ kuài.|好的，找你五块。|Vâng, trả lại bạn năm tệ.

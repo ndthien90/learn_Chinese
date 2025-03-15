@@ -1,0 +1,10 @@
+nǐ hǎo, zhè jiàn yīfu duōshao qián?|你好，这件衣服多少钱？|Xin chào, cái áo này giá bao nhiêu?
+zhè jiàn yīfu yībǎi wǔshí kuài.|这件衣服一百五十块。|Cái áo này một trăm năm mươi tệ.
+yǒu dǎzhé ma?|有打折吗？|Có giảm giá không?
+yǒu, zhè jiàn dǎ jiǔ zhé.|有，这件打九折。|Có, cái này giảm giá mười phần trăm.
+wǒ kěyǐ shì shì ma?|我可以试试吗？|Tôi có thể thử cái không?
+kěyǐ, shìyījiān zài nàbiān.|可以，试衣间在那边。|Có, phòng thử đồ ở bên kia.
+zhè jiàn yǒu bié de yánsè ma?|这件有别的颜色吗？|Cái này có màu khác không?
+yǒu hóngsè hé lán sè, nǐ xǐhuān nǎ zhǒng?|有红色和蓝色，你喜欢哪种？|Có màu đỏ và màu xanh, bạn thích màu nào?
+wǒ xǐhuān lán sè de.|我喜欢蓝色的。|Tôi thích cái màu xanh.
+hǎo de, gěi nǐ.|好的，给你。|Được rồi, của bạn đây.

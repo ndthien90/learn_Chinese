@@ -1,0 +1,20 @@
+二十, 三十, 四十, 五十|èrshí, sānshí, sìshí, wǔshí|1
+一米六, 一米七, 一米八, 一米九|yī mǐ liù, yī mǐ qī, yī mǐ bā, yī mǐ jiǔ|2
+一百, 两百, 三百, 五百|yī bǎi, liǎng bǎi, sān bǎi, wǔ bǎi|3
+十五分钟, 三十分钟, 四十分钟, 六十分钟|shíwǔ fēnzhōng, sānshí fēnzhōng, sìshí fēnzhōng, liùshí fēnzhōng|3
+七十块, 八十块, 九十块, 一百块|qīshí kuài, bāshí kuài, jiǔshí kuài, yī bǎi kuài|1
+香蕉, 橘子, 葡萄, 草莓|xiāngjiāo, júzi, pútáo, cǎoméi|2
+走路去, 开车去, 骑车去, 坐车去|zǒulù qù, kāichē qù, qíchē qù, zuòchē qù|0
+三十米, 四十米, 五十米, 六十米|sānshí mǐ, sìshí mǐ, wǔshí mǐ, liùshí mǐ|2
+左边, 后边, 右边, 对面|zuǒbiān, hòubiān, yòubiān, duìmiàn|3
+五块, 七块, 十块, 十一块|wǔ kuài, qī kuài, shí kuài, shíyī kuài|2
+炒鸡肉, 炒牛肉, 炒菜, 火锅|chǎo jīròu, chǎo niúròu, chǎo cài, huǒguō|3
+六十, 六十一, 六十二, 六十三|liùshí, liùshí yī, liùshí èr, liùshí sān|0
+买鞋, 买毛衣, 买衬衫, 买外套|mǎi xié, mǎi máoyī, mǎi chènshān, mǎi wàitào|0
+颜色有点深, 尺寸有点大, 不好看, 太贵|yánsè yǒudiǎn shēn, chǐcùn yǒudiǎn dà, bù hǎokàn, tài guì|0
+图书馆, 食堂, 教室, 医院|túshūguǎn, shítáng, jiàoshì, yīyuàn|3
+四块钱, 五块钱, 六块钱, 七块钱|sì kuài qián, wǔ kuài qián, liù kuài qián, qī kuài qián|2
+拖鞋, 运动鞋, 毛衣, 外套|tuōxié, yùndòngxié, máoyī, wàitào|1
+骑车, 开车, 坐车, 走路|qíchē, kāichē, zuòchē, zǒulù|2
+三斤, 四斤, 五斤, 六斤|sān jīn, sì jīn, wǔ jīn, liù jīn|2
+洗衣服, 洗澡, 洗手, 洗脸|xǐ yīfu, xǐ zǎo, xǐ shǒu, xǐ liǎn|0

@@ -1,0 +1,8 @@
+qǐng wèn, zuìjìn de yīyuàn zěnme zǒu?|请问，最近的医院怎么走？|Xin hỏi, bệnh viện gần nhất đi thế nào?
+yīyuàn zài qiánmiàn de lùkǒu, yòu zhuǎn.|医院在前面的路口,右转。|Bệnh viện ở ngã tư phía trước, rẽ phải.
+cóng zhèlǐ dào yīyuàn yuǎn ma?|从这里到医院远吗？|Từ đây đến bệnh viện có xa không?
+bù yuǎn, dàgài yī gōnglǐ.|不远，大概一公里。|Không xa, khoảng một cây số.
+zǒulù kěyǐ dào ma?|走路可以到吗？|Đi bộ có đến được không?
+kěyǐ, dàgài èrshí fēnzhōng.|可以，大概二十分钟。|Có, khoảng hai mươi phút.
+xièxiè nǐ!|谢谢你！|Cảm ơn bạn!
+bù yòng xiè!|不用谢！|Không cần cảm ơn!
