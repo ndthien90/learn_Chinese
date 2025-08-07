@@ -1,0 +1,102 @@
+报纸 | bàozhǐ | báo | 他每天早上看报纸。| Tā měitiān zǎoshang kàn bàozhǐ. | Anh ấy đọc báo mỗi sáng.
+宾馆 | bīnguǎn | nhà nghỉ | 我们住在宾馆里。| Wǒmen zhù zài bīnguǎn lǐ. | Chúng tôi ở trong nhà nghỉ.
+酒店 | jiǔdiàn | khách sạn | 这家酒店很高档。| Zhè jiā jiǔdiàn hěn gāodàng. | Khách sạn này rất sang trọng.
+次 | cì | lần | 我去过两次北京。| Wǒ qù guò liǎng cì Běijīng. | Tôi đã đến Bắc Kinh hai lần.
+票 | piào | vé | 请给我一张票。| Qǐng gěi wǒ yì zhāng piào. | Làm ơn cho tôi một vé.
+菜单 | càidān | thực đơn | 请给我菜单。| Qǐng gěi wǒ càidān. | Cho tôi xem thực đơn.
+地方 | dìfang | nơi, chỗ | 这是个好地方。| Zhè shì gè hǎo dìfang. | Đây là một nơi tốt.
+电梯 | diàntī | thang máy | 电梯坏了。| Diàntī huài le. | Thang máy bị hỏng.
+交通 | jiāotōng | giao thông | 北京的交通很拥挤。| Běijīng de jiāotōng hěn yōngjǐ. | Giao thông ở Bắc Kinh rất tắc nghẽn.
+羊肉 | yángròu | thịt cừu | 我不吃羊肉。| Wǒ bù chī yángròu. | Tôi không ăn thịt cừu.
+床单 | chuángdān | ga trải giường | 请换一下床单。| Qǐng huàn yíxià chuángdān. | Làm ơn thay ga giường.
+被子 | bèizi | chăn | 今晚要盖厚被子。| Jīnwǎn yào gài hòu bèizi. | Tối nay phải đắp chăn dày.
+身份证 | shēnfènzhèng | chứng minh thư | 请出示身份证。| Qǐng chūshì shēnfènzhèng. | Vui lòng xuất trình CMND.
+环境 | huánjìng | môi trường | 这家酒店的环境很好。| Zhè jiā jiǔdiàn de huánjìng hěn hǎo. | Môi trường ở khách sạn này rất tốt.
+空调 | kōngtiáo | điều hòa | 这台空调不凉。| Zhè tái kōngtiáo bù liáng. | Máy điều hòa này không mát.
+声音 | shēngyīn | âm thanh | 外面的声音很吵。| Wàimiàn de shēngyīn hěn chǎo. | Âm thanh bên ngoài rất ồn.
+行李箱 | xínglǐxiāng | vali hành lý | 我的行李箱丢了。| Wǒ de xínglǐxiāng diū le. | Vali của tôi bị mất rồi.
+洗手间 | xǐshǒujiān | nhà vệ sinh | 洗手间在哪里？| Xǐshǒujiān zài nǎlǐ? | Nhà vệ sinh ở đâu?
+历史 | lìshǐ | lịch sử | 中国有悠久的历史。| Zhōngguó yǒu yōujiǔ de lìshǐ. | Trung Quốc có lịch sử lâu đời.
+景点 | jǐngdiǎn | danh lam thắng cảnh | 故宫是有名的景点。| Gùgōng shì yǒumíng de jǐngdiǎn. | Cố Cung là thắng cảnh nổi tiếng.
+游客 | yóukè | du khách | 游客很多。| Yóukè hěn duō. | Du khách rất đông.
+房间 | fángjiān | phòng | 我的房间在三楼。| Wǒ de fángjiān zài sān lóu. | Phòng tôi ở tầng ba.
+服务 | fúwù | dịch vụ | 这里的服务很好。| Zhèlǐ de fúwù hěn hǎo. | Dịch vụ ở đây rất tốt.
+租金 | zūjīn | tiền thuê | 每月租金是多少？| Měi yuè zūjīn shì duōshǎo? | Tiền thuê mỗi tháng là bao nhiêu?
+油 | yóu | dầu | 炒菜要放点油。| Chǎocài yào fàng diǎn yóu. | Xào rau phải cho chút dầu.
+驾照 | jiàzhào | bằng lái xe | 我有驾照。| Wǒ yǒu jiàzhào. | Tôi có bằng lái xe.
+手续 | shǒuxù | thủ tục | 办理入住手续。| Bànlǐ rùzhù shǒuxù. | Làm thủ tục nhận phòng.
+长城 | Chángchéng | Vạn Lý Trường Thành | 我想去参观长城。| Wǒ xiǎng qù cānguān Chángchéng. | Tôi muốn tham quan Trường Thành.
+前台 | qiántái | quầy lễ tân | 请到前台登记。| Qǐng dào qiántái dēngjì. | Hãy đến quầy lễ tân để đăng ký.
+问题 | wèntí | vấn đề | 这个问题很重要。| Zhège wèntí hěn zhòngyào. | Vấn đề này rất quan trọng.
+行程 | xíngchéng | lịch trình | 请问今天的行程是？| Qǐngwèn jīntiān de xíngchéng shì? | Xin hỏi lịch trình hôm nay là gì?
+博物馆 | bówùguǎn | bảo tàng | 我们去了历史博物馆。| Wǒmen qù le lìshǐ bówùguǎn. | Chúng tôi đã đến bảo tàng lịch sử.
+素食 | sùshí | đồ chay | 他只吃素食。| Tā zhǐ chī sùshí. | Anh ấy chỉ ăn đồ chay.
+路况 | lùkuàng | tình hình giao thông | 路况不好，请慢行。| Lùkuàng bù hǎo, qǐng màn xíng. | Đường xấu, xin đi chậm.
+故宫 | Gùgōng | Cố Cung | 故宫是北京的景点之一。| Gùgōng shì Běijīng de jǐngdiǎn zhī yī. | Cố Cung là một trong những điểm du lịch ở Bắc Kinh.
+导游 | dǎoyóu | hướng dẫn viên | 导游讲得很好。| Dǎoyóu jiǎng de hěn hǎo. | Hướng dẫn viên nói rất hay.
+航班 | hángbān | chuyến bay | 我的航班晚点了。| Wǒ de hángbān wǎndiǎn le. | Chuyến bay của tôi bị trễ.
+飞机 | fēijī | máy bay | 我坐飞机去上海。| Wǒ zuò fēijī qù Shànghǎi. | Tôi đi máy bay đến Thượng Hải.
+机场 | jīchǎng | sân bay | 我在机场等你。| Wǒ zài jīchǎng děng nǐ. | Tôi đợi bạn ở sân bay.
+大巴 | dàbā | xe buýt lớn | 我们坐大巴去旅游。| Wǒmen zuò dàbā qù lǚyóu. | Chúng tôi đi du lịch bằng xe buýt lớn.
+卫生 | wèishēng | vệ sinh | 请注意个人卫生。| Qǐng zhùyì gèrén wèishēng. | Xin chú ý vệ sinh cá nhân.
+介绍 | jièshào | giới thiệu | 请你自我介绍一下。| Qǐng nǐ zìwǒ jièshào yíxià. | Mời bạn tự giới thiệu một chút.
+希望 | xīwàng | hy vọng | 我希望你每天都快乐。| Wǒ xīwàng nǐ měitiān dōu kuàilè. | Tôi hy vọng bạn luôn vui vẻ mỗi ngày.
+懂 | dǒng | hiểu | 你听懂了吗？| Nǐ tīng dǒng le ma? | Bạn đã hiểu chưa?
+告诉 | gàosu | nói, cho biết | 请告诉我你的名字。| Qǐng gàosu wǒ nǐ de míngzi. | Hãy cho tôi biết tên bạn.
+让 | ràng | để, khiến, nhường | 他让我很感动。| Tā ràng wǒ hěn gǎndòng. | Anh ấy khiến tôi rất cảm động.
+叫 | jiào | gọi, kêu | 他叫我马上回来。| Tā jiào wǒ mǎshàng huílái. | Anh ấy gọi tôi về ngay.
+比 | bǐ | so với | 他比我高。| Tā bǐ wǒ gāo. | Anh ấy cao hơn tôi.
+跟 | gēn | với, theo | 我跟你一起去。| Wǒ gēn nǐ yìqǐ qù. | Tôi đi với bạn.
+打扫 | dǎsǎo | dọn dẹp | 我正在打扫房间。| Wǒ zhèngzài dǎsǎo fángjiān. | Tôi đang dọn phòng.
+发现 | fāxiàn | phát hiện | 我发现他没来。| Wǒ fāxiàn tā méi lái. | Tôi phát hiện anh ấy không đến.
+接 | jiē | đón, tiếp | 我去接朋友。| Wǒ qù jiē péngyou. | Tôi đi đón bạn.
+接待 | jiēdài | tiếp đón | 他负责接待客人。| Tā fùzé jiēdài kèrén. | Anh ấy phụ trách tiếp khách.
+查 | chá | tra cứu | 我查一下地图。| Wǒ chá yíxià dìtú. | Tôi tra bản đồ một chút.
+检查 | jiǎnchá | kiểm tra | 请检查一下护照。| Qǐng jiǎnchá yíxià hùzhào. | Hãy kiểm tra hộ chiếu.
+解决 | jiějué | giải quyết | 问题已经解决了。| Wèntí yǐjīng jiějué le. | Vấn đề đã được giải quyết rồi.
+忘记 | wàngjì | quên | 我忘记带钱包了。| Wǒ wàngjì dài qiánbāo le. | Tôi quên mang ví rồi.
+要求 | yāoqiú | yêu cầu | 他对我有很多要求。| Tā duì wǒ yǒu hěn duō yāoqiú. | Anh ấy có nhiều yêu cầu với tôi.
+同意 | tóngyì | đồng ý | 我同意你的意见。| Wǒ tóngyì nǐ de yìjiàn. | Tôi đồng ý với ý kiến của bạn.
+参观 | cānguān | tham quan | 我们明天参观博物馆。| Wǒmen míngtiān cānguān bówùguǎn. | Ngày mai chúng tôi tham quan bảo tàng.
+记住 | jìzhù | ghi nhớ | 请你记住这个时间。| Qǐng nǐ jìzhù zhège shíjiān. | Hãy ghi nhớ thời gian này.
+订 | dìng | đặt (vé, bàn...) | 我订了一个房间。| Wǒ dìng le yí gè fángjiān. | Tôi đã đặt một phòng.
+预订 | yùdìng | đặt trước | 我预订了明天的票。| Wǒ yùdìng le míngtiān de piào. | Tôi đã đặt trước vé ngày mai.
+讲 | jiǎng | giảng, nói | 老师在讲课。| Lǎoshī zài jiǎngkè. | Giáo viên đang giảng bài.
+起飞 | qǐfēi | cất cánh | 飞机几点起飞？| Fēijī jǐ diǎn qǐfēi? | Máy bay cất cánh lúc mấy giờ?
+选 | xuǎn | chọn | 你选哪个颜色？| Nǐ xuǎn nǎ gè yánsè? | Bạn chọn màu nào?
+换 | huàn | đổi | 我要换房间。| Wǒ yào huàn fángjiān. | Tôi muốn đổi phòng.
+搞错 | gǎocuò | nhầm lẫn | 对不起，我搞错了。| Duìbuqǐ, wǒ gǎocuò le. | Xin lỗi, tôi nhầm rồi.
+租 | zū | thuê | 我想租一辆车。| Wǒ xiǎng zū yí liàng chē. | Tôi muốn thuê một chiếc xe.
+修 | xiū | sửa chữa | 我的手机坏了，要修一下。| Wǒ de shǒujī huài le, yào xiū yíxià. | Điện thoại của tôi hỏng rồi, cần sửa.
+改 | gǎi | sửa đổi | 请改一下行程。| Qǐng gǎi yíxià xíngchéng. | Vui lòng sửa lại lịch trình.
+安排 | ānpái | sắp xếp | 老师安排我们去参观。| Lǎoshī ānpái wǒmen qù cānguān. | Giáo viên sắp xếp cho chúng tôi đi tham quan.
+遇到 | yùdào | gặp phải | 我在路上遇到他了。| Wǒ zài lùshang yùdào tā le. | Tôi gặp anh ấy trên đường.
+需要 | xūyào | cần | 我需要一些帮助。| Wǒ xūyào yìxiē bāngzhù. | Tôi cần một chút giúp đỡ.
+提前 | tíqián | trước (thời gian) | 我们要提前出发。| Wǒmen yào tíqián chūfā. | Chúng ta phải khởi hành sớm hơn.
+影响 | yǐngxiǎng | ảnh hưởng | 雨天影响了我们的行程。| Yǔtiān yǐngxiǎng le wǒmen de xíngchéng. | Trời mưa làm ảnh hưởng đến lịch trình của chúng tôi.
+怎么办 | zěnmebàn | làm sao đây? | 我的护照丢了，怎么办？| Wǒ de hùzhào diū le, zěnmebàn? | Hộ chiếu của tôi mất rồi, phải làm sao?
+已经 | yǐjīng | đã | 我已经吃过饭了。| Wǒ yǐjīng chī guò fàn le. | Tôi đã ăn cơm rồi.
+对 | duì | đúng | 你的答案是对的。| Nǐ de dá'àn shì duì de. | Câu trả lời của bạn là đúng.
+错 | cuò | sai | 这个答案是错的。| Zhège dá'àn shì cuò de. | Câu trả lời này là sai.
+清楚 | qīngchu | rõ ràng | 你说得很清楚。| Nǐ shuō de hěn qīngchu. | Bạn nói rất rõ ràng.
+干净 | gānjìng | sạch sẽ | 房间很干净。| Fángjiān hěn gānjìng. | Phòng rất sạch sẽ.
+一样 | yíyàng | giống nhau | 我们穿的一样。| Wǒmen chuān de yíyàng. | Chúng tôi mặc giống nhau.
+方便 | fāngbiàn | thuận tiện | 这儿交通很方便。| Zhèr jiāotōng hěn fāngbiàn. | Giao thông ở đây rất thuận tiện.
+感兴趣 | gǎn xìngqù | hứng thú | 我对中国文化很感兴趣。| Wǒ duì Zhōngguó wénhuà hěn gǎn xìngqù. | Tôi rất hứng thú với văn hóa Trung Quốc.
+真 | zhēn | thật, rất | 你真漂亮。| Nǐ zhēn piàoliang. | Bạn thật xinh đẹp.
+安静 | ānjìng | yên tĩnh | 图书馆很安静。| Túshūguǎn hěn ānjìng. | Thư viện rất yên tĩnh.
+满意 | mǎnyì | hài lòng | 我对这次服务很满意。| Wǒ duì zhè cì fúwù hěn mǎnyì. | Tôi rất hài lòng với dịch vụ lần này.
+热情 | rèqíng | nhiệt tình | 他对人很热情。| Tā duì rén hěn rèqíng. | Anh ấy rất nhiệt tình với mọi người.
+生气 | shēngqì | tức giận | 他在生气，不要打扰他。| Tā zài shēngqì, bú yào dǎrǎo tā. | Anh ấy đang tức giận, đừng làm phiền.
+厉害 | lìhai | giỏi, lợi hại | 她的中文很厉害。| Tā de Zhōngwén hěn lìhai. | Tiếng Trung của cô ấy rất giỏi.
+坏 | huài | hỏng, xấu | 我的手机坏了。| Wǒ de shǒujī huài le. | Điện thoại của tôi bị hỏng rồi.
+小心 | xiǎoxīn | cẩn thận | 小心路滑！| Xiǎoxīn lù huá! | Cẩn thận đường trơn!
+怕 | pà | sợ | 我怕黑。| Wǒ pà hēi. | Tôi sợ bóng tối.
+害怕 | hàipà | sợ hãi | 小孩子害怕打雷。| Xiǎoháizi hàipà dǎléi. | Trẻ con sợ sấm sét.
+更 | gèng | hơn | 这个更好。| Zhège gèng hǎo. | Cái này tốt hơn.
+随时 | suíshí | bất cứ lúc nào | 你可以随时来找我。| Nǐ kěyǐ suíshí lái zhǎo wǒ. | Bạn có thể đến tìm tôi bất cứ lúc nào.
+少数 | shǎoshù | thiểu số | 他们是少数民族。| Tāmen shì shǎoshù mínzú. | Họ là dân tộc thiểu số.
+新 | xīn | mới | 我买了一件新衣服。| Wǒ mǎi le yí jiàn xīn yīfu. | Tôi mua một bộ quần áo mới.
+马上 | mǎshàng | ngay lập tức | 我马上回来。| Wǒ mǎshàng huílái. | Tôi sẽ quay lại ngay.
+吵 | chǎo | ồn ào | 外面很吵，睡不着。| Wàimiàn hěn chǎo, shuì bù zháo. | Bên ngoài rất ồn, không ngủ được.
+抱歉 | bàoqiàn | xin lỗi | 真抱歉，我来晚了。| Zhēn bàoqiàn, wǒ lái wǎn le. | Thật xin lỗi, tôi đến muộn rồi.

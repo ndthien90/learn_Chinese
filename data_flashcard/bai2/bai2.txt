@@ -1,0 +1,36 @@
+您|nín|ông, bà, ngài (lịch sự)|您好！|Nín hǎo!|Chào ông/bà!
+朋友|péngyǒu|bạn bè|他是我的朋友。|Tā shì wǒ de péngyǒu.|Anh ấy là bạn của tôi.
+学校|xuéxiào|trường học|我们学校很大。|Wǒmen xuéxiào hěn dà.|Trường chúng tôi rất lớn.
+与|yǔ|và, với|我与你一起去。|Wǒ yǔ nǐ yīqǐ qù.|Tôi đi cùng với bạn.
+和|hé|và, với|我和他去公园。|Wǒ hé tā qù gōngyuán.|Tôi và anh ấy đi công viên.
+很|hěn|rất|她很漂亮。|Tā hěn piàoliang.|Cô ấy rất đẹp.
+多|duō|nhiều|你有很多书。|Nǐ yǒu hěn duō shū.|Bạn có nhiều sách.
+少|shǎo|ít|我钱很少。|Wǒ qián hěn shǎo.|Tôi có rất ít tiền.
+谢|xiè|cảm ơn|谢谢你！|Xièxie nǐ!|Cảm ơn bạn!
+吗|ma|không? (trợ từ nghi vấn)|你好吗？|Nǐ hǎo ma?|Bạn khỏe không?
+这|zhè|này|这是我的书。|Zhè shì wǒ de shū.|Đây là sách của tôi.
+那|nà|kia|那是谁的家？|Nà shì shéi de jiā?|Kia là nhà của ai?
+是|shì|là|我是中国人。|Wǒ shì Zhōngguórén.|Tôi là người Trung Quốc.
+不|bù|không|我不喜欢吃苹果。|Wǒ bù xǐhuān chī píngguǒ.|Tôi không thích ăn táo.
+有|yǒu|có|我有一个妹妹。|Wǒ yǒu yīgè mèimei.|Tôi có một cô em gái.
+大|dà|lớn, to|这只狗很大。|Zhè zhǐ gǒu hěn dà.|Con chó này rất to.
+小|xiǎo|nhỏ|他家很小。|Tā jiā hěn xiǎo.|Nhà anh ấy rất nhỏ.
+多少|duōshǎo|bao nhiêu|你有多少钱？|Nǐ yǒu duōshǎo qián?|Bạn có bao nhiêu tiền?
+给|gěi|cho, tặng|他给我一本书。|Tā gěi wǒ yī běn shū.|Anh ấy cho tôi một cuốn sách.
+汉语|hànyǔ|tiếng Hán|我学习汉语。|Wǒ xuéxí Hànyǔ.|Tôi học tiếng Hán.
+多大|duō dà|bao nhiêu tuổi|你多大了？|Nǐ duō dà le?|Bạn bao nhiêu tuổi rồi?
+公园|gōngyuán|công viên|我去公园散步。|Wǒ qù gōngyuán sànbù.|Tôi đi dạo ở công viên.
+明天|míngtiān|ngày mai|明天见！|Míngtiān jiàn!|Hẹn gặp lại ngày mai!
+农民|nóngmín|nông dân|他的爸爸是农民。|Tā de bàba shì nóngmín.|Bố anh ấy là nông dân.
+爸爸|bàba|bố|这是我爸爸。|Zhè shì wǒ bàba.|Đây là bố của tôi.
+妈妈|māma|mẹ|我爱我的妈妈。|Wǒ ài wǒ de māmā.|Tôi yêu mẹ của tôi.
+爷爷|yéyé|ông nội|爷爷在看报纸。|Yéyé zài kàn bàozhǐ.|Ông nội đang đọc báo.
+奶奶|nǎinai|bà nội|我和奶奶说话。|Wǒ hé nǎinai shuōhuà.|Tôi nói chuyện với bà nội.
+哥哥|gēge|anh trai|我有一个哥哥。|Wǒ yǒu yīgè gēge.|Tôi có một người anh trai.
+姐姐|jiějie|chị gái|姐姐很漂亮。|Jiějie hěn piàoliang.|Chị gái rất đẹp.
+妹妹|mèimei|em gái|我没有妹妹。|Wǒ méiyǒu mèimei.|Tôi không có em gái.
+弟弟|dìdi|em trai|弟弟在玩游戏。|Dìdi zài wán yóuxì.|Em trai đang chơi game.
+喝|hē|uống|你想喝什么？|Nǐ xiǎng hē shénme?|Bạn muốn uống gì?
+吃|chī|ăn|我想吃米饭。|Wǒ xiǎng chī mǐfàn.|Tôi muốn ăn cơm.
+饭|fàn|cơm|我们一起吃饭吧。|Wǒmen yīqǐ chīfàn ba.|Chúng ta cùng nhau ăn cơm đi.
+了|le|rồi (trợ từ ngữ khí)|我吃了。|Wǒ chīle.|Tôi ăn rồi.

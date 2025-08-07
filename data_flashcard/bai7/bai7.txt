@@ -1,0 +1,55 @@
+现在 | xiànzài | bây giờ | 现在几点？| Xiànzài jǐ diǎn? | Bây giờ là mấy giờ?
+钟 | zhōng | đồng hồ | 墙上有一个钟。| Qiáng shàng yǒu yí gè zhōng. | Trên tường có một cái đồng hồ.
+表 | biǎo | đồng hồ đeo tay | 我的表不走了。| Wǒ de biǎo bù zǒu le. | Đồng hồ của tôi không chạy nữa.
+手 | shǒu | tay | 他手上戴着手表。| Tā shǒu shang dàizhe shǒubiǎo. | Trên tay anh ấy đeo đồng hồ.
+点 | diǎn | giờ | 现在八点。| Xiànzài bā diǎn. | Bây giờ là 8 giờ.
+时 | shí | giờ, thời | 你什么时候回来？| Nǐ shénme shíhou huílái? | Khi nào bạn quay lại?
+分 | fēn | phút | 现在七点十五分。| Xiànzài qī diǎn shíwǔ fēn. | Bây giờ là 7 giờ 15 phút.
+秒 | miǎo | giây | 我等了三十秒。| Wǒ děng le sānshí miǎo. | Tôi đã đợi 30 giây.
+刻 | kè | 15 phút | 八点一刻我们上课。| Bā diǎn yí kè wǒmen shàngkè. | 8 giờ 15 chúng tôi học.
+半 | bàn | rưỡi | 九点半我去睡觉。| Jiǔ diǎn bàn wǒ qù shuìjiào. | 9 giờ rưỡi tôi đi ngủ.
+差 | chà | kém | 差十分六点。| Chà shí fēn liù diǎn. | 6 giờ kém 10.
+针 | zhēn | kim (đồng hồ) | 钟表的针在动。| Zhōngbiǎo de zhēn zài dòng. | Kim đồng hồ đang chạy.
+每 | měi | mỗi | 我每天六点起床。| Wǒ měitiān liù diǎn qǐchuáng. | Mỗi ngày tôi dậy lúc 6 giờ.
+时候 | shíhou | lúc, khi | 你什么时候吃早饭？| Nǐ shénme shíhou chī zǎofàn? | Bạn ăn sáng lúc mấy giờ?
+前 | qián | trước | 五分钟前我到的。| Wǔ fēn zhōng qián wǒ dào de. | Tôi đến cách đây 5 phút.
+后 | hòu | sau | 十分钟后开始上课。| Shí fēnzhōng hòu kāishǐ shàngkè. | 10 phút nữa bắt đầu học.
+以前 | yǐqián | trước đây | 我以前住在河内。| Wǒ yǐqián zhù zài Hénèi. | Trước đây tôi sống ở Hà Nội.
+以后 | yǐhòu | sau này | 吃饭以后我去洗碗。| Chīfàn yǐhòu wǒ qù xǐwǎn. | Sau khi ăn tôi đi rửa bát.
+早饭 | zǎofàn | bữa sáng | 我七点吃早饭。| Wǒ qī diǎn chī zǎofàn. | Tôi ăn sáng lúc 7 giờ.
+午饭 | wǔfàn | bữa trưa | 他中午十二点吃午饭。| Tā zhōngwǔ shí'èr diǎn chī wǔfàn. | Anh ấy ăn trưa lúc 12 giờ.
+晚饭 | wǎnfàn | bữa tối | 我六点半吃晚饭。| Wǒ liù diǎn bàn chī wǎnfàn. | Tôi ăn tối lúc 6 giờ rưỡi.
+睡觉 | shuìjiào | ngủ | 我十点睡觉。| Wǒ shí diǎn shuìjiào. | Tôi ngủ lúc 10 giờ.
+起床 | qǐchuáng | thức dậy | 他起床很早。| Tā qǐchuáng hěn zǎo. | Anh ấy dậy rất sớm.
+刷牙 | shuāyá | đánh răng | 我每天早上刷牙。| Wǒ měitiān zǎoshang shuāyá. | Mỗi sáng tôi đánh răng.
+洗澡 | xǐzǎo | tắm | 她晚上洗澡。| Tā wǎnshang xǐzǎo. | Cô ấy tắm vào buổi tối.
+常 | cháng | thường | 我常去图书馆。| Wǒ cháng qù túshūguǎn. | Tôi thường đến thư viện.
+常常 | chángcháng | thường xuyên | 她常常迟到。| Tā chángcháng chídào. | Cô ấy thường đến muộn.
+平时 | píngshí | bình thường | 平时我不喝咖啡。| Píngshí wǒ bù hē kāfēi. | Bình thường tôi không uống cà phê.
+左右 | zuǒyòu | khoảng, xấp xỉ | 八点左右我出发。| Bā diǎn zuǒyòu wǒ chūfā. | Khoảng 8 giờ tôi xuất phát.
+快 | kuài | nhanh | 他走得很快。| Tā zǒu de hěn kuài. | Anh ấy đi rất nhanh.
+慢 | màn | chậm | 她说话很慢。| Tā shuōhuà hěn màn. | Cô ấy nói chuyện rất chậm.
+早 | zǎo | sớm | 今天我来得很早。| Jīntiān wǒ lái de hěn zǎo. | Hôm nay tôi đến rất sớm.
+迟到 | chídào | đến muộn | 上课别迟到。| Shàngkè bié chídào. | Đừng đến muộn buổi học.
+一点 | yìdiǎn | một chút | 我只迟到了一点。| Wǒ zhǐ chídào le yìdiǎn. | Tôi chỉ đến muộn một chút.
+坐 | zuò | ngồi, đi (phương tiện) | 我坐公交车去学校。| Wǒ zuò gōngjiāochē qù xuéxiào. | Tôi đi xe buýt đến trường.
+座 | zuò | chỗ ngồi | 我的座位在前面。| Wǒ de zuòwèi zài qiánmiàn. | Chỗ ngồi của tôi ở phía trước.
+挂 | guà | treo | 我把钟挂在墙上。| Wǒ bǎ zhōng guà zài qiáng shàng. | Tôi treo đồng hồ lên tường.
+闹 | nào | ồn ào | 这个地方太闹了。| Zhège dìfāng tài nào le. | Nơi này quá ồn.
+闹钟 | nàozhōng | đồng hồ báo thức | 我的闹钟六点响。| Wǒ de nàozhōng liù diǎn xiǎng. | Đồng hồ báo thức của tôi reo lúc 6 giờ.
+准时 | zhǔnshí | đúng giờ | 她总是准时上课。| Tā zǒngshì zhǔnshí shàngkè. | Cô ấy luôn đến lớp đúng giờ.
+出发 | chūfā | xuất phát | 我们八点出发。| Wǒmen bā diǎn chūfā. | Chúng tôi xuất phát lúc 8 giờ.
+医院 | yīyuàn | bệnh viện | 他在医院工作。| Tā zài yīyuàn gōngzuò. | Anh ấy làm việc ở bệnh viện.
+看 | kàn | xem, khám | 我去医院看病。| Wǒ qù yīyuàn kànbìng. | Tôi đi bệnh viện khám bệnh.
+课 | kè | bài học | 今天有三节课。| Jīntiān yǒu sān jié kè. | Hôm nay có ba tiết học.
+节 | jié | tiết học | 下一节是英语课。| Xià yì jié shì Yīngyǔ kè. | Tiết tiếp theo là tiếng Anh.
+上课 | shàngkè | vào học | 我们八点上课。| Wǒmen bā diǎn shàngkè. | Chúng tôi vào học lúc 8 giờ.
+下课 | xiàkè | tan học | 九点半下课。| Jiǔ diǎn bàn xiàkè. | Tan học lúc 9 giờ rưỡi.
+教室 | jiàoshì | lớp học | 他在教室里。| Tā zài jiàoshì lǐ. | Anh ấy đang trong lớp học.
+开 | kāi | mở | 请开门。| Qǐng kāi mén. | Làm ơn mở cửa.
+关 | guān | đóng | 请关灯。| Qǐng guān dēng. | Làm ơn tắt đèn.
+门 | mén | cửa | 教室的门关着。| Jiàoshì de mén guānzhe. | Cửa lớp học đang đóng.
+回 | huí | quay lại, về | 我下午三点回家。| Wǒ xiàwǔ sān diǎn huí jiā. | Tôi về nhà lúc 3 giờ chiều.
+等 | děng | đợi | 请等一下。| Qǐng děng yíxià. | Làm ơn đợi một chút.
+从 | cóng | từ | 我从七点开始工作。| Wǒ cóng qī diǎn kāishǐ gōngzuò. | Tôi bắt đầu làm từ 7 giờ.
+到 | dào | đến | 我八点到学校。| Wǒ bā diǎn dào xuéxiào. | Tôi đến trường lúc 8 giờ.

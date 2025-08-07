@@ -1,0 +1,112 @@
+天气 | tiānqì | thời tiết | 今天天气很好。| Jīntiān tiānqì hěn hǎo. | Hôm nay thời tiết rất tốt.
+预报 | yùbào | dự báo | 我看了天气预报。| Wǒ kàn le tiānqì yùbào. | Tôi đã xem dự báo thời tiết.
+空气 | kōngqì | không khí | 山上的空气很好。| Shān shàng de kōngqì hěn hǎo. | Không khí trên núi rất tốt.
+气温 | qìwēn | nhiệt độ | 今天的气温是三十度。| Jīntiān de qìwēn shì sānshí dù. | Nhiệt độ hôm nay là 30 độ.
+气候 | qìhòu | khí hậu | 越南的气候很湿润。| Yuènán de qìhòu hěn shīrùn. | Khí hậu Việt Nam rất ẩm ướt.
+度 | dù | độ | 外面三十五度。| Wàimiàn sānshíwǔ dù. | Bên ngoài 35 độ.
+温度 | wēndù | nhiệt độ | 温度越来越高了。| Wēndù yuè lái yuè gāo le. | Nhiệt độ ngày càng cao.
+怎么样 | zěnmeyàng | như thế nào | 今天天气怎么样？| Jīntiān tiānqì zěnmeyàng? | Thời tiết hôm nay thế nào?
+春天 | chūntiān | mùa xuân | 春天来了，花开了。| Chūntiān lái le, huā kāi le. | Mùa xuân đến rồi, hoa nở rồi.
+夏天 | xiàtiān | mùa hè | 夏天很热。| Xiàtiān hěn rè. | Mùa hè rất nóng.
+秋天 | qiūtiān | mùa thu | 秋天的风很凉快。| Qiūtiān de fēng hěn liángkuai. | Gió mùa thu rất mát.
+冬天 | dōngtiān | mùa đông | 冬天下雪了。| Dōngtiān xià xuě le. | Mùa đông tuyết rơi rồi.
+风 | fēng | gió | 外面的风很大。| Wàimiàn de fēng hěn dà. | Gió bên ngoài rất to.
+云 | yún | mây | 天上有白云。| Tiān shàng yǒu báiyún. | Trên trời có mây trắng.
+彩虹 | cǎihóng | cầu vồng | 雨后出现了彩虹。| Yǔ hòu chūxiàn le cǎihóng. | Sau cơn mưa xuất hiện cầu vồng.
+雨 | yǔ | mưa | 下雨了，我们别出门。| Xià yǔ le, wǒmen bié chūmén. | Trời mưa rồi, chúng ta đừng ra ngoài.
+下雨 | xià yǔ | mưa (v) | 昨天下了一整天的雨。| Zuótiān xià le yì zhěng tiān de yǔ. | Hôm qua mưa suốt cả ngày.
+下雪 | xià xuě | tuyết rơi | 北方冬天常常下雪。| Běifāng dōngtiān chángcháng xià xuě. | Miền Bắc thường có tuyết vào mùa đông.
+阵雨 | zhènyǔ | mưa rào | 下午会有阵雨。| Xiàwǔ huì yǒu zhènyǔ. | Chiều nay sẽ có mưa rào.
+打雷 | dǎléi | sấm chớp | 半夜打雷了。| Bànyè dǎléi le. | Nửa đêm có sấm.
+闪电 | shǎndiàn | sét | 天空中有闪电。| Tiānkōng zhōng yǒu shǎndiàn. | Trên trời có sét.
+太 | tài | quá | 今天太热了！| Jīntiān tài rè le! | Hôm nay nóng quá!
+热 | rè | nóng | 夏天我觉得很热。| Xiàtiān wǒ juéde hěn rè. | Mùa hè tôi thấy rất nóng.
+冷 | lěng | lạnh | 冬天真的很冷。| Dōngtiān zhēn de hěn lěng. | Mùa đông thật sự rất lạnh.
+凉快 | liángkuai | mát mẻ | 秋天的天气很凉快。| Qiūtiān de tiānqì hěn liángkuai. | Thời tiết mùa thu rất mát.
+清新 | qīngxīn | trong lành | 下雨后空气很清新。| Xiàyǔ hòu kōngqì hěn qīngxīn. | Sau mưa không khí rất trong lành.
+暖和 | nuǎnhuo | ấm áp | 春天的阳光很暖和。| Chūntiān de yángguāng hěn nuǎnhuo. | Nắng xuân rất ấm áp.
+感冒 | gǎnmào | cảm cúm | 他因为淋雨感冒了。| Tā yīnwèi lín yǔ gǎnmào le. | Anh ấy bị cảm vì dính mưa.
+咳嗽 | késou | ho | 我一直咳嗽。| Wǒ yìzhí késou. | Tôi bị ho suốt.
+发烧 | fāshāo | sốt | 孩子发烧了。| Háizi fāshāo le. | Đứa bé bị sốt rồi.
+鼻涕 | bítì | nước mũi | 他流鼻涕了。| Tā liú bítì le. | Anh ấy chảy nước mũi rồi.
+打喷嚏 | dǎ pēntì | hắt hơi | 我不停地打喷嚏。| Wǒ bù tíng de dǎ pēntì. | Tôi cứ hắt hơi liên tục.
+带 | dài | mang theo | 出门记得带雨伞。| Chūmén jìde dài yǔsǎn. | Ra ngoài nhớ mang theo ô.
+帽子 | màozi | mũ | 戴帽子可以防晒。| Dài màozi kěyǐ fángshài. | Đội mũ có thể chống nắng.
+雨伞 | yǔsǎn | ô | 外面下雨，拿雨伞吧。| Wàimiàn xià yǔ, ná yǔsǎn ba. | Ngoài trời mưa, lấy ô đi.
+外套 | wàitào | áo khoác | 天冷了，多穿外套。| Tiān lěng le, duō chuān wàitào. | Trời lạnh rồi, mặc thêm áo khoác nhé.
+围巾 | wéijīn | khăn quàng | 她戴着红围巾。| Tā dàizhe hóng wéijīn. | Cô ấy đeo khăn quàng đỏ.
+海边 | hǎibiān | bãi biển | 夏天我们去海边玩。| Xiàtiān wǒmen qù hǎibiān wán. | Mùa hè chúng tôi đi chơi biển.
+风景 | fēngjǐng | phong cảnh | 那里的风景很漂亮。| Nàlǐ de fēngjǐng hěn piàoliang. | Phong cảnh ở đó rất đẹp.
+拍照 | pāizhào | chụp ảnh | 我们在海边拍照。| Wǒmen zài hǎibiān pāizhào. | Chúng tôi chụp ảnh ở bãi biển.
+会 | huì | biết / sẽ | 他会说中文。| Tā huì shuō Zhōngwén. | Anh ấy biết nói tiếng Trung.
+能 | néng | có thể | 我今天不能出去。| Wǒ jīntiān bù néng chūqù. | Hôm nay tôi không thể ra ngoài.
+可能 | kěnéng | có thể / có lẽ | 明天可能会下雨。| Míngtiān kěnéng huì xiàyǔ. | Ngày mai có thể sẽ mưa.
+可以 | kěyǐ | có thể / được phép | 你可以帮我吗？| Nǐ kěyǐ bāng wǒ ma? | Bạn có thể giúp tôi không?
+要 | yào | muốn / cần / sẽ | 我要喝水。| Wǒ yào hē shuǐ. | Tôi muốn uống nước.
+需要 | xūyào | cần | 我需要休息。| Wǒ xūyào xiūxi. | Tôi cần nghỉ ngơi.
+想 | xiǎng | muốn / nghĩ | 我想去旅行。| Wǒ xiǎng qù lǚxíng. | Tôi muốn đi du lịch.
+必须 | bìxū | bắt buộc / phải | 你必须吃药。| Nǐ bìxū chī yào. | Bạn phải uống thuốc.
+应该 | yīnggāi | nên | 你应该早点睡觉。| Nǐ yīnggāi zǎodiǎn shuìjiào. | Bạn nên đi ngủ sớm.
+这么 | zhème | như thế này | 天气这么热！| Tiānqì zhème rè! | Thời tiết nóng như thế này!
+这样 | zhèyàng | như thế này | 我不喜欢这样说话。| Wǒ bù xǐhuān zhèyàng shuōhuà. | Tôi không thích nói chuyện như thế này.
+那么 | nàme | như thế kia / đến mức đó | 他怎么那么高？| Tā zěnme nàme gāo? | Sao anh ấy cao thế?
+那样 | nàyàng | như thế kia | 不要那样做。| Bú yào nàyàng zuò. | Đừng làm như thế kia.
+又 | yòu | lại (đã xảy ra rồi) | 他又感冒了。| Tā yòu gǎnmào le. | Anh ấy lại bị cảm rồi.
+再 | zài | lại (chưa xảy ra) | 请你再说一遍。| Qǐng nǐ zài shuō yí biàn. | Bạn làm ơn nói lại lần nữa.
+变 | biàn | thay đổi / trở nên | 天气变冷了。| Tiānqì biàn lěng le. | Thời tiết trở nên lạnh rồi.
+有点儿 | yǒudiǎnr | hơi, một chút | 我有点儿不舒服。| Wǒ yǒudiǎnr bù shūfu. | Tôi hơi khó chịu.
+疲劳 | píláo | mệt mỏi | 连续工作让我很疲劳。| Liánxù gōngzuò ràng wǒ hěn píláo. | Làm việc liên tục khiến tôi rất mệt.
+出门 | chūmén | ra ngoài | 他刚出门了。| Tā gāng chūmén le. | Anh ấy vừa ra ngoài rồi.
+麻烦 | máfan | phiền phức / làm phiền | 不好意思，麻烦你了。| Bù hǎoyìsi, máfan nǐ le. | Xin lỗi đã làm phiền bạn.
+主意 | zhǔyì | ý tưởng / ý kiến | 我有个好主意。| Wǒ yǒu gè hǎo zhǔyì. | Tôi có một ý kiến hay.
+听说 | tīngshuō | nghe nói | 我听说他去中国了。| Wǒ tīngshuō tā qù Zhōngguó le. | Tôi nghe nói anh ấy đi Trung Quốc rồi.
+不错 | búcuò | không tệ / khá tốt | 今天的天气不错。| Jīntiān de tiānqì búcuò. | Thời tiết hôm nay khá tốt.
+风景 | fēngjǐng | phong cảnh | 山上的风景很美。| Shān shàng de fēngjǐng hěn měi. | Phong cảnh trên núi rất đẹp.
+万一 | wànyī | lỡ như | 带伞吧，万一下雨。| Dài sǎn ba, wànyī xià yǔ. | Mang ô đi, lỡ mà mưa.
+一些 | yìxiē | một vài | 我买了一些水果。| Wǒ mǎi le yìxiē shuǐguǒ. | Tôi mua một vài trái cây.
+带 | dài | mang theo | 我出门会带伞。| Wǒ chūmén huì dài sǎn. | Tôi sẽ mang ô khi ra ngoài.
+帽子 | màozi | mũ | 他戴着一顶帽子。| Tā dàizhe yì dǐng màozi. | Anh ấy đội một cái mũ.
+外套 | wàitào | áo khoác | 你应该穿外套。| Nǐ yīnggāi chuān wàitào. | Bạn nên mặc áo khoác.
+围巾 | wéijīn | khăn quàng | 冬天我戴围巾。| Dōngtiān wǒ dài wéijīn. | Mùa đông tôi đeo khăn quàng.
+雨衣 | yǔyī | áo mưa | 他穿着一件雨衣。| Tā chuānzhe yí jiàn yǔyī. | Anh ấy mặc áo mưa.
+雨伞 | yǔsǎn | ô, dù | 别忘了带雨伞。| Bié wàng le dài yǔsǎn. | Đừng quên mang ô.
+海边 | hǎibiān | bờ biển | 我们去海边玩吧。| Wǒmen qù hǎibiān wán ba. | Chúng ta đi chơi biển nhé.
+知道 | zhīdào | biết | 我不知道他是谁。| Wǒ bù zhīdào tā shì shéi. | Tôi không biết anh ấy là ai.
+适合 | shìhé | phù hợp | 这个地方很适合拍照。| Zhège dìfang hěn shìhé pāizhào. | Nơi này rất hợp để chụp ảnh.
+出去 | chūqù | đi ra ngoài | 今天太冷，我不想出去。| Jīntiān tài lěng, wǒ bù xiǎng chūqù. | Hôm nay lạnh quá, tôi không muốn ra ngoài.
+觉得 | juéde | cảm thấy / cho rằng | 我觉得这里很漂亮。| Wǒ juéde zhèlǐ hěn piàoliang. | Tôi thấy nơi này rất đẹp.
+舒服 | shūfu | thoải mái | 房间里很舒服。| Fángjiān lǐ hěn shūfu. | Trong phòng rất thoải mái.
+漂亮 | piàoliang | xinh đẹp | 她长得很漂亮。| Tā zhǎng de hěn piàoliang. | Cô ấy rất xinh đẹp.
+滑雪 | huáxuě | trượt tuyết | 我们去山上滑雪吧。| Wǒmen qù shān shàng huáxuě ba. | Chúng ta đi trượt tuyết trên núi nhé.
+比较 | bǐjiào | tương đối / so sánh | 今天比较凉快。| Jīntiān bǐjiào liángkuai. | Hôm nay tương đối mát mẻ.
+听起来 | tīngqǐlái | nghe có vẻ | 听起来不错啊！| Tīng qǐlái búcuò a! | Nghe có vẻ không tệ đấy!
+有意思 | yǒuyìsi | thú vị | 这个地方真有意思。| Zhège dìfang zhēn yǒuyìsi. | Nơi này thật thú vị.
+北京 | Běijīng | Bắc Kinh | 北京是中国的首都。| Běijīng shì Zhōngguó de shǒudū. | Bắc Kinh là thủ đô của Trung Quốc.
+东北 | Dōngběi | Đông Bắc | 东北的冬天非常冷。| Dōngběi de dōngtiān fēicháng lěng. | Mùa đông ở Đông Bắc rất lạnh.
+世界 | shìjiè | thế giới | 我想去看看世界。| Wǒ xiǎng qù kànkàn shìjiè. | Tôi muốn đi ngắm thế giới.
+童话 | tónghuà | truyện cổ tích | 我小时候喜欢听童话故事。| Wǒ xiǎoshíhou xǐhuan tīng tónghuà gùshì. | Hồi nhỏ tôi thích nghe truyện cổ tích.
+空调 | kōngtiáo | máy lạnh | 天气太热了，开空调吧。| Tiānqì tài rè le, kāi kōngtiáo ba. | Trời nóng quá, bật điều hòa đi.
+风扇 | fēngshàn | quạt máy | 这个风扇很安静。| Zhège fēngshàn hěn ānjìng. | Chiếc quạt máy này rất yên tĩnh.
+防晒霜 | fángshài shuāng | kem chống nắng | 出门别忘了涂防晒霜。| Chūmén bié wàng le tú fángshài shuāng. | Ra ngoài đừng quên thoa kem chống nắng.
+照片 | zhàopiàn | bức ảnh | 我们一起拍了很多照片。| Wǒmen yìqǐ pāi le hěn duō zhàopiàn. | Chúng tôi đã chụp rất nhiều ảnh cùng nhau.
+星星 | xīngxing | ngôi sao | 天上有很多星星。| Tiān shàng yǒu hěn duō xīngxing. | Trên trời có rất nhiều sao.
+日出 | rìchū | bình minh | 我每天早上看日出。| Wǒ měitiān zǎoshang kàn rìchū. | Tôi ngắm bình minh mỗi sáng.
+黎明 | límíng | rạng sáng | 黎明时分最安静。| Límíng shífēn zuì ānjìng. | Lúc rạng sáng là yên tĩnh nhất.
+日落 | rìluò | hoàng hôn | 海边的日落非常美。| Hǎibiān de rìluò fēicháng měi. | Hoàng hôn ở bãi biển rất đẹp.
+黄昏 | huánghūn | chạng vạng | 黄昏的景色真漂亮。| Huánghūn de jǐngsè zhēn piàoliang. | Cảnh hoàng hôn thật đẹp.
+热饮 | rèyǐn | đồ uống nóng | 冬天我喜欢喝热饮。| Dōngtiān wǒ xǐhuān hē rèyǐn. | Mùa đông tôi thích uống đồ nóng.
+冷饮 | lěngyǐn | đồ uống lạnh | 夏天我们喝冷饮。| Xiàtiān wǒmen hē lěngyǐn. | Mùa hè chúng tôi uống đồ lạnh.
+跑步 | pǎobù | chạy bộ | 每天早上我去跑步。| Měitiān zǎoshang wǒ qù pǎobù. | Mỗi sáng tôi đi chạy bộ.
+野外 | yěwài | hoang dã / ngoài trời | 周末我们去野外露营。| Zhōumò wǒmen qù yěwài lùyíng. | Cuối tuần chúng tôi đi cắm trại ngoài trời.
+野餐 | yěcān | dã ngoại | 明天一起去公园野餐吧。| Míngtiān yìqǐ qù gōngyuán yěcān ba. | Ngày mai cùng đi dã ngoại ở công viên nhé.
+突然 | tūrán | đột nhiên | 天气突然变冷了。| Tiānqì tūrán biàn lěng le. | Thời tiết đột nhiên trở lạnh.
+结束 | jiéshù | kết thúc | 雨终于结束了。| Yǔ zhōngyú jiéshù le. | Mưa cuối cùng cũng tạnh.
+值得 | zhídé | đáng, xứng đáng | 这个地方值得一去。| Zhège dìfang zhídé yí qù. | Nơi này đáng để đến.
+景色 | jǐngsè | phong cảnh | 这里的景色太美了。| Zhèlǐ de jǐngsè tài měi le. | Phong cảnh ở đây quá đẹp.
+拍照 | pāizhào | chụp ảnh | 我喜欢旅行时拍照。| Wǒ xǐhuān lǚxíng shí pāizhào. | Tôi thích chụp ảnh khi du lịch.
+穿 | chuān | mặc | 他今天穿得很时尚。| Tā jīntiān chuān de hěn shíshàng. | Hôm nay anh ấy ăn mặc rất thời trang.
+试 | shì | thử | 我想试这件衣服。| Wǒ xiǎng shì zhè jiàn yīfu. | Tôi muốn thử bộ đồ này.
+堆 | duī | chất đống / đắp | 孩子们在堆雪人。| Háizimen zài duī xuěrén. | Bọn trẻ đang đắp người tuyết.
+顺便 | shùnbiàn | tiện thể | 回家的时候顺便买点水果吧。| Huí jiā de shíhou shùnbiàn mǎi diǎn shuǐguǒ ba. | Khi về nhà tiện thể mua ít trái cây nhé.
+没问题 | méi wèntí | không vấn đề gì | 这个我来做，没问题！| Zhège wǒ lái zuò, méi wèntí! | Việc này để tôi làm, không vấn đề gì!
+郊外 | jiāowài | ngoại ô | 周末我去郊外散步。| Zhōumò wǒ qù jiāowài sànbù. | Cuối tuần tôi đi dạo ở vùng ngoại ô.

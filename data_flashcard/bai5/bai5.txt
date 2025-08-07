@@ -1,0 +1,45 @@
+越南 | Yuènán | Việt Nam | 我来自越南。| Wǒ láizì Yuènán. | Tôi đến từ Việt Nam.
+中国 | Zhōngguó | Trung Quốc | 他是中国人。| Tā shì Zhōngguó rén. | Anh ấy là người Trung Quốc.
+日本 | Rìběn | Nhật Bản | 她去过日本。| Tā qùguò Rìběn. | Cô ấy từng đến Nhật Bản.
+韩国 | Hánguó | Hàn Quốc | 我喜欢韩国音乐。| Wǒ xǐhuan Hánguó yīnyuè. | Tôi thích nhạc Hàn Quốc.
+法国 | Fǎguó | Pháp | 法国很浪漫。| Fǎguó hěn làngmàn. | Pháp rất lãng mạn.
+泰国 | Tàiguó | Thái Lan | 你去过泰国吗？| Nǐ qùguò Tàiguó ma? | Bạn đã từng đến Thái Lan chưa?
+美国 | Měiguó | Mỹ | 他想去美国留学。| Tā xiǎng qù Měiguó liúxué. | Anh ấy muốn du học Mỹ.
+德国 | Déguó | Đức | 我朋友住在德国。| Wǒ péngyǒu zhù zài Déguó. | Bạn tôi sống ở Đức.
+国籍 | guójí | quốc tịch | 你的国籍是？| Nǐ de guójí shì? | Quốc tịch của bạn là gì?
+国旗 | guóqí | quốc kỳ | 中国的国旗是红色的。| Zhōngguó de guóqí shì hóngsè de. | Quốc kỳ Trung Quốc là màu đỏ.
+北宁 | Běiníng | Bắc Ninh | 我的家乡是北宁。| Wǒ de jiāxiāng shì Běiníng. | Quê tôi là Bắc Ninh.
+北江 | Běijiāng | Bắc Giang | 她来自北江省。| Tā láizì Běijiāng shěng. | Cô ấy đến từ tỉnh Bắc Giang.
+河内 | Hénèi | Hà Nội | 我在河内工作。| Wǒ zài Hénèi gōngzuò. | Tôi làm việc ở Hà Nội.
+海防 | Hǎifáng | Hải Phòng | 海防是一个港口城市。| Hǎifáng shì yí gè gǎngkǒu chéngshì. | Hải Phòng là một thành phố cảng.
+海阳 | Hǎiyáng | Hải Dương | 海阳在越南北部。| Hǎiyáng zài Yuènán běibù. | Hải Dương ở miền Bắc Việt Nam.
+语 | yǔ | ngữ | 汉语很有趣。| Hànyǔ hěn yǒuqù. | Tiếng Hán rất thú vị.
+言 | yán | lời, ngôn | 言语很重要。| Yányǔ hěn zhòngyào. | Ngôn từ rất quan trọng.
+语言 | yǔyán | ngôn ngữ | 你会几种语言？| Nǐ huì jǐ zhǒng yǔyán? | Bạn biết mấy thứ tiếng?
+门 | mén | môn, cánh cửa | 语言是一门艺术。| Yǔyán shì yì mén yìshù. | Ngôn ngữ là một môn nghệ thuật.
+人 | rén | người | 他是越南人。| Tā shì Yuènán rén. | Anh ấy là người Việt Nam.
+文 | wén | văn | 中文很难写。| Zhōngwén hěn nán xiě. | Chữ Hán khó viết.
+字 | zì | chữ | 这个字我不认识。| Zhège zì wǒ bú rènshi. | Tôi không nhận ra chữ này.
+文字 | wénzì | văn tự | 汉字是一种古老的文字。| Hànzì shì yì zhǒng gǔlǎo de wénzì. | Hán tự là một loại văn tự cổ.
+汉字 | Hànzì | chữ Hán | 他写汉字很快。| Tā xiě Hànzì hěn kuài. | Anh ấy viết chữ Hán rất nhanh.
+哪 | nǎ | nào | 你是哪国人？| Nǐ shì nǎ guó rén? | Bạn là người nước nào?
+哪儿 | nǎr | ở đâu (Bắc) | 你家在哪儿？| Nǐ jiā zài nǎr? | Nhà bạn ở đâu?
+哪里 | nǎlǐ | ở đâu (Nam) | 你在哪里工作？| Nǐ zài nǎlǐ gōngzuò ? | Bạn làm việc ở đâu?
+来自 | láizì | đến từ | 我来自海阳。| Wǒ láizì Hǎiyáng. | Tôi đến từ Hải Dương.
+家乡 | jiāxiāng | quê hương | 我的家乡很美。| Wǒ de jiāxiāng hěn měi. | Quê tôi rất đẹp.
+在 | zài | ở, đang | 他在上课。| Tā zài shàngkè. | Anh ấy đang học.
+会 | huì | biết (kỹ năng) | 我会写汉字。| Wǒ huì xiě Hànzì. | Tôi biết viết chữ Hán.
+做 | zuò | làm | 你会做中国菜吗？| Nǐ huì zuò Zhōngguó cài ma? | Bạn biết nấu món Trung không?
+写 | xiě | viết | 我写名字。| Wǒ xiě míngzi. | Tôi viết tên.
+读 | dú | đọc | 我在读书。| Wǒ zài dúshū. | Tôi đang đọc sách.
+说 | shuō | nói | 他说得很快。| Tā shuō de hěn kuài. | Anh ấy nói rất nhanh.
+开 | kāi | lái (xe), mở | 我会开车。| Wǒ huì kāichē. | Tôi biết lái xe.
+骑 | qí | cưỡi, đi xe | 他每天骑自行车上学。| Tā měitiān qí zìxíngchē shàngxué. | Mỗi ngày anh ấy đạp xe đi học.
+表演 | biǎoyǎn | biểu diễn | 她在表演舞蹈。| Tā zài biǎoyǎn wǔdǎo. | Cô ấy đang biểu diễn múa.
+武术 | wǔshù | võ thuật | 他会表演武术。| Tā huì biǎoyǎn wǔshù. | Anh ấy biết biểu diễn võ thuật.
+书法 | shūfǎ | thư pháp | 我想学书法。| Wǒ xiǎng xué shūfǎ. | Tôi muốn học thư pháp.
+游泳 | yóuyǒng | bơi | 我会游泳。| Wǒ huì yóuyǒng. | Tôi biết bơi.
+魔术 | móshù | ảo thuật | 他会变魔术。| Tā huì biàn móshù. | Anh ấy biết làm ảo thuật.
+自行车 | zìxíngchē | xe đạp | 我每天骑自行车上班。| Wǒ měitiān qí zìxíngchē shàngbān. | Tôi đạp xe đi làm mỗi ngày.
+电瓶车 | diànpíngchē | xe máy điện | 弟弟骑电瓶车去学校。| Dìdi qí diànpíngchē qù xuéxiào. | Em trai đi học bằng xe máy điện.
+汽车 | qìchē | ô tô | 爸爸开汽车去公司。| Bàba kāi qìchē qù gōngsī. | Bố lái xe ô tô đi làm.

@@ -1,0 +1,8 @@
+你|nǐ|bạn|你好。|Nǐ hǎo.|Chào bạn.
+我|wǒ|tôi|我是学生。|Wǒ shì xuésheng.|Tôi là học sinh.
+好|hǎo|tốt, khỏe|你好吗？|Nǐ hǎo ma?|Bạn khỏe không?
+很|hěn|rất|我很好。|Wǒ hěn hǎo.|Tôi rất khỏe.
+你好|nǐ hǎo|xin chào|你好，很高兴认识你。|Nǐ hǎo, hěn gāoxìng rènshì nǐ.|Chào bạn, rất vui được làm quen với bạn.
+再见|zàijiàn|tạm biệt|再见，明天见。|Zàijiàn, míngtiān jiàn.|Tạm biệt, ngày mai gặp lại.
+高兴|gāoxìng|vui, vui mừng|我很高兴。|Wǒ hěn gāoxìng.|Tôi rất vui.
+认识|rènshì|quen biết|认识你很高兴。|Rènshì nǐ hěn gāoxìng.|Rất vui được làm quen với bạn.

@@ -1,0 +1,38 @@
+爱好 | àihào | sở thích | 我的爱好是看书。| Wǒ de àihào shì kàn shū. | Sở thích của tôi là đọc sách.
+喜欢 | xǐhuan | thích | 我喜欢听音乐。| Wǒ xǐhuan tīng yīnyuè. | Tôi thích nghe nhạc.
+吃 | chī | ăn | 我喜欢吃面包。| Wǒ xǐhuan chī miànbāo. | Tôi thích ăn bánh mì.
+喝 | hē | uống | 我每天喝牛奶。| Wǒ měitiān hē niúnǎi. | Tôi uống sữa mỗi ngày.
+看 | kàn | xem | 他在看电影。| Tā zài kàn diànyǐng. | Anh ấy đang xem phim.
+听 | tīng | nghe | 我爱听音乐。| Wǒ ài tīng yīnyuè. | Tôi thích nghe nhạc.
+打 | dǎ | chơi (bóng, thể thao) | 他喜欢打篮球。| Tā xǐhuan dǎ lánqiú. | Anh ấy thích chơi bóng rổ.
+唱 | chàng | hát | 她唱歌很好听。| Tā chànggē hěn hǎotīng. | Cô ấy hát rất hay.
+去 | qù | đi | 我想去旅游。| Wǒ xiǎng qù lǚyóu. | Tôi muốn đi du lịch.
+玩 | wán | chơi | 孩子们在玩游戏。| Háizimen zài wán yóuxì. | Bọn trẻ đang chơi game.
+踢 | tī | đá (bóng) | 我们下午踢足球。| Wǒmen xiàwǔ tī zúqiú. | Chiều nay chúng tôi đá bóng.
+学习 | xuéxí | học tập | 他每天学习中文。| Tā měitiān xuéxí Zhōngwén. | Anh ấy học tiếng Trung mỗi ngày.
+运动 | yùndòng | vận động, thể thao | 我每天运动一个小时。| Wǒ měitiān yùndòng yí gè xiǎoshí. | Tôi vận động 1 tiếng mỗi ngày.
+旅游 | lǚyóu | du lịch | 我喜欢和朋友一起旅游。| Wǒ xǐhuan hé péngyǒu yìqǐ lǚyóu. | Tôi thích đi du lịch với bạn bè.
+睡觉 | shuìjiào | ngủ | 我晚上十一点睡觉。| Wǒ wǎnshang shíyī diǎn shuìjiào. | Tôi đi ngủ lúc 11 giờ tối.
+游戏 | yóuxì | trò chơi | 他在玩手机游戏。| Tā zài wán shǒujī yóuxì. | Anh ấy đang chơi game điện thoại.
+烹饪 | pēngrèn | nấu ăn | 我喜欢烹饪中国菜。| Wǒ xǐhuan pēngrèn Zhōngguó cài. | Tôi thích nấu món ăn Trung Quốc.
+购物 | gòuwù | mua sắm | 她周末喜欢购物。| Tā zhōumò xǐhuan gòuwù. | Cô ấy thích mua sắm cuối tuần.
+摄影 | shèyǐng | chụp ảnh | 我的爱好是摄影。| Wǒ de àihào shì shèyǐng. | Sở thích của tôi là chụp ảnh.
+书 | shū | sách | 我每天看书。| Wǒ měitiān kàn shū. | Tôi đọc sách mỗi ngày.
+茶 | chá | trà | 爷爷喜欢喝茶。| Yéye xǐhuan hē chá. | Ông thích uống trà.
+饭 | fàn | cơm | 我吃了一碗饭。| Wǒ chī le yì wǎn fàn. | Tôi ăn một bát cơm.
+面 | miàn | mì | 我中午吃面。| Wǒ zhōngwǔ chī miàn. | Trưa tôi ăn mì.
+歌 | gē | bài hát | 我最喜欢这首歌。| Wǒ zuì xǐhuan zhè shǒu gē. | Tôi thích nhất bài hát này.
+颜色 | yánsè | màu sắc | 你喜欢什么颜色？| Nǐ xǐhuan shénme yánsè? | Bạn thích màu gì?
+足球 | zúqiú | bóng đá | 我们常常一起踢足球。| Wǒmen chángcháng yìqǐ tī zúqiú. | Chúng tôi thường chơi bóng đá cùng nhau.
+牛奶 | niúnǎi | sữa | 我每天早上喝牛奶。| Wǒ měitiān zǎoshang hē niúnǎi. | Tôi uống sữa mỗi sáng.
+面包 | miànbāo | bánh mì | 他吃了两个面包。| Tā chī le liǎng gè miànbāo. | Anh ấy ăn hai cái bánh mì.
+包子 | bāozi | bánh bao | 早餐我吃包子。| Zǎocān wǒ chī bāozi. | Bữa sáng tôi ăn bánh bao.
+炒面 | chǎomiàn | mì xào | 我喜欢吃炒面。| Wǒ xǐhuan chī chǎomiàn. | Tôi thích ăn mì xào.
+炒饭 | chǎofàn | cơm rang | 她做的炒饭很好吃。| Tā zuò de chǎofàn hěn hǎochī. | Cơm rang cô ấy nấu rất ngon.
+奶茶 | nǎichá | trà sữa | 我最爱喝奶茶。| Wǒ zuì ài hē nǎichá. | Tôi thích uống trà sữa nhất.
+音乐 | yīnyuè | âm nhạc | 他喜欢听流行音乐。| Tā xǐhuan tīng liúxíng yīnyuè. | Anh ấy thích nghe nhạc pop.
+果汁 | guǒzhī | nước ép hoa quả | 小孩子喜欢喝果汁。| Xiǎo háizi xǐhuan hē guǒzhī. | Trẻ con thích uống nước ép.
+咖啡 | kāfēi | cà phê | 我不常喝咖啡。| Wǒ bù cháng hē kāfēi. | Tôi không thường uống cà phê.
+零食 | língshí | đồ ăn vặt | 她喜欢吃零食。| Tā xǐhuan chī língshí. | Cô ấy thích ăn vặt.
+电影 | diànyǐng | phim | 今天晚上我们看电影。| Jīntiān wǎnshang wǒmen kàn diànyǐng. | Tối nay chúng tôi xem phim.
+羽毛球 | yǔmáoqiú | cầu lông | 星期天我打羽毛球。| Xīngqītiān wǒ dǎ yǔmáoqiú. | Chủ nhật tôi chơi cầu lông.

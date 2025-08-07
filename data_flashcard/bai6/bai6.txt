@@ -1,0 +1,54 @@
+年 | nián | năm | 今年是2025年。| Jīnnián shì èr líng èr wǔ nián. | Năm nay là năm 2025.
+月 | yuè | tháng | 我一月出生。| Wǒ yī yuè chūshēng. | Tôi sinh vào tháng 1.
+日 | rì | ngày | 今天是几月几日？| Jīntiān shì jǐ yuè jǐ rì? | Hôm nay là ngày mấy tháng mấy?
+号 | hào | ngày (thông dụng) | 今天是八号。| Jīntiān shì bā hào. | Hôm nay là ngày 8.
+天 | tiān | ngày, trời | 我三天后回家。| Wǒ sān tiān hòu huí jiā. | Ba ngày nữa tôi sẽ về nhà.
+日子 | rìzi | ngày (cuộc sống/ngày tháng) | 今天是个特别的日子。| Jīntiān shì gè tèbié de rìzi. | Hôm nay là một ngày đặc biệt.
+阳历 | yánglì | dương lịch | 我们用阳历过生日。| Wǒmen yòng yánglì guò shēngrì. | Chúng tôi dùng dương lịch để mừng sinh nhật.
+农历 | nónglì | âm lịch | 春节是农历新年。| Chūnjié shì nónglì xīnnián. | Tết là năm mới âm lịch.
+元旦 | Yuándàn | Tết dương lịch | 元旦是一月一号。| Yuándàn shì yī yuè yī hào. | Tết dương là ngày 1/1.
+节 | jié | lễ, tiết | 春节是中国的节日。| Chūnjié shì Zhōngguó de jiérì. | Tết là lễ của Trung Quốc.
+节日 | jiérì | ngày lễ | 我最喜欢的节日是中秋节。| Wǒ zuì xǐhuan de jiérì shì Zhōngqiūjié. | Lễ tôi thích nhất là Tết Trung Thu.
+春节 | Chūnjié | Tết âm lịch | 春节我们放假。| Chūnjié wǒmen fàngjià. | Chúng tôi được nghỉ vào Tết.
+国际 | guójì | quốc tế | 今天是国际儿童节。| Jīntiān shì guójì értóngjié. | Hôm nay là ngày Quốc tế Thiếu nhi.
+劳动 | láodòng | lao động | 劳动节在五月一号。| Láodòngjié zài wǔ yuè yī hào. | Ngày Quốc tế Lao động là ngày 1/5.
+儿童 | értóng | trẻ em | 儿童节孩子很高兴。| Értóngjié háizi hěn gāoxìng. | Trẻ em rất vui vào ngày Thiếu nhi.
+中秋 | Zhōngqiū | Trung Thu | 中秋节我们吃月饼。| Zhōngqiūjié wǒmen chī yuèbǐng. | Trung Thu chúng tôi ăn bánh trung thu.
+国庆 | Guóqìng | Quốc khánh | 国庆节是十月一号。| Guóqìngjié shì shí yuè yī hào. | Quốc khánh là ngày 1/10.
+教师 | jiàoshī | giáo viên | 教师节是九月十号。| Jiàoshījié shì jiǔ yuè shí hào. | Ngày Nhà giáo là ngày 10/9.
+今天 | jīntiān | hôm nay | 今天是星期一。| Jīntiān shì xīngqī yī. | Hôm nay là thứ hai.
+昨天 | zuótiān | hôm qua | 昨天我没去学校。| Zuótiān wǒ méi qù xuéxiào. | Hôm qua tôi không đi học.
+前天 | qiántiān | hôm kia | 前天我去图书馆了。| Qiántiān wǒ qù túshūguǎn le. | Hôm kia tôi đã đến thư viện.
+明天 | míngtiān | ngày mai | 明天我有考试。| Míngtiān wǒ yǒu kǎoshì. | Ngày mai tôi có bài kiểm tra.
+后天 | hòutiān | ngày kia | 后天我们去旅游。| Hòutiān wǒmen qù lǚyóu. | Ngày kia chúng tôi sẽ đi du lịch.
+今年 | jīnnián | năm nay | 今年你多大？| Jīnnián nǐ duō dà? | Năm nay bạn bao nhiêu tuổi?
+去年 | qùnián | năm ngoái | 去年我去了中国。| Qùnián wǒ qù le Zhōngguó. | Năm ngoái tôi đã đi Trung Quốc.
+明年 | míngnián | năm sau | 明年我想换工作。| Míngnián wǒ xiǎng huàn gōngzuò. | Năm sau tôi muốn đổi việc.
+凌晨 | língchén | rạng sáng | 他凌晨三点起床。| Tā língchén sān diǎn qǐchuáng. | Anh ấy dậy lúc 3h sáng.
+清晨 | qīngchén | sáng sớm | 清晨空气很好。| Qīngchén kōngqì hěn hǎo. | Không khí sáng sớm rất tốt.
+早上 | zǎoshang | buổi sáng | 早上我吃早饭。| Zǎoshang wǒ chī zǎofàn. | Buổi sáng tôi ăn sáng.
+上午 | shàngwǔ | buổi sáng (sau 8h) | 我上午去上课。| Wǒ shàngwǔ qù shàngkè. | Tôi đi học vào buổi sáng.
+中午 | zhōngwǔ | buổi trưa | 中午我们休息。| Zhōngwǔ wǒmen xiūxi. | Buổi trưa chúng tôi nghỉ ngơi.
+下午 | xiàwǔ | buổi chiều | 下午我看电影。| Xiàwǔ wǒ kàn diànyǐng. | Chiều tôi xem phim.
+晚上 | wǎnshang | buổi tối | 晚上我学习汉语。| Wǎnshang wǒ xuéxí Hànyǔ. | Tối tôi học tiếng Trung.
+星期 | xīngqī | tuần/thứ | 今天是星期天。| Jīntiān shì xīngqī tiān. | Hôm nay là Chủ nhật.
+周末 | zhōumò | cuối tuần | 周末我和朋友去看电影。| Zhōumò wǒ hé péngyǒu qù kàn diànyǐng. | Cuối tuần tôi đi xem phim với bạn.
+上 | shàng | trước/lên | 上个星期我去北京。| Shàng gè xīngqī wǒ qù Běijīng. | Tuần trước tôi đi Bắc Kinh.
+下 | xià | sau/xuống | 下个月我们放假。| Xià gè yuè wǒmen fàngjià. | Tháng sau chúng tôi nghỉ.
+初 | chū | đầu (thời gian) | 一月初很冷。| Yī yuè chū hěn lěng. | Đầu tháng 1 rất lạnh.
+底 | dǐ | cuối (tháng/năm) | 十二月底我们考试。| Shí'èr yuè dǐ wǒmen kǎoshì. | Cuối tháng 12 chúng tôi thi.
+末 | mò | cuối (thời kỳ) | 周末我在家。| Zhōumò wǒ zài jiā. | Cuối tuần tôi ở nhà.
+生日 | shēngrì | sinh nhật | 你的生日是几号？| Nǐ de shēngrì shì jǐ hào? | Sinh nhật bạn là ngày mấy?
+出生 | chūshēng | sinh ra | 我出生在河内。| Wǒ chūshēng zài Hénèi. | Tôi sinh ra ở Hà Nội.
+在 | zài | ở, đang | 我在图书馆学习。| Wǒ zài túshūguǎn xuéxí. | Tôi học ở thư viện.
+去 | qù | đi | 我明天去商店。| Wǒ míngtiān qù shāngdiàn. | Ngày mai tôi đi cửa hàng.
+馆 | guǎn | quán, viện | 咖啡馆里很安静。| Kāfēiguǎn lǐ hěn ānjìng. | Trong quán cà phê rất yên tĩnh.
+图书馆 | túshūguǎn | thư viện | 他在图书馆看书。| Tā zài túshūguǎn kàn shū. | Anh ấy đọc sách ở thư viện.
+咖啡馆 | kāfēiguǎn | quán cà phê | 咖啡馆的人很多。| Kāfēiguǎn de rén hěn duō. | Quán cà phê rất đông người.
+商店 | shāngdiàn | cửa hàng | 她去商店买衣服。| Tā qù shāngdiàn mǎi yīfu. | Cô ấy đi mua quần áo ở cửa hàng.
+餐厅 | cāntīng | nhà hàng | 我们在餐厅吃饭。| Wǒmen zài cāntīng chīfàn. | Chúng tôi ăn cơm trong nhà hàng.
+电影院 | diànyǐngyuàn | rạp chiếu phim | 电影院几点开门？| Diànyǐngyuàn jǐ diǎn kāimén? | Rạp phim mở cửa lúc mấy giờ?
+买 | mǎi | mua | 我要去买东西。| Wǒ yào qù mǎi dōngxi. | Tôi muốn đi mua đồ.
+借 | jiè | mượn | 我借了一本书。| Wǒ jiè le yì běn shū. | Tôi đã mượn một cuốn sách.
+散步 | sànbù | đi dạo | 我每天晚上散步。| Wǒ měitiān wǎnshang sànbù. | Mỗi tối tôi đi dạo.
+跑步 | pǎobù | chạy bộ | 她早上跑步。| Tā zǎoshang pǎobù. | Cô ấy chạy bộ buổi sáng.

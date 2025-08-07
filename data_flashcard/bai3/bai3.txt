@@ -1,0 +1,32 @@
+姓 | xìng | họ (tên) | 你姓什么？| Nǐ xìng shénme? | Bạn họ gì?
+他 | tā | anh ấy | 他是我的朋友。| Tā shì wǒ de péngyǒu. | Anh ấy là bạn tôi.
+她 | tā | cô ấy | 她是老师。| Tā shì lǎoshī. | Cô ấy là giáo viên.
+他们 | tāmen | họ (nam) | 他们是学生。| Tāmen shì xuéshēng. | Họ là học sinh.
+她们 | tāmen | họ (nữ) | 她们在唱歌。| Tāmen zài chànggē. | Họ (các cô ấy) đang hát.
+也 | yě | cũng | 我是学生，他也是学生。| Wǒ shì xuéshēng, tā yě shì xuéshēng. | Tôi là học sinh, anh ấy cũng là học sinh.
+都 | dōu | đều | 我们都是中国人。| Wǒmen dōu shì Zhōngguó rén. | Chúng tôi đều là người Trung Quốc.
+呢 | ne | thì sao | 你呢？| Nǐ ne? | Còn bạn thì sao?
+家 | jiā | nhà | 我家在河内。| Wǒ jiā zài Hénèi. | Nhà tôi ở Hà Nội.
+家庭 | jiātíng | gia đình | 我的家庭很幸福。| Wǒ de jiātíng hěn xìngfú. | Gia đình tôi rất hạnh phúc.
+人 | rén | người | 他是好人。| Tā shì hǎo rén. | Anh ấy là người tốt.
+岁 | suì | tuổi | 我今年二十岁。| Wǒ jīnnián èrshí suì. | Năm nay tôi 20 tuổi.
+几 | jǐ | mấy | 你几岁？| Nǐ jǐ suì? | Bạn mấy tuổi?
+个 | gè | cái (lượng từ chung) | 他是一个好老师。| Tā shì yí gè hǎo lǎoshī. | Anh ấy là một giáo viên tốt.
+没 | méi | không (phủ định có) | 我没去学校。| Wǒ méi qù xuéxiào. | Tôi không đi học.
+没有 | méiyǒu | không có | 我没有手机。| Wǒ méiyǒu shǒujī. | Tôi không có điện thoại.
+工作 | gōngzuò | công việc | 你的工作是什么？| Nǐ de gōngzuò shì shénme? | Công việc của bạn là gì?
+学生 | xuéshēng | học sinh | 她是大学生。| Tā shì dàxuéshēng. | Cô ấy là sinh viên đại học.
+农民 | nóngmín | nông dân | 他爸爸是农民。| Tā bàba shì nóngmín. | Bố anh ấy là nông dân.
+工人 | gōngrén | công nhân | 我的叔叔是工人。| Wǒ de shūshu shì gōngrén. | Chú tôi là công nhân.
+医生 | yīshēng | bác sĩ | 她妈妈是医生。| Tā māma shì yīshēng. | Mẹ cô ấy là bác sĩ.
+护士 | hùshi | y tá | 我姐姐是护士。| Wǒ jiějie shì hùshi. | Chị tôi là y tá.
+记者 | jìzhě | phóng viên | 他是电视记者。| Tā shì diànshì jìzhě. | Anh ấy là phóng viên truyền hình.
+公安 | gōng'ān | công an | 我叔叔是公安。| Wǒ shūshu shì gōng'ān. | Chú tôi là công an.
+部队 | bùduì | quân đội | 他在部队工作。| Tā zài bùduì gōngzuò. | Anh ấy làm việc trong quân đội.
+律师 | lǜshī | luật sư | 她哥哥是律师。| Tā gēge shì lǜshī. | Anh trai cô ấy là luật sư.
+警察 | jǐngchá | cảnh sát | 我想当警察。| Wǒ xiǎng dāng jǐngchá. | Tôi muốn làm cảnh sát.
+演员 | yǎnyuán | diễn viên | 她是一位有名的演员。| Tā shì yí wèi yǒumíng de yǎnyuán. | Cô ấy là một diễn viên nổi tiếng.
+司机 | sījī | tài xế | 他是出租车司机。| Tā shì chūzūchē sījī. | Anh ấy là tài xế taxi.
+厨师 | chúshī | đầu bếp | 我爸爸是厨师。| Wǒ bàba shì chúshī. | Bố tôi là đầu bếp.
+消防员 | xiāofángyuán | lính cứu hỏa | 消防员很勇敢。| Xiāofángyuán hěn yǒnggǎn. | Lính cứu hỏa rất dũng cảm.
+公务员 | gōngwùyuán | công chức | 我妈妈是公务员。| Wǒ māma shì gōngwùyuán. | Mẹ tôi là công chức.
