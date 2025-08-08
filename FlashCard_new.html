@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Thẻ học từ vưng tiếng Trung</title>
+    <title>Thẻ học từ vựng tiếng Trung</title>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
@@ -151,6 +151,8 @@ body {
     width: 400px;
     height: 500px;
     position: relative;
+    /* Added for touch events */
+    touch-action: pan-y;
 }
 
 .flashcard {
@@ -563,11 +565,11 @@ body {
         font-size: 3.5em;
     }
     .ex {
-    font-size: 1.2em;
-}.
-meaning {
-    font-size: 1.5em;
-}
+        font-size: 1.2em;
+    }
+    .meaning {
+        font-size: 1.5em;
+    }
     .current-word {
         font-size: 2.5em;
     }
@@ -773,7 +775,7 @@ meaning {
                 </div>
             </div>
 
-            <div class="flashcard-container">
+            <div class="flashcard-container" id="flashcardContainer">
                 <div class="flashcard" id="flashcard">
                     <div class="flashcard-side flashcard-front">
                         <div class="chinese-character" id="chineseChar">
@@ -851,6 +853,12 @@ meaning {
                 this.currentAnimationCharacterIndex = 0;
                 this.animationCharacters = [];
 
+                // Thêm các biến cho chức năng vuốt
+                this.startX = 0;
+                this.isSwiping = false;
+                this.swipeThreshold = 50; // Ngưỡng vuốt (pixel)
+                this.isAnimationModalOpen = false;
+
                 this.init();
             }
 
@@ -885,8 +893,14 @@ meaning {
                 document.getElementById('nextBtn').addEventListener('click', () => this.nextCard());
                 document.getElementById('shuffleBtn').addEventListener('click', () => this.shuffleDeck());
 
-                // Flashcard click to flip
-                document.getElementById('flashcard').addEventListener('click', () => this.flipCard());
+                // Flashcard click to flip. We need to check if it was a swipe to prevent flipping.
+                document.getElementById('flashcard').addEventListener('click', (e) => {
+                    // Prevent flipping if it was a swipe
+                    if (!this.isSwiping) {
+                        this.flipCard();
+                    }
+                    this.isSwiping = false; // Reset the flag after handling the event
+                });
 
                 // Animation modal
                 document.getElementById('closeModal').addEventListener('click', () => this.closeAnimationModal());
@@ -901,7 +915,7 @@ meaning {
 
                 // Keyboard shortcuts
                 document.addEventListener('keydown', (e) => {
-                    if (document.getElementById('animationModal').classList.contains('show')) return;
+                    if (this.isAnimationModalOpen) return;
                     
                     switch(e.key) {
                         case ' ':
@@ -929,7 +943,54 @@ meaning {
                             break;
                     }
                 });
+                
+                // Add touch event listeners for swipe functionality
+                const flashcardContainer = document.getElementById('flashcardContainer');
+                flashcardContainer.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
+                flashcardContainer.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+                flashcardContainer.addEventListener('touchend', (e) => this.handleTouchEnd(e));
             }
+
+            // --- Touch event handlers ---
+            handleTouchStart(e) {
+                // If animation modal is open, or it's a multi-touch gesture, ignore
+                if (this.isAnimationModalOpen || e.touches.length > 1) {
+                    this.isSwiping = false;
+                    return;
+                }
+                this.startX = e.touches[0].clientX;
+                this.isSwiping = false; // Assume no swipe until proven otherwise
+            }
+
+            handleTouchMove(e) {
+                // Prevent horizontal scroll on mobile when swiping the card
+                const currentX = e.touches[0].clientX;
+                const deltaX = currentX - this.startX;
+                if (Math.abs(deltaX) > 10) { // A small movement to start ignoring default behavior
+                    e.preventDefault();
+                    this.isSwiping = true;
+                }
+            }
+
+            handleTouchEnd(e) {
+                if (!this.isSwiping) return;
+
+                const endX = e.changedTouches[0].clientX;
+                const deltaX = endX - this.startX;
+
+                if (deltaX > this.swipeThreshold) {
+                    // Swipe to the right for previous card
+                    this.previousCard();
+                } else if (deltaX < -this.swipeThreshold) {
+                    // Swipe to the left for next card
+                    this.nextCard();
+                }
+
+                // Reset swipe state
+                this.isSwiping = false;
+                this.startX = 0;
+            }
+            // --- End of touch event handlers ---
 
             async loadLesson(lessonNumber) {
                 this.setLoadingState(true);
@@ -940,14 +1001,14 @@ meaning {
                     const response = await fetch(`data_flashcard/bai${lessonNumber}/bai${lessonNumber}.txt`);
                     
                     if (!response.ok) {
-                        throw new Error(`<span class="chinese-text"></span> ${lessonNumber} <span class="chinese-text"></span>`);
+                        throw new Error(`Không thể tìm thấy bài học số ${lessonNumber}.`);
                     }
                     
                     const textData = await response.text();
                     this.lessonData = this.parseTextData(textData, lessonNumber);
                     
                     if (this.lessonData.length === 0) {
-                        throw new Error(`<span class="chinese-text">课程</span> ${lessonNumber} <span class="chinese-text">没有数据</span>`);
+                        throw new Error(`Bài học số ${lessonNumber} không có dữ liệu.`);
                     }
                     
                     this.currentCardIndex = 0;
@@ -955,7 +1016,7 @@ meaning {
                     this.showFlashcardContent();
                     
                 } catch (error) {
-                    this.showError(`<span class="chinese-text">Không thể tải bài học</span>: ${error.message}`);
+                    this.showError(`Không thể tải bài học: ${error.message}`);
                     console.error('Error loading lesson:', error);
                 } finally {
                     this.setLoadingState(false);
@@ -980,7 +1041,7 @@ meaning {
                                 audioPath: `data_flashcard/bai${lessonNumber}/mp3/${parts[0].trim()}.mp3`
                             });
                         } else {
-                            console.warn(`课程 ${lessonNumber} 第 ${index + 1} 行格式不正确:`, line);
+                            console.warn(`Dữ liệu không đúng định dạng tại dòng ${index + 1} của bài học ${lessonNumber}:`, line);
                         }
                     }
                 });
@@ -1077,14 +1138,14 @@ meaning {
                     
                     this.currentAudio.oncanplaythrough = () => {
                         this.currentAudio.play().catch(error => {
-                            console.warn(`无法播放音频 ${character}:`, error);
-                            this.showFeedback(`<span class="chinese-text">无法播放</span> "${character}" <span class="chinese-text">的音频</span>`, 'error');
+                            console.warn(`Không thể phát âm thanh cho "${character}":`, error);
+                            this.showFeedback(`Không thể phát âm thanh cho "${character}"`, 'error');
                         });
                     };
 
                     this.currentAudio.onerror = (error) => {
-                        console.warn(`音频文件不存在: ${audioPath}`);
-                        this.showFeedback(`"${character}" <span class="chinese-text">的音频文件不存在</span>`, 'error');
+                        console.warn(`Tệp âm thanh không tồn tại: ${audioPath}`);
+                        this.showFeedback(`Tệp âm thanh cho "${character}" không tồn tại`, 'error');
                     };
 
                     this.currentAudio.onended = () => {
@@ -1092,8 +1153,8 @@ meaning {
                     };
 
                 } catch (error) {
-                    console.error('Error playing audio:', error);
-                    this.showFeedback('<span class="chinese-text">播放音频时出错</span>', 'error');
+                    console.error('Lỗi khi phát âm thanh:', error);
+                    this.showFeedback('Có lỗi xảy ra khi phát âm thanh', 'error');
                 }
             }
 
@@ -1101,6 +1162,7 @@ meaning {
                 if (!this.lessonData.length) return;
                 
                 const card = this.lessonData[this.currentCardIndex];
+                this.isAnimationModalOpen = true;
                 
                 // Update modal content
                 document.getElementById('animationWord').textContent = card.character;
@@ -1167,6 +1229,7 @@ meaning {
 
             closeAnimationModal() {
                 document.getElementById('animationModal').classList.remove('show');
+                this.isAnimationModalOpen = false;
                 this.cleanupAnimation();
             }
 
@@ -1175,8 +1238,8 @@ createGridBackground(svg, size) {
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     svg.appendChild(defs);
     
-    // Grid pattern for small grid lines - điều chỉnh để khớp với size
-    const gridSize = Math.max(20, size / 15); // Tạo khoảng 15 ô grid
+    // Grid pattern for small grid lines
+    const gridSize = Math.max(20, size / 15); // Tự động điều chỉnh khoảng 15 ô grid
     const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
     pattern.setAttribute('id', 'grid');
     pattern.setAttribute('width', gridSize);
@@ -1201,7 +1264,7 @@ createGridBackground(svg, size) {
     gridRect.setAttribute('y', '0');
     svg.appendChild(gridRect);
     
-    // Main cross lines (center guidelines) - chính xác ở giữa
+    // Main cross lines (center guidelines)
     const centerX = size / 2;
     const centerY = size / 2;
     
@@ -1323,7 +1386,7 @@ async initializeAnimation(character, showLoading = true) {
         
     } catch (error) {
         console.error('Animation initialization error:', error);
-        this.showFeedback(`<span class="chinese-text">初始化动画失败</span>: ${error.message}`, 'error');
+        this.showFeedback(`Lỗi khi khởi tạo hoạt ảnh: ${error.message}`, 'error');
     } finally {
         if (showLoading) {
             this.setLoadingState(false);
