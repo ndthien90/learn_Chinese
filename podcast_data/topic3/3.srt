@@ -1,0 +1,161 @@
+1
+00:00:00,000 --> 00:00:03,640
+你觉得公共交通对城市有什么作用?
+nǐ juéde gōng gòng jiāo tōng duì chéng shì yǒu shén me zuò yòng?
+Bạn nghĩ giao thông công cộng có vai trò gì đối với thành phố?
+
+2
+00:00:04,380 --> 00:00:09,520
+我认为公共交通在城市里扮演着非常重要的角色,
+wǒ rèn wéi gōng gòng jiāo tōng zài chéng shì lǐ bàn yǎn zhe fēi cháng zhòng yào de jiǎo sè,
+Tôi nghĩ giao thông công cộng đóng một vai trò rất quan trọng trong thành phố,
+
+3
+00:00:09,700 --> 00:00:13,560
+它对一个城市的发展有着多方面的影响。
+tā duì yī ge chéng shì de fā zhǎn yǒu zhe duō fāng miàn de yǐng xiǎng.
+Nó có nhiều tác động đến sự phát triển của một thành phố.
+
+4
+00:00:14,140 --> 00:00:18,460
+首先,公共交通可以有效地缓解交通堵塞。
+shǒu xiān, gōng gòng jiāo tōng kěyǐ yǒu xiào de huǎn jiě jiāo tōng dǔ sè.
+Thứ nhất, giao thông công cộng có thể giảm tắc nghẽn giao thông một cách hiệu quả.
+
+5
+00:00:18,900 --> 00:00:24,620
+在一个大城市里,私家车太多会造成严重的交通拥堵问题,
+zài yī ge dà chéng shì lǐ, sī jiā chē tài duō huì zào chéng yán zhòng de jiāo tōng yōng dǔ wèn tí,
+Trong một thành phố lớn, quá nhiều xe hơi cá nhân có thể gây ra vấn đề tắc nghẽn giao thông nghiêm trọng,
+
+6
+00:00:25,160 --> 00:00:27,560
+而公共交通,比如地铁、
+ér gōng gòng jiāo tōng, bǐ rú dì tiě,
+Trong khi giao thông công cộng, chẳng hạn như tàu điện ngầm,
+
+7
+00:00:27,780 --> 00:00:31,560
+公共汽车,可以一次性运送很多人,
+gōng gòng qì chē, kěyǐ yī cì xìng yùnsòng hěn duō rén,
+Xe buýt có thể chở một lượng lớn người cùng một lúc,
+
+8
+00:00:31,720 --> 00:00:34,460
+大大减少马路上的车辆数量,
+dà dà jiǎn shǎo mǎ lù shàng de chē liàng shù liàng,
+Giảm đáng kể số lượng xe trên đường,
+
+9
+00:00:34,600 --> 00:00:36,780
+让交通变得更加流畅。
+ràng jiāo tōng biàn dé gèng jiā liú chàng.
+Giúp giao thông trở nên thông suốt hơn.
+
+10
+00:00:37,300 --> 00:00:41,400
+其次,公共交通对玄境保护很有帮助,
+qí cì, gōng gòng jiāo tōng duì xuán jìng bǎo hù hěn yǒu bāng zhù,
+Thứ hai, giao thông công cộng rất hữu ích cho việc bảo vệ môi trường,
+
+11
+00:00:41,880 --> 00:00:45,960
+私家车会排放很多废气,造成空气污染。
+sī jiā chē huì pái fàng hěn duō fèi qì, zào chéng kōng qì wū rǎn.
+Xe cá nhân thải ra nhiều khí thải, gây ô nhiễm không khí.
+
+12
+00:00:46,480 --> 00:00:49,460
+如果更多人选择乘坐公共交通
+rú guǒ gèng duō rén xuǎn zé chéng zuò gōng gòng jiāo tōng
+Nếu nhiều người chọn sử dụng phương tiện giao thông công cộng hơn
+
+13
+00:00:49,460 --> 00:00:51,800
+就能减少汽车尾气排放
+jiù néng jiǎn shǎo qì chē wěi qì pái fàng
+Có thể giảm lượng khí thải xe hơi
+
+14
+00:00:51,800 --> 00:00:53,860
+对改善城市玄境
+duì gǎi shàn chéng shì xuán jìng
+đối với việc cải thiện cảnh quan đô thị
+
+15
+00:00:53,860 --> 00:00:56,560
+保护地球有很大的作用
+bǎo hù dì qiú yǒu hěn dà de zuò yòng
+có vai trò rất lớn trong việc bảo vệ trái đất
+
+16
+00:00:57,360 --> 00:00:57,840
+另外
+lìng wài
+Ngoài ra
+
+17
+00:00:57,840 --> 00:01:01,660
+发展公共交通也能省剩人们的出行成本
+fā zhǎn gōng gòng jiāo tōng yě néng shěng shèng rén men de chū xíng chéng běn
+phát triển giao thông công cộng cũng có thể tiết kiệm chi phí đi lại cho mọi người
+
+18
+00:01:02,240 --> 00:01:06,000
+乘坐公共交通通常比自己开车便宜很多
+chéng zuò gōng gòng jiāo tōng tōng cháng bǐ zì jǐ kāi chē pián yí hěn duō
+Đi giao thông công cộng thường rẻ hơn nhiều so với tự lái xe
+
+19
+00:01:06,600 --> 00:01:09,100
+这对于很多收入不高的人来说
+zhè duì yú hěn duō shōu rù bù gāo de rén lái shuō
+Điều này đối với nhiều người có thu nhập không cao mà nói
+
+20
+00:01:09,100 --> 00:01:10,880
+是一个很好的选择
+shì yī ge hěn hǎo de xuǎn zé
+là một lựa chọn rất tốt
+
+21
+00:01:11,440 --> 00:01:12,220
+总之
+zǒng zhī
+Tóm lại
+
+22
+00:01:12,220 --> 00:01:14,180
+一个现代化的城市
+yī ge xiàn dài huà de chéng shì
+Một thành phố hiện đại
+
+23
+00:01:14,180 --> 00:01:15,560
+离不开方便
+lí bù kāi fāng biàn
+không thể tách rời
+
+24
+00:01:15,560 --> 00:01:17,580
+高效的公共交通系统
+gāo xiào de gōng gòng jiāo tōng xì tǒng
+hệ thống giao thông công cộng tiện lợi
+
+25
+00:01:17,580 --> 00:01:20,940
+它不仅能让人们的出行变得更方便
+tā bù jǐn néng ràng rén men de chū xíng biàn dé gèng fāng biàn
+Nó không chỉ giúp việc đi lại của mọi người trở nên thuận tiện hơn
+
+26
+00:01:20,940 --> 00:01:23,820
+还能帮助解决交通和环境问题
+hái néng bāng zhù jiě jué jiāo tōng hé huánjìng wèntí
+mà còn giúp giải quyết giao thông và vấn đề môi trường
+
+27
+00:01:23,820 --> 00:01:26,060
+让城市变得更好
+ràng chéng shì biàn dé gèng hǎo
+Khiến thành phố trở nên tốt đẹp hơn

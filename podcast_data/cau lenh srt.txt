@@ -1,0 +1,1 @@
+thêm pinyin ngay dưới tiếng trung cho srt trên, các dữ liệu khác giữ nguyên, từ ghép thì pinyin viết liền, từ đơn thì tách riêng

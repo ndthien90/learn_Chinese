@@ -1,0 +1,229 @@
+Dưới đây là phụ đề SRT đã được thêm phiên âm pinyin cho tiếng Trung:
+
+1
+00:00:00,000 --> 00:00:01,260
+你喜欢旅行吗?
+Nǐ xǐhuān lǚxíng ma?
+Bạn có thích du lịch không?
+
+2
+00:00:01,720 --> 00:00:03,200
+旅行有什么意义?
+Lǚxíng yǒu shéme yìyì?
+Du lịch có ý nghĩa gì?
+
+3
+00:00:03,620 --> 00:00:05,140
+我非常喜欢旅行。
+Wǒ fēicháng xǐhuān lǚxíng.
+Tôi rất thích du lịch.
+
+4
+00:00:05,520 --> 00:00:09,580
+对我来说,旅行不仅仅是从一个地方到另一个地方,
+Duì wǒ lái shuō, lǚxíng bùjǐn jǐn shì cóng yīgè dìfāng dào lìng yīgè dìfāng,
+Đối với tôi, du lịch không chỉ là đi từ nơi này đến nơi khác,
+
+5
+00:00:09,760 --> 00:00:12,240
+它更是一种学习和成长的过程。
+tā gèng shì yī zhǒng xuéxí hé chéngzhǎng de guòchéng.
+mà nó còn là một quá trình học hỏi và trưởng thành.
+
+6
+00:00:12,980 --> 00:00:15,480
+首先,旅行可以让我们放松心情,
+Shǒuxiān, lǚxíng kěyǐ ràng wǒmen fàngsōng xīnqíng,
+Đầu tiên, du lịch có thể giúp chúng ta thư giãn đầu óc,
+
+7
+00:00:15,600 --> 00:00:16,540
+缓解压力。
+huǎnjiě yālì.
+giảm căng thẳng.
+
+8
+00:00:16,880 --> 00:00:21,040
+在快节奏的城市生活中,我们常常感到疲惫。
+Zài kuàijiézòu de chéngshì shēnghuó zhōng, wǒmen chángcháng gǎndào píbèi.
+Trong cuộc sống đô thị nhịp độ nhanh, chúng ta thường cảm thấy mệt mỏi.
+
+9
+00:00:21,040 --> 00:00:24,560
+而旅行能让我们暂时离开熟悉的玄境
+ér lǚxíng néng ràng wǒmen zànshí líkāi shúxī de huánjìng
+Và du lịch có thể cho phép chúng ta tạm thời rời khỏi bối cảnh quen thuộc
+
+10
+00:00:24,560 --> 00:00:26,140
+去一个全新的地方
+qù yīgè quánxīn de dìfāng
+để đến một nơi hoàn toàn mới
+
+11
+00:00:26,140 --> 00:00:27,680
+欣赏美丽的风景
+xīnshǎng měilì de fēngjǐng
+và chiêm ngưỡng những phong cảnh đẹp
+
+12
+00:00:27,680 --> 00:00:29,260
+呼吸新鲜的空气
+hūxī xīnxiān de kōngqì
+Hít thở không khí trong lành
+
+13
+00:00:29,260 --> 00:00:31,840
+这是一种很好的放松方式
+zhè shì yī zhǒng hěn hǎo de fàngsōng fāngshì
+Đó là một cách thư giãn rất tốt
+
+14
+00:00:31,840 --> 00:00:34,780
+能让我们的身心得到休息和恢复
+néng ràng wǒmen de shēnxīn dédào xiūxí hé huīfù
+Có thể giúp cơ thể và tâm trí chúng ta được nghỉ ngơi và phục hồi
+
+15
+00:00:35,320 --> 00:00:35,720
+其次
+Qícì
+Thứ hai
+
+16
+00:00:35,720 --> 00:00:37,860
+旅行能让我们增长见识
+lǚxíng néng ràng wǒmen zēngzhǎng jiànshì
+Du lịch có thể giúp chúng ta mở mang kiến thức
+
+17
+00:00:37,860 --> 00:00:38,920
+了解世界
+liǎojiě shìjiè.
+Hiểu thế giới.
+
+18
+00:00:38,920 --> 00:00:40,900
+每到一个新的地方
+Měi dào yīgè xīn de dìfāng,
+Mỗi khi đến một nơi mới,
+
+19
+00:00:40,900 --> 00:00:44,000
+我们都能体验到不同的文化和风俗
+wǒmen dōu néng tǐyàn dào bùtóng de wénhuà hé fēngsú,
+chúng ta đều có thể trải nghiệm những nền văn hóa và phong tục khác nhau,
+
+20
+00:00:44,000 --> 00:00:45,540
+尝到当地的美食
+cháng dào dāngdì de měishí,
+nếm thử những món ăn địa phương,
+
+21
+00:00:45,540 --> 00:00:46,800
+认识新的朋友
+rènshì xīn de péngyǒu.
+và làm quen với những người bạn mới.
+
+22
+00:00:47,240 --> 00:00:49,800
+这些经历能开阔我们的眼界
+Zhèxiē jīnglì néng kāikuò wǒmen de yǎnjiè.
+Những trải nghiệm này có thể mở mang tầm mắt của chúng ta.
+
+23
+00:00:49,800 --> 00:00:52,520
+让我们对这个世界有更深的理解
+ràng wǒmen duì zhège shìjiè yǒu gèng shēn de lǐjiě.
+Cho phép chúng ta hiểu sâu sắc hơn về thế giới này.
+
+24
+00:00:52,940 --> 00:00:53,340
+另外
+Lìngwài,
+Ngoài ra,
+
+25
+00:00:53,340 --> 00:00:56,040
+旅行也是一次自我发现的旅程
+lǚxíng yěshì yīcì zìwǒ fāxiàn de lǚchéng.
+du lịch cũng là một hành trình khám phá bản thân.
+
+26
+00:00:56,040 --> 00:00:57,400
+在旅行中
+Zài lǚxíng zhōng
+Trong khi đi du lịch
+
+27
+00:00:57,400 --> 00:00:59,960
+我们可能会遇到各种各样的挑战
+wǒmen kěnéng huì yù dào gè zhǒng gè yàng de tiǎozhàn
+Chúng ta có thể gặp phải vô vàn thử thách
+
+28
+00:00:59,960 --> 00:01:01,020
+比如迷路
+bǐrú mílù
+Ví dụ như lạc đường
+
+29
+00:01:01,020 --> 00:01:02,200
+语言不通等
+yǔyán bùtōng děng
+Bất đồng ngôn ngữ, v.v.
+
+30
+00:01:02,200 --> 00:01:03,680
+面对这些问题
+Miànduì zhèxiē wèntí
+Đối mặt với những vấn đề này
+
+31
+00:01:03,680 --> 00:01:06,140
+我们必须自己想办法解决
+wǒmen bìxū zìjǐ xiǎng bànfǎ jiějué
+Chúng ta phải tự mình nghĩ cách giải quyết
+
+32
+00:01:06,600 --> 00:01:09,560
+这个过程能让我们变得更加独立
+zhège guòchéng néng ràng wǒmen biàn dé gèngjiā dúlì
+Quá trình này có thể giúp chúng ta trở nên độc lập hơn
+
+33
+00:01:09,560 --> 00:01:11,000
+勇敢和自信
+yǒnggǎn hé zìxìn
+Dũng cảm và tự tin hơn
+
+34
+00:01:11,000 --> 00:01:11,940
+总之
+Zǒngzhī
+Tóm lại
+
+35
+00:01:11,940 --> 00:01:13,560
+我认为旅行的意义
+wǒ rènwéi lǚxíng de yìyì
+Tôi nghĩ ý nghĩa của việc du lịch
+
+36
+00:01:13,560 --> 00:01:15,700
+不仅仅在于看到美丽的风景
+bùjǐn jǐn zàiyú kàn dào měilì de fēngjǐng
+không chỉ nằm ở việc ngắm nhìn phong cảnh đẹp
+
+37
+00:01:15,700 --> 00:01:17,620
+更在于我们在这个过程中
+gèng zàiyú wǒmen zài zhège guòchéng zhōng
+mà còn nằm ở việc chúng ta trong quá trình này
+
+38
+00:01:17,620 --> 00:01:19,620
+所获得的成长和感悟
+suǒ huòdé de chéngzhǎng hé gǎnwù
+có được sự trưởng thành và những cảm nhận sâu sắc

@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PodCast Pro - Ứng dụng Podcast Chuyên nghiệp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #4a9eff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #ccc;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Topic Selection Section */
+        .topic-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .topic-header h3 {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .topic-selector {
+            position: relative;
+            min-width: 300px;
+        }
+
+        .topic-dropdown {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 212, 255, 0.1));
+            border: 2px solid rgba(74, 158, 255, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+
+        .topic-dropdown:hover {
+            border-color: rgba(74, 158, 255, 0.6);
+            box-shadow: 0 5px 20px rgba(74, 158, 255, 0.2);
+        }
+
+        .topic-dropdown:focus {
+            border-color: #4a9eff;
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
+        }
+
+        .topic-dropdown option {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .topic-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .file-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .file-info:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .file-info .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .file-info .label {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .file-info .filename {
+            color: #4a9eff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .file-info.not-found {
+            opacity: 0.5;
+        }
+
+        .file-info.not-found .filename {
+            color: #ff6b6b;
+        }
+
+        .load-button {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .load-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .load-button:disabled {
+            background: linear-gradient(135deg, #666, #555);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+/* Player Section */
+        .player-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .audio-player {
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .custom-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 0px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #4a9eff, #0080ff);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(74, 158, 255, 0.3);
+            position: relative;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.5);
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        .control-btn.play-pause {
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .control-btn.play-pause:hover {
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        .time-info {
+            text-align: center;
+            color: #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4a9eff, #00d4ff);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+        }
+
+        .volume-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+           display:none;
+        }
+
+        .volume-slider {
+            width: 150px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #4a9eff, #00d4ff);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(74, 158, 255, 0.4);
+        }
+
+        /* Subtitle Section */
+        .subtitle-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .subtitle-header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subtitle-header h3 {
+            background: linear-gradient(45deg, #4a9eff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-btn {
+            background: transparent;
+            color: #ccc;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #4a9eff, #0080ff);
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+        }
+
+        .toggle-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .subtitle-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle-line {
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            opacity: 0.5;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .subtitle-line:hover {
+            background: rgba(255, 255, 255, 0.08);
+            opacity: 0.8;
+        }
+
+        .subtitle-line.active {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(0, 212, 255, 0.2));
+            opacity: 1;
+            border: 1px solid rgba(74, 158, 255, 0.5);
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
+        }
+
+        .subtitle-line.upcoming {
+            opacity: 0.7;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .subtitle-line.past {
+            opacity: 0.3;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .chinese {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            display: block;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .pinyin {
+            font-size: 15px;
+            color: #bbb;
+            font-style: italic;
+            display: block;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .vietnamese {
+            font-size: 17px;
+            color: #ddd;
+            display: block;
+            line-height: 1.4;
+        }
+
+        /* Scrollbar styling */
+        .subtitle-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .subtitle-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .subtitle-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #4a9eff, #00d4ff);
+            border-radius: 4px;
+        }
+
+        .subtitle-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0080ff, #4a9eff);
+        }
+
+        /* Single subtitle view */
+        .single-subtitle-view {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .single-subtitle-text {
+            font-size: 26px;
+            line-height: 1.6;
+            color: #4a9eff;
+            font-weight: 600;
+            max-width: 90%;
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 212, 255, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(74, 158, 255, 0.3);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            white-space: pre-line;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(74, 158, 255, 0.1);
+        }
+
+        .single-subtitle-text.no-active {
+            color: #666;
+            font-size: 20px;
+            font-weight: normal;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .loading {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .topic-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .custom-controls {
+                gap: 15px;
+            }
+            
+            .subtitle-section {
+                height: 400px;
+            }
+            
+            .subtitle-container {
+                padding: 20px;
+                font-size: 16px;
+            }
+
+            .chinese {
+                font-size: 18px;
+            }
+
+            .vietnamese {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .player-section, .topic-section {
+                padding: 25px;
+            }
+            
+            .subtitle-container {
+                font-size: 15px;
+                padding: 15px;
+            }
+
+            .single-subtitle-text {
+                font-size: 22px;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎧 PodCast Pro</h1>
+        </div>
+
+        <!-- Topic Selection Section -->
+        <div class="topic-section">
+            <div class="topic-header">
+                <h3>📚 Chọn chủ đề</h3>
+            </div>
+            
+            <div class="topic-selector">
+                <select id="topicDropdown" class="topic-dropdown">
+                    <option value="">-- Chọn chủ đề --</option>
+                </select>
+            </div>
+
+            <div class="topic-info" id="topicInfo" style="display: none;">
+                <div class="file-info" id="audioInfo">
+                    <span class="icon">🎵</span>
+                    <div class="label">File Audio</div>
+                    <div class="filename" id="audioFilename">-</div>
+                </div>
+                <div class="file-info" id="subtitleInfo">
+                    <span class="icon">📝</span>
+                    <div class="label">File Phụ đề</div>
+                    <div class="filename" id="subtitleFilename">-</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Subtitle Section -->
+        <div class="subtitle-section">
+            <div class="subtitle-header">
+                <h3>📝 Phụ đề</h3>
+                <div class="view-toggle">
+                    <button class="toggle-btn active" id="fullViewBtn">Toàn bộ</button>
+                    <button class="toggle-btn" id="singleViewBtn">Từng câu</button>
+                </div>
+             </div>
+            <div class="subtitle-container" id="subtitleContainer">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666; font-size: 18px; text-align: center;">
+                    <div>
+                        <div style="font-size: 48px; margin-bottom: 20px;">📝</div>
+                        <div>Chọn chủ đề để hiển thị phụ đề</div>
+                        <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Hãy bắt đầu bằng cách chọn một chủ đề</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Player Section -->
+        <div class="player-section">
+            <audio id="audioPlayer" class="audio-player" controls style="display: none;">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="time-info">
+                <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
+            </div>
+            <div class="custom-controls">
+                <button class="control-btn" id="rewindBtn" title="Lùi 10s">⏪</button>
+                <button class="control-btn play-pause" id="playPauseBtn" title="Phát/Dừng">▶</button>
+                <button class="control-btn" id="forwardBtn" title="Tới 10s">⏩</button>
+            </div>
+
+
+
+
+
+            <div class="volume-section">
+                <span style="font-size: 20px;">🔊</span>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
+                <span id="volumeValue">100%</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class PodcastApp {
+            constructor() {
+                this.audioPlayer = document.getElementById('audioPlayer');
+                this.playPauseBtn = document.getElementById('playPauseBtn');
+                this.progressBar = document.getElementById('progressBar');
+                this.progressContainer = document.getElementById('progressContainer');
+                this.currentTimeEl = document.getElementById('currentTime');
+                this.totalTimeEl = document.getElementById('totalTime');
+                this.volumeSlider = document.getElementById('volumeSlider');
+                this.volumeValue = document.getElementById('volumeValue');
+                this.subtitleContainer = document.getElementById('subtitleContainer');
+                this.fullViewBtn = document.getElementById('fullViewBtn');
+                this.singleViewBtn = document.getElementById('singleViewBtn');
+                this.topicDropdown = document.getElementById('topicDropdown');
+                
+                this.subtitles = [];
+                this.currentSubtitleIndex = -1;
+                this.viewMode = 'full'; // 'full' or 'single'
+                this.topics = [];
+                this.currentTopic = null;
+                
+                this.initializeTopics();
+                this.initializeEventListeners();
+            }
+
+            async checkFileExists(url) {
+                try {
+                    const response = await fetch(url, { method: 'HEAD' });
+                    return response.ok;
+                } catch (error) {
+                    return false;
+                }
+            }
+
+            initializeTopics() {
+                // Danh sách topics với file paths----------------------------------------------------------------------------
+                this.topics = [
+                    {
+                        id: 'topic1',
+                        name: 'Chủ đề 1: 你认为读书有什么好处？"',
+                        description: '',
+                        audioFile: 'podcast_data/topic1/1.wav',
+                        subtitleFile: 'podcast_data/topic1/1.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic2', 
+                        name: 'Chủ đề 2: 有人说，活到老，学到老。你同意这个说法吗？为什么？',
+                        description: '',
+                        audioFile: 'podcast_data/topic2/2.wav',
+                        subtitleFile: 'podcast_data/topic2/2.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic3',
+                        name: 'Chủ đề 3: 你觉得公共交通对城市有什么作用?',
+                        description: '',
+                        audioFile: 'podcast_data/topic3/3.mp3', 
+                        subtitleFile: 'podcast_data/topic3/3.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic4',
+                        name: 'Chủ đề 4: 你喜欢养宠物吗？',
+                        description: '',
+                        audioFile: 'podcast_data/topic4/4.mp3',
+                        subtitleFile: 'podcast_data/topic4/4.srt', 
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic5',
+                        name: 'Chủ đề 5: 网络学习的好处和坏处。',
+                        description: '',
+                        audioFile: 'podcast_data/topic5/5.mp3',
+                        subtitleFile: 'podcast_data/topic5/5.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic6',
+                        name: 'Chủ đề 6: 你喜欢旅行吗？旅行有什么意义？',
+                        description: 'Tìm hiểu về văn hóa, lịch sử Trung Quốc',
+                        audioFile: 'podcast_data/topic6/6.mp3',
+                        subtitleFile: 'podcast_data/topic6/6.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic7',
+                        name: 'Chủ đề 7: 你喜欢在空闲时间做什么？',
+                        description: '',
+                        audioFile: 'podcast_data/topic7/7.mp3',
+                        subtitleFile: 'podcast_data/topic7/7.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic8',
+                        name: 'Chủ đề 8: 你父母过生日时你会送什么礼物？',
+                        description: 'Tìm hiểu về văn hóa, lịch sử Trung Quốc',
+                        audioFile: 'podcast_data/topic8/8.mp3',
+                        subtitleFile: 'podcast_data/topic8/8.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic9',
+                        name: 'Chủ đề 9: 你有什么兴趣爱好？请谈谈它对你的影响？',
+                        description: 'Tìm hiểu về văn hóa, lịch sử Trung Quốc',
+                        audioFile: 'podcast_data/topic9/9.mp3',
+                        subtitleFile: 'podcast_data/topic9/9.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic10',
+                        name: 'Chủ đề 10: 每个人对成功有自己的理解, 请谈谈你的看法？',
+                        description: '',
+                        audioFile: 'podcast_data/topic10/10.mp3',
+                        subtitleFile: 'podcast_data/topic10/10.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic11',
+                        name: 'Chủ đề 11: 请介绍你的一次旅游经历',
+                        description: '',
+                        audioFile: 'podcast_data/topic11/11.mp3',
+                        subtitleFile: 'podcast_data/topic11/11.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic12',
+                        name: 'Chủ đề 12: 有人说 "办法总比困难多"，你怎么看这句话？',
+                        description: 'Tìm hiểu về văn hóa, lịch sử Trung Quốc',
+                        audioFile: 'podcast_data/topic12/12.mp3',
+                        subtitleFile: 'podcast_data/topic12/12.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic13',
+                        name: 'Chủ đề 13: 你喜欢什么样的人交朋友，为什么？',
+                        description: 'Tìm hiểu về văn hóa, lịch sử Trung Quốc',
+                        audioFile: 'podcast_data/topic13/13.mp3',
+                        subtitleFile: 'podcast_data/topic13/13.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic14',
+                        name: 'Chủ đề 14: 我对减肥是什么态度，为什么?',
+                        description: 'Tìm hiểu về văn hóa, lịch sử Trung Quốc',
+                        audioFile: 'podcast_data/topic14/14.mp3',
+                        subtitleFile: 'podcast_data/topic14/14.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic15',
+                        name: 'Chủ đề 15: 你喜欢做什么样的工作？为什么？',
+                        description: '',
+                        audioFile: 'podcast_data/topic15/15.mp3',
+                        subtitleFile: 'podcast_data/topic15/15.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic16',
+                        name: 'Chủ đề 16: 请介绍值得你骄傲的事情',
+                        description: '',
+                        audioFile: 'podcast_data/topic16/16.mp3',
+                        subtitleFile: 'podcast_data/topic16/16.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic17',
+                        name: 'Chủ đề 17: 你喜欢看新闻吗？为什么？',
+                        description: '',
+                        audioFile: 'podcast_data/topic17/17.mp3',
+                        subtitleFile: 'podcast_data/topic17/17.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    },
+                    {
+                        id: 'topic18',
+                        name: 'Chủ đề 18: 如果给你七天假，你会怎么安排？',
+                        description: '',
+                        audioFile: 'podcast_data/topic18/18.mp3',
+                        subtitleFile: 'podcast_data/topic18/18.srt',
+                        hasAudio: true,
+                        hasSubtitle: true
+                    }
+   
+                ];
+//-------------------------------------------------------------------------------------------------------------------------------------
+                // Kiểm tra file có tồn tại (tùy chọn - có thể bỏ qua nếu chậm)
+                // await this.checkTopicFiles();
+
+                this.populateTopicDropdown();
+            }
+
+            async checkTopicFiles() {
+                console.log('Đang kiểm tra file tồn tại...');
+                
+                for (const topic of this.topics) {
+                    // Kiểm tra audio file
+                    topic.hasAudio = await this.checkFileExists(topic.audioFile);
+                    
+                    // Kiểm tra subtitle file  
+                    topic.hasSubtitle = await this.checkFileExists(topic.subtitleFile);
+                    
+                    console.log(`${topic.name}: Audio ${topic.hasAudio ? '✓' : '✗'}, Subtitle ${topic.hasSubtitle ? '✓' : '✗'}`);
+                }
+                
+                console.log('Hoàn thành kiểm tra file');
+            }
+
+            populateTopicDropdown() {
+                // Xóa options cũ (trừ option đầu tiên)
+                while (this.topicDropdown.children.length > 1) {
+                    this.topicDropdown.removeChild(this.topicDropdown.lastChild);
+                }
+
+                // Thêm topics vào dropdown
+                this.topics.forEach(topic => {
+                    const option = document.createElement('option');
+                    option.value = topic.id;
+                    option.textContent = topic.name;
+                    this.topicDropdown.appendChild(option);
+                });
+            }
+
+            initializeEventListeners() {
+                // Topic selection
+                this.topicDropdown.addEventListener('change', (e) => this.handleTopicSelection(e));
+                
+                // Player controls
+                this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+                document.getElementById('rewindBtn').addEventListener('click', () => this.rewind());
+                document.getElementById('forwardBtn').addEventListener('click', () => this.forward());
+                
+                // Audio player events
+                this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
+                this.audioPlayer.addEventListener('loadedmetadata', () => this.updateDuration());
+                this.audioPlayer.addEventListener('play', () => this.updatePlayPauseButton());
+                this.audioPlayer.addEventListener('pause', () => this.updatePlayPauseButton());
+                this.audioPlayer.addEventListener('ended', () => this.onAudioEnded());
+                this.audioPlayer.addEventListener('error', (e) => this.handleAudioError(e));
+                
+                // Progress bar
+                this.progressContainer.addEventListener('click', (e) => this.setProgress(e));
+                
+                // Volume control
+                this.volumeSlider.addEventListener('input', () => this.updateVolume());
+                
+                // View toggle
+                this.fullViewBtn.addEventListener('click', () => this.setViewMode('full'));
+                this.singleViewBtn.addEventListener('click', () => this.setViewMode('single'));
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+            }
+
+            async handleTopicSelection(event) {
+                const topicId = event.target.value;
+                
+                if (!topicId) {
+                    this.hideTopicInfo();
+                    return;
+                }
+
+                const topic = this.topics.find(t => t.id === topicId);
+                if (topic) {
+                    this.currentTopic = topic;
+                    this.showTopicInfo(topic);
+                    
+                    // Auto-load topic ngay khi chọn
+                    await this.loadSelectedTopic();
+                }
+            }
+
+            showTopicInfo(topic) {
+                const topicInfo = document.getElementById('topicInfo');
+                const audioInfo = document.getElementById('audioInfo');
+                const subtitleInfo = document.getElementById('subtitleInfo');
+                const audioFilename = document.getElementById('audioFilename');
+                const subtitleFilename = document.getElementById('subtitleFilename');
+
+                // Hiển thị thông tin file
+                audioFilename.textContent = topic.audioFile.split('/')[1];
+                subtitleFilename.textContent = topic.subtitleFile.split('/')[1];
+
+                // Cập nhật trạng thái file
+                audioInfo.classList.toggle('not-found', !topic.hasAudio);
+                subtitleInfo.classList.toggle('not-found', !topic.hasSubtitle);
+
+                if (!topic.hasAudio) {
+                    audioFilename.textContent = 'File không tồn tại';
+                }
+                if (!topic.hasSubtitle) {
+                    subtitleFilename.textContent = 'File không tồn tại';
+                }
+
+                // Hiển thị UI
+                //topicInfo.style.display = 'grid';
+
+                // Animation
+                topicInfo.style.opacity = '0';
+                topicInfo.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    topicInfo.style.transition = 'all 0.3s ease';
+                    topicInfo.style.opacity = '1';
+                    topicInfo.style.transform = 'translateY(0)';
+                }, 50);
+            }
+
+            hideTopicInfo() {
+                const topicInfo = document.getElementById('topicInfo');
+                
+                topicInfo.style.display = 'none';
+                this.currentTopic = null;
+            }
+
+            async loadSelectedTopic() {
+                if (!this.currentTopic) return;
+
+                try {
+                    console.log(`Đang tải chủ đề: ${this.currentTopic.name}`);
+                    
+                    // Tải file thật từ server
+                    await this.simulateFileLoading(this.currentTopic);
+                    
+                    console.log(`Đã tải thành công chủ đề: ${this.currentTopic.name}`);
+
+                } catch (error) {
+                    console.error('Lỗi khi tải topic:', error);
+                    alert('Không thể tải chủ đề này. Vui lòng thử chủ đề khác.');
+                }
+            }
+
+            async simulateFileLoading(topic) {
+                let audioLoaded = false;
+                let subtitleLoaded = false;
+                let errors = [];
+
+                // Tải audio nếu có
+                if (topic.hasAudio) {
+                    try {
+                        await this.loadRealAudio(topic);
+                        audioLoaded = true;
+                    } catch (error) {
+                        errors.push(`Audio: ${error.message}`);
+                        console.warn(`Không thể tải audio: ${error.message}`);
+                    }
+                }
+                
+                // Tải subtitle nếu có
+                if (topic.hasSubtitle) {
+                    try {
+                        await this.loadRealSubtitle(topic);
+                        subtitleLoaded = true;
+                    } catch (error) {
+                        errors.push(`Subtitle: ${error.message}`);
+                        console.warn(`Không thể tải subtitle: ${error.message}`);
+                    }
+                }
+                
+                // Chỉ throw error nếu KHÔNG có file nào tải được
+                if (!audioLoaded && !subtitleLoaded) {
+                    throw new Error(`Không thể tải bất kỳ file nào:\n${errors.join('\n')}`);
+                }
+                
+                // Nếu có ít nhất 1 file thành công thì OK
+                if (audioLoaded || subtitleLoaded) {
+                    console.log(`✅ Đã tải thành công: ${audioLoaded ? 'Audio' : ''} ${subtitleLoaded ? 'Subtitle' : ''}`);
+                }
+            }
+
+            async loadRealAudio(topic) {
+                try {
+                    const audioPath = topic.audioFile;
+                    console.log(`Đang tải audio: ${audioPath}`);
+                    
+                    // Kiểm tra file có tồn tại không
+                    const response = await fetch(audioPath);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    // Set audio source
+                    this.audioPlayer.src = audioPath;
+                    
+                    const audioStatus = document.getElementById('audioStatus');
+                    if (audioStatus) {
+                        audioStatus.innerHTML = `✅ Đã tải từ chủ đề: <strong>${topic.audioFile.split('/')[1]}</strong>`;
+                        audioStatus.className = 'file-status success';
+                        audioStatus.style.display = 'block';
+                    }
+                    
+                    console.log(`✅ Đã tải audio thành công: ${audioPath}`);
+                    
+                } catch (error) {
+                    console.error(`❌ Lỗi tải audio ${topic.audioFile}:`, error);
+                    
+                    const audioStatus = document.getElementById('audioStatus');
+                    if (audioStatus) {
+                        audioStatus.innerHTML = `❌ Không thể tải audio: <strong>${topic.audioFile}</strong>`;
+                        audioStatus.className = 'file-status error';
+                        audioStatus.style.display = 'block';
+                    }
+                    
+                    // Mark as not having audio
+                    topic.hasAudio = false;
+                    throw error;
+                }
+            }
+
+            async loadRealSubtitle(topic) {
+                try {
+                    const subtitlePath = topic.subtitleFile;
+                    console.log(`Đang tải subtitle: ${subtitlePath}`);
+                    
+                    // Fetch file SRT
+                    const response = await fetch(subtitlePath);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const srtContent = await response.text();
+                    
+                    // Parse SRT content
+                    this.parseSRT(srtContent);
+                    
+                    const subtitleStatus = document.getElementById('subtitleStatus');
+                    if (subtitleStatus) {
+                        subtitleStatus.innerHTML = `✅ Đã tải từ chủ đề: <strong>${topic.subtitleFile.split('/')[1]}</strong> (${this.subtitles.length} phụ đề)`;
+                        subtitleStatus.className = 'file-status success';
+                        subtitleStatus.style.display = 'block';
+                    }
+                    
+                    console.log(`✅ Đã tải subtitle thành công: ${subtitlePath} (${this.subtitles.length} phụ đề)`);
+                    
+                } catch (error) {
+                    console.error(`❌ Lỗi tải subtitle ${topic.subtitleFile}:`, error);
+                    
+                    const subtitleStatus = document.getElementById('subtitleStatus');
+                    if (subtitleStatus) {
+                        subtitleStatus.innerHTML = `❌ Không thể tải subtitle: <strong>${topic.subtitleFile}</strong>`;
+                        subtitleStatus.className = 'file-status error';
+                        subtitleStatus.style.display = 'block';
+                    }
+                    
+                    // Mark as not having subtitle
+                    topic.hasSubtitle = false;
+                    throw error;
+                }
+            }
+
+            createDemoAudio(duration = 30) {
+                // Tạo một audio silent để demo
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const sampleRate = audioContext.sampleRate;
+                const length = sampleRate * duration;
+                
+                const buffer = audioContext.createBuffer(1, length, sampleRate);
+                const data = buffer.getChannelData(0);
+                
+                // Tạo một âm thanh đơn giản (sine wave với frequency thay đổi)
+                for (let i = 0; i < length; i++) {
+                    const frequency = 440 + Math.sin(i / sampleRate * 0.5) * 100; // Frequency modulation
+                    data[i] = Math.sin(2 * Math.PI * frequency * i / sampleRate) * 0.1; // Low volume
+                }
+                
+                // Convert to blob và set src
+                const offlineContext = new OfflineAudioContext(1, length, sampleRate);
+                const source = offlineContext.createBufferSource();
+                source.buffer = buffer;
+                source.connect(offlineContext.destination);
+                source.start();
+                
+                offlineContext.startRendering().then(audioBuffer => {
+                    // Convert AudioBuffer to Blob
+                    const wav = this.audioBufferToWav(audioBuffer);
+                    const blob = new Blob([wav], { type: 'audio/wav' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    this.audioPlayer.src = url;
+                    console.log('Demo audio created successfully');
+                });
+            }
+
+            audioBufferToWav(buffer) {
+                const length = buffer.length;
+                const sampleRate = buffer.sampleRate;
+                const arrayBuffer = new ArrayBuffer(44 + length * 2);
+                const view = new DataView(arrayBuffer);
+                
+                // WAV header
+                const writeString = (offset, string) => {
+                    for (let i = 0; i < string.length; i++) {
+                        view.setUint8(offset + i, string.charCodeAt(i));
+                    }
+                };
+                
+                writeString(0, 'RIFF');
+                view.setUint32(4, 36 + length * 2, true);
+                writeString(8, 'WAVE');
+                writeString(12, 'fmt ');
+                view.setUint32(16, 16, true);
+                view.setUint16(20, 1, true);
+                view.setUint16(22, 1, true);
+                view.setUint32(24, sampleRate, true);
+                view.setUint32(28, sampleRate * 2, true);
+                view.setUint16(32, 2, true);
+                view.setUint16(34, 16, true);
+                writeString(36, 'data');
+                view.setUint32(40, length * 2, true);
+                
+                // Convert samples
+                const data = buffer.getChannelData(0);
+                let offset = 44;
+                for (let i = 0; i < length; i++) {
+                    const sample = Math.max(-1, Math.min(1, data[i]));
+                    view.setInt16(offset, sample * 0x7FFF, true);
+                    offset += 2;
+                }
+                
+                return arrayBuffer;
+            }
+
+            loadSampleSubtitle(topic) {
+                // Giả lập nội dung SRT cho từng topic
+                let sampleSRT = '';
+                
+                switch(topic.id) {
+                    case 'topic1':
+                        sampleSRT = '';
+                        break;
+                        
+                    case 'topic2':
+                        sampleSRT = '';
+                        break;
+                        
+                    case 'topic3':
+                        sampleSRT = '';
+                        break;
+                        
+                    default:
+                        sampleSRT = '';
+                }
+
+                try {
+                    this.parseSRT(sampleSRT);
+                    
+                    const subtitleStatus = document.getElementById('subtitleStatus');
+                    subtitleStatus.innerHTML = `✅ Đã tải từ chủ đề: <strong>${topic.subtitleFile.split('/')[1]}</strong> (${this.subtitles.length} phụ đề)`;
+                    subtitleStatus.className = 'file-status success';
+                    subtitleStatus.style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('Lỗi khi tải subtitle:', error);
+                }
+            }
+
+            handleKeyboard(event) {
+                if (event.target.tagName === 'INPUT' || event.target.tagName === 'SELECT') return;
+                
+                switch(event.code) {
+                    case 'Space':
+                        event.preventDefault();
+                        this.togglePlayPause();
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        this.rewind();
+                        break;
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        this.forward();
+                        break;
+                    case 'KeyF':
+                        event.preventDefault();
+                        this.setViewMode('full');
+                        break;
+                    case 'KeyS':
+                        event.preventDefault();
+                        this.setViewMode('single');
+                        break;
+                }
+            }
+
+handleAudioError(event) {
+                const status = document.getElementById('audioStatus');
+                status.textContent = '❌ Không thể phát file audio. Vui lòng kiểm tra file.';
+                status.className = 'file-status error';
+                status.style.display = 'block';
+                
+                console.error('Audio error:', event);
+            }
+
+            parseSRT(srtContent) {
+                this.subtitles = [];
+                
+                // Chuẩn hóa line endings - xử lý cả \r\n, \r và \n
+                const normalizedContent = srtContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                const blocks = normalizedContent.trim().split('\n\n');
+                
+                blocks.forEach((block, index) => {
+                    const lines = block.trim().split('\n');
+                    if (lines.length >= 3) {
+                        const timeMatch = lines[1].match(/(\d{2}):(\d{2}):(\d{2}),(\d{3}) --> (\d{2}):(\d{2}):(\d{2}),(\d{3})/);
+                        if (timeMatch) {
+                            const startTime = this.parseTime(timeMatch[1], timeMatch[2], timeMatch[3], timeMatch[4]);
+                            const endTime = this.parseTime(timeMatch[5], timeMatch[6], timeMatch[7], timeMatch[8]);
+                            const textLines = lines.slice(2);
+                            const text = textLines.join('\n').trim();
+                            
+                            this.subtitles.push({
+                                index: index,
+                                start: startTime,
+                                end: endTime,
+                                text: text,
+                                lines: textLines
+                            });
+                        }
+                    }
+                });
+                
+                this.subtitles.sort((a, b) => a.start - b.start);
+                this.renderSubtitles();
+                
+                console.log(`Đã tải ${this.subtitles.length} phụ đề thành công`);
+            }
+
+            parseTime(hours, minutes, seconds, milliseconds) {
+                return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds) + parseInt(milliseconds) / 1000;
+            }
+
+            setViewMode(mode) {
+                this.viewMode = mode;
+                
+                // Update toggle buttons
+                this.fullViewBtn.classList.toggle('active', mode === 'full');
+                this.singleViewBtn.classList.toggle('active', mode === 'single');
+                
+                // Re-render subtitles
+                this.renderSubtitles();
+                
+                // Add animation
+                this.subtitleContainer.style.opacity = '0';
+                setTimeout(() => {
+                    this.subtitleContainer.style.opacity = '1';
+                }, 150);
+            }
+
+            renderSubtitles() {
+                if (this.subtitles.length === 0) {
+                    this.subtitleContainer.innerHTML = `
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666; font-size: 18px; text-align: center;">
+                            <div>
+                                <div style="font-size: 48px; margin-bottom: 20px;">📝</div>
+                                <div>Chưa có phụ đề để hiển thị</div>
+                                <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Hãy chọn một chủ đề</div>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                if (this.viewMode === 'single') {
+                    this.renderSingleView();
+                } else {
+                    this.renderFullView();
+                }
+            }
+
+            renderFullView() {
+                this.subtitleContainer.innerHTML = '';
+                this.subtitles.forEach((subtitle, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'subtitle-line';
+                    
+                    // Format text for better display
+                    const textLines = subtitle.lines;
+                    if (textLines.length >= 3) {
+                        // Structured format: Chinese + Pinyin + Vietnamese
+                        div.innerHTML = `
+                            <span class="chinese">${textLines[0]}</span>
+                            <span class="pinyin">${textLines[1]}</span>
+                            <span class="vietnamese">${textLines[2]}</span>
+                        `;
+                    } else if (textLines.length === 2) {
+                        // Two lines format
+                        div.innerHTML = `
+                            <span class="chinese">${textLines[0]}</span>
+                            <span class="vietnamese">${textLines[1]}</span>
+                        `;
+                    } else {
+                        // Single line format
+                        div.innerHTML = `<span class="chinese">${subtitle.text}</span>`;
+                    }
+                    
+                    div.dataset.index = index;
+                    
+                    // Add click handler for seeking
+                    div.addEventListener('click', () => {
+                        if (this.audioPlayer.src) {
+                            this.audioPlayer.currentTime = subtitle.start;
+                        }
+                    });
+                    
+                    this.subtitleContainer.appendChild(div);
+                });
+            }
+
+            renderSingleView() {
+                this.subtitleContainer.innerHTML = `
+                    <div class="single-subtitle-view">
+                        <div class="single-subtitle-text no-active">
+                            <div style="font-size: 48px; margin-bottom: 20px;">⏸️</div>
+                            <div>Chờ phụ đề...</div>
+                            <div style="font-size: 16px; opacity: 0.7; margin-top: 10px;">Phát audio để xem phụ đề</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            updateSubtitles() {
+                if (this.subtitles.length === 0) return;
+
+                const currentTime = this.audioPlayer.currentTime;
+                let activeIndex = -1;
+
+                // Find active subtitle
+                for (let i = 0; i < this.subtitles.length; i++) {
+                    const subtitle = this.subtitles[i];
+                    if (currentTime >= subtitle.start && currentTime <= subtitle.end) {
+                        activeIndex = i;
+                        break;
+                    }
+                }
+
+                if (this.viewMode === 'single') {
+                    this.updateSingleView(activeIndex);
+                } else {
+                    this.updateFullView(activeIndex);
+                }
+
+                this.currentSubtitleIndex = activeIndex;
+            }
+
+            updateFullView(activeIndex) {
+                const subtitleLines = this.subtitleContainer.querySelectorAll('.subtitle-line');
+                subtitleLines.forEach((line, index) => {
+                    line.className = 'subtitle-line';
+                    
+                    if (index === activeIndex) {
+                        line.classList.add('active');
+                        // Auto scroll to active subtitle with smooth animation
+                        if (this.currentSubtitleIndex !== activeIndex) {
+                            line.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center',
+                                inline: 'nearest'
+                            });
+                        }
+                    } else if (index < activeIndex) {
+                        line.classList.add('past');
+                    } else if (index > activeIndex && activeIndex >= 0 && this.subtitles[index].start - this.audioPlayer.currentTime < 5) {
+                        line.classList.add('upcoming');
+                    }
+                });
+            }
+
+            updateSingleView(activeIndex) {
+                const singleSubtitleText = this.subtitleContainer.querySelector('.single-subtitle-text');
+                if (singleSubtitleText) {
+                    if (activeIndex >= 0) {
+                        const subtitle = this.subtitles[activeIndex];
+                        const textLines = subtitle.lines;
+                        
+                        if (textLines.length >= 3) {
+                            // Structured format for single view
+                            singleSubtitleText.innerHTML = `
+                                <div style="font-size: 32px; margin-bottom: 12px; font-weight: 700; color: #fff;">${textLines[0]}</div>
+                                <div style="font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-style: italic;">${textLines[1]}</div>
+                                <div style="font-size: 24px; color: rgba(255,255,255,0.9); font-weight: 500;">${textLines[2]}</div>
+                            `;
+                        } else if (textLines.length === 2) {
+                            singleSubtitleText.innerHTML = `
+                                <div style="font-size: 32px; margin-bottom: 12px; font-weight: 700; color: #fff;">${textLines[0]}</div>
+                                <div style="font-size: 24px; color: rgba(255,255,255,0.9); font-weight: 500;">${textLines[1]}</div>
+                            `;
+                        } else {
+                            singleSubtitleText.innerHTML = `
+                                <div style="font-size: 32px; font-weight: 700; color: #fff;">${subtitle.text}</div>
+                            `;
+                        }
+                        singleSubtitleText.className = 'single-subtitle-text';
+                    } else {
+                        singleSubtitleText.innerHTML = `
+                            <div style="font-size: 48px; margin-bottom: 20px;">⏸️</div>
+                            <div>Chờ phụ đề...</div>
+                            <div style="font-size: 16px; opacity: 0.7; margin-top: 10px;">Phát audio để xem phụ đề</div>
+                        `;
+                        singleSubtitleText.className = 'single-subtitle-text no-active';
+                    }
+                }
+            }
+
+            togglePlayPause() {
+                if (!this.audioPlayer.src) {
+                    alert('Vui lòng chọn một chủ đề trước!');
+                    return;
+                }
+
+                if (this.audioPlayer.paused) {
+                    // Cần user interaction để phát audio
+                    const playPromise = this.audioPlayer.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('Audio playing successfully');
+                        }).catch(error => {
+                            console.error('Cannot play audio:', error);
+                            alert('Không thể phát audio. Vui lòng kiểm tra file hoặc thử tải file khác.');
+                        });
+                    }
+                } else {
+                    this.audioPlayer.pause();
+                }
+            }
+
+            updatePlayPauseButton() {
+                const isPlaying = !this.audioPlayer.paused;
+                this.playPauseBtn.textContent = isPlaying ? '⏸' : '▶';
+                this.playPauseBtn.title = isPlaying ? 'Dừng' : 'Phát';
+                
+                // Add pulse animation when playing
+                if (isPlaying) {
+                    this.playPauseBtn.style.animation = 'pulse 2s infinite';
+                } else {
+                    this.playPauseBtn.style.animation = 'none';
+                }
+            }
+
+            rewind() {
+                if (this.audioPlayer.src) {
+                    this.audioPlayer.currentTime = Math.max(0, this.audioPlayer.currentTime - 10);
+                }
+            }
+
+            forward() {
+                if (this.audioPlayer.src) {
+                    this.audioPlayer.currentTime = Math.min(this.audioPlayer.duration || 0, this.audioPlayer.currentTime + 10);
+                }
+            }
+
+            updateProgress() {
+                if (this.audioPlayer.duration) {
+                    const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
+                    this.progressBar.style.width = progress + '%';
+                    this.currentTimeEl.textContent = this.formatTime(this.audioPlayer.currentTime);
+                    
+                    // Update subtitles
+                    this.updateSubtitles();
+                }
+            }
+
+            updateDuration() {
+                this.totalTimeEl.textContent = this.formatTime(this.audioPlayer.duration);
+            }
+
+            setProgress(event) {
+                if (!this.audioPlayer.src) return;
+                
+                const rect = this.progressContainer.getBoundingClientRect();
+                const clickX = event.clientX - rect.left;
+                const width = rect.width;
+                const duration = this.audioPlayer.duration;
+                
+                if (duration) {
+                    this.audioPlayer.currentTime = (clickX / width) * duration;
+                }
+            }
+
+            updateVolume() {
+                const volume = this.volumeSlider.value;
+                this.audioPlayer.volume = volume;
+                this.volumeValue.textContent = Math.round(volume * 100) + '%';
+            }
+
+            onAudioEnded() {
+                this.updatePlayPauseButton();
+                this.currentSubtitleIndex = -1;
+                this.updateSubtitles();
+            }
+
+            formatTime(seconds) {
+                if (isNaN(seconds) || seconds === null) return '00:00';
+                
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new PodcastApp();
+            
+            // Add some visual feedback
+            console.log('🎧 PodCast Pro với Topics đã khởi tạo thành công!');
+        });
+    </script>
+</body>
+</html>

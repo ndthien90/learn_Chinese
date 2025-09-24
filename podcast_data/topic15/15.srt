@@ -1,0 +1,304 @@
+1
+00:00:00,000 --> 00:00:01,920
+你喜欢做什么样的工作?
+nǐ xǐhuān zuò shénmeyàng de gōngzuò?
+Bạn thích làm loại công việc nào?
+
+2
+00:00:02,500 --> 00:00:02,980
+为什么?
+wèi shénme?
+Tại sao?
+
+3
+00:00:02,980 --> 00:00:04,780
+各位老师好
+gèwèi lǎoshī hǎo
+Chào các thầy cô ạ.
+
+4
+00:00:04,780 --> 00:00:07,760
+我现在开始回答第三部分的问题
+wǒ xiànzài kāishǐ huídá dìsān bùfèn de wèntí
+Bây giờ em xin phép bắt đầu trả lời câu hỏi phần thứ ba.
+
+5
+00:00:07,760 --> 00:00:09,000
+问题是
+wèntí shì
+Câu hỏi là
+
+6
+00:00:09,000 --> 00:01:04,360
+我喜欢做什么样的工作?
+wǒ xǐhuān zuò shénmeyàng de gōngzuò?
+Em thích làm loại công việc nào?
+
+7
+00:01:04,360 --> 00:01:07,460
+为什么?
+wèi shénme?
+
+8
+00:01:07,460 --> 00:01:10,380
+我理想中的工作应该具备三个特点
+wǒ lǐxiǎngzhōng de gōngzuò yīnggāi jùbèi sān gè tèdiǎn
+Công việc lý tưởng của em nên có ba đặc điểm.
+
+9
+00:01:10,380 --> 00:01:11,880
+第一是我感兴趣的
+dìyī shì wǒ gǎnxìngqù de
+Thứ nhất là tôi có hứng thú.
+
+10
+00:01:11,880 --> 00:01:13,660
+第二是能帮助别人的
+dì'èr shì néng bāngzhù biérén de
+Thứ hai là có thể giúp đỡ người khác.
+
+11
+00:01:13,660 --> 00:01:16,440
+第三是能有时间平衡生活的
+dìsān shì néng yǒu shíjiān pínghéng shēnghuó de
+Thứ ba là có thể có thời gian cân bằng cuộc sống.
+
+12
+00:01:16,440 --> 00:01:18,860
+我之所以喜欢这样的工作
+wǒ zhīsuǒyǐ xǐhuān zhèyàng de gōngzuò
+Sở dĩ tôi thích công việc như vậy
+
+13
+00:01:18,860 --> 00:01:20,000
+原因如下
+yuányīn rúxià
+là vì những lý do sau:
+
+14
+00:01:20,000 --> 00:01:20,940
+首先
+shǒuxiān
+Đầu tiên
+
+15
+00:01:20,940 --> 00:01:23,700
+我认为兴趣是最好的老师
+wǒ rènwéi xìngqù shì zuìhǎo de lǎoshī
+Tôi nghĩ hứng thú là người thầy tốt nhất.
+
+16
+00:01:23,700 --> 00:01:25,760
+做自己感兴趣的工作
+zuò zìjǐ gǎnxìngqù de gōngzuò
+Làm công việc mình yêu thích.
+
+17
+00:01:25,760 --> 00:01:28,520
+比如我特别喜欢语言和教育
+bǐrú wǒ tèbié xǐhuān yǔyán hé jiàoyù
+Ví dụ, tôi đặc biệt thích ngôn ngữ và giáo dục.
+
+18
+00:01:28,520 --> 00:01:30,420
+那么当一名中文老师
+nàme dāng yīmíng zhōngwén lǎoshī
+Vậy thì làm một giáo viên tiếng Trung.
+
+19
+00:01:30,420 --> 00:01:32,940
+就会让我觉得每天都很开心
+jiù huì ràng wǒ juédé měitiān dōu hěn kāixīn
+Sẽ khiến tôi cảm thấy mỗi ngày đều rất vui vẻ.
+
+20
+00:01:32,940 --> 00:01:33,860
+很有动力
+hěn yǒu dònglì
+Rất có động lực.
+
+21
+00:01:33,860 --> 00:01:35,860
+即使工作有时候很累
+jíshǐ gōngzuò yǒushíhou hěn lèi
+Ngay cả khi công việc đôi khi rất mệt mỏi,
+
+22
+00:01:35,860 --> 00:01:38,240
+我也会愿意去学习新的东西
+wǒ yě huì yuànyì qù xuéxí xīn de dōngxī
+Tôi vẫn sẵn lòng học những điều mới.
+
+23
+00:01:38,240 --> 00:01:39,260
+坚持下去
+jiānchí xiàqù
+Kiên trì.
+
+24
+00:01:39,740 --> 00:01:40,380
+其次
+qícì
+Thứ hai.
+
+25
+00:01:40,380 --> 00:01:42,720
+我希望我的工作是有意义的
+wǒ xīwàng wǒ de gōngzuò shì yǒu yìyì de
+Tôi hy vọng công việc của tôi có ý nghĩa.
+
+26
+00:01:42,720 --> 00:01:44,060
+能帮助到别人
+néng bāngzhù dào biérén
+Có thể giúp đỡ người khác.
+
+27
+00:01:44,620 --> 00:01:45,300
+像老师
+xiàng lǎoshī
+Giống như giáo viên.
+
+28
+00:01:45,300 --> 00:01:46,040
+医生
+yīshēng
+Bác sĩ.
+
+29
+00:01:46,040 --> 00:01:47,840
+或者志愿者这样的工作
+huòzhě zhìyuànzhě zhèyàng de gōngzuò
+Hoặc những công việc như tình nguyện viên.
+
+30
+00:01:47,840 --> 00:01:50,020
+都能为社会做出贡献
+dōu néng wéi shèhuì zuòchū gòngxiàn
+Đều có thể đóng góp cho xã hội.
+
+31
+00:01:50,020 --> 00:01:52,500
+当我看到我的学生取得了进步
+dāng wǒ kàndào wǒ de xuésheng qǔdéle jìnbù
+Khi tôi thấy học sinh của mình tiến bộ,
+
+32
+00:01:52,500 --> 00:01:54,660
+或者我帮助的人解决了问题
+huòzhě wǒ bāngzhù de rén jiějuéle wèntí
+Hoặc tôi giúp người khác giải quyết vấn đề,
+
+33
+00:01:54,660 --> 00:01:57,140
+我会感到非常满足和自豪
+wǒ huì gǎndào fēicháng mǎnzú hé zìháo
+Tôi sẽ cảm thấy rất mãn nguyện và tự hào.
+
+34
+00:01:57,140 --> 00:02:00,300
+这种感觉比赚很多钱更重要
+zhèzhǒng gǎnjué bǐ zhuàn hěn duō qián gèng zhòngyào
+Cảm giác này quan trọng hơn việc kiếm được nhiều tiền.
+
+35
+00:02:00,300 --> 00:02:01,340
+最后
+zuìhòu
+Cuối cùng
+
+36
+00:02:01,340 --> 00:02:03,800
+我认为工作不是生活的全部
+wǒ rènwéi gōngzuò bùshì shēnghuó de quánbù
+Tôi nghĩ công việc không phải là tất cả cuộc sống
+
+37
+00:02:04,300 --> 00:02:06,780
+我喜欢的工作应该有合理的时间
+wǒ xǐhuān de gōngzuò yīnggāi yǒu hélǐ de shíjiān
+Công việc tôi thích nên có thời gian hợp lý
+
+38
+00:02:06,780 --> 00:02:10,200
+让我下班后有机会跟家人和朋友在一起
+ràng wǒ xiàbān hòu yǒu jīhuì gēn jiārén hé péngyǒu zài yīqǐ
+Cho tôi cơ hội sau giờ làm việc ở bên gia đình và bạn bè
+
+39
+00:02:10,200 --> 00:02:12,480
+或者去做我自己喜欢的事情
+huòzhě qù zuò wǒ zìjǐ xǐhuān de shìqíng
+Hoặc làm những việc tôi thích
+
+40
+00:02:12,480 --> 00:02:13,500
+比如远渡
+bǐrú yuǎndù
+Ví dụ như đi thuyền xa
+
+41
+00:02:13,500 --> 00:02:14,240
+看书
+kànshū
+Đọc sách
+
+42
+00:02:14,240 --> 00:02:17,220
+这样才能保持好的心情和健康
+zhèyàng cáinéng bǎochí hǎo de xīnqíng hé jiànkāng
+Như vậy mới có thể giữ được tâm trạng tốt và sức khỏe
+
+43
+00:02:17,220 --> 00:02:18,940
+也才能更好的工作
+yě cáinéng gènghǎo de gōngzuò
+thì mới có thể làm việc tốt hơn.
+
+44
+00:02:18,940 --> 00:02:20,020
+总之
+zǒngzhī
+Tóm lại,
+
+45
+00:02:20,020 --> 00:02:22,800
+我寻找的是一份能结合我的兴趣
+wǒ xúnzhǎo de shì yīfèn néng jiéhé wǒ de xìngqù
+Tôi tìm kiếm một công việc có thể kết hợp sở thích của tôi,
+
+46
+00:02:22,800 --> 00:02:24,240
+实现个人价值
+shíxiàn gèrén jiàzhí
+thực hiện giá trị cá nhân,
+
+47
+00:02:24,240 --> 00:02:26,720
+同时又能让我享受生活的工作
+tóngshí yòu néng ràng wǒ xiǎngshòu shēnghuó de gōngzuò
+đồng thời cho phép tôi tận hưởng cuộc sống.
+
+48
+00:02:26,720 --> 00:02:28,820
+我相信这样的工作
+wǒ xiāngxìn zhèyàng de gōngzuò
+Tôi tin rằng một công việc như vậy
+
+49
+00:02:28,820 --> 00:02:30,800
+会让我感到幸福和充实
+huì ràng wǒ gǎndào xìngfú hé chōngshí
+sẽ khiến tôi cảm thấy hạnh phúc và trọn vẹn.
+
+50
+00:02:30,800 --> 00:02:32,460
+我的回答完毕
+wǒ de huídá wánbì
+Tôi xin trả lời xong.
+
+51
+00:02:32,460 --> 00:02:34,400
+谢谢各位老师的聆听
+xièxie gèwèi lǎoshī de língtīng
+Cảm ơn các thầy cô đã lắng nghe.

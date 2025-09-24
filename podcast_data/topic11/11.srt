@@ -1,0 +1,155 @@
+1
+00:00:00,000 --> 00:00:01,960
+请介绍你的一次旅游经历
+qǐng jièshào nǐ de yīcì lǚyóu jīnglì
+Hãy giới thiệu về một trải nghiệm du lịch của bạn.
+
+2
+00:00:01,960 --> 00:00:06,820
+我最喜欢的一次旅行是去年夏天和家人一起去海边
+wǒ zuì xǐhuān de yīcì lǚxíng shì qùnián xiàtiān hé jiārén yīqǐ qù hǎibiān
+Chuyến đi yêu thích nhất của tôi là chuyến đi biển cùng gia đình vào mùa hè năm ngoái.
+
+3
+00:00:06,820 --> 00:00:09,460
+那是一次非常难忘的经历
+nà shì yīcì fēicháng nánwàng de jīnglì
+Đó là một trải nghiệm vô cùng đáng nhớ.
+
+4
+00:00:09,460 --> 00:00:11,920
+让我感到特别放松和快乐
+ràng wǒ gǎndào tèbié fàngsōng hé kuàilè
+Nó khiến tôi cảm thấy đặc biệt thư giãn và hạnh phúc.
+
+5
+00:00:12,500 --> 00:00:15,320
+首先大海的风景真的太美了
+shǒuxiān dàhǎi de fēngjǐng zhēnde tàiměile
+Đầu tiên, phong cảnh biển thực sự quá đẹp.
+
+6
+00:00:15,880 --> 00:00:17,260
+那里的海水很蓝
+nàlǐ de hǎishuǐ hěn lán
+Nước biển ở đó rất xanh.
+
+7
+00:00:17,260 --> 00:00:18,920
+沙滩也很干净
+shātān yě hěn gānjìng
+Bãi cát cũng rất sạch.
+
+8
+00:00:18,920 --> 00:00:22,140
+每天早上我都喜欢在海边散步
+měitiān zǎoshang wǒ dōu xǐhuān zài hǎibiān sànbù
+Mỗi sáng tôi đều thích đi dạo trên biển.
+
+9
+00:00:22,140 --> 00:00:26,080
+听着海浪声呼吸着新鲜的空气
+tīngzhe hǎilàngshēng hūxīzhe xīnxiān de kōngqì
+nghe tiếng sóng và hít thở không khí trong lành.
+
+10
+00:00:26,080 --> 00:00:28,420
+感觉所有的烦恼都随着海风飘散了
+gǎnjué suǒyǒu de fánnǎo dōu suízhe hǎifēng piāosànle
+Tôi cảm thấy mọi muộn phiền đều tan biến theo gió biển.
+
+11
+00:00:29,260 --> 00:00:32,159
+其次在海边可以做很多有趣的事情
+qícì zài hǎibiān kěyǐ zuò hěn duō yǒuqù de shìqíng
+Thứ hai, ở bờ biển có thể làm rất nhiều việc thú vị.
+
+12
+00:00:32,159 --> 00:00:36,080
+我和家人一起在沙滩上玩排球 还去游泳
+wǒ hé jiārén yīqǐ zài shātānshàng wán páiqiú hái qù yóuyǒng
+Tôi và gia đình cùng nhau chơi bóng chuyền trên bãi cát, còn đi bơi nữa.
+
+13
+00:00:36,080 --> 00:00:38,620
+我还第一次尝试了坐香蕉船
+wǒ hái dì yīcì chángshìle zuò xiāngjiāochuán
+Tôi còn lần đầu tiên thử ngồi thuyền chuối.
+
+14
+00:00:38,620 --> 00:00:42,000
+虽然有点害怕 但是感觉非常刺激和开心
+suīrán yǒudiǎn hàipà dànshì gǎnjué fēicháng cìjī hé kāixīn
+Tuy có hơi sợ nhưng cảm giác rất kích thích và vui vẻ.
+
+15
+00:00:42,000 --> 00:00:44,660
+晚上 我们一起吃海鲜大餐
+wǎnshang wǒmen yīqǐ chī hǎixiān dàcān
+Buổi tối, chúng tôi cùng nhau ăn một bữa hải sản lớn.
+
+16
+00:00:44,660 --> 00:00:48,580
+烤鱼 大虾 螃蟹 味道都特别新鲜美味
+kǎoyú dàxiā pángxiè wèidào dōu tèbié xīnxiān měiwèi
+Cá nướng, tôm lớn, cua, hương vị đều đặc biệt tươi ngon.
+
+17
+00:00:49,140 --> 00:00:52,560
+另外 我还去附近的一个小渔村参观了
+lìngwài wǒ hái qù fùjìn de yīgè xiǎoyúcūn cānguānle
+Ngoài ra, tôi còn đến thăm một làng chài nhỏ gần đó.
+
+18
+00:00:52,820 --> 00:00:55,700
+那里的生活很安静 人们也很热情
+nàlǐ de shēnghuó hěn ānjìng rénmen yě hěn rèqíng
+Cuộc sống ở đó rất yên tĩnh, mọi người đều rất nhiệt tình.
+
+19
+00:00:55,700 --> 00:00:59,600
+我看到了渔民们打鱼了解了他们的日常生活
+wǒ kàndàole yúmínmen dǎyú liǎojiěle tāmen de rìcháng shēnghuó
+Tôi thấy những người ngư dân đánh bắt cá và tìm hiểu về cuộc sống hàng ngày của họ.
+
+20
+00:00:59,600 --> 00:01:00,560
+觉得很有意思
+juéde hěn yǒuyìsi
+cảm thấy rất thú vị.
+
+21
+00:01:01,160 --> 00:01:03,800
+这次海边旅行对我来说很不一般
+zhècì hǎibiān lǚxíng duì wǒ lái shuō hěn bùyībān
+Chuyến du lịch biển lần này đối với tôi rất phi thường.
+
+22
+00:01:03,800 --> 00:01:06,580
+它不仅让我欣赏到了美丽的海景
+tā bùjǐn ràng wǒ xīnshǎng dàole měilì de hǎijǐng
+Nó không chỉ cho phép tôi chiêm ngưỡng cảnh biển tuyệt đẹp
+
+23
+00:01:06,580 --> 00:01:10,240
+更重要的是我花了很多时间陪伴家人
+gèng zhòngyào de shì wǒ huāle hěn duō shíjiān péibàn jiārén
+mà quan trọng hơn là tôi đã có rất nhiều thời gian ở bên gia đình.
+
+24
+00:01:10,240 --> 00:01:13,620
+我们一起创造了美好的回忆
+wǒmen yīqǐ chuàngzàole měihǎo de huíyì
+Chúng tôi đã cùng nhau tạo ra những kỷ niệm đẹp.
+
+25
+00:01:13,620 --> 00:01:14,460
+我的回答完毕
+wǒ de huídá wánbì
+Tôi xin trả lời xong.
+
+26
+00:01:14,460 --> 00:01:16,980
+谢谢各位老师的聆听
+xièxie gèwèi lǎoshī de língtīng
+Cảm ơn các thầy cô đã lắng nghe.

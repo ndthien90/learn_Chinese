@@ -1,0 +1,149 @@
+1
+00:00:00,000 --> 00:00:02,620
+网络学习有什么好处和坏处?
+Wǎngluò xuéxí yǒu shéme hǎochù hé huàichù?
+Học trực tuyến có những ưu và nhược điểm gì?
+
+2
+00:00:02,980 --> 00:00:07,860
+网络学习,也就是我们常说的在线学习,现在越来越流行。
+Wǎngluò xuéxí, yě jiùshì wǒmen cháng shuō de zàixiàn xuéxí, xiànzài yuè lái yuè liúxíng.
+Học trực tuyến, hay còn gọi là học online, ngày càng trở nên phổ biến.
+
+3
+00:00:08,180 --> 00:00:11,900
+我认为它有很多好处,但也存在一些缺点。
+Wǒ rènwéi tā yǒu hěnduō hǎochù, dàn yě cúnzài yīxiē quēdiǎn.
+Tôi nghĩ nó có nhiều ưu điểm, nhưng cũng tồn tại một số nhược điểm.
+
+4
+00:00:12,240 --> 00:00:16,079
+先说好处,网络学习最大的优点是方便和自由。
+Xiān shuō hǎochù, wǎngluò xuéxí zuìdà de yōudiǎn shì fāngbiàn hé zìyóu.
+Nói về ưu điểm trước, ưu điểm lớn nhất của học trực tuyến là sự tiện lợi và tự do.
+
+5
+00:00:16,540 --> 00:00:19,260
+我们不需要去教室,只要有网络,
+Wǒmen bù xūyào qù jiàoshì, zhǐyào yǒu wǎngluò,
+Chúng ta không cần phải đến lớp, chỉ cần có mạng,
+
+6
+00:00:19,320 --> 00:00:22,360
+就可以在任何地方,任何时间学习。
+jiù kěyǐ zài rènhé dìfāng, rènhé shíjiān xuéxí.
+Có thể học ở bất cứ đâu, bất cứ lúc nào.
+
+7
+00:00:22,620 --> 00:00:27,940
+这对于那些工作忙碌或者住在偏远地区的人来说非常有帮助。
+Zhè duìyú nàxiē gōngzuò mánglù huòzhě zhù zài piānyuǎn dìqū de rén lái shuō fēicháng yǒu bāngzhù.
+Điều này rất hữu ích cho những người bận rộn với công việc hoặc sống ở vùng sâu vùng xa.
+
+8
+00:00:28,500 --> 00:00:28,700
+另外,
+Lìngwài,
+Ngoài ra,
+
+9
+00:00:28,920 --> 00:00:31,220
+网络上的学习资源非常丰富,
+wǎngluò shàng de xuéxí zīyuán fēicháng fēngfù,
+Tài nguyên học tập trên mạng rất phong phú,
+
+10
+00:00:31,320 --> 00:00:33,460
+我们可以找到各种各样的课程,
+wǒmen kěyǐ zhǎodào gè zhǒng gè yàng de kèchéng,
+Chúng ta có thể tìm thấy rất nhiều khóa học khác nhau,
+
+11
+00:00:33,600 --> 00:00:36,020
+学费也通常比线下的课程便宜。
+xuéfèi yě tōngcháng bǐ xiànxià de kèchéng piányí.
+Học phí cũng thường rẻ hơn so với các khóa học trực tiếp.
+
+12
+00:00:36,340 --> 00:00:39,380
+然而,网络学习也有一些不足之处。
+Rán'ér, wǎngluò xuéxí yěyǒu yīxiē bùzú zhī chù.
+Tuy nhiên, học trực tuyến cũng có một số nhược điểm.
+
+13
+00:00:39,860 --> 00:00:42,880
+首先,它对学生的自觉性要求很高。
+Shǒuxiān, tā duì xuéshēng de zìjuéxìng yāoqiú hěn gāo.
+Đầu tiên, nó đòi hỏi tính tự giác rất cao từ học sinh.
+
+14
+00:00:43,280 --> 00:00:47,060
+如果没有老师在旁边监督,我们很容易变得懒惰,
+Rúguǒ méiyǒu lǎoshī zài pángbiān jiāndū, wǒmen hěn róngyì biàn dé lǎnduò,
+Nếu không có giáo viên giám sát bên cạnh, chúng ta rất dễ trở nên lười biếng,
+
+15
+00:00:47,140 --> 00:00:49,180
+学习效果就会受到影响。
+xuéxí xiàoguǒ jiù huì shòudào yǐngxiǎng.
+và hiệu quả học tập sẽ bị ảnh hưởng.
+
+16
+00:00:49,540 --> 00:00:52,680
+其次,网络学习缺少面对面的交流。
+Qícì, wǎngluò xuéxí quēshǎo miànduìmiàn de jiāoliú.
+Thứ hai, học trực tuyến thiếu sự giao tiếp trực tiếp.
+
+17
+00:00:52,680 --> 00:00:56,820
+在课堂上,我们可以和老师、同学直接交流,
+Zài kètáng shàng, wǒmen kěyǐ hé lǎoshī, tóngxué zhíjiē jiāoliú,
+Ở trên lớp, chúng ta có thể trực tiếp trao đổi với giáo viên, bạn học,
+
+18
+00:00:56,900 --> 00:00:58,040
+一起讨论问题,
+yīqǐ tǎolùn wèntí,
+cùng nhau thảo luận các vấn đề,
+
+19
+00:00:58,280 --> 00:01:01,840
+这种互动在网络学习中是很难实现的。
+zhè zhǒng hùdòng zài wǎngluò xuéxí zhōng shì hěn nán shíxiàn de.
+Rất khó để đạt được sự tương tác này trong học trực tuyến.
+
+20
+00:01:02,180 --> 00:01:03,000
+总的来说,
+Zǒng de lái shuō,
+Nói chung,
+
+21
+00:01:03,200 --> 00:01:06,420
+我认为网络学习是一种很好的学习方式,
+wǒ rènwéi wǎngluò xuéxí shì yī zhǒng hěn hǎo de xuéxí fāngshì,
+Tôi nghĩ học trực tuyến là một hình thức học tập tốt,
+
+22
+00:01:06,580 --> 00:01:09,380
+它给我们提供了更多的选择和便利。
+tā gěi wǒmen tígōngle gèng duō de xuǎnzé hé biànlì.
+Nó cung cấp cho chúng ta nhiều lựa chọn và sự tiện lợi hơn.
+
+23
+00:01:10,060 --> 00:01:12,320
+但是,我们在选择网络学习时,
+Dànshì, wǒmen zài xuǎnzé wǎngluò xuéxí shí,
+Tuy nhiên, khi chọn học trực tuyến,
+
+24
+00:01:12,420 --> 00:01:16,580
+也应该有足够的自制力,并且学会主动寻找资源,
+yě yīnggāi yǒu zúgòu de zìzhìlì, bìngqiě xuéhuì zhǔdòng xúnzhǎo zīyuán,
+Chúng ta cũng nên có đủ khả năng tự kiểm soát và học cách chủ động tìm kiếm tài nguyên,
+
+25
+00:01:16,640 --> 00:01:18,580
+才能真正有效地学习。
+cáinéng zhēnzhèng yǒuxiào de xuéxí.
+Để thực sự học tập hiệu quả.

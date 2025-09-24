@@ -1,0 +1,119 @@
+1
+00:00:00,000 --> 00:00:03,620
+父亲或者母亲过生日时,你想送他们什么礼物?
+Fùqīn huòzhě mǔqīn guò shēngrì shí, nǐ xiǎng sòng tāmen shénme lǐwù?
+Khi bố hoặc mẹ bạn có sinh nhật, bạn muốn tặng họ món quà gì?
+
+2
+00:00:04,120 --> 00:00:06,480
+如果我的父亲或者母亲过生日,
+Rúguǒ wǒ de fùqīn huòzhě mǔqīn guò shēngrì,
+Nếu bố hoặc mẹ tôi có sinh nhật,
+
+3
+00:00:06,600 --> 00:00:09,760
+我会根据他们的喜好和需要来选择礼物。
+wǒ huì gēnjù tāmen de xǐhào hé xūyào lái xuǎnzé lǐwù.
+tôi sẽ chọn quà dựa trên sở thích và nhu cầu của họ.
+
+4
+00:00:10,040 --> 00:00:12,580
+对我来说,礼物不一定要很贵,
+Duì wǒ lái shuō, lǐwù bù yīdìng yào hěn guì,
+Đối với tôi, quà không nhất thiết phải đắt tiền,
+
+5
+00:00:12,660 --> 00:00:15,600
+但一定要有新意,能让他们感到开心。
+dàn yīdìng yào yǒu xīnyì, néng ràng tāmen gǎndào kāixīn.
+nhưng nhất định phải có ý nghĩa và khiến họ vui vẻ.
+
+6
+00:00:16,320 --> 00:00:21,440
+首先 如果是父亲过生日 我可能会选择送他一个他喜欢的东西
+Shǒuxiān rúguǒ shì fùqīn guò shēngrì wǒ kěnéng huì xuǎnzé sòng tā yīgè tā xǐhuān de dōngxī
+Đầu tiên, nếu là sinh nhật của bố, con có thể chọn tặng bố một món đồ mà bố thích.
+
+7
+00:00:21,440 --> 00:00:28,020
+我的父亲很喜欢喝茶 所以我可能会为他买一套漂亮的茶具或者一些好茶
+Wǒ de fùqīn hěn xǐhuān hē chá suǒyǐ wǒ kěnéng huì wèi tā mǎi yī tào piàoliang de chájù huòzhě yīxiē hǎo chá
+Bố con rất thích uống trà, vì vậy con có thể mua cho bố một bộ ấm trà đẹp hoặc một ít trà ngon.
+
+8
+00:00:28,020 --> 00:00:32,880
+我也可能会送他一件舒适的外套 因为他常常需要出门
+Wǒ yě kěnéng huì sòng tā yī jiàn shūshì de wàitào yīnwèi tā chángcháng xūyào chūmén
+Con cũng có thể tặng bố một chiếc áo khoác thoải mái vì bố thường xuyên phải ra ngoài.
+
+9
+00:00:32,880 --> 00:00:39,920
+我认为这些礼物都很实用 他每天都能用得到 这样他就会经常想起我
+Wǒ rènwéi zhèxiē lǐwù dōu hěn shíyòng tā měitiān dōu néng yòng dédào zhèyàng tā jiù huì jīngcháng xiǎngqǐ wǒ
+Tôi nghĩ những món quà này rất thiết thực, anh ấy có thể sử dụng hàng ngày, như vậy anh ấy sẽ thường xuyên nhớ đến tôi.
+
+10
+00:00:39,920 --> 00:00:46,280
+其次 如果是母亲过生日 我可能会送她一些能让她放松和开心的东西
+Qícì rúguǒ shì mǔqīn guò shēngrì wǒ kěnéng huì sòng tā yīxiē néng ràng tā fàngsōng hé kāixīn de dōngxī
+Thứ hai, nếu là sinh nhật mẹ, tôi có thể tặng bà ấy một vài thứ có thể giúp bà ấy thư giãn và vui vẻ.
+
+11
+00:00:46,280 --> 00:00:53,460
+我的母亲喜欢旅游 所以我可能会为她计划一次短途旅行 或者买一些她喜欢的衣服
+Wǒ de mǔqīn xǐhuān lǚyóu suǒyǐ wǒ kěnéng huì wèi tā jìhuà yīcì duǎntú lǚxíng huòzhě mǎi yīxiē tā xǐhuān de yīfú
+Mẹ tôi thích đi du lịch, vì vậy tôi có thể lên kế hoạch cho bà ấy một chuyến đi ngắn ngày, hoặc mua một vài bộ quần áo mà bà ấy thích.
+
+12
+00:00:53,460 --> 01:00:680
+如果她没有什么特别想要的 我就会送她一个大蛋糕 然后亲手为她做一顿丰盛的晚餬
+Rúguǒ tā méiyǒu shéme tèbié xiǎng yào de wǒ jiù huì sòng tā yīgè dà dàngāo ránhòu qīnshǒu wèi tā zuò yī dùn fēngshèng de wǎncān
+Nếu bà ấy không có gì đặc biệt muốn, tôi sẽ tặng bà ấy một chiếc bánh kem lớn, sau đó tự tay làm cho bà ấy một bữa tối thịnh soạn.
+
+13
+00:01:00,680 --> 01:05:220
+对我来说 和家人在一起的时光就是最好的礼物
+Duì wǒ lái shuō hé jiārén zài yīqǐ de shíguāng jiùshì zuì hǎo de lǐwù
+Đối với tôi, thời gian ở bên gia đình là món quà tuyệt vời nhất.
+
+14
+00:01:05,220 --> 01:09:140
+总的来说 送礼物只是一种表达爱的方式
+Zǒng de lái shuō sòng lǐwù zhǐshì yī zhǒng biǎodá ài de fāngshì
+Nói chung, tặng quà chỉ là một cách để thể hiện tình yêu.
+
+15
+00:01:09,140 --> 01:10:420
+最重要的是
+Zuì zhòngyào de shì
+Quan trọng nhất là
+
+16
+00:01:10,420 --> 01:13:540
+要让父母感受到我的关心和爱
+yào ràng fùmǔ gǎnshòudào wǒ de guānxīn hé ài
+phải để bố mẹ cảm nhận được sự quan tâm và tình yêu của mình.
+
+17
+00:01:13,540 --> 01:14:540
+我相信
+Wǒ xiāngxìn
+Tôi tin rằng
+
+18
+00:01:14,540 --> 01:15:980
+不管我送什么
+bùguǎn wǒ sòng shénme
+dù tôi tặng gì đi nữa,
+
+19
+00:01:15,980 --> 01:17:880
+只要是我用心准备的
+zhǐyào shì wǒ yòngxīn zhǔnbèi de
+chỉ cần là tôi chuẩn bị bằng cả tấm lòng.
+
+20
+00:01:17,880 --> 01:19:520
+他们都会很高兴
+tāmen dōu huì hěn gāoxìng
+Họ sẽ rất vui.

@@ -1,0 +1,187 @@
+1
+00:00:00,000 --> 00:00:03,880
+你有什么兴趣爱好?请谈谈它对你的影响。
+nǐ yǒu shénme xìngqù'àihào? qǐng tántán tā duì nǐ de yǐngxiǎng.
+Bạn có những sở thích nào? Hãy nói về ảnh hưởng của nó đối với bạn.
+
+2
+00:00:04,300 --> 00:00:08,800
+我有很多兴趣爱好,其中我最喜欢的是听音乐和看电影。
+wǒ yǒu hěn duō xìngqù'àihào, qízhōng wǒ zuì xǐhuān de shì tīng yīnyuè hé kàn diànyǐng.
+Tôi có rất nhiều sở thích, trong đó tôi thích nhất là nghe nhạc và xem phim.
+
+3
+00:00:09,460 --> 00:00:12,220
+我觉得这些爱好不仅仅是打发时间,
+wǒ juéde zhèxiē àihào bùjǐnshì dǎfā shíjiān,
+Tôi nghĩ những sở thích này không chỉ là để giết thời gian,
+
+4
+00:00:12,480 --> 00:00:15,640
+它们对我的生活和性格也有很大的影响。
+tāmen duì wǒ de shēnghuó hé xìnggé yě yǒu hěn dà de yǐngxiǎng.
+mà chúng còn có ảnh hưởng lớn đến cuộc sống và tính cách của tôi.
+
+5
+00:00:16,400 --> 00:00:19,240
+首先,听音乐让我感到放松和快乐。
+shǒuxiān, tīng yīnyuè ràng wǒ gǎndào fàngsōng hé kuàilè.
+Đầu tiên, nghe nhạc khiến tôi cảm thấy thư giãn và vui vẻ.
+
+6
+00:00:19,720 --> 00:00:23,180
+工作学习了一整天后,我常常会感到很累。
+gōngzuò xuéxí le yī zhěng tiān hòu, wǒ chángcháng huì gǎndào hěn lèi.
+Sau một ngày dài làm việc và học tập, tôi thường cảm thấy rất mệt mỏi.
+
+7
+00:00:23,480 --> 00:00:27,540
+这时,我就会戴上耳机听一些自己喜欢的歌曲。
+zhè shí, wǒ jiù huì dàishàng ěrjī tīng yīxiē zìjǐ xǐhuān de gēqǔ.
+Lúc này, tôi sẽ đeo tai nghe và nghe một vài bài hát mình thích.
+
+8
+00:00:27,540 --> 00:00:29,820
+音乐能帮助我缓解压力
+yīnyuè néng bāngzhù wǒ huǎnjiě yālì
+Âm nhạc có thể giúp tôi giảm căng thẳng
+
+9
+00:00:29,820 --> 00:00:31,220
+让我忘记烦恼
+ràng wǒ wàngjì fánnǎo
+Giúp tôi quên đi những muộn phiền
+
+10
+00:00:31,660 --> 00:00:32,060
+比如
+bǐrú
+Ví dụ
+
+11
+00:00:32,060 --> 00:00:34,080
+听一些节奏快的音乐
+tīng yīxiē jiézòu kuài de yīnyuè
+Nghe một vài bản nhạc có tiết tấu nhanh
+
+12
+00:00:34,080 --> 00:00:35,460
+能让我充满活力
+néng ràng wǒ chōngmǎn huólì
+Có thể khiến tôi tràn đầy năng lượng
+
+13
+00:00:35,460 --> 00:00:37,080
+听一些舒缓的音乐
+tīng yīxiē shūhuǎn de yīnyuè
+Nghe một vài bản nhạc du dương
+
+14
+00:00:37,080 --> 00:00:38,680
+则能让我平静下来
+zé néng ràng wǒ píngjìng xiàlái
+Thì có thể giúp tôi bình tĩnh lại
+
+15
+00:00:39,220 --> 00:00:39,600
+其次
+qícì
+Thứ hai,
+
+16
+00:00:39,600 --> 00:00:41,300
+看电影让我学会了
+kàn diànyǐng ràng wǒ xuéhuìle
+Xem phim giúp tôi học được
+
+17
+00:00:41,300 --> 00:00:43,180
+从不同的角度思考问题
+cóng bùtóng de jiǎodù sīkǎo wèntí
+cách suy nghĩ về vấn đề từ những góc độ khác nhau.
+
+18
+00:00:43,600 --> 00:00:45,440
+电影就像是一个窗口
+diànyǐng jiù xiàng shì yīgè chuāngkǒu
+Phim giống như một cửa sổ,
+
+19
+00:00:45,440 --> 00:00:46,640
+让我有机会
+ràng wǒ yǒu jīhuì
+cho tôi cơ hội
+
+20
+00:00:46,640 --> 00:00:49,220
+去了解各种各样的人生和文化
+qù liǎojiě gèzhǒng gèyàng de rénshēng hé wénhuà
+để tìm hiểu về nhiều cuộc sống và văn hóa khác nhau.
+
+21
+00:00:49,620 --> 00:00:51,020
+我喜欢看科幻片
+wǒ xǐhuān kàn kēhuànpiàn
+Tôi thích xem phim khoa học viễn tưởng,
+
+22
+00:00:51,020 --> 00:00:52,860
+它能激发我的想象力
+tā néng jīfā wǒ de xiǎngxiànglì
+nó có thể kích thích trí tưởng tượng của tôi.
+
+23
+00:00:52,860 --> 00:00:54,460
+我也喜欢看纪录片
+wǒ yě xǐhuān kàn jìlùpiàn
+Tôi cũng thích xem phim tài liệu.
+
+24
+00:00:54,460 --> 00:00:56,940
+它能让我学到很多新的知识
+tā néng ràng wǒ xuédào hěn duō xīn de zhīshì
+Nó có thể giúp tôi học được rất nhiều kiến thức mới.
+
+25
+00:00:57,540 --> 00:01:01,480
+每次看完一部好电影,我都会有新的思考和感悟,
+měicì kàn wán yī bù hǎo diànyǐng, wǒ dōu huì yǒu xīn de sīkǎo hé gǎnwù,
+Mỗi khi xem xong một bộ phim hay, tôi đều có những suy nghĩ và cảm nhận mới.
+
+26
+00:01:01,540 --> 00:01:06,540
+另外,这些爱好也让我认识了很多有共同兴趣的朋友,
+lìngwài, zhèxiē àihào yě ràng wǒ rènshíle hěn duō yǒu gòngtóng xìngqù de péngyǒu,
+Ngoài ra, những sở thích này cũng giúp tôi quen biết được nhiều người bạn có chung sở thích.
+
+27
+00:01:06,760 --> 00:01:10,140
+我们常常一起讨论喜欢的音乐和电影,
+wǒmen chángcháng yīqǐ tǎolùn xǐhuān de yīnyuè hé diànyǐng,
+Chúng tôi thường cùng nhau thảo luận về những bộ phim và âm nhạc yêu thích.
+
+28
+00:01:10,180 --> 00:01:14,140
+互相推荠,这让我的社交生活变得更丰富,
+hùxiāng tuījì, zhè ràng wǒ de shèjiāo shēnghuó biàndé gèng fēngfù,
+Giới thiệu cho nhau, điều này làm cho cuộc sống xã hội của tôi trở nên phong phú hơn.
+
+29
+00:01:14,260 --> 00:01:17,300
+也让我感到不那么孤单,总的来说,
+yě ràng wǒ gǎndào bù nàme gūdān, zǒng de lái shuō,
+Và khiến tôi cảm thấy không cô đơn, nói chung,
+
+30
+00:01:17,500 --> 00:01:21,260
+我的这些爱好让我的生活变得更加充实和有趣,
+wǒ de zhèxiē àihào ràng wǒ de shēnghuó biàndé gèngjiā chōngshí hé yǒuqù,
+Những sở thích này làm cho cuộc sống của tôi trở nên đầy đủ và thú vị hơn.
+
+31
+00:01:27,540 --> 00:01:27,560
+它们不仅是一种娱乐方式,更是一种让我不断学习和成长的途径。
+tāmen bùjǐn shì yīzhǒng yúlè fāngshì, gèngshì yīzhǒng ràng wǒ bùduàn xuéxí hé chéngzhǎng de tújìng.
+Chúng không chỉ là một hình thức giải trí, mà còn là một con đường để tôi không ngừng học hỏi và trưởng thành.
+
+32
