@@ -432,11 +432,11 @@
     <script>
         // --- CẤU TRÚC DỮ LIỆU ---
         const LESSON_METADATA = {
-            'bai1': {
+            '1': {
                 title_hanzi: '相信自己',
                 title_viet: 'Tin vào chính mình'
             },
-            'bai2': {
+            '2': {
                 title_hanzi: '我的梦想',
                 title_viet: 'Ước mơ của tôi'
             }
@@ -677,7 +677,8 @@
                 currentLessonGrammar = data.grammar;
                 currentSentenceIndex = 0; 
 
-                document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
+                //document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
+                document.getElementById('lessonHanziTitle').textContent = `晨读${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
                 //document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
 
                 // Cập nhật cả 2 bảng từ vựng (desktop và mobile)
