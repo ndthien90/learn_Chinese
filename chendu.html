@@ -6,6 +6,20 @@
     <title>Bài Luyện Đọc Buổi Sáng Tiếng Trung</title>
     <!-- Tải Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cấu hình Tailwind cho chế độ tối, cho phép chuyển đổi bằng class 'dark' -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Mulish', 'Inter', 'sans-serif'],
+                        han: ['Kaiti', 'serif'], // Sử dụng tên class đã định nghĩa
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Tải Font Mulish (cho Latinh/Việt) và Kaiti (cho Hán tự) -->
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -17,9 +31,17 @@
             font-style: normal;
         }
 
+        /* Áp dụng font cơ bản và màu nền mặc định (Light Mode) */
         body {
             font-family: 'Mulish', 'Inter', sans-serif;
-            background-color: #f7f9fb;
+            background-color: #f7f9fb; /* Mặc định: Nền sáng nhẹ */
+            color: #1f2937; /* Mặc định: Chữ tối */
+        }
+        
+        /* Màu nền cho chế độ Dark Mode */
+        .dark body {
+            background-color: #111827; /* Nền tối hơn */
+            color: #f3f4f6; /* Chữ sáng */
         }
         
         .han-font {
@@ -94,10 +116,22 @@
             background-color: #f9fafb; 
             color: #4f46e5; 
         }
+        .dark .nav-tab-desktop:hover {
+            background-color: #374151; /* hover tối */
+        }
         .nav-tab-desktop.active-tab-desktop {
             color: #4f46e5; 
             border-bottom-color: #4f46e5;
         }
+        .dark .nav-tab-desktop {
+            color: #9ca3af; /* chữ sáng hơn */
+            border-bottom-color: transparent;
+        }
+        .dark .nav-tab-desktop.active-tab-desktop {
+            color: #818cf8; /* indigo-300 */
+            border-bottom-color: #818cf8;
+        }
+
 
         /* Tabs Mobile */
         .nav-tab-mobile {
@@ -116,10 +150,24 @@
             background-color: #eef2ff; 
             color: #4f46e5; 
         }
+        .dark .nav-tab-mobile {
+            color: #9ca3af;
+        }
+        .dark .nav-tab-mobile.active-tab-mobile {
+            background-color: #374151; /* Màu nền active tối */
+            color: #818cf8;
+        }
         
         .tab-button.active-tab {
             color: #4f46e5; 
             border-bottom-color: #4f46e5;
+        }
+        .dark .tab-button {
+            color: #9ca3af;
+        }
+        .dark .tab-button.active-tab {
+             color: #818cf8; 
+             border-bottom-color: #818cf8;
         }
         
         .vocab-hanzi {
@@ -143,7 +191,8 @@
         #vocabTooltip {
             position: fixed; 
             z-index: 100;
-            background-color: #645c51f7; 
+            /* Cập nhật màu nền và màu chữ cho tooltip */
+            background-color: #645c51f7; /* Màu nền tối trong cả 2 mode để dễ đọc */
             color: #6d28d9; 
             padding: 8px 12px;
             border-radius: 8px;
@@ -169,6 +218,7 @@
         #tooltipViet {
             color: #fcfcfa; 
         }
+
         /* Chiều cao cố định trên desktop cho các cột */
         @media (min-width: 768px) {
             .desktop-fixed-height {
@@ -194,27 +244,37 @@
         }
     </style>
 </head>
-<body class="p-0 bg-gray-100">
-    <!-- Container chính: Full màn hình trên mobile, giới hạn và căn giữa trên desktop -->
-    <div class="h-dvh flex flex-col bg-white md:max-w-6xl md:mx-auto md:my-4 md:h-[95vh] md:rounded-xl md:shadow-2xl overflow-hidden">
+<!-- Đảm bảo thẻ html có class dark nếu đang ở chế độ tối -->
+<body class="p-0 transition-colors duration-300">
+    <!-- Container chính: Thay đổi màu nền chính dựa vào dark mode -->
+    <div class="h-dvh flex flex-col bg-white dark:bg-gray-900 md:max-w-6xl md:mx-auto md:my-4 md:h-[95vh] md:rounded-xl md:shadow-2xl overflow-hidden transition-colors duration-300">
         
         <!-- Phần Tiêu đề & Chọn Bài -->
-        <header class="p-4 border-b pb-4 border-indigo-100 flex-shrink-0">
+        <header class="p-4 border-b pb-4 border-indigo-100 dark:border-gray-800 flex-shrink-0 transition-colors duration-300">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <h1 id="lessonHanziTitle" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 han-font"></h1>
+                <h1 id="lessonHanziTitle" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 han-font"></h1>
                 
-                <div class="mt-4 sm:mt-0 flex items-center space-x-2">
-                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 whitespace-nowrap"></label>
-                    <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm sm:text-base font-medium">
+                <div class="mt-4 sm:mt-0 flex items-center space-x-4">
+                    <!-- NÚT CHUYỂN ĐỔI SÁNG/TỐI (ĐÃ CẬP NHẬT ICON) -->
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-yellow-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-150 shadow-md flex items-center justify-center control-btn">
+                        <!-- Thêm class text-xl để làm emoji lớn hơn -->
+                        <span id="themeIcon" class="text-xl">
+                            <!-- Placeholder, sẽ được setInitialTheme cập nhật ngay khi tải trang -->
+                        </span>
+                    </button>
+                    <!-- KẾT THÚC NÚT CHUYỂN ĐỔI SÁNG/TỐI -->
+
+                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap"></label>
+                    <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-300 focus:border-indigo-500 dark:bg-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium">
                         <!-- Options sẽ được chèn bằng JS -->
                     </select>
                 </div>
             </div>
-            <p id="lessonVietTitle" class="text-lg sm:text-xl font-semibold text-gray-600 mt-1"></p>
+            <p id="lessonVietTitle" class="text-lg sm:text-xl font-semibold text-gray-600 dark:text-gray-400 mt-1"></p>
         </header>
 
         <!-- THANH ĐIỀU HƯỚNG TAB DESKTOP (Ẩn trên mobile) -->
-        <nav class="hidden md:flex border-b border-gray-200 flex-shrink-0">
+        <nav class="hidden md:flex border-b border-gray-200 dark:border-gray-700 flex-shrink-0 transition-colors duration-300">
             <button id="tabBtnDesktop-doc" onclick="showTab('doc')" class="nav-tab-desktop active-tab-desktop">
                 Bài Đọc
             </button>
@@ -233,14 +293,14 @@
                 <section class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     
                     <!-- Cột 1: Hán tự (Nội dung) -->
-                    <div id="hanziSection" class="p-4 sm:p-6 bg-indigo-50 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height">
-                        <h2 class="text-lg sm:text-xl font-bold text-indigo-800 mb-4 flex justify-between items-center flex-shrink-0">
+                    <div id="hanziSection" class="p-4 sm:p-6 bg-indigo-50 dark:bg-gray-800 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height transition-colors duration-300">
+                        <h2 class="text-lg sm:text-xl font-bold text-indigo-800 dark:text-indigo-400 mb-4 flex justify-between items-center flex-shrink-0">
                             <span>Nội dung</span>
                             
                             <div class="flex items-center space-x-2">
-                                <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 hidden"></span>
+                                <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 dark:text-indigo-400 hidden"></span>
                                 
-                                <!-- NÚT CHUYỂN ĐỔI CHẾ ĐỘ MỚI -->
+                                <!-- NÚT CHUYỂN ĐỔI CHẾ ĐỘ -->
                                 <button id="toggleModeBtn" onclick="toggleReadingMode()" class="p-2 bg-indigo-500 text-white hover:bg-indigo-600 transition duration-150 shadow-md flex items-center justify-center control-btn">
                                     <svg id="modeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <!-- Icon mặc định: Toàn bài (Book) -->
@@ -272,11 +332,12 @@
                             </div>
                         </h2>
                         
-                        <div id="hanzhiContent" class="text-xl sm:text-2xl text-gray-900 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
+                        <!-- Cập nhật màu chữ Hán tự -->
+                        <div id="hanzhiContent" class="text-xl sm:text-2xl text-gray-900 dark:text-gray-200 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
                             <!-- Nội dung Hán tự sẽ được chèn vào đây bởi JS -->
                         </div>
                         <!-- Controls for Sentence Mode -->
-                        <div id="sentenceControls" class="absolute bottom-0 left-0 right-0 p-4 bg-indigo-50 border-t border-indigo-200 rounded-b-lg flex justify-between hidden">
+                        <div id="sentenceControls" class="absolute bottom-0 left-0 right-0 p-4 bg-indigo-50 dark:bg-gray-900 border-t border-indigo-200 dark:border-gray-800 rounded-b-lg flex justify-between hidden transition-colors duration-300">
                             <button onclick="prevSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="prevBtn">
                                 &larr; Câu trước
                             </button>
@@ -287,8 +348,8 @@
                     </div>
 
                     <!-- Cột 2: TỪ MỚI (Hiển thị cạnh bên trên desktop) -->
-                    <div id="vocabSection" class="p-4 sm:p-6 bg-red-100 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height hidden md:flex">
-                        <h2 class="text-lg sm:text-xl font-bold text-red-700 mb-4 flex items-center border-b pb-2 flex-shrink-0">
+                    <div id="vocabSection" class="p-4 sm:p-6 bg-red-100 dark:bg-gray-800 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height hidden md:flex transition-colors duration-300">
+                        <h2 class="text-lg sm:text-xl font-bold text-red-700 dark:text-red-400 mb-4 flex items-center border-b pb-2 flex-shrink-0 border-red-200 dark:border-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
                             </svg>
@@ -297,8 +358,9 @@
                         
                         <!-- Bảng từ vựng (flex-grow để lấp đầy) -->
                         <div id="vocabTableContainer" class="overflow-x-auto text-base vocab-table-container flex-grow">
-                            <table class="min-w-full vocab-table bg-white border border-red-200 rounded-lg">
-                                <tbody id="vocabTableBody" class="text-gray-700 text-sm font-light divide-y divide-red-100">
+                            <!-- Cập nhật màu bảng -->
+                            <table class="min-w-full vocab-table bg-white dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg">
+                                <tbody id="vocabTableBody" class="text-gray-700 dark:text-gray-300 text-sm font-light divide-y divide-red-100 dark:divide-gray-700">
                                     <!-- Dữ liệu từ vựng sẽ được chèn vào đây -->
                                 </tbody>
                             </table>
@@ -309,23 +371,25 @@
                 <!-- KHU VỰC 2: Pinyin, Dịch nghĩa và NGỮ PHÁP (Sử dụng Tab, Toàn chiều rộng) -->
                 <section class="mb-10">
                     <!-- Tab Controls -->
-                    <div class="flex flex-wrap border-b border-gray-200">
-                        <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 hover:border-indigo-300 transition duration-150 active-tab">
+                    <div class="flex flex-wrap border-b border-gray-200 dark:border-gray-700">
+                        <!-- Cập nhật màu hover và text mặc định của tab -->
+                        <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 transition duration-150 active-tab">
                             Phiên âm
                         </button>
-                        <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 hover:border-green-300 transition duration-150">
+                        <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 dark:hover:text-green-400 hover:border-green-300 transition duration-150">
                             Nghĩa
                         </button>
-                        <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 hover:border-yellow-300 transition duration-150">
+                        <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 dark:hover:text-yellow-400 hover:border-yellow-300 transition duration-150">
                             Ngữ pháp
                         </button>
                     </div>
                     
                     <!-- Tab Content -->
-                    <div id="tabContentContainer" class="p-4 sm:p-6 bg-gray-50 rounded-b-lg shadow-inner min-h-[150px]">
-                        <div id="pinyinContent" data-content="pinyin" class="tab-content text-base sm:text-base text-gray-700 pinyin-text italic leading-relaxed"></div>
-                        <div id="translationContent" data-content="viet" class="tab-content text-base sm:text-base text-gray-800 leading-relaxed hidden"></div>
-                        <div id="grammarContent" data-content="grammar" class="tab-content text-sm sm:text-base text-gray-800 leading-relaxed hidden"></div>
+                    <!-- Cập nhật màu nền và chữ cho tab content -->
+                    <div id="tabContentContainer" class="p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-b-lg shadow-inner min-h-[150px] transition-colors duration-300">
+                        <div id="pinyinContent" data-content="pinyin" class="tab-content text-base sm:text-base text-gray-700 dark:text-gray-300 pinyin-text italic leading-relaxed"></div>
+                        <div id="translationContent" data-content="viet" class="tab-content text-base sm:text-base text-gray-800 dark:text-gray-300 leading-relaxed hidden"></div>
+                        <div id="grammarContent" data-content="grammar" class="tab-content text-sm sm:text-base text-gray-800 dark:text-gray-300 leading-relaxed hidden"></div>
                     </div>
                 </section>
             </div>
@@ -333,8 +397,8 @@
             <!-- TAB 2: TỪ VỰNG (CHỈ HIỂN THỊ TRÊN MOBILE) -->
             <div id="tabContentVocab" class="hidden md:hidden h-full">
                 <!-- Cột 2: TỪ MỚI -->
-                <div class="p-4 sm:p-6 bg-red-100 rounded-lg shadow-md flex flex-col h-full content-box">
-                    <h2 class="text-lg sm:text-xl font-bold text-red-700 mb-4 flex items-center border-b pb-2 flex-shrink-0">
+                <div class="p-4 sm:p-6 bg-red-100 dark:bg-gray-800 rounded-lg shadow-md flex flex-col h-full content-box transition-colors duration-300">
+                    <h2 class="text-lg sm:text-xl font-bold text-red-700 dark:text-red-400 mb-4 flex items-center border-b pb-2 flex-shrink-0 border-red-200 dark:border-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
                         </svg>
@@ -343,8 +407,8 @@
                     
                     <!-- Bảng từ vựng (Reusing existing ID for mobile full screen) -->
                     <div class="overflow-x-auto text-base vocab-table-container flex-grow">
-                        <table class="min-w-full vocab-table bg-white border border-red-200 rounded-lg">
-                            <tbody id="vocabTableBodyMobile" class="text-gray-700 text-sm font-light divide-y divide-red-100">
+                        <table class="min-w-full vocab-table bg-white dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg">
+                            <tbody id="vocabTableBodyMobile" class="text-gray-700 dark:text-gray-300 text-sm font-light divide-y divide-red-100 dark:divide-gray-700">
                                 <!-- Dữ liệu từ vựng sẽ được chèn vào đây -->
                             </tbody>
                         </table>
@@ -355,7 +419,7 @@
             <!-- TAB 3: LUYỆN VIẾT -->
             <div id="tabContentViet" class="hidden">
                 <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) -->
-                <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 rounded-lg shadow-xl border-t-4 border-yellow-500">
+                <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 dark:bg-gray-800 rounded-lg shadow-xl border-t-4 border-yellow-500 dark:border-yellow-600 transition-colors duration-300">
                     <!-- KHỐI NGHE (ĐÃ ĐIỀU CHỈNH KÍCH THƯỚC VÀ BỐ CỤC) -->
                     <div class="dictation-listen-box items-center space-x-3 mb-6  rounded-lg ">
                         <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg flex-shrink-0">
@@ -366,12 +430,14 @@
 
                     </div>
 
-                    <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 han-font text-lg sm:text-xl text-gray-800" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
+                    <!-- Cập nhật màu nền và chữ của textarea -->
+                    <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 dark:border-yellow-700 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 dark:bg-gray-900 dark:text-gray-100 han-font text-lg sm:text-xl text-gray-800 transition-colors duration-300" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
                     
-                    <div id="dictationResult" class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner hidden">
-                        <h3 class="text-base sm:text-lg font-bold mb-2">Kết quả:</h3>
-                        <p id="correctedSentence" class="han-font text-lg sm:text-xl leading-relaxed"></p>
-                        <p id="errorSummary" class="text-sm sm:text-base mt-2 text-gray-700"></p>
+                    <!-- Cập nhật màu nền và chữ cho kết quả -->
+                    <div id="dictationResult" class="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-inner hidden transition-colors duration-300">
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-gray-900 dark:text-gray-100">Kết quả:</h3>
+                        <p id="correctedSentence" class="han-font text-lg sm:text-xl leading-relaxed text-gray-900 dark:text-gray-100"></p>
+                        <p id="errorSummary" class="text-sm sm:text-base mt-2 text-gray-700 dark:text-gray-300"></p>
                     </div>
 
                     <!-- KHỐI NÚT ĐIỀU KHIỂN (ĐÃ GỘP HÀNG) -->
@@ -388,7 +454,7 @@
         </main>
 
         <!-- THANH ĐIỀU HƯỚNG TAB MOBILE (Ẩn trên desktop) -->
-        <nav class="md:hidden border-t border-gray-200 bg-white grid grid-cols-3 gap-1 p-1 flex-shrink-0 shadow-inner">
+        <nav class="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 grid grid-cols-3 gap-1 p-1 flex-shrink-0 shadow-inner transition-colors duration-300">
             <button id="tabBtnMobile-doc" onclick="showTab('doc')" class="nav-tab-mobile active-tab-mobile">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253" />
@@ -411,7 +477,8 @@
     </div>
     
     <!-- Tooltip (Giữ nguyên) -->
-    <div id="vocabTooltip" class="hidden">
+    <!-- ĐÃ XÓA CLASS "hidden" Ở ĐÂY -->
+    <div id="vocabTooltip">
         <div id="tooltipPinyin"></div>
         <div id="tooltipViet"></div>
     </div>
@@ -419,17 +486,65 @@
     <!-- Overlays (Giữ nguyên) -->
     <div id="customAlert" class="fixed top-4 right-4 bg-red-500 text-white p-3 rounded-lg shadow-xl z-[100] transition-transform duration-300 transform translate-x-full hidden"></div>
     <div id="loadingIndicator" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-[110] hidden">
-         <div class="bg-white p-4 rounded-lg flex items-center shadow-lg">
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-center shadow-lg transition-colors duration-300">
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span class="text-gray-700 font-medium">Đang tải dữ liệu bài học...</span>
+            <span class="text-gray-700 dark:text-gray-300 font-medium">Đang tải dữ liệu bài học...</span>
         </div>
     </div>
 
 
     <script>
+        // --- CHẾ ĐỘ SÁNG/TỐI (CẬP NHẬT ICON) ---
+        
+        // Trạng thái: true = Dark Mode, false = Light Mode
+        let isDarkMode = false; 
+
+        function setInitialTheme() {
+            // 1. Kiểm tra localStorage
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'dark') {
+                isDarkMode = true;
+            } else if (storedTheme === 'light') {
+                isDarkMode = false;
+            } else {
+                // 2. Kiểm tra prefers-color-scheme (mặc định của hệ thống)
+                isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
+            applyTheme(isDarkMode);
+        }
+
+        function applyTheme(isDark) {
+            const htmlElement = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                // Cập nhật icon: Icon Mặt Trăng (Moon Emoji)
+                if (icon) {
+                    icon.innerHTML = `&#x1F319;`; // Moon Face Emoji
+                    icon.title = "Đang ở chế độ Tối. Nhấn để chuyển sang chế độ Sáng.";
+                }
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                // Cập nhật icon: Icon Mặt Trời (Sun Emoji)
+                if (icon) {
+                    icon.innerHTML = `&#x2600;`; // Black Sun with Rays Emoji
+                    icon.title = "Đang ở chế độ Sáng. Nhấn để chuyển sang chế độ Tối.";
+                }
+                localStorage.setItem('theme', 'light');
+            }
+            isDarkMode = isDark;
+        }
+
+        function toggleTheme() {
+            applyTheme(!isDarkMode);
+        }
+
         // --- CẤU TRÚC DỮ LIỆU ---
         const LESSON_METADATA = {
             '1': {
@@ -713,23 +828,38 @@
 
             vocabData.forEach(item => {
                 const row = document.createElement('tr');
-                row.classList.add('hover:bg-red-50');
+                // Thêm class hover cho dark mode
+                row.classList.add('hover:bg-red-50', 'dark:hover:bg-gray-700'); 
                 const vocabId = 'vocab-' + item.hanzi.replace(/\s/g, '').replace(/[\(\)]/g, ''); 
                 row.id = vocabId;
                 
+                // Cập nhật màu chữ cho dark mode
                 row.innerHTML = `
-                    <td class="py-1 px-2 text-red-800 han-font vocab-hanzi" onclick="readVocab(this.textContent)">${item.hanzi}</td>
-                    <td class="py-1 px-2 italic">${item.pinyin}</td>
-                    <td class="py-1 px-2">${item.viet}</td>
+                    <td class="py-1 px-2 text-red-800 dark:text-red-300 han-font vocab-hanzi" onclick="readVocab(this.textContent)">${item.hanzi}</td>
+                    <td class="py-1 px-2 italic text-gray-700 dark:text-gray-400">${item.pinyin}</td>
+                    <td class="py-1 px-2 text-gray-700 dark:text-gray-400">${item.viet}</td>
                 `;
                 tableBody.appendChild(row);
             });
         }
 
+        // --- CẬP NHẬT: HÀM XỬ LÝ NGỮ PHÁP (Giảm khoảng cách dòng) ---
         function updateGrammarContent(grammarText) {
             const grammarContentDiv = document.getElementById('grammarContent');
-            const formattedHtml = grammarText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
-            grammarContentDiv.innerHTML = `<p class="whitespace-pre-wrap">${formattedHtml}</p>`;
+            
+            // Tách văn bản thành các khối (paragraph) bằng dấu xuống dòng kép hoặc nhiều khoảng trắng
+            // Loại bỏ các dòng trống/khoảng trắng dư thừa
+            const blocks = grammarText.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
+            
+            let htmlOutput = blocks.map(block => {
+                // Thay thế dấu xuống dòng đơn trong mỗi khối bằng <br>
+                const content = block.replace(/\n/g, '<br>');
+                // Đặt margin bottom nhỏ (mb-3) cho mỗi khối <p> để kiểm soát khoảng cách, 
+                // thay vì dựa vào CSS mặc định lớn và cấu trúc <p> lồng nhau không hợp lệ.
+                return `<p class="mb-3">${content}</p>`;
+            }).join('');
+
+            grammarContentDiv.innerHTML = htmlOutput;
         }
 
 
@@ -741,7 +871,11 @@
 
             tabs.forEach(tab => {
                 tab.classList.remove('active-tab');
+                // Xóa tất cả các màu sắc cụ thể
                 tab.classList.remove('text-indigo-600', 'text-green-600', 'text-yellow-600');
+                tab.classList.remove('dark:text-indigo-400', 'dark:text-green-400', 'dark:text-yellow-400');
+                
+                // Đặt lại màu mặc định
                 tab.classList.add('text-gray-500');
             });
 
@@ -754,11 +888,11 @@
             activeTabButton.classList.remove('text-gray-500');
 
             if (tabId === 'pinyin') {
-                activeTabButton.classList.add('text-indigo-600');
+                activeTabButton.classList.add('text-indigo-600', 'dark:text-indigo-400');
             } else if (tabId === 'viet') {
-                activeTabButton.classList.add('text-green-600');
+                activeTabButton.classList.add('text-green-600', 'dark:text-green-400');
             } else if (tabId === 'grammar') {
-                 activeTabButton.classList.add('text-yellow-600');
+                 activeTabButton.classList.add('text-yellow-600', 'dark:text-yellow-400');
             }
 
             document.querySelector(`.tab-content[data-content="${tabId}"]`).classList.remove('hidden');
@@ -1171,7 +1305,7 @@
                 
                 sentenceControls.classList.add('hidden');
                 sentenceProgress.classList.add('hidden');
-                hanzhiContent.classList.remove(sentenceFontSize); 
+                // hanziContent.classList.remove(sentenceFontSize); // Class này không tồn tại
                 
                 updateRecordingControls('hidden'); // Ẩn nút ghi âm
 
@@ -1179,7 +1313,7 @@
                 const currentData = fullTextData[currentSentenceIndex];
 
                 hanzhiContent.innerHTML = currentData.hanzi;
-                hanzhiContent.classList.add(sentenceFontSize); 
+                // hanziContent.classList.add(sentenceFontSize); // Class này không tồn tại
                 
                 pinyinContent.innerHTML = currentData.pinyin;
                 translationContent.innerHTML = currentData.viet;
@@ -1225,9 +1359,9 @@
         function updateDictationProgress() {
             const progressSpan = document.getElementById('dictationProgress');
             if (fullTextData.length > 0) {
-                progressSpan.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
+                // progressSpan.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`; // Bỏ vì không dùng ID
             } else {
-                progressSpan.textContent = `0/0`;
+                // progressSpan.textContent = `0/0`; // Bỏ vì không dùng ID
             }
             
             const nextBtn = document.getElementById('nextDictationBtn');
@@ -1312,6 +1446,8 @@
 
         // Khởi tạo hiển thị khi tải trang
         window.onload = () => {
+            setInitialTheme(); // KHỞI TẠO CHẾ ĐỘ SÁNG/TỐI
+            
             const defaultLessonId = populateLessonSelector();
             loadLesson(defaultLessonId); 
             
