@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Luyện Đọc Buổi Sáng Tiếng Trung</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tải Font Mulish (cho Latinh/Việt) và Kaiti (cho Hán tự) -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Tải font KaiTi */
+        @font-face {
+            font-family: 'Kaiti'; 
+            src: url('https://ndthien90.github.io/learn_Chinese/fonts/Kaiti.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Mulish', 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        
+        .han-font {
+            font-family: 'Kaiti', serif; 
+        }
+
+        .pinyin-text {
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-box {
+            min-height: 250px; 
+            position: relative;
+        }
+        
+        .mode-button {
+            transition: all 0.2s;
+        }
+        .mode-button.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .vocab-table-container {
+            overflow-y: auto;
+        }
+
+        #readBtn {
+            transition: transform 0.1s ease-in-out;
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #readBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .control-btn {
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .blinking {
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.5; }
+        }
+        
+        .content-box h2 {
+            position: relative;
+            z-index: 20; 
+        }
+        
+        .incorrect {
+            color: #ef4444; /* red-500 */
+            font-weight: bold;
+        }
+
+        /* --- STYLES MỚI CHO TAB --- */
+
+        /* Tabs Desktop */
+        .nav-tab-desktop {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem; /* Cỡ chữ nhỏ hơn cho desktop */
+            font-weight: 600;
+            color: #6b7280; /* gray-500 */
+            border-bottom: 3px solid transparent;
+            transition: all 0.15s ease-in-out;
+        }
+        .nav-tab-desktop:hover {
+            background-color: #f9fafb; /* gray-50 */
+            color: #4f46e5; /* indigo-600 */
+        }
+        .nav-tab-desktop.active-tab-desktop {
+            color: #4f46e5; /* indigo-600 */
+            border-bottom-color: #4f46e5;
+        }
+
+        /* Tabs Mobile */
+        .nav-tab-mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            font-size: 0.75rem; /* 12px */
+            font-weight: 500;
+            color: #4b5563; /* gray-600 */
+            border-radius: 8px;
+            transition: all 0.15s ease-in-out;
+        }
+        .nav-tab-mobile.active-tab-mobile {
+            background-color: #eef2ff; /* indigo-100 */
+            color: #4f46e5; /* indigo-700 */
+        }
+        
+        .tab-button.active-tab {
+            color: #4f46e5; /* indigo-600 */
+            border-bottom-color: #4f46e5;
+        }
+        
+        .vocab-hanzi {
+            cursor: pointer;
+            transition: background-color 0.1s;
+            font-size: 1.1rem; /* Cỡ chữ nhỏ hơn cho desktop */
+        }
+        
+        .vocab-highlight {
+            background-color: #fde047; /* yellow-300 */
+            transition: background-color 0.4s ease-in-out;
+            animation: highlight-pulse 1s 3; 
+        }
+        
+        @keyframes highlight-pulse {
+            0% { background-color: #fde047; }
+            50% { background-color: #fef08a; } /* yellow-200 */
+            100% { background-color: #fde047; }
+        }
+        
+        #vocabTooltip {
+            position: fixed; 
+            z-index: 100;
+            background-color: #645c51f7; 
+            color: #6d28d9; 
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem; /* Cỡ chữ nhỏ hơn */
+            max-width: 300px;
+            pointer-events: none; 
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            transform: translateY(10px); 
+        }
+        #vocabTooltip.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #tooltipPinyin {
+            font-weight: 700; 
+            font-style: italic;
+            margin-bottom: 2px;
+            color: #1ae72a; 
+            font-family: 'Mulish', 'Inter', sans-serif; 
+        }
+        #tooltipViet {
+            color: #fcfcfa; 
+        }
+        
+    </style>
+</head>
+<!-- TỐI ƯU MOBILE: Bỏ padding body, bg-gray-100 -->
+<body class="p-0 bg-gray-100">
+    <!-- TỐI ƯU MOBILE: Container chính toàn màn hình, flex-col. Thêm responsive desktop -->
+    <!-- SỬA LỖI: Thay h-screen bằng h-dvh để xử lý đúng trên mobile (tránh thanh URL) -->
+    <div class="h-dvh flex flex-col bg-white md:max-w-6xl md:mx-auto md:my-4 md:h-[95vh] md:rounded-xl md:shadow-2xl overflow-hidden">
+        
+        <!-- Phần Tiêu đề & Chọn Bài (flex-shrink-0 để không bị co) -->
+        <header class="p-4 border-b pb-4 border-indigo-100 flex-shrink-0">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <!-- GIẢM FONT DESKTOP -->
+                <h1 id="lessonHanziTitle" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 han-font"></h1>
+                
+                <div class="mt-4 sm:mt-0 flex items-center space-x-2">
+                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 whitespace-nowrap">Chọn bài:</label>
+                    <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm sm:text-base font-medium">
+                        <!-- Options sẽ được chèn bằng JS -->
+                    </select>
+                </div>
+            </div>
+            <!-- GIẢM FONT DESKTOP -->
+            <p id="lessonVietTitle" class="text-lg sm:text-xl font-semibold text-gray-600 mt-1"></p>
+        </header>
+
+        <!-- THANH ĐIỀU HƯỚNG TAB DESKTOP (Ẩn trên mobile) -->
+        <nav class="hidden md:flex border-b border-gray-200 flex-shrink-0">
+            <button id="tabBtnDesktop-doc" onclick="showTab('doc')" class="nav-tab-desktop active-tab-desktop">
+                Bài Đọc
+            </button>
+            <button id="tabBtnDesktop-vocab" onclick="showTab('vocab')" class="nav-tab-desktop">
+                Từ Vựng
+            </button>
+            <button id="tabBtnDesktop-viet" onclick="showTab('viet')" class="nav-tab-desktop">
+                Luyện Viết
+            </button>
+        </nav>
+
+        <!-- KHU VỰC NỘI DUNG CHÍNH (Cuộn được) -->
+        <!-- TỐI ƯU MOBILE: Thêm padding p-4 vào đây -->
+        <main id="tabContainer" class="flex-grow overflow-y-auto p-4">
+            
+            <!-- TAB 1: BÀI ĐỌC -->
+            <div id="tabContentDoc">
+                <!-- Thanh điều khiển chế độ (Đã xóa nút Luyện Viết) -->
+                <div class="mb-6 flex flex-col sm:flex-row justify-between items-center bg-gray-100 p-3 rounded-lg shadow-inner">
+                    <div class="font-semibold text-gray-700 mb-3 sm:mb-0 text-sm">Chọn chế độ luyện đọc:</div>
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
+                        <button id="fullModeBtn" onclick="setMode('full')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50 active w-full sm:w-auto">
+                            Chế độ Toàn bài
+                        </button>
+                        <button id="sentenceModeBtn" onclick="setMode('sentence')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50 w-full sm:w-auto">
+                            Chế độ Luyện từng câu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cột 1: Hán tự (Nội dung) -->
+                <section class="mb-10">
+                    <div class="p-4 sm:p-6 bg-indigo-50 rounded-lg shadow-md flex flex-col lg:h-[450px] content-box">
+                        <!-- GIẢM FONT DESKTOP -->
+                        <h2 class="text-lg sm:text-xl font-bold text-indigo-800 mb-4 flex justify-between items-center">
+                            <span>Nội dung (Hán tự)</span>
+                            
+                            <div class="flex items-center space-x-2">
+                                <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 hidden"></span>
+                                
+                                <!-- GHI ÂM CONTROLS -->
+                                <button id="recordBtn" onclick="startRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 00-4 4v7a4 4 0 008 0V5a4 4 0 00-4-4zm-5 13v.5a5 5 0 0010 0V14h2v.5a7 7 0 01-14 0V14h2z"/></svg>
+                                </button>
+                                <button id="stopBtn" onclick="stopRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>
+                                </button>
+                                <button id="playbackBtn" onclick="playRecording()" class="p-2 bg-green-500 text-white hover:bg-green-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                    <svg id="playIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg id="pauseIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                </button>
+                                
+                                <!-- TTS Nút Đọc -->
+                                <button id="readBtn" onclick="readContent()" class="p-2 bg-indigo-600 text-white hover:bg-indigo-700 transition duration-150 shadow-md flex items-center justify-center control-btn">
+                                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 hidden" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </h2>
+                        
+                        <!-- GIẢM FONT DESKTOP -->
+                        <div id="hanzhiContent" class="text-xl sm:text-xl text-gray-900 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
+                            <!-- Nội dung Hán tự sẽ được chèn vào đây bởi JS -->
+                        </div>
+                        <!-- Controls for Sentence Mode -->
+                        <div id="sentenceControls" class="absolute bottom-0 left-0 right-0 p-4 bg-indigo-50 border-t border-indigo-200 rounded-b-lg flex justify-between hidden">
+                            <button onclick="prevSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="prevBtn">
+                                &larr; Câu trước
+                            </button>
+                            <button onclick="nextSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="nextBtn">
+                                Câu sau &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- KHU VỰC 2: Pinyin, Dịch nghĩa và NGỮ PHÁP (Sử dụng Tab) -->
+                <section class="mb-10">
+                    <!-- Tab Controls -->
+                    <div class="flex flex-wrap border-b border-gray-200">
+                        <!-- GIẢM FONT DESKTOP -->
+                        <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 hover:border-indigo-300 transition duration-150 active-tab">
+                            Phiên âm Pinyin
+                        </button>
+                        <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 hover:border-green-300 transition duration-150">
+                            Dịch nghĩa (Tiếng Việt)
+                        </button>
+                        <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 hover:border-yellow-300 transition duration-150">
+                            Ngữ pháp
+                        </button>
+                    </div>
+                    
+                    <!-- Tab Content -->
+                    <div id="tabContentContainer" class="p-4 sm:p-6 bg-gray-50 rounded-b-lg shadow-inner min-h-[150px]">
+                        <!-- GIẢM FONT DESKTOP -->
+                        <div id="pinyinContent" data-content="pinyin" class="tab-content text-base sm:text-base text-gray-700 pinyin-text italic leading-relaxed"></div>
+                        <div id="translationContent" data-content="viet" class="tab-content text-base sm:text-base text-gray-800 leading-relaxed hidden"></div>
+                        <div id="grammarContent" data-content="grammar" class="tab-content text-sm sm:text-base text-gray-800 leading-relaxed hidden"></div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- TAB 2: TỪ VỰNG -->
+            <!-- Thêm h-full và flex-col để nó chiếm toàn bộ chiều cao của tab panel -->
+            <div id="tabContentVocab" class="hidden h-full">
+                <!-- Cột 2: TỪ MỚI -->
+                <div class="p-4 sm:p-6 bg-red-100 rounded-lg shadow-md flex flex-col h-full content-box">
+                    <!-- GIẢM FONT DESKTOP -->
+                    <h2 class="text-lg sm:text-xl font-bold text-red-700 mb-4 flex items-center border-b pb-2 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
+                        </svg>
+                        Từ mới (Từ vựng)
+                    </h2>
+                    
+                    <!-- Bảng từ vựng (flex-grow để lấp đầy) -->
+                    <div id="vocabTableContainer" class="overflow-x-auto text-base vocab-table-container flex-grow">
+                        <table class="min-w-full vocab-table bg-white border border-red-200 rounded-lg">
+                            <tbody id="vocabTableBody" class="text-gray-700 text-sm font-light divide-y divide-red-100">
+                                <!-- Dữ liệu từ vựng sẽ được chèn vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: LUYỆN VIẾT -->
+            <div id="tabContentViet" class="hidden">
+                <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) -->
+                <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 rounded-lg shadow-xl border-t-4 border-yellow-500">
+                    <!-- GIẢM FONT DESKTOP -->
+                    <h2 class="text-xl sm:text-2xl font-bold text-yellow-700 mb-6 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                        Luyện viết (Nghe và Đánh máy)
+                        <span id="dictationProgress" class="ml-auto text-base sm:text-lg font-normal text-yellow-600"></span>
+                    </h2>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-6 p-4 bg-yellow-100 rounded-lg shadow-inner">
+                        <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-3 sm:p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- GIẢM FONT DESKTOP -->
+                        <p class="text-base sm:text-lg font-semibold text-yellow-800">Nhấn để nghe câu và bắt đầu viết.</p>
+                    </div>
+
+                    <!-- GIẢM FONT DESKTOP -->
+                    <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 han-font text-lg sm:text-xl text-gray-800" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
+                    
+                    <div id="dictationResult" class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner hidden">
+                        <h3 class="text-base sm:text-lg font-bold mb-2">Kết quả:</h3>
+                        <!-- GIẢM FONT DESKTOP -->
+                        <p id="correctedSentence" class="han-font text-lg sm:text-xl leading-relaxed"></p>
+                        <p id="errorSummary" class="text-sm sm:text-base mt-2 text-gray-700"></p>
+                    </div>
+
+                    <div class="mt-6 flex flex-col sm:flex-row justify-between space-y-3 sm:space-y-0 sm:space-x-4">
+                        <button id="checkDictationBtn" onclick="checkDictation()" class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition duration-150 shadow-md disabled:bg-gray-400 w-full sm:w-auto text-sm sm:text-base">
+                            Kiểm tra
+                        </button>
+                        <button id="nextDictationBtn" onclick="nextDictationSentence()" class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 w-full sm:w-auto text-sm sm:text-base" disabled>
+                            Câu kế tiếp &rarr;
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- THANH ĐIỀU HƯỚNG TAB MOBILE (Ẩn trên desktop) -->
+        <nav class="md:hidden border-t border-gray-200 bg-white grid grid-cols-3 gap-1 p-1 flex-shrink-0 shadow-inner">
+            <button id="tabBtnMobile-doc" onclick="showTab('doc')" class="nav-tab-mobile active-tab-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253" />
+                </svg>
+                <span>Bài Đọc</span>
+            </button>
+            <button id="tabBtnMobile-vocab" onclick="showTab('vocab')" class="nav-tab-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                <span>Từ Vựng</span>
+            </button>
+            <button id="tabBtnMobile-viet" onclick="showTab('viet')" class="nav-tab-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                <span>Luyện Viết</span>
+            </button>
+        </nav>
+
+        <!-- Lời nhắc nhở (Đã xóa, có thể thêm lại nếu muốn) -->
+        <!-- <footer class="mt-8 pt-4 border-t text-center text-gray-500 text-sm">...</footer> -->
+    </div>
+    
+    <!-- Tooltip (Giữ nguyên) -->
+    <div id="vocabTooltip" class="hidden">
+        <div id="tooltipPinyin"></div>
+        <div id="tooltipViet"></div>
+    </div>
+    
+    <!-- Overlays (Di chuyển ra ngoài container chính để hiển thị đúng toàn màn hình) -->
+    <div id="customAlert" class="fixed top-4 right-4 bg-red-500 text-white p-3 rounded-lg shadow-xl z-[100] transition-transform duration-300 transform translate-x-full hidden"></div>
+    <div id="loadingIndicator" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-[110] hidden">
+         <div class="bg-white p-4 rounded-lg flex items-center shadow-lg">
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="text-gray-700 font-medium">Đang tải dữ liệu bài học...</span>
+        </div>
+    </div>
+
+
+    <script>
+        // --- CẤU TRÚC DỮ LIỆU MỚI: Chỉ chứa Metadata và Titles ---
+        const LESSON_METADATA = {
+            'bai1': {
+                title_hanzi: '相信自己',
+                title_viet: 'Tin vào chính mình'
+            },
+            'bai2': {
+                title_hanzi: '我的梦想',
+                title_viet: 'Ước mơ của tôi'
+            }
+        };
+
+
+        // Biến trạng thái
+        let fullTextData = []; 
+        let currentLessonVocab = []; 
+        let currentLessonGrammar = ''; 
+        let readingMode = 'full'; // 'full', 'sentence'
+        let currentSentenceIndex = 0;
+        let highlightedVocabRow = null; 
+        let tooltipTimeout; 
+
+        // Biến TTS và Ghi âm
+        const synth = window.speechSynthesis;
+        let utterance = null;
+        let isVoiceLoaded = false;
+        let mediaRecorder;
+        let audioChunks = [];
+        let audioBlob = null;
+        let audioURL = null;
+        let isRecording = false;
+        let stream = null;
+        let micPermissionGranted = false;
+        let currentAudio = null;
+
+
+        // --- HÀM MỚI: XỬ LÝ CHUYỂN TAB ---
+        function showTab(tabId) {
+            // Dừng mọi hoạt động
+            stopReading();
+            stopPlayback();
+            resetRecording();
+            removeHighlight();
+            hideTooltip();
+
+            // Ẩn tất cả nội dung tab
+            document.getElementById('tabContentDoc').classList.add('hidden');
+            document.getElementById('tabContentVocab').classList.add('hidden');
+            document.getElementById('tabContentViet').classList.add('hidden');
+
+            // Hiển thị tab được chọn
+            document.getElementById(`tabContent${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`).classList.remove('hidden');
+
+            // Cập nhật trạng thái active cho tab DESKTOP
+            document.querySelectorAll('.nav-tab-desktop').forEach(btn => btn.classList.remove('active-tab-desktop'));
+            document.getElementById(`tabBtnDesktop-${tabId}`).classList.add('active-tab-desktop');
+
+            // Cập nhật trạng thái active cho tab MOBILE
+            document.querySelectorAll('.nav-tab-mobile').forEach(btn => btn.classList.remove('active-tab-mobile'));
+            document.getElementById(`tabBtnMobile-${tabId}`).classList.add('active-tab-mobile');
+            
+            // Xử lý logic riêng khi chuyển tab
+            if (tabId === 'viet') {
+                // Nếu chuyển sang tab Luyện Viết, reset và đọc câu đầu tiên
+                resetDictation();
+                if (fullTextData.length > 0) {
+                    readDictationSentence();
+                }
+            } else {
+                // Nếu chuyển sang tab khác, đảm bảo chế độ luyện đọc được cập nhật
+                setMode(readingMode, false); // Cập nhật hiển thị mà không reset index
+            }
+        }
+
+        // --- HÀM XỬ LÝ DỮ LIỆU (Giữ nguyên) ---
+
+        function parseLessonData(baidocText, tumoiText, nguphapText) {
+            const splitSentences = (text, delimiters) => {
+                const delimiterRegex = new RegExp(`([${delimiters.join('')}])`, 'g');
+                const parts = text.split(delimiterRegex).map(s => s.trim()).filter(s => s.length > 0);
+                
+                let sentences = [];
+                for (let i = 0; i < parts.length; i++) {
+                    const part = parts[i];
+                    if (delimiters.includes(part)) {
+                        if (sentences.length > 0) {
+                            sentences[sentences.length - 1] += part;
+                        }
+                    } else {
+                        sentences.push(part);
+                    }
+                }
+                return sentences;
+            };
+
+            const blocks = baidocText.split('$').map(b => b.trim()).filter(b => b.length > 0);
+            
+            if (blocks.length !== 3) {
+                console.error("Lỗi cú pháp baidoc.txt: Cần đúng 3 khối (Hanzi$Pinyin$Viet) được phân tách bằng '$'.");
+                return { 
+                    sentences: [], 
+                    vocab: [], 
+                    grammar: nguphapText || 'Lỗi cấu trúc tệp baidoc.txt.' 
+                };
+            }
+
+            const [hanziBlock, pinyinBlock, vietBlock] = blocks;
+            
+            const chineseDelimiters = ['。', '！', '？'];
+            const pinyinDelimiters = ['。', '！', '？', '.']; 
+            const vietDelimiters = ['.', '?', '!'];
+
+            const hanziSentences = splitSentences(hanziBlock, chineseDelimiters);
+            const pinyinSentences = splitSentences(pinyinBlock, pinyinDelimiters);
+            const vietSentences = splitSentences(vietBlock, vietDelimiters);
+            
+            const minLength = Math.min(hanziSentences.length, pinyinSentences.length, vietSentences.length);
+            if (hanziSentences.length !== minLength || pinyinSentences.length !== minLength || vietSentences.length !== minLength) {
+                 console.warn(`Cảnh báo: Số lượng câu không khớp. Hanzi: ${hanziSentences.length}, Pinyin: ${pinyinSentences.length}, Việt: ${vietSentences.length}. Chỉ lấy ${minLength} câu.`);
+            }
+
+            const parsedSentences = [];
+            for (let i = 0; i < minLength; i++) {
+                parsedSentences.push({
+                    hanzi: hanziSentences[i].trim(),
+                    pinyin: pinyinSentences[i].trim(),
+                    viet: vietSentences[i].trim()
+                });
+            }
+
+            const normalizedVocabText = tumoiText.replace(/(\r\n|\r|\n)/g, '||'); 
+            const vocabLines = normalizedVocabText.split('||').filter(l => l.trim() !== '');
+            const parsedVocab = vocabLines.map(line => {
+                const parts = line.split('|');
+                return { 
+                    hanzi: parts[0].trim(), 
+                    pinyin: parts[1] ? parts[1].trim() : '', 
+                    viet: parts[2] ? parts[2].trim() : '' 
+                };
+            });
+            
+            const grammarText = nguphapText || 'Không có ngữ pháp quan trọng trong bài này.';
+
+            return {
+                sentences: parsedSentences,
+                vocab: parsedVocab,
+                grammar: grammarText
+            };
+        }
+        
+        // --- HÀM FETCH DỮ LIỆU (Giữ nguyên) ---
+
+        async function fetchFile(path) {
+            const response = await fetch(path);
+            if (!response.ok) {
+                console.error(`Lỗi: Không thể tải tệp: ${path}. Status: ${response.status}`);
+                return ''; 
+            }
+            return response.text();
+        }
+
+        async function fetchLessonFiles(lessonId) {
+            const basePath = `data_chendu/${lessonId}`;
+            const [baidocText, tumoiText, nguphapText] = await Promise.all([
+                fetchFile(`${basePath}/baidoc.txt`),
+                fetchFile(`${basePath}/tumoi.txt`),
+                fetchFile(`${basePath}/nguphap.txt`)
+            ]);
+            return { baidocText, tumoiText, nguphapText };
+        }
+
+
+        // --- HÀM TẢI BÀI ĐỌC (CẬP NHẬT: Gọi showTab) ---
+
+        async function loadLesson(lessonId) {
+            stopReading();
+            stopPlayback();
+            hideTooltip(); 
+            
+            const metadata = LESSON_METADATA[lessonId];
+            if (!metadata) {
+                alertMessage(`Lỗi: Không tìm thấy siêu dữ liệu cho bài ${lessonId}`, 'error');
+                return;
+            }
+
+            document.getElementById('loadingIndicator').classList.remove('hidden'); 
+            
+            try {
+                const { baidocText, tumoiText, nguphapText } = await fetchLessonFiles(lessonId);
+                const data = parseLessonData(baidocText, tumoiText, nguphapText);
+                
+                fullTextData = data.sentences;
+                currentLessonVocab = data.vocab;
+                currentLessonGrammar = data.grammar;
+                currentSentenceIndex = 0; 
+
+                document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
+                document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
+
+                updateVocabTable(currentLessonVocab);
+                updateGrammarContent(currentLessonGrammar);
+                
+                // CẬP NHẬT: Đặt lại chế độ đọc và hiển thị tab bài đọc
+                readingMode = 'full';
+                showTab('doc'); // Tự động chuyển về tab Bài Đọc
+                setMode('full', false); // Cập nhật UI cho chế độ 'full'
+
+                document.getElementById('lessonSelector').value = lessonId;
+                
+                // Tự động đọc
+                 if (fullTextData.length > 0) readContent();
+                
+            } catch (error) {
+                console.error("Lỗi khi tải dữ liệu bài học:", error);
+                alertMessage(`Lỗi khi tải nội dung bài ${lessonId}. Vui lòng kiểm tra console.`, 'error');
+            } finally {
+                document.getElementById('loadingIndicator').classList.add('hidden'); 
+            }
+        }
+        
+        function updateVocabTable(vocabData) {
+            const tableBody = document.getElementById('vocabTableBody');
+            tableBody.innerHTML = ''; 
+            removeHighlight(); 
+
+            vocabData.forEach(item => {
+                const row = document.createElement('tr');
+                row.classList.add('hover:bg-red-50');
+                const vocabId = 'vocab-' + item.hanzi.replace(/\s/g, '').replace(/[\(\)]/g, ''); 
+                row.id = vocabId;
+                
+                row.innerHTML = `
+                    <td class="py-1 px-2 text-red-800 han-font vocab-hanzi" onclick="readVocab(this.textContent)">${item.hanzi}</td>
+                    <td class="py-1 px-2 italic">${item.pinyin}</td>
+                    <td class="py-1 px-2">${item.viet}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateGrammarContent(grammarText) {
+            const grammarContentDiv = document.getElementById('grammarContent');
+            const formattedHtml = grammarText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+            grammarContentDiv.innerHTML = `<p class="whitespace-pre-wrap">${formattedHtml}</p>`;
+        }
+
+
+        // --- HÀM TAB CONTROL (Giữ nguyên) ---
+        
+        function selectTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+                tab.classList.remove('text-indigo-600', 'text-green-600', 'text-yellow-600');
+                tab.classList.add('text-gray-500');
+            });
+
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            const activeTabButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+            activeTabButton.classList.add('active-tab');
+            activeTabButton.classList.remove('text-gray-500');
+
+            if (tabId === 'pinyin') {
+                activeTabButton.classList.add('text-indigo-600');
+            } else if (tabId === 'viet') {
+                activeTabButton.classList.add('text-green-600');
+            } else if (tabId === 'grammar') {
+                 activeTabButton.classList.add('text-yellow-600');
+            }
+
+            document.querySelector(`.tab-content[data-content="${tabId}"]`).classList.remove('hidden');
+        }
+
+
+        // --- HÀM HỖ TRỢ CHUNG (Giữ nguyên) ---
+
+        function alertMessage(message, type = 'error', duration = 3000) {
+            const alertDiv = document.getElementById('customAlert');
+            alertDiv.textContent = message;
+            alertDiv.classList.remove('bg-red-500', 'bg-green-500', 'hidden');
+            if (type === 'error') {
+                alertDiv.classList.add('bg-red-500');
+            } else {
+                alertDiv.classList.add('bg-green-500');
+            }
+            alertDiv.classList.remove('translate-x-full');
+            alertDiv.classList.add('translate-x-0');
+
+            setTimeout(() => {
+                alertDiv.classList.add('translate-x-full');
+                setTimeout(() => alertDiv.classList.add('hidden'), 300); 
+            }, duration);
+        }
+
+        // --- HÀM TƯƠNG TÁC TỪ VỰNG (Giữ nguyên) ---
+
+        function removeHighlight() {
+             if (highlightedVocabRow) {
+                highlightedVocabRow.classList.remove('vocab-highlight');
+                highlightedVocabRow.style.backgroundColor = ''; 
+                highlightedVocabRow = null;
+             }
+        }
+
+        function highlightVocab(hanzi) {
+            removeHighlight();
+            const vocabId = 'vocab-' + hanzi.replace(/\s/g, '').replace(/[\(\)]/g, '');
+            const row = document.getElementById(vocabId);
+
+            if (row) {
+                row.classList.add('vocab-highlight');
+                highlightedVocabRow = row;
+                
+                const container = document.getElementById('vocabTableContainer');
+                const rowTop = row.offsetTop - container.offsetTop;
+                const rowHeight = row.offsetHeight;
+                const containerHeight = container.clientHeight;
+                
+                if (rowTop < container.scrollTop || (rowTop + rowHeight) > (container.scrollTop + containerHeight)) {
+                     container.scrollTop = rowTop - (containerHeight / 2) + (rowHeight / 2);
+                }
+                
+                setTimeout(() => {
+                    row.classList.remove('vocab-highlight');
+                    highlightedVocabRow = null;
+                }, 3000); 
+            }
+        }
+        
+        function showTooltip(bounds, pinyin, viet) {
+            const tooltip = document.getElementById('vocabTooltip');
+            document.getElementById('tooltipPinyin').textContent = pinyin;
+            document.getElementById('tooltipViet').textContent = viet;
+            
+            tooltip.classList.remove('hidden');
+            
+            requestAnimationFrame(() => {
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+                const centerXPct = bounds.left + bounds.width / 2;
+                let finalX = centerXPct - (tooltipWidth / 2);
+                
+                if (finalX < 10) finalX = 10;
+                const viewportWidth = document.documentElement.clientWidth;
+                if (finalX + tooltipWidth > viewportWidth - 10) {
+                    finalX = viewportWidth - tooltipWidth - 10;
+                }
+
+                let finalY = bounds.top - tooltipHeight - 10; 
+                if (finalY < 0) {
+                     finalY = bounds.bottom + 10;
+                }
+                
+                tooltip.style.left = `${finalX}px`;
+                tooltip.style.top = `${finalY}px`;
+                tooltip.classList.add('show');
+            });
+            
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = setTimeout(hideTooltip, 3000); 
+        }
+
+        function hideTooltip() {
+            clearTimeout(tooltipTimeout);
+            const tooltip = document.getElementById('vocabTooltip');
+            tooltip.classList.remove('show');
+            setTimeout(() => tooltip.classList.add('hidden'), 200);
+        }
+
+        function handleSelection(event) {
+            const selection = window.getSelection();
+            if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
+                 hideTooltip();
+                 return;
+            }
+            
+            const range = selection.getRangeAt(0);
+            const bounds = range.getBoundingClientRect();
+            let selectedText = selection.toString().trim().replace(/[\s\r\n，。！？、]/g, '');
+
+            if (selectedText.length === 0) {
+                 hideTooltip();
+                 return;
+            }
+            
+            const matchingVocab = currentLessonVocab.find(vocab => vocab.hanzi === selectedText);
+
+            if (matchingVocab) {
+                highlightVocab(matchingVocab.hanzi);
+                readVocab(matchingVocab.hanzi);
+                showTooltip(bounds, matchingVocab.pinyin, matchingVocab.viet);
+            } else {
+                 hideTooltip();
+            }
+        }
+        
+        // --- HÀM TTS (Giữ nguyên) ---
+
+        function getChineseVoice() {
+            return synth.getVoices().find(voice => voice.lang.startsWith('zh-') && (voice.name.includes('China') || voice.name.includes('Mandarin'))) ||
+                   synth.getVoices().find(voice => voice.lang.startsWith('zh-'));
+        }
+
+        function stopReading() {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            updateReadButton(false);
+        }
+
+        function updateReadButton(isSpeaking) {
+            document.getElementById('playIcon').classList.toggle('hidden', isSpeaking);
+            document.getElementById('pauseIcon').classList.toggle('hidden', !isSpeaking);
+        }
+        
+        function readContent() {
+            if (synth.speaking) {
+                stopReading();
+                return;
+            }
+            
+            if (fullTextData.length === 0) {
+                 alertMessage('Không có nội dung bài đọc để phát.', 'error');
+                 return;
+            }
+            
+            let textToRead = '';
+            let btnId = '';
+            
+            // Kiểm tra xem tab Luyện Viết có đang hiển thị không
+            const isDictationTabActive = !document.getElementById('tabContentViet').classList.contains('hidden');
+
+            if (isDictationTabActive) {
+                textToRead = fullTextData[currentSentenceIndex].hanzi;
+                btnId = 'dictationPlayBtn';
+            } else if (readingMode === 'full') {
+                textToRead = fullTextData.map(d => d.hanzi).join('');
+                btnId = 'readBtn';
+            } else if (readingMode === 'sentence') {
+                textToRead = fullTextData[currentSentenceIndex].hanzi;
+                btnId = 'readBtn';
+            }
+
+            if (textToRead) {
+                utterance = new SpeechSynthesisUtterance(textToRead);
+                const chineseVoice = getChineseVoice();
+                if (chineseVoice) {
+                    utterance.voice = chineseVoice;
+                } else {
+                    utterance.lang = 'zh-CN'; 
+                }
+
+                if (btnId === 'readBtn') {
+                     utterance.onstart = () => updateReadButton(true);
+                     utterance.onend = () => updateReadButton(false);
+                }
+                
+                synth.speak(utterance);
+            }
+        }
+        
+        function readVocab(text) {
+             stopReading();
+             const vocabUtterance = new SpeechSynthesisUtterance(text);
+             const chineseVoice = getChineseVoice();
+             if (chineseVoice) {
+                 vocabUtterance.voice = chineseVoice;
+             } else {
+                 vocabUtterance.lang = 'zh-CN'; 
+             }
+             synth.speak(vocabUtterance);
+        }
+
+        function readDictationSentence() {
+            readContent();
+        }
+
+        // --- HÀM GHI ÂM (Giữ nguyên) ---
+        
+        function stopPlayback() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0; 
+                currentAudio = null;
+            }
+        }
+        
+        function resetRecording() {
+            stopPlayback(); 
+            if (audioURL) {
+                URL.revokeObjectURL(audioURL);
+            }
+            audioChunks = [];
+            audioBlob = null;
+            audioURL = null;
+            isRecording = false;
+            updateRecordingControls('initial');
+        }
+        
+        function updateRecordingControls(state) {
+            const recordBtn = document.getElementById('recordBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const playbackBtn = document.getElementById('playbackBtn');
+            const playIconRecord = document.getElementById('playIconRecord');
+            const pauseIconRecord = document.getElementById('pauseIconRecord');
+
+            const visible = readingMode === 'sentence';
+            recordBtn.classList.toggle('hidden', !visible);
+            playbackBtn.classList.toggle('hidden', !visible);
+            recordBtn.classList.remove('blinking');
+            stopBtn.classList.add('hidden');
+            stopBtn.classList.remove('bg-gray-500'); 
+            stopBtn.classList.add('bg-red-500', 'hover:bg-red-600'); 
+            recordBtn.disabled = true;
+            playbackBtn.disabled = true;
+            playIconRecord.classList.remove('hidden');
+            pauseIconRecord.classList.add('hidden');
+
+            if (state === 'initial' || state === 'recorded' || state === 'paused') {
+                recordBtn.disabled = false;
+                if (state === 'initial') {
+                    playbackBtn.classList.add('hidden');
+                } else {
+                    playbackBtn.classList.remove('hidden');
+                    playbackBtn.disabled = false;
+                }
+            } else if (state === 'recording') {
+                recordBtn.classList.add('hidden');
+                stopBtn.classList.remove('hidden');
+                stopBtn.disabled = false;
+                stopBtn.classList.add('blinking');
+            } else if (state === 'playing') {
+                playbackBtn.disabled = false; 
+                playIconRecord.classList.add('hidden');
+                pauseIconRecord.classList.remove('hidden');
+            } else if (state === 'error') {
+                recordBtn.disabled = false;
+                playbackBtn.classList.add('hidden');
+            }
+        }
+
+        async function startRecording() {
+            stopReading(); 
+            stopPlayback(); 
+            try {
+                if (!micPermissionGranted) {
+                    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    micPermissionGranted = true;
+                }
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+                mediaRecorder.onstop = () => {
+                    const mimeType = audioChunks[0]?.type || 'audio/webm'; 
+                    audioBlob = new Blob(audioChunks, { type: mimeType });
+                    audioURL = URL.createObjectURL(audioBlob);
+                    isRecording = false;
+                    updateRecordingControls('recorded');
+                    alertMessage('Đã ghi âm xong! Nhấn nút Play để nghe lại.', 'success', 4000);
+                };
+                mediaRecorder.onerror = (e) => {
+                    console.error('Lỗi ghi âm:', e.error);
+                    alertMessage('Lỗi: ' + e.error.name + '. Không thể ghi âm.', 'error');
+                    resetRecording();
+                    updateRecordingControls('error');
+                };
+                mediaRecorder.start();
+                isRecording = true;
+                updateRecordingControls('recording');
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+                alertMessage('Lỗi: Không thể truy cập microphone. Vui lòng cấp quyền ghi âm.', 'error');
+                updateRecordingControls('initial');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+        }
+
+        function playRecording() {
+            if (!audioURL) {
+                alertMessage('Vui lòng ghi âm câu của bạn trước.', 'error', 3000);
+                return;
+            }
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                updateRecordingControls('paused');
+            } else if (currentAudio) {
+                currentAudio.play();
+                updateRecordingControls('playing');
+            } else {
+                currentAudio = new Audio(audioURL);
+                updateRecordingControls('playing');
+                currentAudio.onended = () => {
+                    updateRecordingControls('recorded'); 
+                    currentAudio = null;
+                };
+                currentAudio.play();
+            }
+        }
+
+        // --- HÀM CHUYỂN ĐỔI CHẾ ĐỘ & HIỂN THỊ (CẬP NHẬT: Đã xóa logic 'dictation') ---
+
+        function setMode(mode, resetIndex = true) {
+            stopReading(); 
+            stopPlayback(); 
+            resetRecording(); 
+            removeHighlight(); 
+            hideTooltip(); 
+
+            if (resetIndex) {
+                 currentSentenceIndex = 0; 
+            }
+            readingMode = mode;
+            
+            document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${mode}ModeBtn`).classList.add('active');
+            
+            updateDisplay(); 
+            
+            if (mode === 'sentence') {
+                updateRecordingControls('initial'); 
+            }
+        }
+
+        function updateDisplay() {
+            stopReading(); 
+            stopPlayback(); 
+            resetRecording(); 
+            removeHighlight(); 
+            hideTooltip(); 
+            
+            if (fullTextData.length === 0) {
+                 document.getElementById('hanzhiContent').innerHTML = 'Không có dữ liệu bài đọc.';
+                 document.getElementById('pinyinContent').innerHTML = '';
+                 document.getElementById('translationContent').innerHTML = '';
+                 return;
+            }
+
+            const hanzhiContent = document.getElementById('hanzhiContent');
+            const pinyinContent = document.getElementById('pinyinContent');
+            const translationContent = document.getElementById('translationContent');
+            const sentenceControls = document.getElementById('sentenceControls');
+            const sentenceProgress = document.getElementById('sentenceProgress');
+            const recordBtn = document.getElementById('recordBtn'); 
+            
+            selectTab('pinyin'); 
+
+            hanzhiContent.innerHTML = '';
+            pinyinContent.innerHTML = '';
+            translationContent.innerHTML = '';
+
+            // GIẢM FONT TỪNG CÂU
+            const sentenceFontSize = 'text-3xl'; // Giảm từ 4xl
+
+            if (readingMode === 'full') {
+                hanzhiContent.innerHTML = fullTextData.map(d => d.hanzi).join(''); 
+                pinyinContent.innerHTML = fullTextData.map(d => d.pinyin).join(' '); 
+                translationContent.innerHTML = fullTextData.map(d => d.viet).join(' '); 
+                
+                sentenceControls.classList.add('hidden');
+                sentenceProgress.classList.add('hidden');
+                hanzhiContent.classList.remove(sentenceFontSize); 
+                
+                recordBtn.classList.add('hidden'); 
+                document.getElementById('stopBtn').classList.add('hidden');
+                document.getElementById('playbackBtn').classList.add('hidden');
+
+            } else if (readingMode === 'sentence') {
+                const currentData = fullTextData[currentSentenceIndex];
+
+                hanzhiContent.innerHTML = currentData.hanzi;
+                hanzhiContent.classList.add(sentenceFontSize); 
+                
+                pinyinContent.innerHTML = currentData.pinyin;
+                translationContent.innerHTML = currentData.viet;
+
+                sentenceControls.classList.remove('hidden');
+                sentenceProgress.classList.remove('hidden');
+                sentenceProgress.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
+
+                document.getElementById('prevBtn').disabled = currentSentenceIndex === 0;
+                document.getElementById('nextBtn').disabled = currentSentenceIndex === fullTextData.length - 1;
+
+                updateRecordingControls('initial');
+            }
+        }
+
+        function nextSentence() {
+            if (currentSentenceIndex < fullTextData.length - 1) {
+                currentSentenceIndex++;
+                updateDisplay();
+                readContent(); 
+            }
+        }
+
+        function prevSentence() {
+            if (currentSentenceIndex > 0) {
+                currentSentenceIndex--;
+                updateDisplay();
+                readContent(); 
+            }
+        }
+        
+        // --- HÀM DICTATION MODE (Giữ nguyên) ---
+        
+        function resetDictation() {
+            currentSentenceIndex = 0;
+            document.getElementById('dictationInput').value = '';
+            document.getElementById('dictationResult').classList.add('hidden');
+            document.getElementById('nextDictationBtn').disabled = true;
+            document.getElementById('checkDictationBtn').disabled = false;
+            updateDictationProgress();
+        }
+        
+        function updateDictationProgress() {
+            const progressSpan = document.getElementById('dictationProgress');
+            if (fullTextData.length > 0) {
+                progressSpan.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
+            } else {
+                progressSpan.textContent = `0/0`;
+            }
+            
+            const nextBtn = document.getElementById('nextDictationBtn');
+            if (currentSentenceIndex === fullTextData.length - 1 && !nextBtn.disabled) {
+                 nextBtn.textContent = 'Hoàn thành!';
+            } else {
+                 nextBtn.textContent = 'Câu kế tiếp →';
+            }
+        }
+        
+        function checkDictation() {
+            const userInput = document.getElementById('dictationInput').value.trim();
+            const correctSentence = fullTextData[currentSentenceIndex].hanzi;
+            
+            const resultDiv = document.getElementById('dictationResult');
+            const correctedP = document.getElementById('correctedSentence');
+            const errorSummary = document.getElementById('errorSummary');
+            
+            let htmlOutput = '';
+            let correctCount = 0;
+            let totalLength = correctSentence.length;
+
+            for (let i = 0; i < totalLength; i++) {
+                const charCorrect = correctSentence[i];
+                const charInput = userInput[i] || ' '; 
+                
+                if (charInput === charCorrect) {
+                    htmlOutput += charCorrect;
+                    correctCount++;
+                } else {
+                    htmlOutput += `<span class="incorrect" title="Bạn đã viết: ${charInput || '[Trống]'}">${charCorrect}</span>`;
+                }
+            }
+            
+            if (userInput.length > totalLength) {
+                errorSummary.textContent = `Lỗi: Bạn đã viết thừa ${userInput.length - totalLength} ký tự.`;
+            } else {
+                const errorCount = totalLength - correctCount;
+                errorSummary.textContent = `Kết quả: Đúng ${correctCount}/${totalLength} ký tự. Lỗi: ${errorCount} ký tự.`;
+            }
+
+            correctedP.innerHTML = htmlOutput;
+            resultDiv.classList.remove('hidden');
+            
+            document.getElementById('nextDictationBtn').disabled = false;
+            document.getElementById('checkDictationBtn').disabled = true;
+        }
+
+        function nextDictationSentence() {
+            if (currentSentenceIndex < fullTextData.length - 1) {
+                currentSentenceIndex++;
+                document.getElementById('dictationInput').value = '';
+                document.getElementById('dictationResult').classList.add('hidden');
+                document.getElementById('nextDictationBtn').disabled = true;
+                document.getElementById('checkDictationBtn').disabled = false;
+                
+                updateDictationProgress();
+                readDictationSentence(); 
+            } else {
+                alertMessage('Bạn đã hoàn thành bài luyện viết!', 'success', 5000);
+            }
+        }
+        
+        // --- HÀM KHỞI TẠO (Giữ nguyên) ---
+        
+        function populateLessonSelector() {
+            const selector = document.getElementById('lessonSelector');
+            selector.innerHTML = '';
+            
+            const lessonIds = Object.keys(LESSON_METADATA).sort();
+            
+            lessonIds.forEach((id, index) => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = `Bài ${index + 1}: ${LESSON_METADATA[id].title_viet}`; 
+                selector.appendChild(option);
+            });
+            
+            return lessonIds[0]; 
+        }
+
+
+        // Khởi tạo hiển thị khi tải trang
+        window.onload = () => {
+            const defaultLessonId = populateLessonSelector();
+            loadLesson(defaultLessonId); // Tải bài mặc định
+
+            if (synth.onvoiceschanged !== undefined) {
+                synth.onvoiceschanged = () => {
+                    isVoiceLoaded = true;
+                };
+            }
+        };
+
+    </script>
+</body>
+</html>
