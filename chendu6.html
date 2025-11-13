@@ -125,7 +125,7 @@
         .vocab-hanzi {
             cursor: pointer;
             transition: background-color 0.1s;
-            font-size: 1.1rem; 
+            font-size: 1.3rem; 
         }
         
         .vocab-highlight {
@@ -272,7 +272,7 @@
                             </div>
                         </h2>
                         
-                        <div id="hanzhiContent" class="text-xl sm:text-xl text-gray-900 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
+                        <div id="hanzhiContent" class="text-2xl sm:text-2xl text-gray-900 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
                             <!-- Nội dung Hán tự sẽ được chèn vào đây bởi JS -->
                         </div>
                         <!-- Controls for Sentence Mode -->
@@ -1161,7 +1161,7 @@
             pinyinContent.innerHTML = '';
             translationContent.innerHTML = '';
 
-            const sentenceFontSize = 'text-xl'; 
+            const sentenceFontSize = 'text-2xl'; 
 
             if (readingMode === 'full') {
                 hanzhiContent.innerHTML = fullTextData.map(d => d.hanzi).join(''); 
