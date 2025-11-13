@@ -180,12 +180,12 @@
         .dictation-listen-box {
             display: flex; /* Dùng flex cho bố cục ngang */
             align-items: center;
-            padding: 12px; /* Giảm padding */
+            padding: 2px; /* Giảm padding */
         }
         #dictationPlayBtn {
-            padding: 12px !important; /* Giảm kích thước nút play */
-            min-width: 50px; /* Giảm kích thước tối thiểu */
-            min-height: 50px;
+            padding: 0px !important; /* Giảm kích thước nút play */
+            min-width: 30px; /* Giảm kích thước tối thiểu */
+            min-height: 30px;
             /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
         }
         #dictationPlayBtn svg {
@@ -204,7 +204,7 @@
                 <h1 id="lessonHanziTitle" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 han-font"></h1>
                 
                 <div class="mt-4 sm:mt-0 flex items-center space-x-2">
-                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 whitespace-nowrap">Chọn bài:</label>
+                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 whitespace-nowrap"></label>
                     <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm sm:text-base font-medium">
                         <!-- Options sẽ được chèn bằng JS -->
                     </select>
@@ -216,7 +216,7 @@
         <!-- THANH ĐIỀU HƯỚNG TAB DESKTOP (Ẩn trên mobile) -->
         <nav class="hidden md:flex border-b border-gray-200 flex-shrink-0">
             <button id="tabBtnDesktop-doc" onclick="showTab('doc')" class="nav-tab-desktop active-tab-desktop">
-                Bài Đọc & Từ Vựng
+                Bài Đọc
             </button>
             <button id="tabBtnDesktop-viet" onclick="showTab('viet')" class="nav-tab-desktop">
                 Luyện Viết
@@ -235,7 +235,7 @@
                     <!-- Cột 1: Hán tự (Nội dung) -->
                     <div id="hanziSection" class="p-4 sm:p-6 bg-indigo-50 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height">
                         <h2 class="text-lg sm:text-xl font-bold text-indigo-800 mb-4 flex justify-between items-center flex-shrink-0">
-                            <span>Nội dung (Hán tự)</span>
+                            <span>Nội dung</span>
                             
                             <div class="flex items-center space-x-2">
                                 <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 hidden"></span>
@@ -311,10 +311,10 @@
                     <!-- Tab Controls -->
                     <div class="flex flex-wrap border-b border-gray-200">
                         <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 hover:border-indigo-300 transition duration-150 active-tab">
-                            Phiên âm Pinyin
+                            Phiên âm
                         </button>
                         <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 hover:border-green-300 transition duration-150">
-                            Dịch nghĩa (Tiếng Việt)
+                            Nghĩa
                         </button>
                         <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 hover:border-yellow-300 transition duration-150">
                             Ngữ pháp
@@ -356,24 +356,14 @@
             <div id="tabContentViet" class="hidden">
                 <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) -->
                 <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 rounded-lg shadow-xl border-t-4 border-yellow-500">
-                    <h2 class="text-xl sm:text-2xl font-bold text-yellow-700 mb-6 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                        Luyện viết (Nghe và Đánh máy)
-                        <span id="dictationProgress" class="ml-auto text-base sm:text-lg font-normal text-yellow-600"></span>
-                    </h2>
-
                     <!-- KHỐI NGHE (ĐÃ ĐIỀU CHỈNH KÍCH THƯỚC VÀ BỐ CỤC) -->
-                    <div class="dictation-listen-box items-center space-x-3 mb-6 bg-yellow-100 rounded-lg shadow-inner">
+                    <div class="dictation-listen-box items-center space-x-3 mb-6  rounded-lg ">
                         <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <p class="text-base sm:text-lg font-semibold text-yellow-800 flex-grow">
-                            Nhấn để nghe câu và bắt đầu viết.
-                        </p>
+
                     </div>
 
                     <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 han-font text-lg sm:text-xl text-gray-800" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
@@ -688,7 +678,7 @@
                 currentSentenceIndex = 0; 
 
                 document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
-                document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
+                //document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
 
                 // Cập nhật cả 2 bảng từ vựng (desktop và mobile)
                 updateVocabTable(currentLessonVocab, 'vocabTableBody');
