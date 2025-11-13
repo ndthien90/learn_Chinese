@@ -216,7 +216,7 @@
             <div id="tabContentDoc">
                 <!-- Thanh điều khiển chế độ (Đã xóa nút Luyện Viết) -->
                 <div class="mb-6 flex flex-col sm:flex-row justify-between items-center bg-gray-100 p-3 rounded-lg shadow-inner">
-                    <div class="font-semibold text-gray-700 mb-3 sm:mb-0 text-sm">Chọn chế độ luyện đọc:</div>
+                    <div class="font-semibold text-gray-700 mb-3 sm:mb-0 text-sm"></div>
                     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
                         <button id="fullModeBtn" onclick="setMode('full')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50 active w-full sm:w-auto">
                             Chế độ Toàn bài
@@ -232,7 +232,7 @@
                     <div class="p-4 sm:p-6 bg-indigo-50 rounded-lg shadow-md flex flex-col lg:h-[450px] content-box">
                         <!-- GIẢM FONT DESKTOP -->
                         <h2 class="text-lg sm:text-xl font-bold text-indigo-800 mb-4 flex justify-between items-center">
-                            <span>Nội dung (Hán tự)</span>
+                            <span>Nội dung</span>
                             
                             <div class="flex items-center space-x-2">
                                 <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 hidden"></span>
@@ -615,7 +615,7 @@
                 currentSentenceIndex = 0; 
 
                 document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
-                document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
+                //document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
 
                 updateVocabTable(currentLessonVocab);
                 updateGrammarContent(currentLessonGrammar);
