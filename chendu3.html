@@ -9,13 +9,14 @@
     <!-- Tải Font Mulish (cho Latinh/Việt) và Kaiti (cho Hán tự) -->
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Tải font KaiTi */
-        @font-face {
-            font-family: 'Kaiti'; 
-            src: url('https://ndthien90.github.io/learn_Chinese/fonts/Kaiti.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+        /* Tải font KaiTi (Phông chữ kiểu Trung Quốc, cần được hỗ trợ bởi trình duyệt) */
+@font-face {
+    font-family: 'Kaiti'; /* Tên bạn đặt cho font */
+    src: url('https://ndthien90.github.io/learn_Chinese/fonts/Kaiti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
         body {
             font-family: 'Mulish', 'Inter', sans-serif;
@@ -32,7 +33,7 @@
         }
         
         .content-box {
-            min-height: 250px; 
+            min-height: 250px; /* Giữ lại min-height cho mobile */
             position: relative;
         }
         
@@ -45,6 +46,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         
+        /* Cập nhật CSS cho phép cuộn, nhưng chiều cao sẽ được quản lý bằng Tailwind flex-grow */
         .vocab-table-container {
             overflow-y: auto;
         }
@@ -79,59 +81,27 @@
             font-weight: bold;
         }
 
-        /* --- STYLES MỚI CHO TAB --- */
-
-        /* Tabs Desktop */
-        .nav-tab-desktop {
-            padding: 0.75rem 1.25rem;
-            font-size: 0.9rem; /* Cỡ chữ nhỏ hơn cho desktop */
-            font-weight: 600;
-            color: #6b7280; /* gray-500 */
-            border-bottom: 3px solid transparent;
-            transition: all 0.15s ease-in-out;
-        }
-        .nav-tab-desktop:hover {
-            background-color: #f9fafb; /* gray-50 */
-            color: #4f46e5; /* indigo-600 */
-        }
-        .nav-tab-desktop.active-tab-desktop {
-            color: #4f46e5; /* indigo-600 */
-            border-bottom-color: #4f46e5;
-        }
-
-        /* Tabs Mobile */
-        .nav-tab-mobile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-            font-size: 0.75rem; /* 12px */
-            font-weight: 500;
-            color: #4b5563; /* gray-600 */
-            border-radius: 8px;
-            transition: all 0.15s ease-in-out;
-        }
-        .nav-tab-mobile.active-tab-mobile {
-            background-color: #eef2ff; /* indigo-100 */
-            color: #4f46e5; /* indigo-700 */
-        }
-        
         .tab-button.active-tab {
             color: #4f46e5; /* indigo-600 */
             border-bottom-color: #4f46e5;
         }
         
+        /* CSS mới: Tạo hiệu ứng nhấp cho từ vựng */
         .vocab-hanzi {
             cursor: pointer;
             transition: background-color 0.1s;
-            font-size: 1.1rem; /* Cỡ chữ nhỏ hơn cho desktop */
+            font-size: 1.2rem;
+        }
+        .vocab-hanzi:hover {
+            /* background-color: #fee2e2; */ /* red-100 */
         }
         
+        /* CSS MỚI: Hiệu ứng nổi bật cho từ vựng được chọn */
         .vocab-highlight {
             background-color: #fde047; /* yellow-300 */
             transition: background-color 0.4s ease-in-out;
-            animation: highlight-pulse 1s 3; 
+            /* Thêm hiệu ứng nhấp nháy nhẹ */
+            animation: highlight-pulse 1s 3; /* Nhấp nháy 3 lần */
         }
         
         @keyframes highlight-pulse {
@@ -140,20 +110,23 @@
             100% { background-color: #fde047; }
         }
         
+        /* CSS MỚI: Tooltip (ĐÃ CẬP NHẬT MÀU VÀ ĐỊNH VỊ) */
         #vocabTooltip {
-            position: fixed; 
+            position: fixed; /* Đặt cố định theo viewport */
             z-index: 100;
-            background-color: #645c51f7; 
-            color: #6d28d9; 
+            /* CẬP NHẬT MÀU NỀN TÍM NHẠT */
+            background-color: #645c51f7; /* violet-100 */ 
+            color: #6d28d9; /* violet-700 */
             padding: 8px 12px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            font-size: 0.9rem; /* Cỡ chữ nhỏ hơn */
+            font-size: 1rem;
             max-width: 300px;
-            pointer-events: none; 
+            pointer-events: none; /* Đảm bảo không chặn sự kiện chuột */
             opacity: 0;
             transition: opacity 0.2s, transform 0.2s;
-            transform: translateY(10px); 
+            transform: translateY(10px); /* Bắt đầu hơi trượt xuống */
+            //border: 1px solid #c4b5fd; /* violet-300 */
         }
         #vocabTooltip.show {
             opacity: 1;
@@ -163,160 +136,137 @@
             font-weight: 700; 
             font-style: italic;
             margin-bottom: 2px;
-            color: #1ae72a; 
-            font-family: 'Mulish', 'Inter', sans-serif; 
+            /* MÀU CHỮ NỔI */
+            color: #1ae72a; /* violet-800 */ 
+            font-family: 'Mulish', 'Inter', sans-serif; /* Đảm bảo Pinyin dùng font Latinh */
         }
         #tooltipViet {
-            color: #fcfcfa; 
+            color: #fcfcfa; /* violet-700 */
         }
         
     </style>
 </head>
-<!-- TỐI ƯU MOBILE: Bỏ padding body, bg-gray-100 -->
-<body class="p-0 bg-gray-100">
-    <!-- TỐI ƯU MOBILE: Container chính toàn màn hình, flex-col. Thêm responsive desktop -->
-    <!-- SỬA LỖI: Thay h-screen bằng h-dvh để xử lý đúng trên mobile (tránh thanh URL) -->
-    <div class="h-dvh flex flex-col bg-white md:max-w-6xl md:mx-auto md:my-4 md:h-[95vh] md:rounded-xl md:shadow-2xl overflow-hidden">
+<body class="p-4 sm:p-8">
+    <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10">
         
-        <!-- Phần Tiêu đề & Chọn Bài (flex-shrink-0 để không bị co) -->
-        <header class="p-4 border-b pb-4 border-indigo-100 flex-shrink-0">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <!-- GIẢM FONT DESKTOP -->
-                <h1 id="lessonHanziTitle" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 han-font"></h1>
+        <!-- Phần Tiêu đề & Chọn Bài (ĐÃ CẬP NHẬT) -->
+        <header class="text-left mb-8 border-b pb-4 border-indigo-100">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                <h1 id="lessonHanziTitle" class="text-3xl sm:text-4xl font-extrabold text-indigo-700 han-font"></h1>
                 
+                <!-- Dropdown Chọn Bài Đọc -->
                 <div class="mt-4 sm:mt-0 flex items-center space-x-2">
-                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 whitespace-nowrap">Chọn bài:</label>
-                    <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm sm:text-base font-medium">
+                    <label for="lessonSelector" class="text-base font-semibold text-gray-700 whitespace-nowrap">Chọn bài:</label>
+                    <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base font-medium">
                         <!-- Options sẽ được chèn bằng JS -->
                     </select>
                 </div>
             </div>
-            <!-- GIẢM FONT DESKTOP -->
-            <p id="lessonVietTitle" class="text-lg sm:text-xl font-semibold text-gray-600 mt-1"></p>
+            <p id="lessonVietTitle" class="text-xl sm:text-2xl font-semibold text-gray-600 mt-1"></p>
         </header>
 
-        <!-- THANH ĐIỀU HƯỚNG TAB DESKTOP (Ẩn trên mobile) -->
-        <nav class="hidden md:flex border-b border-gray-200 flex-shrink-0">
-            <button id="tabBtnDesktop-doc" onclick="showTab('doc')" class="nav-tab-desktop active-tab-desktop">
-                Bài Đọc
-            </button>
-            <button id="tabBtnDesktop-vocab" onclick="showTab('vocab')" class="nav-tab-desktop">
-                Từ Vựng
-            </button>
-            <button id="tabBtnDesktop-viet" onclick="showTab('viet')" class="nav-tab-desktop">
-                Luyện Viết
-            </button>
-        </nav>
+        <!-- Thanh điều khiển chế độ (Sử dụng Mulish) -->
+        <div class="mb-6 flex flex-col sm:flex-row justify-between items-center bg-gray-100 p-3 rounded-lg shadow-inner">
+            <div class="font-semibold text-gray-700 mb-3 sm:mb-0">Chọn chế độ luyện đọc:</div>
+            <div class="flex space-x-2">
+                <button id="fullModeBtn" onclick="setMode('full')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50 active">
+                    Chế độ Toàn bài
+                </button>
+                <button id="sentenceModeBtn" onclick="setMode('sentence')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50">
+                    Chế độ Luyện từng câu
+                </button>
+                 <button id="dictationModeBtn" onclick="setMode('dictation')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50">
+                    Chế độ Luyện viết
+                </button>
+            </div>
+        </div>
+        
+        <!-- Khu vực thông báo tùy chỉnh -->
+        <div id="customAlert" class="fixed top-4 right-4 bg-red-500 text-white p-3 rounded-lg shadow-xl z-50 transition-transform duration-300 transform translate-x-full hidden"></div>
+        <div id="loadingIndicator" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+             <div class="bg-white p-4 rounded-lg flex items-center shadow-lg">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Đang tải dữ liệu bài học...</span>
+            </div>
+        </div>
 
-        <!-- KHU VỰC NỘI DUNG CHÍNH (Cuộn được) -->
-        <!-- TỐI ƯU MOBILE: Thêm padding p-4 vào đây -->
-        <main id="tabContainer" class="flex-grow overflow-y-auto p-4">
-            
-            <!-- TAB 1: BÀI ĐỌC -->
-            <div id="tabContentDoc">
-                <!-- Thanh điều khiển chế độ (Đã xóa nút Luyện Viết) -->
-                <div class="mb-6 flex flex-col sm:flex-row justify-between items-center bg-gray-100 p-3 rounded-lg shadow-inner">
-                    <div class="font-semibold text-gray-700 mb-3 sm:mb-0 text-sm"></div>
-                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
-                        <button id="fullModeBtn" onclick="setMode('full')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50 active w-full sm:w-auto">
-                            Chế độ Toàn bài
+
+        <!-- KHU VỰC CHÍNH (Sẽ ẩn trong chế độ luyện viết) -->
+        <div id="mainContent" class="transition-opacity duration-300">
+            <!-- KHU VỰC 1: Hán tự và TỪ MỚI -->
+            <section class="mb-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Cột 1: Hán tự (Nội dung) - Dùng han-font (Kaiti) -->
+                <!-- Thêm flex-col và cố định chiều cao lg:h-[550px] -->
+                <div class="p-6 bg-indigo-50 rounded-lg shadow-md flex flex-col lg:h-[550px] content-box">
+                    <h2 class="text-2xl font-bold text-indigo-800 mb-4 flex justify-between items-center">
+                        <span>Nội dung (Hán tự)</span>
+                        
+                        <div class="flex items-center space-x-2">
+                             <span id="sentenceProgress" class="text-base font-normal text-indigo-600 hidden"></span>
+                             
+                             <!-- GHI ÂM CONTROLS (Chỉ hiển thị trong chế độ Từng câu) -->
+                            <button id="recordBtn" onclick="startRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                <!-- Icon Record (Microphone) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 00-4 4v7a4 4 0 008 0V5a4 4 0 00-4-4zm-5 13v.5a5 5 0 0010 0V14h2v.5a7 7 0 01-14 0V14h2z"/></svg>
+                            </button>
+                            <button id="stopBtn" onclick="stopRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                <!-- Icon Stop (Square) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>
+                            </button>
+                            <button id="playbackBtn" onclick="playRecording()" class="p-2 bg-green-500 text-white hover:bg-green-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                <!-- Icon Playback (Speaker/Play) -->
+                                <svg id="playIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                <!-- Icon Pause -->
+                                <svg id="pauseIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                            </button>
+                            <!-- END GHI ÂM CONTROLS -->
+                            
+                            <!-- TTS Nút Đọc -->
+                            <button id="readBtn" onclick="readContent()" class="p-2 bg-indigo-600 text-white hover:bg-indigo-700 transition duration-150 shadow-md flex items-center justify-center control-btn">
+                                 <!-- Icon Play -->
+                                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                </svg>
+                                <!-- Icon Pause/Stop -->
+                                <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </h2>
+                    
+                    <!-- Nội dung Hán tự - Thêm flex-grow và overflow-y-auto để cuộn -->
+                    <!-- THÊM event listener 'mouseup' -->
+                    <div id="hanzhiContent" class="text-2xl text-gray-900 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
+                        <!-- Nội dung Hán tự sẽ được chèn vào đây bởi JS -->
+                    </div>
+                    <!-- Controls for Sentence Mode - Đã thêm absolute và bottom-0 -->
+                    <div id="sentenceControls" class="absolute bottom-0 left-0 right-0 p-4 bg-indigo-50 border-t border-indigo-200 rounded-b-lg flex justify-between hidden">
+                        <button onclick="prevSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400" id="prevBtn">
+                            &larr; Câu trước
                         </button>
-                        <button id="sentenceModeBtn" onclick="setMode('sentence')" class="mode-button px-4 py-2 text-sm font-medium rounded-lg border border-indigo-300 text-indigo-700 bg-white hover:bg-indigo-50 w-full sm:w-auto">
-                            Chế độ Luyện từng câu
+                        <button onclick="nextSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400" id="nextBtn">
+                            Câu sau &rarr;
                         </button>
                     </div>
                 </div>
 
-                <!-- Cột 1: Hán tự (Nội dung) -->
-                <section class="mb-10">
-                    <div class="p-4 sm:p-6 bg-indigo-50 rounded-lg shadow-md flex flex-col lg:h-[450px] content-box">
-                        <!-- GIẢM FONT DESKTOP -->
-                        <h2 class="text-lg sm:text-xl font-bold text-indigo-800 mb-4 flex justify-between items-center">
-                            <span>Nội dung</span>
-                            
-                            <div class="flex items-center space-x-2">
-                                <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 hidden"></span>
-                                
-                                <!-- GHI ÂM CONTROLS -->
-                                <button id="recordBtn" onclick="startRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 00-4 4v7a4 4 0 008 0V5a4 4 0 00-4-4zm-5 13v.5a5 5 0 0010 0V14h2v.5a7 7 0 01-14 0V14h2z"/></svg>
-                                </button>
-                                <button id="stopBtn" onclick="stopRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>
-                                </button>
-                                <button id="playbackBtn" onclick="playRecording()" class="p-2 bg-green-500 text-white hover:bg-green-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
-                                    <svg id="playIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                                    <svg id="pauseIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                </button>
-                                
-                                <!-- TTS Nút Đọc -->
-                                <button id="readBtn" onclick="readContent()" class="p-2 bg-indigo-600 text-white hover:bg-indigo-700 transition duration-150 shadow-md flex items-center justify-center control-btn">
-                                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                                    </svg>
-                                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 hidden" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </h2>
-                        
-                        <!-- GIẢM FONT DESKTOP -->
-                        <div id="hanzhiContent" class="text-xl sm:text-xl text-gray-900 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
-                            <!-- Nội dung Hán tự sẽ được chèn vào đây bởi JS -->
-                        </div>
-                        <!-- Controls for Sentence Mode -->
-                        <div id="sentenceControls" class="absolute bottom-0 left-0 right-0 p-4 bg-indigo-50 border-t border-indigo-200 rounded-b-lg flex justify-between hidden">
-                            <button onclick="prevSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="prevBtn">
-                                &larr; Câu trước
-                            </button>
-                            <button onclick="nextSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="nextBtn">
-                                Câu sau &rarr;
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- KHU VỰC 2: Pinyin, Dịch nghĩa và NGỮ PHÁP (Sử dụng Tab) -->
-                <section class="mb-10">
-                    <!-- Tab Controls -->
-                    <div class="flex flex-wrap border-b border-gray-200">
-                        <!-- GIẢM FONT DESKTOP -->
-                        <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 hover:border-indigo-300 transition duration-150 active-tab">
-                            Phiên âm Pinyin
-                        </button>
-                        <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 hover:border-green-300 transition duration-150">
-                            Dịch nghĩa (Tiếng Việt)
-                        </button>
-                        <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 hover:border-yellow-300 transition duration-150">
-                            Ngữ pháp
-                        </button>
-                    </div>
-                    
-                    <!-- Tab Content -->
-                    <div id="tabContentContainer" class="p-4 sm:p-6 bg-gray-50 rounded-b-lg shadow-inner min-h-[150px]">
-                        <!-- GIẢM FONT DESKTOP -->
-                        <div id="pinyinContent" data-content="pinyin" class="tab-content text-base sm:text-base text-gray-700 pinyin-text italic leading-relaxed"></div>
-                        <div id="translationContent" data-content="viet" class="tab-content text-base sm:text-base text-gray-800 leading-relaxed hidden"></div>
-                        <div id="grammarContent" data-content="grammar" class="tab-content text-sm sm:text-base text-gray-800 leading-relaxed hidden"></div>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- TAB 2: TỪ VỰNG -->
-            <!-- Thêm h-full và flex-col để nó chiếm toàn bộ chiều cao của tab panel -->
-            <div id="tabContentVocab" class="hidden h-full">
-                <!-- Cột 2: TỪ MỚI -->
-                <div class="p-4 sm:p-6 bg-red-100 rounded-lg shadow-md flex flex-col h-full content-box">
-                    <!-- GIẢM FONT DESKTOP -->
-                    <h2 class="text-lg sm:text-xl font-bold text-red-700 mb-4 flex items-center border-b pb-2 flex-shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Cột 2: TỪ MỚI (Từ Hán tự dùng Kaiti, các phần còn lại dùng Mulish) -->
+                <!-- Thêm flex-col và cố định chiều cao lg:h-[550px] -->
+                <div class="p-6 bg-red-100 rounded-lg shadow-md flex flex-col lg:h-[550px] content-box">
+                    <h2 class="text-2xl font-bold text-red-700 mb-4 flex items-center border-b pb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
                         </svg>
                         Từ mới (Từ vựng)
                     </h2>
                     
-                    <!-- Bảng từ vựng (flex-grow để lấp đầy) -->
+                    <!-- Bảng từ vựng (Sẽ được điền dữ liệu bằng JS) -->
+                    <!-- Thêm flex-grow để chiếm hết không gian còn lại và cho phép cuộn -->
                     <div id="vocabTableContainer" class="overflow-x-auto text-base vocab-table-container flex-grow">
                         <table class="min-w-full vocab-table bg-white border border-red-200 rounded-lg">
                             <tbody id="vocabTableBody" class="text-gray-700 text-sm font-light divide-y divide-red-100">
@@ -325,100 +275,91 @@
                         </table>
                     </div>
                 </div>
+            </section>
+
+            <!-- KHU VỰC 2: Pinyin, Dịch nghĩa và NGỮ PHÁP (Sử dụng Tab) -->
+            <section class="mb-10">
+                <!-- Tab Controls -->
+                <div class="flex border-b border-gray-200">
+                    <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-lg font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 hover:border-indigo-300 transition duration-150 active-tab">
+                        Phiên âm Pinyin
+                    </button>
+                    <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-lg font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 hover:border-green-300 transition duration-150">
+                        Dịch nghĩa (Tiếng Việt)
+                    </button>
+                    <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-lg font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 hover:border-yellow-300 transition duration-150">
+                        Ngữ pháp
+                    </button>
+                </div>
+                
+                <!-- Tab Content -->
+                <div id="tabContentContainer" class="p-6 bg-gray-50 rounded-b-lg shadow-inner min-h-[150px]">
+                    <!-- Nội dung Pinyin -->
+                    <div id="pinyinContent" data-content="pinyin" class="tab-content text-lg text-gray-700 pinyin-text italic leading-relaxed"></div>
+                    <!-- Nội dung Dịch nghĩa -->
+                    <div id="translationContent" data-content="viet" class="tab-content text-lg text-gray-800 leading-relaxed hidden"></div>
+                    <!-- Nội dung Ngữ pháp (MỚI) -->
+                    <div id="grammarContent" data-content="grammar" class="tab-content text-base text-gray-800 leading-relaxed hidden"></div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) - GIỮ NGUYÊN -->
+        <section id="dictationContent" class="hidden min-h-[400px] p-6 bg-yellow-50 rounded-lg shadow-xl border-t-4 border-yellow-500 transition-opacity duration-300">
+            <h2 class="text-3xl font-bold text-yellow-700 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+                Luyện viết (Nghe và Đánh máy)
+                <span id="dictationProgress" class="ml-auto text-lg font-normal text-yellow-600"></span>
+            </h2>
+
+            <!-- KHỐI NGHE -->
+            <div class="flex items-center space-x-4 mb-6 p-4 bg-yellow-100 rounded-lg shadow-inner">
+                <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <p class="text-xl font-semibold text-yellow-800">Nhấn để nghe câu và bắt đầu viết.</p>
             </div>
 
-            <!-- TAB 3: LUYỆN VIẾT -->
-            <div id="tabContentViet" class="hidden">
-                <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) -->
-                <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 rounded-lg shadow-xl border-t-4 border-yellow-500">
-                    <!-- GIẢM FONT DESKTOP -->
-                    <h2 class="text-xl sm:text-2xl font-bold text-yellow-700 mb-6 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                        Luyện viết (Nghe và Đánh máy)
-                        <span id="dictationProgress" class="ml-auto text-base sm:text-lg font-normal text-yellow-600"></span>
-                    </h2>
-
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-6 p-4 bg-yellow-100 rounded-lg shadow-inner">
-                        <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-3 sm:p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <!-- GIẢM FONT DESKTOP -->
-                        <p class="text-base sm:text-lg font-semibold text-yellow-800">Nhấn để nghe câu và bắt đầu viết.</p>
-                    </div>
-
-                    <!-- GIẢM FONT DESKTOP -->
-                    <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 han-font text-lg sm:text-xl text-gray-800" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
-                    
-                    <div id="dictationResult" class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner hidden">
-                        <h3 class="text-base sm:text-lg font-bold mb-2">Kết quả:</h3>
-                        <!-- GIẢM FONT DESKTOP -->
-                        <p id="correctedSentence" class="han-font text-lg sm:text-xl leading-relaxed"></p>
-                        <p id="errorSummary" class="text-sm sm:text-base mt-2 text-gray-700"></p>
-                    </div>
-
-                    <div class="mt-6 flex flex-col sm:flex-row justify-between space-y-3 sm:space-y-0 sm:space-x-4">
-                        <button id="checkDictationBtn" onclick="checkDictation()" class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition duration-150 shadow-md disabled:bg-gray-400 w-full sm:w-auto text-sm sm:text-base">
-                            Kiểm tra
-                        </button>
-                        <button id="nextDictationBtn" onclick="nextDictationSentence()" class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 w-full sm:w-auto text-sm sm:text-base" disabled>
-                            Câu kế tiếp &rarr;
-                        </button>
-                    </div>
-                </section>
+            <!-- Ô ĐÁNH MÁY -->
+            <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 han-font text-2xl text-gray-800" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
+            
+            <!-- HIỂN THỊ KẾT QUẢ -->
+            <div id="dictationResult" class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner hidden">
+                <h3 class="text-lg font-bold mb-2">Kết quả:</h3>
+                <p id="correctedSentence" class="han-font text-2xl leading-relaxed"></p>
+                <p id="errorSummary" class="text-base mt-2 text-gray-700"></p>
             </div>
-        </main>
 
-        <!-- THANH ĐIỀU HƯỚNG TAB MOBILE (Ẩn trên desktop) -->
-        <nav class="md:hidden border-t border-gray-200 bg-white grid grid-cols-3 gap-1 p-1 flex-shrink-0 shadow-inner">
-            <button id="tabBtnMobile-doc" onclick="showTab('doc')" class="nav-tab-mobile active-tab-mobile">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253" />
-                </svg>
-                <span>Bài Đọc</span>
-            </button>
-            <button id="tabBtnMobile-vocab" onclick="showTab('vocab')" class="nav-tab-mobile">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                <span>Từ Vựng</span>
-            </button>
-            <button id="tabBtnMobile-viet" onclick="showTab('viet')" class="nav-tab-mobile">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <span>Luyện Viết</span>
-            </button>
-        </nav>
+            <!-- CÁC NÚT ĐIỀU KHIỂN -->
+            <div class="mt-6 flex justify-between space-x-4">
+                <button id="checkDictationBtn" onclick="checkDictation()" class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition duration-150 shadow-md disabled:bg-gray-400">
+                    Kiểm tra
+                </button>
+                <button id="nextDictationBtn" onclick="nextDictationSentence()" class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400" disabled>
+                    Câu kế tiếp &rarr;
+                </button>
+            </div>
+        </section>
 
-        <!-- Lời nhắc nhở (Đã xóa, có thể thêm lại nếu muốn) -->
-        <!-- <footer class="mt-8 pt-4 border-t text-center text-gray-500 text-sm">...</footer> -->
+        <!-- Lời nhắc nhở -->
+        <footer class="mt-8 pt-4 border-t text-center text-gray-500 text-sm">
+            <p>Hãy luyện đọc to bài này mỗi sáng để cải thiện khả năng phát âm và ghi nhớ từ vựng nhé!</p>
+        </footer>
     </div>
     
-    <!-- Tooltip (Giữ nguyên) -->
+    <!-- PHẦN TULIP MỚI -->
     <div id="vocabTooltip" class="hidden">
         <div id="tooltipPinyin"></div>
         <div id="tooltipViet"></div>
     </div>
-    
-    <!-- Overlays (Di chuyển ra ngoài container chính để hiển thị đúng toàn màn hình) -->
-    <div id="customAlert" class="fixed top-4 right-4 bg-red-500 text-white p-3 rounded-lg shadow-xl z-[100] transition-transform duration-300 transform translate-x-full hidden"></div>
-    <div id="loadingIndicator" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-[110] hidden">
-         <div class="bg-white p-4 rounded-lg flex items-center shadow-lg">
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <span class="text-gray-700 font-medium">Đang tải dữ liệu bài học...</span>
-        </div>
-    </div>
-
 
     <script>
         // --- CẤU TRÚC DỮ LIỆU MỚI: Chỉ chứa Metadata và Titles ---
+        // Dữ liệu nội dung sẽ được tải động từ các tệp data_chendu/baiX/*.txt
         const LESSON_METADATA = {
             'bai1': {
                 title_hanzi: '相信自己',
@@ -428,19 +369,20 @@
                 title_hanzi: '我的梦想',
                 title_viet: 'Ước mơ của tôi'
             }
+            // Thêm các bài khác tại đây khi bạn tạo tệp data_chendu/baiX/
         };
 
 
         // Biến trạng thái
-        let fullTextData = []; 
-        let currentLessonVocab = []; 
-        let currentLessonGrammar = ''; 
-        let readingMode = 'full'; // 'full', 'sentence'
+        let fullTextData = []; // Chứa dữ liệu bài đọc đã được parse cho các chế độ
+        let currentLessonVocab = []; // Chứa từ vựng đã được parse
+        let currentLessonGrammar = ''; // Chứa nội dung ngữ pháp
+        let readingMode = 'full'; // 'full', 'sentence', hoặc 'dictation'
         let currentSentenceIndex = 0;
-        let highlightedVocabRow = null; 
-        let tooltipTimeout; 
+        let highlightedVocabRow = null; // Biến mới để theo dõi hàng từ vựng đang được highlight
+        let tooltipTimeout; // Biến cho timeout của tooltip
 
-        // Biến TTS và Ghi âm
+        // Biến TTS và Ghi âm (Giữ nguyên từ code cũ)
         const synth = window.speechSynthesis;
         let utterance = null;
         let isVoiceLoaded = false;
@@ -454,69 +396,40 @@
         let currentAudio = null;
 
 
-        // --- HÀM MỚI: XỬ LÝ CHUYỂN TAB ---
-        function showTab(tabId) {
-            // Dừng mọi hoạt động
-            stopReading();
-            stopPlayback();
-            resetRecording();
-            removeHighlight();
-            hideTooltip();
-
-            // Ẩn tất cả nội dung tab
-            document.getElementById('tabContentDoc').classList.add('hidden');
-            document.getElementById('tabContentVocab').classList.add('hidden');
-            document.getElementById('tabContentViet').classList.add('hidden');
-
-            // Hiển thị tab được chọn
-            document.getElementById(`tabContent${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`).classList.remove('hidden');
-
-            // Cập nhật trạng thái active cho tab DESKTOP
-            document.querySelectorAll('.nav-tab-desktop').forEach(btn => btn.classList.remove('active-tab-desktop'));
-            document.getElementById(`tabBtnDesktop-${tabId}`).classList.add('active-tab-desktop');
-
-            // Cập nhật trạng thái active cho tab MOBILE
-            document.querySelectorAll('.nav-tab-mobile').forEach(btn => btn.classList.remove('active-tab-mobile'));
-            document.getElementById(`tabBtnMobile-${tabId}`).classList.add('active-tab-mobile');
-            
-            // Xử lý logic riêng khi chuyển tab
-            if (tabId === 'viet') {
-                // Nếu chuyển sang tab Luyện Viết, reset và đọc câu đầu tiên
-                resetDictation();
-                if (fullTextData.length > 0) {
-                    readDictationSentence();
-                }
-            } else {
-                // Nếu chuyển sang tab khác, đảm bảo chế độ luyện đọc được cập nhật
-                setMode(readingMode, false); // Cập nhật hiển thị mà không reset index
-            }
-        }
-
-        // --- HÀM XỬ LÝ DỮ LIỆU (Giữ nguyên) ---
+        // --- HÀM XỬ LÝ DỮ LIỆU (ĐÃ CẬP NHẬT ĐỂ HỖ TRỢ CẤU TRÚC 3 KHỐI MỚI VÀ FIX LỖI TỪ VỰNG) ---
 
         function parseLessonData(baidocText, tumoiText, nguphapText) {
+            
+            // Hàm trợ giúp để chia khối văn bản thành các câu dựa trên dấu kết thúc câu,
+            // đồng thời giữ lại dấu kết thúc đó.
             const splitSentences = (text, delimiters) => {
+                // Regex chia theo dấu, giữ lại dấu, sau đó lọc và ghép dấu lại vào câu trước đó.
                 const delimiterRegex = new RegExp(`([${delimiters.join('')}])`, 'g');
+                // Tách, trim, và lọc các chuỗi rỗng
                 const parts = text.split(delimiterRegex).map(s => s.trim()).filter(s => s.length > 0);
                 
                 let sentences = [];
                 for (let i = 0; i < parts.length; i++) {
                     const part = parts[i];
                     if (delimiters.includes(part)) {
+                        // Nếu là dấu, thêm vào cuối câu trước đó (chỉ khi có câu trước đó)
                         if (sentences.length > 0) {
                             sentences[sentences.length - 1] += part;
                         }
                     } else {
+                        // Nếu là nội dung, thêm câu mới
                         sentences.push(part);
                     }
                 }
                 return sentences;
             };
 
+            // --- Xử lý baidoc.txt (Sử dụng cấu trúc 3 khối Hán tự$Pinyin$Nghĩa Tiếng Việt) ---
             const blocks = baidocText.split('$').map(b => b.trim()).filter(b => b.length > 0);
             
             if (blocks.length !== 3) {
                 console.error("Lỗi cú pháp baidoc.txt: Cần đúng 3 khối (Hanzi$Pinyin$Viet) được phân tách bằng '$'.");
+                // Trả về dữ liệu rỗng nếu có lỗi cấu trúc bài đọc
                 return { 
                     sentences: [], 
                     vocab: [], 
@@ -526,14 +439,16 @@
 
             const [hanziBlock, pinyinBlock, vietBlock] = blocks;
             
+            // Delimiters
             const chineseDelimiters = ['。', '！', '？'];
-            const pinyinDelimiters = ['。', '！', '？', '.']; 
+            const pinyinDelimiters = ['。', '！', '？', '.']; // Bổ sung dấu chấm Latinh
             const vietDelimiters = ['.', '?', '!'];
 
             const hanziSentences = splitSentences(hanziBlock, chineseDelimiters);
             const pinyinSentences = splitSentences(pinyinBlock, pinyinDelimiters);
             const vietSentences = splitSentences(vietBlock, vietDelimiters);
             
+            // Kiểm tra số lượng câu và khớp
             const minLength = Math.min(hanziSentences.length, pinyinSentences.length, vietSentences.length);
             if (hanziSentences.length !== minLength || pinyinSentences.length !== minLength || vietSentences.length !== minLength) {
                  console.warn(`Cảnh báo: Số lượng câu không khớp. Hanzi: ${hanziSentences.length}, Pinyin: ${pinyinSentences.length}, Việt: ${vietSentences.length}. Chỉ lấy ${minLength} câu.`);
@@ -548,7 +463,12 @@
                 });
             }
 
+            // --- Xử lý tumoi.txt (FIX LỖI: Thay thế \n và \r\n bằng || để chuẩn hóa việc tách) ---
+            
+            // Loại bỏ tất cả các ký tự xuống dòng (new lines) và thay thế bằng ||
+            // Thao tác này chuẩn hóa việc tách từ vựng, ngay cả khi người dùng nhấn Enter giữa các mục.
             const normalizedVocabText = tumoiText.replace(/(\r\n|\r|\n)/g, '||'); 
+            
             const vocabLines = normalizedVocabText.split('||').filter(l => l.trim() !== '');
             const parsedVocab = vocabLines.map(line => {
                 const parts = line.split('|');
@@ -568,11 +488,12 @@
             };
         }
         
-        // --- HÀM FETCH DỮ LIỆU (Giữ nguyên) ---
+        // --- HÀM FETCH DỮ LIỆU TỪ HỆ THỐNG TỆP MÔ PHỎNG (Giữ nguyên) ---
 
         async function fetchFile(path) {
             const response = await fetch(path);
             if (!response.ok) {
+                // Thay vì throw, chúng ta có thể trả về chuỗi rỗng và xử lý lỗi ở nơi gọi
                 console.error(`Lỗi: Không thể tải tệp: ${path}. Status: ${response.status}`);
                 return ''; 
             }
@@ -581,21 +502,24 @@
 
         async function fetchLessonFiles(lessonId) {
             const basePath = `data_chendu/${lessonId}`;
+            
+            // Tải đồng thời 3 tệp
             const [baidocText, tumoiText, nguphapText] = await Promise.all([
                 fetchFile(`${basePath}/baidoc.txt`),
                 fetchFile(`${basePath}/tumoi.txt`),
                 fetchFile(`${basePath}/nguphap.txt`)
             ]);
+
             return { baidocText, tumoiText, nguphapText };
         }
 
 
-        // --- HÀM TẢI BÀI ĐỌC (CẬP NHẬT: Gọi showTab) ---
+        // --- HÀM TẢI BÀI ĐỌC (Giữ nguyên logic chính) ---
 
         async function loadLesson(lessonId) {
             stopReading();
             stopPlayback();
-            hideTooltip(); 
+            hideTooltip(); // Ẩn tooltip khi tải bài mới
             
             const metadata = LESSON_METADATA[lessonId];
             if (!metadata) {
@@ -603,52 +527,65 @@
                 return;
             }
 
-            document.getElementById('loadingIndicator').classList.remove('hidden'); 
+            document.getElementById('loadingIndicator').classList.remove('hidden'); // Hiển thị loading
             
             try {
+                // 1. Tải nội dung từ các tệp
                 const { baidocText, tumoiText, nguphapText } = await fetchLessonFiles(lessonId);
+                
+                // 2. Phân tích cú pháp dữ liệu (Sử dụng logic mới)
                 const data = parseLessonData(baidocText, tumoiText, nguphapText);
                 
+                // 3. Cập nhật biến toàn cục
                 fullTextData = data.sentences;
                 currentLessonVocab = data.vocab;
                 currentLessonGrammar = data.grammar;
-                currentSentenceIndex = 0; 
+                currentSentenceIndex = 0; // Luôn reset index khi tải bài mới
 
+                // 4. Cập nhật tiêu đề
                 document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
-                //document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
+                document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
 
+                // 5. Cập nhật UI
                 updateVocabTable(currentLessonVocab);
                 updateGrammarContent(currentLessonGrammar);
-                
-                // CẬP NHẬT: Đặt lại chế độ đọc và hiển thị tab bài đọc
-                readingMode = 'full';
-                showTab('doc'); // Tự động chuyển về tab Bài Đọc
-                setMode('full', false); // Cập nhật UI cho chế độ 'full'
+                setMode(readingMode, false); // Tải lại nội dung mà không cần chuyển mode
 
+                // Đặt lại dropdown
                 document.getElementById('lessonSelector').value = lessonId;
-                
-                // Tự động đọc
-                 if (fullTextData.length > 0) readContent();
+
+                // Xử lý chế độ đọc/viết
+                if (readingMode === 'dictation') {
+                    resetDictation();
+                    if (fullTextData.length > 0) readDictationSentence();
+                } else {
+                     // Tự động đọc bài/câu trong chế độ Full/Sentence khi load xong
+                     if (fullTextData.length > 0) readContent();
+                }
                 
             } catch (error) {
                 console.error("Lỗi khi tải dữ liệu bài học:", error);
                 alertMessage(`Lỗi khi tải nội dung bài ${lessonId}. Vui lòng kiểm tra console.`, 'error');
             } finally {
-                document.getElementById('loadingIndicator').classList.add('hidden'); 
+                document.getElementById('loadingIndicator').classList.add('hidden'); // Ẩn loading
             }
         }
         
         function updateVocabTable(vocabData) {
             const tableBody = document.getElementById('vocabTableBody');
-            tableBody.innerHTML = ''; 
+            tableBody.innerHTML = ''; // Xóa nội dung cũ
+            
+            // Xóa highlight cũ
             removeHighlight(); 
 
             vocabData.forEach(item => {
                 const row = document.createElement('tr');
                 row.classList.add('hover:bg-red-50');
+                // GÁN ID DỰA TRÊN HÁN TỰ (dùng cho việc định vị tự động)
                 const vocabId = 'vocab-' + item.hanzi.replace(/\s/g, '').replace(/[\(\)]/g, ''); 
                 row.id = vocabId;
                 
+                // Thêm class vocab-hanzi và sự kiện onclick để phát âm
                 row.innerHTML = `
                     <td class="py-1 px-2 text-red-800 han-font vocab-hanzi" onclick="readVocab(this.textContent)">${item.hanzi}</td>
                     <td class="py-1 px-2 italic">${item.pinyin}</td>
@@ -660,6 +597,8 @@
 
         function updateGrammarContent(grammarText) {
             const grammarContentDiv = document.getElementById('grammarContent');
+            // Thay thế '\n\n' bằng thẻ p và '\n' bằng <br> để định dạng text
+            // Sử dụng whitespace-pre-wrap để giữ định dạng dòng từ tệp txt
             const formattedHtml = grammarText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
             grammarContentDiv.innerHTML = `<p class="whitespace-pre-wrap">${formattedHtml}</p>`;
         }
@@ -673,6 +612,7 @@
 
             tabs.forEach(tab => {
                 tab.classList.remove('active-tab');
+                // Tùy chỉnh màu theo tab
                 tab.classList.remove('text-indigo-600', 'text-green-600', 'text-yellow-600');
                 tab.classList.add('text-gray-500');
             });
@@ -681,6 +621,7 @@
                 content.classList.add('hidden');
             });
 
+            // Active Tab Button
             const activeTabButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
             activeTabButton.classList.add('active-tab');
             activeTabButton.classList.remove('text-gray-500');
@@ -693,12 +634,15 @@
                  activeTabButton.classList.add('text-yellow-600');
             }
 
+
+            // Active Tab Content
             document.querySelector(`.tab-content[data-content="${tabId}"]`).classList.remove('hidden');
         }
 
 
         // --- HÀM HỖ TRỢ CHUNG (Giữ nguyên) ---
 
+        // Hiển thị thông báo tùy chỉnh
         function alertMessage(message, type = 'error', duration = 3000) {
             const alertDiv = document.getElementById('customAlert');
             alertDiv.textContent = message;
@@ -717,38 +661,49 @@
             }, duration);
         }
 
-        // --- HÀM TƯƠNG TÁC TỪ VỰNG (Giữ nguyên) ---
+        // --- HÀM TƯƠNG TÁC TỪ VỰNG MỚI (CẬP NHẬT) ---
 
         function removeHighlight() {
              if (highlightedVocabRow) {
                 highlightedVocabRow.classList.remove('vocab-highlight');
-                highlightedVocabRow.style.backgroundColor = ''; 
+                highlightedVocabRow.style.backgroundColor = ''; // Xóa màu nền cố định
                 highlightedVocabRow = null;
              }
         }
 
         function highlightVocab(hanzi) {
+            // 1. Xóa highlight cũ
             removeHighlight();
+
+            // 2. Tìm ID hàng từ vựng
             const vocabId = 'vocab-' + hanzi.replace(/\s/g, '').replace(/[\(\)]/g, '');
             const row = document.getElementById(vocabId);
 
             if (row) {
+                // 3. Highlight hàng mới
                 row.classList.add('vocab-highlight');
                 highlightedVocabRow = row;
                 
+                // 4. Cuộn đến vị trí của hàng (trong container)
                 const container = document.getElementById('vocabTableContainer');
+                
+                // Lấy vị trí tương đối của hàng trong container
                 const rowTop = row.offsetTop - container.offsetTop;
                 const rowHeight = row.offsetHeight;
                 const containerHeight = container.clientHeight;
                 
+                // Nếu hàng nằm ngoài vùng nhìn thấy (quá trên hoặc quá dưới) thì cuộn
                 if (rowTop < container.scrollTop || (rowTop + rowHeight) > (container.scrollTop + containerHeight)) {
+                     // Cuộn đến vị trí giữa của hàng
                      container.scrollTop = rowTop - (containerHeight / 2) + (rowHeight / 2);
                 }
                 
+                // Thiết lập timer để xóa highlight sau một khoảng thời gian
                 setTimeout(() => {
                     row.classList.remove('vocab-highlight');
                     highlightedVocabRow = null;
-                }, 3000); 
+                }, 3000); // Highlight 3 giây
+                
             }
         }
         
@@ -759,19 +714,30 @@
             
             tooltip.classList.remove('hidden');
             
+            // Đợi một chút để lấy kích thước chính xác
             requestAnimationFrame(() => {
                 const tooltipWidth = tooltip.offsetWidth;
                 const tooltipHeight = tooltip.offsetHeight;
+                
+                // Lấy vị trí trung tâm của vùng bôi đen (viewport coordinates)
                 const centerXPct = bounds.left + bounds.width / 2;
+                
+                // Tính toán vị trí X (Căn giữa theo chiều ngang của vùng bôi đen)
                 let finalX = centerXPct - (tooltipWidth / 2);
                 
-                if (finalX < 10) finalX = 10;
+                // Điều chỉnh tràn lề trái/phải
+                if (finalX < 10) {
+                    finalX = 10;
+                }
                 const viewportWidth = document.documentElement.clientWidth;
                 if (finalX + tooltipWidth > viewportWidth - 10) {
                     finalX = viewportWidth - tooltipWidth - 10;
                 }
 
-                let finalY = bounds.top - tooltipHeight - 10; 
+                // Tính toán vị trí Y (Đẩy lên trên vùng bôi đen)
+                let finalY = bounds.top - tooltipHeight - 10; // 10px khoảng đệm
+                
+                // Nếu quá gần phía trên viewport, đẩy xuống dưới
                 if (finalY < 0) {
                      finalY = bounds.bottom + 10;
                 }
@@ -781,7 +747,9 @@
                 tooltip.classList.add('show');
             });
             
+            // Xóa timer cũ nếu có
             clearTimeout(tooltipTimeout);
+            // Đặt timer ẩn tooltip sau 3 giây (trùng với highlight)
             tooltipTimeout = setTimeout(hideTooltip, 3000); 
         }
 
@@ -789,37 +757,57 @@
             clearTimeout(tooltipTimeout);
             const tooltip = document.getElementById('vocabTooltip');
             tooltip.classList.remove('show');
+            // Ẩn hoàn toàn sau khi chuyển đổi transition
             setTimeout(() => tooltip.classList.add('hidden'), 200);
         }
 
         function handleSelection(event) {
+            // Chỉ xử lý nếu đang ở chế độ Full hoặc Sentence
+            if (readingMode === 'dictation') return; 
+            
             const selection = window.getSelection();
+            
+            // Đảm bảo có văn bản được chọn
             if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
                  hideTooltip();
                  return;
             }
             
             const range = selection.getRangeAt(0);
+            
+            // Lấy kích thước và vị trí của vùng bôi đen
             const bounds = range.getBoundingClientRect();
-            let selectedText = selection.toString().trim().replace(/[\s\r\n，。！？、]/g, '');
+            
+            let selectedText = selection.toString().trim();
+            
+            // Lọc các ký tự không phải Hán tự/số/Latinh (chủ yếu là dấu câu Trung Quốc)
+            selectedText = selectedText.replace(/[\s\r\n，。！？、]/g, '');
 
             if (selectedText.length === 0) {
                  hideTooltip();
                  return;
             }
             
+            // Kiểm tra xem từ được chọn có tồn tại trong danh sách từ vựng không
             const matchingVocab = currentLessonVocab.find(vocab => vocab.hanzi === selectedText);
 
             if (matchingVocab) {
+                // 1. Định vị và làm nổi bật trong bảng từ vựng
                 highlightVocab(matchingVocab.hanzi);
+                
+                // 2. Đọc từ vựng
                 readVocab(matchingVocab.hanzi);
+                
+                // 3. Hiển thị Tooltip ngay trên đầu vùng bôi đen
                 showTooltip(bounds, matchingVocab.pinyin, matchingVocab.viet);
+                
             } else {
+                 // Nếu không phải từ vựng, ẩn tooltip
                  hideTooltip();
             }
         }
         
-        // --- HÀM TTS (Giữ nguyên) ---
+        // --- HÀM TTS (ĐÃ CẬP NHẬT: Thêm hàm readVocab) ---
 
         function getChineseVoice() {
             return synth.getVoices().find(voice => voice.lang.startsWith('zh-') && (voice.name.includes('China') || voice.name.includes('Mandarin'))) ||
@@ -852,18 +840,15 @@
             let textToRead = '';
             let btnId = '';
             
-            // Kiểm tra xem tab Luyện Viết có đang hiển thị không
-            const isDictationTabActive = !document.getElementById('tabContentViet').classList.contains('hidden');
-
-            if (isDictationTabActive) {
-                textToRead = fullTextData[currentSentenceIndex].hanzi;
-                btnId = 'dictationPlayBtn';
-            } else if (readingMode === 'full') {
+            if (readingMode === 'full') {
                 textToRead = fullTextData.map(d => d.hanzi).join('');
                 btnId = 'readBtn';
             } else if (readingMode === 'sentence') {
                 textToRead = fullTextData[currentSentenceIndex].hanzi;
                 btnId = 'readBtn';
+            } else if (readingMode === 'dictation') {
+                textToRead = fullTextData[currentSentenceIndex].hanzi;
+                btnId = 'dictationPlayBtn';
             }
 
             if (textToRead) {
@@ -885,7 +870,10 @@
         }
         
         function readVocab(text) {
+             // Dừng mọi phát âm hiện tại (câu hoặc bài)
              stopReading();
+             
+             // Chuẩn bị phát âm từ vựng
              const vocabUtterance = new SpeechSynthesisUtterance(text);
              const chineseVoice = getChineseVoice();
              if (chineseVoice) {
@@ -893,6 +881,8 @@
              } else {
                  vocabUtterance.lang = 'zh-CN'; 
              }
+             
+             // Phát âm
              synth.speak(vocabUtterance);
         }
 
@@ -912,6 +902,7 @@
         
         function resetRecording() {
             stopPlayback(); 
+            
             if (audioURL) {
                 URL.revokeObjectURL(audioURL);
             }
@@ -919,6 +910,7 @@
             audioBlob = null;
             audioURL = null;
             isRecording = false;
+            
             updateRecordingControls('initial');
         }
         
@@ -926,20 +918,27 @@
             const recordBtn = document.getElementById('recordBtn');
             const stopBtn = document.getElementById('stopBtn');
             const playbackBtn = document.getElementById('playbackBtn');
+            
             const playIconRecord = document.getElementById('playIconRecord');
             const pauseIconRecord = document.getElementById('pauseIconRecord');
+
 
             const visible = readingMode === 'sentence';
             recordBtn.classList.toggle('hidden', !visible);
             playbackBtn.classList.toggle('hidden', !visible);
+
             recordBtn.classList.remove('blinking');
             stopBtn.classList.add('hidden');
+            
             stopBtn.classList.remove('bg-gray-500'); 
             stopBtn.classList.add('bg-red-500', 'hover:bg-red-600'); 
+
             recordBtn.disabled = true;
             playbackBtn.disabled = true;
+            
             playIconRecord.classList.remove('hidden');
             pauseIconRecord.classList.add('hidden');
+
 
             if (state === 'initial' || state === 'recorded' || state === 'paused') {
                 recordBtn.disabled = false;
@@ -967,33 +966,41 @@
         async function startRecording() {
             stopReading(); 
             stopPlayback(); 
+            
             try {
                 if (!micPermissionGranted) {
                     stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                     micPermissionGranted = true;
                 }
+                
                 mediaRecorder = new MediaRecorder(stream);
+                
                 audioChunks = [];
                 mediaRecorder.ondataavailable = event => {
                     audioChunks.push(event.data);
                 };
+
                 mediaRecorder.onstop = () => {
                     const mimeType = audioChunks[0]?.type || 'audio/webm'; 
                     audioBlob = new Blob(audioChunks, { type: mimeType });
                     audioURL = URL.createObjectURL(audioBlob);
+                    
                     isRecording = false;
                     updateRecordingControls('recorded');
                     alertMessage('Đã ghi âm xong! Nhấn nút Play để nghe lại.', 'success', 4000);
                 };
+                
                 mediaRecorder.onerror = (e) => {
                     console.error('Lỗi ghi âm:', e.error);
                     alertMessage('Lỗi: ' + e.error.name + '. Không thể ghi âm.', 'error');
                     resetRecording();
                     updateRecordingControls('error');
                 };
+
                 mediaRecorder.start();
                 isRecording = true;
                 updateRecordingControls('recording');
+                
             } catch (error) {
                 console.error('Error accessing microphone:', error);
                 alertMessage('Lỗi: Không thể truy cập microphone. Vui lòng cấp quyền ghi âm.', 'error');
@@ -1012,6 +1019,7 @@
                 alertMessage('Vui lòng ghi âm câu của bạn trước.', 'error', 3000);
                 return;
             }
+
             if (currentAudio && !currentAudio.paused) {
                 currentAudio.pause();
                 updateRecordingControls('paused');
@@ -1021,6 +1029,7 @@
             } else {
                 currentAudio = new Audio(audioURL);
                 updateRecordingControls('playing');
+
                 currentAudio.onended = () => {
                     updateRecordingControls('recorded'); 
                     currentAudio = null;
@@ -1029,23 +1038,37 @@
             }
         }
 
-        // --- HÀM CHUYỂN ĐỔI CHẾ ĐỘ & HIỂN THỊ (CẬP NHẬT: Đã xóa logic 'dictation') ---
+        // --- HÀM CHUYỂN ĐỔI CHẾ ĐỘ & HIỂN THỊ (Giữ nguyên) ---
 
         function setMode(mode, resetIndex = true) {
             stopReading(); 
             stopPlayback(); 
             resetRecording(); 
-            removeHighlight(); 
-            hideTooltip(); 
+            removeHighlight(); // Xóa highlight khi chuyển mode
+            hideTooltip(); // Ẩn tooltip khi chuyển mode
 
             if (resetIndex) {
-                 currentSentenceIndex = 0; 
+                 currentSentenceIndex = 0; // Reset index khi chuyển mode (trừ khi được gọi từ loadLesson)
             }
             readingMode = mode;
             
+            // Cập nhật trạng thái nút
             document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`${mode}ModeBtn`).classList.add('active');
             
+            const mainContent = document.getElementById('mainContent');
+            const dictationContent = document.getElementById('dictationContent');
+
+            if (mode === 'dictation') {
+                mainContent.classList.add('hidden');
+                dictationContent.classList.remove('hidden');
+                resetDictation();
+                if (fullTextData.length > 0) readDictationSentence();
+            } else {
+                mainContent.classList.remove('hidden');
+                dictationContent.classList.add('hidden');
+            }
+
             updateDisplay(); 
             
             if (mode === 'sentence') {
@@ -1057,9 +1080,10 @@
             stopReading(); 
             stopPlayback(); 
             resetRecording(); 
-            removeHighlight(); 
-            hideTooltip(); 
+            removeHighlight(); // Xóa highlight khi cập nhật display
+            hideTooltip(); // Ẩn tooltip khi cập nhật display
             
+            // Nếu không có dữ liệu, dừng lại
             if (fullTextData.length === 0) {
                  document.getElementById('hanzhiContent').innerHTML = 'Không có dữ liệu bài đọc.';
                  document.getElementById('pinyinContent').innerHTML = '';
@@ -1074,44 +1098,52 @@
             const sentenceProgress = document.getElementById('sentenceProgress');
             const recordBtn = document.getElementById('recordBtn'); 
             
+            // Mặc định tab Pinyin sẽ được chọn
             selectTab('pinyin'); 
 
+            // Xóa nội dung cũ
             hanzhiContent.innerHTML = '';
             pinyinContent.innerHTML = '';
             translationContent.innerHTML = '';
 
-            // GIẢM FONT TỪNG CÂU
-            const sentenceFontSize = 'text-3xl'; // Giảm từ 4xl
 
             if (readingMode === 'full') {
+                // CHẾ ĐỘ TOÀN BÀI
+                // Nối các câu lại để hiển thị toàn bài
                 hanzhiContent.innerHTML = fullTextData.map(d => d.hanzi).join(''); 
-                pinyinContent.innerHTML = fullTextData.map(d => d.pinyin).join(' '); 
-                translationContent.innerHTML = fullTextData.map(d => d.viet).join(' '); 
+                pinyinContent.innerHTML = fullTextData.map(d => d.pinyin).join(' '); // Dùng khoảng trắng cho pinyin
+                translationContent.innerHTML = fullTextData.map(d => d.viet).join(' '); // Dùng khoảng trắng cho dịch nghĩa
                 
                 sentenceControls.classList.add('hidden');
                 sentenceProgress.classList.add('hidden');
-                hanzhiContent.classList.remove(sentenceFontSize); 
+                hanzhiContent.classList.remove('text-4xl'); 
                 
+                // Ẩn tất cả nút ghi âm
                 recordBtn.classList.add('hidden'); 
                 document.getElementById('stopBtn').classList.add('hidden');
                 document.getElementById('playbackBtn').classList.add('hidden');
 
             } else if (readingMode === 'sentence') {
+                // CHẾ ĐỘ TỪNG CÂU
                 const currentData = fullTextData[currentSentenceIndex];
 
+                // Hiển thị nội dung từng câu
                 hanzhiContent.innerHTML = currentData.hanzi;
-                hanzhiContent.classList.add(sentenceFontSize); 
+                hanzhiContent.classList.add('text-4xl'); 
                 
                 pinyinContent.innerHTML = currentData.pinyin;
                 translationContent.innerHTML = currentData.viet;
 
+                // Cập nhật thanh điều khiển
                 sentenceControls.classList.remove('hidden');
                 sentenceProgress.classList.remove('hidden');
                 sentenceProgress.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
 
+                // Vô hiệu hóa nút
                 document.getElementById('prevBtn').disabled = currentSentenceIndex === 0;
                 document.getElementById('nextBtn').disabled = currentSentenceIndex === fullTextData.length - 1;
 
+                // Hiển thị nút ghi âm ở trạng thái ban đầu
                 updateRecordingControls('initial');
             }
         }
@@ -1120,7 +1152,7 @@
             if (currentSentenceIndex < fullTextData.length - 1) {
                 currentSentenceIndex++;
                 updateDisplay();
-                readContent(); 
+                readContent(); // Tự động đọc câu mới
             }
         }
 
@@ -1128,7 +1160,7 @@
             if (currentSentenceIndex > 0) {
                 currentSentenceIndex--;
                 updateDisplay();
-                readContent(); 
+                readContent(); // Tự động đọc câu mới
             }
         }
         
@@ -1145,11 +1177,7 @@
         
         function updateDictationProgress() {
             const progressSpan = document.getElementById('dictationProgress');
-            if (fullTextData.length > 0) {
-                progressSpan.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
-            } else {
-                progressSpan.textContent = `0/0`;
-            }
+            progressSpan.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
             
             const nextBtn = document.getElementById('nextDictationBtn');
             if (currentSentenceIndex === fullTextData.length - 1 && !nextBtn.disabled) {
@@ -1163,6 +1191,10 @@
             const userInput = document.getElementById('dictationInput').value.trim();
             const correctSentence = fullTextData[currentSentenceIndex].hanzi;
             
+            // Loại bỏ khoảng trắng và dấu câu cho kiểm tra sơ bộ
+            const normalizedCorrect = correctSentence.replace(/[\s\r\n，。！？]/g, '');
+            const normalizedInput = userInput.replace(/[\s\r\n，。！？]/g, '');
+            
             const resultDiv = document.getElementById('dictationResult');
             const correctedP = document.getElementById('correctedSentence');
             const errorSummary = document.getElementById('errorSummary');
@@ -1171,6 +1203,7 @@
             let correctCount = 0;
             let totalLength = correctSentence.length;
 
+            // Kiểm tra lỗi ký tự
             for (let i = 0; i < totalLength; i++) {
                 const charCorrect = correctSentence[i];
                 const charInput = userInput[i] || ' '; 
@@ -1223,11 +1256,12 @@
             lessonIds.forEach((id, index) => {
                 const option = document.createElement('option');
                 option.value = id;
+                // Sử dụng LESSON_METADATA mới
                 option.textContent = `Bài ${index + 1}: ${LESSON_METADATA[id].title_viet}`; 
                 selector.appendChild(option);
             });
             
-            return lessonIds[0]; 
+            return lessonIds[0]; // Trả về ID bài đầu tiên
         }
 
 
