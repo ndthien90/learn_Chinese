@@ -643,7 +643,7 @@
         }
 
         async function fetchLessonFiles(lessonId) {
-            const basePath = `data_chendu/${lessonId}`;
+            const basePath = `data_chendu/bai${lessonId}`;
             const [baidocText, tumoiText, nguphapText] = await Promise.all([
                 fetchFile(`${basePath}/baidoc.txt`),
                 fetchFile(`${basePath}/tumoi.txt`),
