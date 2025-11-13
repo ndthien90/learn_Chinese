@@ -1,0 +1,40 @@
+1. Cấu trúc điều kiện: 只要 A，就 B
+   - Ý nghĩa: Chỉ cần A, thì sẽ B.
+   - Ví dụ: 只要努力学习，你就能通过考试。
+   - Nghĩa: Chỉ cần chăm chỉ học, bạn sẽ vượt qua bài kiểm tra.
+2. Cấu trúc so sánh và nhấn mạnh: 不在于 A，而在于 B
+   - Ý nghĩa: Không nằm ở A, mà nằm ở B.
+   - Ví dụ: 成功不在于你多聪明，而在于你多努力。
+   - Nghĩa: Thành công không nằm ở việc bạn thông minh bao nhiêu, mà nằm ở việc bạn nỗ lực bao nhiêu.
+3. Hai lần phủ định: 没有什么是不可能的
+   - Ý nghĩa: Khẳng định mạnh mẽ (Không có gì là không thể).
+   - Ví dụ: 对一个有决心的人来说，没有什么是不可能的。
+   - Nghĩa: Đối với một người có quyết tâm, không có gì là không thể.
+4. Phó từ chỉ sự phổ quát: 都会
+   - Ý nghĩa: Đều sẽ, luôn luôn.
+   - Ví dụ: 太阳都会从东边升起。
+   - Nghĩa: Mặt trời luôn mọc từ phía Đông.
+5. Liên từ chuyển ý/Kết luận: 但最重要的是
+   - Ý nghĩa: Nhưng điều quan trọng nhất là.
+   - Ví dụ: 我们有很多选择，但最重要的是要选择自己喜欢的。
+   - Nghĩa: Chúng ta có nhiều lựa chọn, nhưng điều quan trọng nhất là phải chọn cái mình thích.
+6. Mệnh lệnh phủ định: 不要...
+   - Ý nghĩa: Đừng...
+   - Ví dụ: 不要在课堂上玩手机。
+   - Nghĩa: Đừng chơi điện thoại trong lớp học.
+7. Cấu trúc khẳng định tuyệt đối: 每一次...，都是...
+   - Ý nghĩa: Mỗi lần..., đều là...
+   - Ví dụ: 每一次旅行，都是一次学习新文化的机会。
+   - Nghĩa: Mỗi lần du lịch, đều là một cơ hội học hỏi văn hóa mới.
+8. Liên từ đối lập/Khả năng: 也许...，但...
+   - Ý nghĩa: Có lẽ..., nhưng...
+   - Ví dụ: 也许下周会下雨，但我们仍然会按计划出发。
+   - Nghĩa: Có lẽ tuần sau sẽ mưa, nhưng chúng tôi vẫn sẽ khởi hành theo kế hoạch.
+9. Cụm từ chỉ thời gian: 终有一天
+   - Ý nghĩa: Cuối cùng một ngày nào đó.
+   - Ví dụ: 请坚持下去，终有一天你会实现你的梦想。
+   - Nghĩa: Xin hãy kiên trì, cuối cùng một ngày nào đó bạn sẽ thực hiện được ước mơ của mình.
+10. So sánh trực tiếp: 就像
+   - Ý nghĩa: Giống như, y hệt như.
+   - Ví dụ: 你的声音听起来就像你妈妈。
+   - Nghĩa: Giọng của bạn nghe y hệt mẹ bạn.
