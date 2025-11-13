@@ -344,14 +344,6 @@
             <div id="tabContentViet" class="hidden">
                 <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) -->
                 <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 rounded-lg shadow-xl border-t-4 border-yellow-500">
-                    <h2 class="text-xl sm:text-2xl font-bold text-yellow-700 mb-6 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                        Luyện viết (Nghe và Đánh máy)
-                        <span id="dictationProgress" class="ml-auto text-base sm:text-lg font-normal text-yellow-600"></span>
-                    </h2>
-
                     <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-6 p-4 bg-yellow-100 rounded-lg shadow-inner">
                         <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-3 sm:p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8" viewBox="0 0 20 20" fill="currentColor">
@@ -672,7 +664,7 @@
                 currentSentenceIndex = 0; 
 
                 document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
-                document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
+                //document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
 
                 // Cập nhật cả 2 bảng từ vựng (desktop và mobile)
                 updateVocabTable(currentLessonVocab, 'vocabTableBody');
