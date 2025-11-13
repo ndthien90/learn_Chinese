@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Luyện Đọc Buổi Sáng Tiếng Trung</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cấu hình Tailwind cho chế độ tối, cho phép chuyển đổi bằng class 'dark' -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Mulish', 'Inter', 'sans-serif'],
+                        han: ['Kaiti', 'serif'], // Sử dụng tên class đã định nghĩa
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Tải Font Mulish (cho Latinh/Việt) và Kaiti (cho Hán tự) -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Tải font KaiTi */
+        @font-face {
+            font-family: 'Kaiti'; 
+            src: url('https://ndthien90.github.io/learn_Chinese/fonts/Kaiti.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Áp dụng font cơ bản và màu nền mặc định (Light Mode) */
+        body {
+            font-family: 'Mulish', 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Mặc định: Nền sáng nhẹ */
+            color: #1f2937; /* Mặc định: Chữ tối */
+        }
+        
+        /* Màu nền cho chế độ Dark Mode */
+        .dark body {
+            background-color: #111827; /* Nền tối hơn */
+            color: #f3f4f6; /* Chữ sáng */
+        }
+        
+        .han-font {
+            font-family: 'Kaiti', serif; 
+        }
+
+        .pinyin-text {
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-box {
+            min-height: 250px; 
+            position: relative;
+        }
+        
+        .mode-button {
+            transition: all 0.2s;
+        }
+        .mode-button.active {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .vocab-table-container {
+            overflow-y: auto;
+        }
+
+        #readBtn {
+            transition: transform 0.1s ease-in-out;
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #readBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .control-btn {
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .blinking {
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.5; }
+        }
+        
+        .content-box h2 {
+            position: relative;
+            z-index: 20; 
+        }
+        
+        .incorrect {
+            color: #ef4444; /* red-500 */
+            font-weight: bold;
+        }
+
+        /* --- STYLES CHO TAB NAVIGATION --- */
+
+        /* Tabs Desktop */
+        .nav-tab-desktop {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #6b7280; 
+            border-bottom: 3px solid transparent;
+            transition: all 0.15s ease-in-out;
+        }
+        .nav-tab-desktop:hover {
+            background-color: #f9fafb; 
+            color: #4f46e5; 
+        }
+        .dark .nav-tab-desktop:hover {
+            background-color: #374151; /* hover tối */
+        }
+        .nav-tab-desktop.active-tab-desktop {
+            color: #4f46e5; 
+            border-bottom-color: #4f46e5;
+        }
+        .dark .nav-tab-desktop {
+            color: #9ca3af; /* chữ sáng hơn */
+            border-bottom-color: transparent;
+        }
+        .dark .nav-tab-desktop.active-tab-desktop {
+            color: #818cf8; /* indigo-300 */
+            border-bottom-color: #818cf8;
+        }
+
+
+        /* Tabs Mobile */
+        .nav-tab-mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            font-size: 0.75rem; 
+            font-weight: 500;
+            color: #4b5563; 
+            border-radius: 8px;
+            transition: all 0.15s ease-in-out;
+        }
+        .nav-tab-mobile.active-tab-mobile {
+            background-color: #eef2ff; 
+            color: #4f46e5; 
+        }
+        .dark .nav-tab-mobile {
+            color: #9ca3af;
+        }
+        .dark .nav-tab-mobile.active-tab-mobile {
+            background-color: #374151; /* Màu nền active tối */
+            color: #818cf8;
+        }
+        
+        .tab-button.active-tab {
+            color: #4f46e5; 
+            border-bottom-color: #4f46e5;
+        }
+        .dark .tab-button {
+            color: #9ca3af;
+        }
+        .dark .tab-button.active-tab {
+             color: #818cf8; 
+             border-bottom-color: #818cf8;
+        }
+        
+        .vocab-hanzi {
+            cursor: pointer;
+            transition: background-color 0.1s;
+            font-size: 1.3rem; 
+        }
+        
+        .vocab-highlight {
+            background-color: #fde047; 
+            transition: background-color 0.4s ease-in-out;
+            animation: highlight-pulse 1s 3; 
+        }
+        
+        @keyframes highlight-pulse {
+            0% { background-color: #fde047; }
+            50% { background-color: #fef08a; } 
+            100% { background-color: #fde047; }
+        }
+        
+        #vocabTooltip {
+            position: fixed; 
+            z-index: 100;
+            /* Cập nhật màu nền và màu chữ cho tooltip */
+            background-color: #645c51f7; /* Màu nền tối trong cả 2 mode để dễ đọc */
+            color: #6d28d9; 
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem; 
+            max-width: 300px;
+            pointer-events: none; 
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            transform: translateY(10px); 
+        }
+        #vocabTooltip.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #tooltipPinyin {
+            font-weight: 700; 
+            font-style: italic;
+            margin-bottom: 2px;
+            color: #1ae72a; 
+            font-family: 'Mulish', 'Inter', sans-serif; 
+        }
+        #tooltipViet {
+            color: #fcfcfa; 
+        }
+
+        /* Chiều cao cố định trên desktop cho các cột */
+        @media (min-width: 768px) {
+            .desktop-fixed-height {
+                height: 450px; 
+            }
+        }
+        
+        /* CSS MỚI/ĐIỀU CHỈNH cho phần Luyện Viết */
+        .dictation-listen-box {
+            display: flex; /* Dùng flex cho bố cục ngang */
+            align-items: center;
+            padding: 2px; /* Giảm padding */
+        }
+        #dictationPlayBtn {
+            padding: 0px !important; /* Giảm kích thước nút play */
+            min-width: 30px; /* Giảm kích thước tối thiểu */
+            min-height: 30px;
+            /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+        }
+        #dictationPlayBtn svg {
+            width: 32px; /* Giảm kích thước icon */
+            height: 32px;
+        }
+    </style>
+</head>
+<!-- Đảm bảo thẻ html có class dark nếu đang ở chế độ tối -->
+<body class="p-0 transition-colors duration-300">
+    <!-- Container chính: Thay đổi màu nền chính dựa vào dark mode -->
+    <div class="h-dvh flex flex-col bg-white dark:bg-gray-900 md:max-w-6xl md:mx-auto md:my-4 md:h-[95vh] md:rounded-xl md:shadow-2xl overflow-hidden transition-colors duration-300">
+        
+        <!-- Phần Tiêu đề & Chọn Bài -->
+        <header class="p-4 border-b pb-4 border-indigo-100 dark:border-gray-800 flex-shrink-0 transition-colors duration-300">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <h1 id="lessonHanziTitle" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 han-font"></h1>
+                
+                <div class="mt-4 sm:mt-0 flex items-center space-x-4">
+                    <!-- NÚT CHUYỂN ĐỔI SÁNG/TỐI (MỚI) -->
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-yellow-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-150 shadow-md flex items-center justify-center control-btn">
+                        <!-- Icon sẽ được cập nhật bằng JS -->
+                        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                           <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.525 3.518a.75.75 0 01-.19.988l-1.5 1.05a.75.75 0 01-.988-.19.75.75 0 01.19-.988l1.5-1.05a.75.75 0 01.988.19zm8.56 0a.75.75 0 01.988.19l1.5 1.05a.75.75 0 01-.19.988l-1.5-1.05a.75.75 0 01-.988-.19.75.75 0 01.19-.988zM2.25 12c0-.414.336-.75.75-.75h2.25a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zM17.25 12a.75.75 0 00.75.75h2.25a.75.75 0 000-1.5H18a.75.75 0 00-.75.75zM10.875 18a.75.75 0 01-1.5 0v-2.25a.75.75 0 011.5 0v2.25zM7.525 20.482a.75.75 0 01-.988-.19l-1.5-1.05a.75.75 0 01.19-.988.75.75 0 01.988.19l1.5 1.05a.75.75 0 01-.19.988zm8.56 0a.75.75 0 01-.19-.988l1.5-1.05a.75.75 0 01.988.19.75.75 0 01-.19.988l-1.5 1.05a.75.75 0 01-.988-.19zM12 5.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13z"/>
+                        </svg>
+                    </button>
+                    <!-- KẾT THÚC NÚT CHUYỂN ĐỔI SÁNG/TỐI -->
+
+                    <label for="lessonSelector" class="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap"></label>
+                    <select id="lessonSelector" onchange="loadLesson(this.value)" class="p-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-300 focus:border-indigo-500 dark:bg-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium">
+                        <!-- Options sẽ được chèn bằng JS -->
+                    </select>
+                </div>
+            </div>
+            <p id="lessonVietTitle" class="text-lg sm:text-xl font-semibold text-gray-600 dark:text-gray-400 mt-1"></p>
+        </header>
+
+        <!-- THANH ĐIỀU HƯỚNG TAB DESKTOP (Ẩn trên mobile) -->
+        <nav class="hidden md:flex border-b border-gray-200 dark:border-gray-700 flex-shrink-0 transition-colors duration-300">
+            <button id="tabBtnDesktop-doc" onclick="showTab('doc')" class="nav-tab-desktop active-tab-desktop">
+                Bài Đọc
+            </button>
+            <button id="tabBtnDesktop-viet" onclick="showTab('viet')" class="nav-tab-desktop">
+                Luyện Viết
+            </button>
+        </nav>
+
+        <!-- KHU VỰC NỘI DUNG CHÍNH (Cuộn được) -->
+        <main id="tabContainer" class="flex-grow overflow-y-auto p-4">
+            
+            <!-- TAB 1: BÀI ĐỌC (Bao gồm Từ Vựng trên desktop) -->
+            <div id="tabContentDoc">
+                
+                <!-- KHU VỰC 1: Hán tự và TỪ MỚI (Desktop: 2 cột | Mobile: 1 cột) -->
+                <section class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Cột 1: Hán tự (Nội dung) -->
+                    <div id="hanziSection" class="p-4 sm:p-6 bg-indigo-50 dark:bg-gray-800 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height transition-colors duration-300">
+                        <h2 class="text-lg sm:text-xl font-bold text-indigo-800 dark:text-indigo-400 mb-4 flex justify-between items-center flex-shrink-0">
+                            <span>Nội dung</span>
+                            
+                            <div class="flex items-center space-x-2">
+                                <span id="sentenceProgress" class="text-sm sm:text-base font-normal text-indigo-600 dark:text-indigo-400 hidden"></span>
+                                
+                                <!-- NÚT CHUYỂN ĐỔI CHẾ ĐỘ -->
+                                <button id="toggleModeBtn" onclick="toggleReadingMode()" class="p-2 bg-indigo-500 text-white hover:bg-indigo-600 transition duration-150 shadow-md flex items-center justify-center control-btn">
+                                    <svg id="modeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <!-- Icon mặc định: Toàn bài (Book) -->
+                                        <path d="M9 12H3C2.448 12 2 11.552 2 11V3c0-0.552 0.448-1 1-1h6c0.552 0 1 0.448 1 1v8c0 0.552-0.448 1-1 1zM9 14h10c0.552 0 1-0.448 1-1v-8c0-0.552-0.448-1-1-1h-10c-0.552 0-1 0.448-1 1v8c0 0.552 0.448 1 1 1z" />
+                                    </svg>
+                                </button>
+
+                                <!-- GHI ÂM CONTROLS -->
+                                <button id="recordBtn" onclick="startRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 00-4 4v7a4 4 0 008 0V5a4 4 0 00-4-4zm-5 13v.5a5 5 0 0010 0V14h2v.5a7 7 0 01-14 0V14h2z"/></svg>
+                                </button>
+                                <button id="stopBtn" onclick="stopRecording()" class="p-2 bg-red-500 text-white hover:bg-red-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>
+                                </button>
+                                <button id="playbackBtn" onclick="playRecording()" class="p-2 bg-green-500 text-white hover:bg-green-600 transition duration-150 shadow-md flex items-center justify-center control-btn hidden disabled:opacity-50">
+                                    <svg id="playIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg id="pauseIconRecord" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                </button>
+                                
+                                <!-- TTS Nút Đọc -->
+                                <button id="readBtn" onclick="readContent()" class="p-2 bg-indigo-600 text-white hover:bg-indigo-700 transition duration-150 shadow-md flex items-center justify-center control-btn">
+                                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 hidden" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </h2>
+                        
+                        <!-- Cập nhật màu chữ Hán tự -->
+                        <div id="hanzhiContent" class="text-xl sm:text-2xl text-gray-900 dark:text-gray-200 leading-relaxed tracking-wide han-font flex-grow overflow-y-auto pr-2 mb-4" onmouseup="handleSelection(event)" onmouseleave="hideTooltip()">
+                            <!-- Nội dung Hán tự sẽ được chèn vào đây bởi JS -->
+                        </div>
+                        <!-- Controls for Sentence Mode -->
+                        <div id="sentenceControls" class="absolute bottom-0 left-0 right-0 p-4 bg-indigo-50 dark:bg-gray-900 border-t border-indigo-200 dark:border-gray-800 rounded-b-lg flex justify-between hidden transition-colors duration-300">
+                            <button onclick="prevSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="prevBtn">
+                                &larr; Câu trước
+                            </button>
+                            <button onclick="nextSentence()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 text-sm" id="nextBtn">
+                                Câu sau &rarr;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cột 2: TỪ MỚI (Hiển thị cạnh bên trên desktop) -->
+                    <div id="vocabSection" class="p-4 sm:p-6 bg-red-100 dark:bg-gray-800 rounded-lg shadow-md flex flex-col content-box desktop-fixed-height hidden md:flex transition-colors duration-300">
+                        <h2 class="text-lg sm:text-xl font-bold text-red-700 dark:text-red-400 mb-4 flex items-center border-b pb-2 flex-shrink-0 border-red-200 dark:border-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
+                            </svg>
+                            Từ mới (Từ vựng)
+                        </h2>
+                        
+                        <!-- Bảng từ vựng (flex-grow để lấp đầy) -->
+                        <div id="vocabTableContainer" class="overflow-x-auto text-base vocab-table-container flex-grow">
+                            <!-- Cập nhật màu bảng -->
+                            <table class="min-w-full vocab-table bg-white dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg">
+                                <tbody id="vocabTableBody" class="text-gray-700 dark:text-gray-300 text-sm font-light divide-y divide-red-100 dark:divide-gray-700">
+                                    <!-- Dữ liệu từ vựng sẽ được chèn vào đây -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- KHU VỰC 2: Pinyin, Dịch nghĩa và NGỮ PHÁP (Sử dụng Tab, Toàn chiều rộng) -->
+                <section class="mb-10">
+                    <!-- Tab Controls -->
+                    <div class="flex flex-wrap border-b border-gray-200 dark:border-gray-700">
+                        <!-- Cập nhật màu hover và text mặc định của tab -->
+                        <button data-tab="pinyin" onclick="selectTab('pinyin')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 transition duration-150 active-tab">
+                            Phiên âm
+                        </button>
+                        <button data-tab="viet" onclick="selectTab('viet')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-green-600 dark:hover:text-green-400 hover:border-green-300 transition duration-150">
+                            Nghĩa
+                        </button>
+                        <button data-tab="grammar" onclick="selectTab('grammar')" class="tab-button px-4 py-3 text-sm sm:text-base font-medium border-b-2 border-transparent text-gray-500 hover:text-yellow-600 dark:hover:text-yellow-400 hover:border-yellow-300 transition duration-150">
+                            Ngữ pháp
+                        </button>
+                    </div>
+                    
+                    <!-- Tab Content -->
+                    <!-- Cập nhật màu nền và chữ cho tab content -->
+                    <div id="tabContentContainer" class="p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-b-lg shadow-inner min-h-[150px] transition-colors duration-300">
+                        <div id="pinyinContent" data-content="pinyin" class="tab-content text-base sm:text-base text-gray-700 dark:text-gray-300 pinyin-text italic leading-relaxed"></div>
+                        <div id="translationContent" data-content="viet" class="tab-content text-base sm:text-base text-gray-800 dark:text-gray-300 leading-relaxed hidden"></div>
+                        <div id="grammarContent" data-content="grammar" class="tab-content text-sm sm:text-base text-gray-800 dark:text-gray-300 leading-relaxed hidden"></div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- TAB 2: TỪ VỰNG (CHỈ HIỂN THỊ TRÊN MOBILE) -->
+            <div id="tabContentVocab" class="hidden md:hidden h-full">
+                <!-- Cột 2: TỪ MỚI -->
+                <div class="p-4 sm:p-6 bg-red-100 dark:bg-gray-800 rounded-lg shadow-md flex flex-col h-full content-box transition-colors duration-300">
+                    <h2 class="text-lg sm:text-xl font-bold text-red-700 dark:text-red-400 mb-4 flex items-center border-b pb-2 flex-shrink-0 border-red-200 dark:border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
+                        </svg>
+                        Từ vựng
+                    </h2>
+                    
+                    <!-- Bảng từ vựng (Reusing existing ID for mobile full screen) -->
+                    <div class="overflow-x-auto text-base vocab-table-container flex-grow">
+                        <table class="min-w-full vocab-table bg-white dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg">
+                            <tbody id="vocabTableBodyMobile" class="text-gray-700 dark:text-gray-300 text-sm font-light divide-y divide-red-100 dark:divide-gray-700">
+                                <!-- Dữ liệu từ vựng sẽ được chèn vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: LUYỆN VIẾT -->
+            <div id="tabContentViet" class="hidden">
+                <!-- KHU VỰC LUYỆN VIẾT (Dictation Mode) -->
+                <section id="dictationContent" class="min-h-[400px] p-4 sm:p-6 bg-yellow-50 dark:bg-gray-800 rounded-lg shadow-xl border-t-4 border-yellow-500 dark:border-yellow-600 transition-colors duration-300">
+                    <!-- KHỐI NGHE (ĐÃ ĐIỀU CHỈNH KÍCH THƯỚC VÀ BỐ CỤC) -->
+                    <div class="dictation-listen-box items-center space-x-3 mb-6  rounded-lg ">
+                        <button id="dictationPlayBtn" onclick="readDictationSentence()" class="p-4 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-150 shadow-lg flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                    <!-- Cập nhật màu nền và chữ của textarea -->
+                    <textarea id="dictationInput" rows="4" class="w-full p-4 border-2 border-yellow-300 dark:border-yellow-700 rounded-lg shadow-md resize-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 dark:bg-gray-900 dark:text-gray-100 han-font text-lg sm:text-xl text-gray-800 transition-colors duration-300" placeholder="Đánh máy câu tiếng Trung bạn vừa nghe được vào đây..."></textarea>
+                    
+                    <!-- Cập nhật màu nền và chữ cho kết quả -->
+                    <div id="dictationResult" class="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-inner hidden transition-colors duration-300">
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-gray-900 dark:text-gray-100">Kết quả:</h3>
+                        <p id="correctedSentence" class="han-font text-lg sm:text-xl leading-relaxed text-gray-900 dark:text-gray-100"></p>
+                        <p id="errorSummary" class="text-sm sm:text-base mt-2 text-gray-700 dark:text-gray-300"></p>
+                    </div>
+
+                    <!-- KHỐI NÚT ĐIỀU KHIỂN (ĐÃ GỘP HÀNG) -->
+                    <div class="mt-6 flex justify-between space-x-4">
+                        <button id="checkDictationBtn" onclick="checkDictation()" class="px-4 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition duration-150 shadow-md disabled:bg-gray-400 w-1/2 text-sm sm:text-base">
+                            Kiểm tra
+                        </button>
+                        <button id="nextDictationBtn" onclick="nextDictationSentence()" class="px-4 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md disabled:bg-gray-400 w-1/2 text-sm sm:text-base" disabled>
+                            Tiếp theo
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- THANH ĐIỀU HƯỚNG TAB MOBILE (Ẩn trên desktop) -->
+        <nav class="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 grid grid-cols-3 gap-1 p-1 flex-shrink-0 shadow-inner transition-colors duration-300">
+            <button id="tabBtnMobile-doc" onclick="showTab('doc')" class="nav-tab-mobile active-tab-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253" />
+                </svg>
+               
+            </button>
+            <button id="tabBtnMobile-vocab" onclick="showTab('vocab')" class="nav-tab-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                
+            </button>
+            <button id="tabBtnMobile-viet" onclick="showTab('viet')" class="nav-tab-mobile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                
+            </button>
+        </nav>
+    </div>
+    
+    <!-- Tooltip (Giữ nguyên) -->
+    <!-- ĐÃ XÓA CLASS "hidden" Ở ĐÂY -->
+    <div id="vocabTooltip">
+        <div id="tooltipPinyin"></div>
+        <div id="tooltipViet"></div>
+    </div>
+    
+    <!-- Overlays (Giữ nguyên) -->
+    <div id="customAlert" class="fixed top-4 right-4 bg-red-500 text-white p-3 rounded-lg shadow-xl z-[100] transition-transform duration-300 transform translate-x-full hidden"></div>
+    <div id="loadingIndicator" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-[110] hidden">
+         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-center shadow-lg transition-colors duration-300">
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300 font-medium">Đang tải dữ liệu bài học...</span>
+        </div>
+    </div>
+
+
+    <script>
+        // --- CHẾ ĐỘ SÁNG/TỐI (MỚI) ---
+        
+        // Trạng thái: true = Dark Mode, false = Light Mode
+        let isDarkMode = false; 
+
+        function setInitialTheme() {
+            // 1. Kiểm tra localStorage
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'dark') {
+                isDarkMode = true;
+            } else if (storedTheme === 'light') {
+                isDarkMode = false;
+            } else {
+                // 2. Kiểm tra prefers-color-scheme (mặc định của hệ thống)
+                isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
+            applyTheme(isDarkMode);
+        }
+
+        function applyTheme(isDark) {
+            const htmlElement = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                // Cập nhật icon: Icon Mặt Trăng (Moon)
+                if (icon) {
+                    icon.innerHTML = `<path fill-rule="evenodd" d="M9.544 2.25a.75.75 0 01.385-.453A8.253 8.253 0 005.118 4.295.75.75 0 015.432 6.64a.75.75 0 01-.84.093A7.502 7.502 0 014.2 9.75c0 3.326 2.097 6.1 5.025 7.152a.75.75 0 01.554-.627A8.253 8.253 0 0015.75 12.3c0-3.326-2.097-6.1-5.025-7.152a.75.75 0 01-.554-.627z" clip-rule="evenodd" />`;
+                    icon.title = "Đang ở chế độ Tối. Nhấn để chuyển sang chế độ Sáng.";
+                }
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                // Cập nhật icon: Icon Mặt Trời (Sun)
+                if (icon) {
+                    icon.innerHTML = `<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.525 3.518a.75.75 0 01-.19.988l-1.5 1.05a.75.75 0 01-.988-.19.75.75 0 01.19-.988l1.5-1.05a.75.75 0 01.988.19zm8.56 0a.75.75 0 01.988.19l1.5 1.05a.75.75 0 01-.19.988l-1.5-1.05a.75.75 0 01-.988-.19.75.75 0 01.19-.988zM2.25 12c0-.414.336-.75.75-.75h2.25a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zM17.25 12a.75.75 0 00.75.75h2.25a.75.75 0 000-1.5H18a.75.75 0 00-.75.75zM10.875 18a.75.75 0 01-1.5 0v-2.25a.75.75 0 011.5 0v2.25zM7.525 20.482a.75.75 0 01-.988-.19l-1.5-1.05a.75.75 0 01.19-.988.75.75 0 01.988.19l1.5 1.05a.75.75 0 01-.19.988zm8.56 0a.75.75 0 01-.19-.988l1.5-1.05a.75.75 0 01.988.19.75.75 0 01-.19.988l-1.5 1.05a.75.75 0 01-.988-.19zM12 5.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13z"/>`;
+                    icon.title = "Đang ở chế độ Sáng. Nhấn để chuyển sang chế độ Tối.";
+                }
+                localStorage.setItem('theme', 'light');
+            }
+            isDarkMode = isDark;
+        }
+
+        function toggleTheme() {
+            applyTheme(!isDarkMode);
+        }
+
+        // --- CẤU TRÚC DỮ LIỆU ---
+        const LESSON_METADATA = {
+            '1': {
+                title_hanzi: '相信自己',
+                title_viet: 'Tin vào chính mình'
+            },
+            '2': {
+                title_hanzi: '我的梦想',
+                title_viet: 'Ước mơ của tôi'
+            }
+        };
+
+
+        // Biến trạng thái
+        let fullTextData = []; 
+        let currentLessonVocab = []; 
+        let currentLessonGrammar = ''; 
+        let readingMode = 'full'; 
+        let currentSentenceIndex = 0;
+        let highlightedVocabRow = null; 
+        let tooltipTimeout; 
+
+        // Biến TTS và Ghi âm
+        const synth = window.speechSynthesis;
+        let utterance = null;
+        let isVoiceLoaded = false;
+        let mediaRecorder;
+        let audioChunks = [];
+        let audioBlob = null;
+        let audioURL = null;
+        let isRecording = false;
+        let stream = null;
+        let micPermissionGranted = false;
+        let currentAudio = null;
+
+
+        // --- HÀM MỚI: XỬ LÝ CHUYỂN TAB ---
+        function showTab(tabId) {
+            // Dừng mọi hoạt động
+            stopReading();
+            stopPlayback();
+            resetRecording();
+            removeHighlight();
+            hideTooltip();
+
+            // Lấy trạng thái màn hình (trên desktop hay không)
+            const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
+            // Ẩn tất cả nội dung tab
+            document.getElementById('tabContentDoc').classList.add('hidden');
+            document.getElementById('tabContentVocab').classList.add('hidden');
+            document.getElementById('tabContentViet').classList.add('hidden');
+
+            // Hiển thị tab được chọn
+            const contentDiv = document.getElementById(`tabContent${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`);
+            contentDiv.classList.remove('hidden');
+
+            // Xử lý hiển thị cột Từ Vựng trong tab DOC (Chỉ trên desktop)
+            const vocabSectionDesktop = document.getElementById('vocabSection');
+
+            if (tabId === 'doc') {
+                 // Tab Doc: Hiển thị 2 cột trên desktop
+                if (isDesktop) {
+                    vocabSectionDesktop.classList.remove('hidden');
+                    vocabSectionDesktop.classList.add('flex');
+                } else {
+                    vocabSectionDesktop.classList.add('hidden');
+                }
+            } else {
+                 // Tab Vocab/Viet: Ẩn cột Từ Vựng khỏi tab Doc
+                vocabSectionDesktop.classList.add('hidden');
+            }
+
+
+            // Cập nhật trạng thái active cho tab DESKTOP
+            document.querySelectorAll('.nav-tab-desktop').forEach(btn => btn.classList.remove('active-tab-desktop'));
+            if (document.getElementById(`tabBtnDesktop-${tabId}`)) {
+                document.getElementById(`tabBtnDesktop-${tabId}`).classList.add('active-tab-desktop');
+            }
+            // Tab vocab không có trên desktop, nên không cần cập nhật.
+
+
+            // Cập nhật trạng thái active cho tab MOBILE
+            document.querySelectorAll('.nav-tab-mobile').forEach(btn => btn.classList.remove('active-tab-mobile'));
+            document.getElementById(`tabBtnMobile-${tabId}`).classList.add('active-tab-mobile');
+            
+            // Xử lý logic riêng khi chuyển tab
+            if (tabId === 'viet') {
+                resetDictation();
+                if (fullTextData.length > 0) {
+                    readDictationSentence();
+                }
+            } else {
+                setMode(readingMode, false);
+            }
+        }
+
+        // --- HÀM CHUYỂN ĐỔI CHẾ ĐỘ (MỚI) ---
+        function toggleReadingMode() {
+            if (readingMode === 'full') {
+                setMode('sentence', true); // Chuyển sang chế độ từng câu
+            } else {
+                setMode('full', true); // Chuyển về chế độ toàn bài
+            }
+            
+            // Cập nhật icon
+            updateModeButtonIcon();
+        }
+        
+        // --- HÀM CẬP NHẬT ICON CHẾ ĐỘ (MỚI) ---
+        function updateModeButtonIcon() {
+            const modeIcon = document.getElementById('modeIcon');
+            if (modeIcon) {
+                if (readingMode === 'full') {
+                    // Icon Toàn bài (Book)
+                    modeIcon.innerHTML = `<path d="M9 12H3C2.448 12 2 11.552 2 11V3c0-0.552 0.448-1 1-1h6c0.552 0 1 0.448 1 1v8c0 0.552-0.448 1-1 1zM9 14h10c0.552 0 1-0.448 1-1v-8c0-0.552-0.448-1-1-1h-10c-0.552 0-1 0.448-1 1v8c0 0.552 0.448 1 1 1z" />`;
+                    modeIcon.title = "Đang ở chế độ Toàn bài. Nhấn để chuyển sang Từng câu.";
+                } else {
+                    // Icon Luyện từng câu (List/Lines)
+                    modeIcon.innerHTML = `<path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd" />`;
+                    modeIcon.title = "Đang ở chế độ Từng câu. Nhấn để chuyển về Toàn bài.";
+                }
+            }
+        }
+        
+        // --- HÀM XỬ LÝ DỮ LIỆU (Giữ nguyên) ---
+
+        function parseLessonData(baidocText, tumoiText, nguphapText) {
+            const splitSentences = (text, delimiters) => {
+                const delimiterRegex = new RegExp(`([${delimiters.join('')}])`, 'g');
+                const parts = text.split(delimiterRegex).map(s => s.trim()).filter(s => s.length > 0);
+                
+                let sentences = [];
+                for (let i = 0; i < parts.length; i++) {
+                    const part = parts[i];
+                    if (delimiters.includes(part)) {
+                        if (sentences.length > 0) {
+                            sentences[sentences.length - 1] += part;
+                        }
+                    } else {
+                        sentences.push(part);
+                    }
+                }
+                return sentences;
+            };
+
+            const blocks = baidocText.split('$').map(b => b.trim()).filter(b => b.length > 0);
+            
+            if (blocks.length !== 3) {
+                console.error("Lỗi cú pháp baidoc.txt: Cần đúng 3 khối (Hanzi$Pinyin$Viet) được phân tách bằng '$'.");
+                return { 
+                    sentences: [], 
+                    vocab: [], 
+                    grammar: nguphapText || 'Lỗi cấu trúc tệp baidoc.txt.' 
+                };
+            }
+
+            const [hanziBlock, pinyinBlock, vietBlock] = blocks;
+            
+            const chineseDelimiters = ['。', '！', '？'];
+            const pinyinDelimiters = ['。', '！', '？', '.']; 
+            const vietDelimiters = ['.', '?', '!'];
+
+            const hanziSentences = splitSentences(hanziBlock, chineseDelimiters);
+            const pinyinSentences = splitSentences(pinyinBlock, pinyinDelimiters);
+            const vietSentences = splitSentences(vietBlock, vietDelimiters);
+            
+            const minLength = Math.min(hanziSentences.length, pinyinSentences.length, vietSentences.length);
+            if (hanziSentences.length !== minLength || pinyinSentences.length !== minLength || vietSentences.length !== minLength) {
+                 console.warn(`Cảnh báo: Số lượng câu không khớp. Hanzi: ${hanziSentences.length}, Pinyin: ${pinyinSentences.length}, Việt: ${vietSentences.length}. Chỉ lấy ${minLength} câu.`);
+            }
+
+            const parsedSentences = [];
+            for (let i = 0; i < minLength; i++) {
+                parsedSentences.push({
+                    hanzi: hanziSentences[i].trim(),
+                    pinyin: pinyinSentences[i].trim(),
+                    viet: vietSentences[i].trim()
+                });
+            }
+
+            const normalizedVocabText = tumoiText.replace(/(\r\n|\r|\n)/g, '||'); 
+            const vocabLines = normalizedVocabText.split('||').filter(l => l.trim() !== '');
+            const parsedVocab = vocabLines.map(line => {
+                const parts = line.split('|');
+                return { 
+                    hanzi: parts[0].trim(), 
+                    pinyin: parts[1] ? parts[1].trim() : '', 
+                    viet: parts[2] ? parts[2].trim() : '' 
+                };
+            });
+            
+            const grammarText = nguphapText || 'Không có ngữ pháp quan trọng trong bài này.';
+
+            return {
+                sentences: parsedSentences,
+                vocab: parsedVocab,
+                grammar: grammarText
+            };
+        }
+        
+        // --- HÀM FETCH DỮ LIỆU (Giữ nguyên) ---
+
+        async function fetchFile(path) {
+            const response = await fetch(path);
+            if (!response.ok) {
+                console.error(`Lỗi: Không thể tải tệp: ${path}. Status: ${response.status}`);
+                return ''; 
+            }
+            return response.text();
+        }
+
+        async function fetchLessonFiles(lessonId) {
+            const basePath = `data_chendu/bai${lessonId}`;
+            const [baidocText, tumoiText, nguphapText] = await Promise.all([
+                fetchFile(`${basePath}/baidoc.txt`),
+                fetchFile(`${basePath}/tumoi.txt`),
+                fetchFile(`${basePath}/nguphap.txt`)
+            ]);
+            return { baidocText, tumoiText, nguphapText };
+        }
+
+
+        // --- HÀM TẢI BÀI ĐỌC (CẬP NHẬT: Cập nhật cả 2 bảng từ vựng) ---
+
+        async function loadLesson(lessonId) {
+            stopReading();
+            stopPlayback();
+            hideTooltip(); 
+            
+            const metadata = LESSON_METADATA[lessonId];
+            if (!metadata) {
+                alertMessage(`Lỗi: Không tìm thấy siêu dữ liệu cho bài ${lessonId}`, 'error');
+                return;
+            }
+
+            document.getElementById('loadingIndicator').classList.remove('hidden'); 
+            
+            try {
+                const { baidocText, tumoiText, nguphapText } = await fetchLessonFiles(lessonId);
+                const data = parseLessonData(baidocText, tumoiText, nguphapText);
+                
+                fullTextData = data.sentences;
+                currentLessonVocab = data.vocab;
+                currentLessonGrammar = data.grammar;
+                currentSentenceIndex = 0; 
+
+                //document.getElementById('lessonHanziTitle').textContent = `${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
+                document.getElementById('lessonHanziTitle').textContent = `晨读${lessonId.toUpperCase()}: ${metadata.title_hanzi}`;
+                //document.getElementById('lessonVietTitle').textContent = `Bài Luyện Đọc Sáng: ${metadata.title_viet}`;
+
+                // Cập nhật cả 2 bảng từ vựng (desktop và mobile)
+                updateVocabTable(currentLessonVocab, 'vocabTableBody');
+                updateVocabTable(currentLessonVocab, 'vocabTableBodyMobile');
+                
+                updateGrammarContent(currentLessonGrammar);
+                
+                readingMode = 'full';
+                showTab('doc'); // Tự động chuyển về tab Bài Đọc
+                setMode('full', false); // Cập nhật UI cho chế độ 'full'
+
+                document.getElementById('lessonSelector').value = lessonId;
+                
+                 if (fullTextData.length > 0) readContent();
+                
+            } catch (error) {
+                console.error("Lỗi khi tải dữ liệu bài học:", error);
+                alertMessage(`Lỗi khi tải nội dung bài ${lessonId}. Vui lòng kiểm tra console.`, 'error');
+            } finally {
+                document.getElementById('loadingIndicator').classList.add('hidden'); 
+            }
+        }
+        
+        // CẬP NHẬT: Hàm nhận thêm ID body của bảng từ vựng
+        function updateVocabTable(vocabData, tableBodyId) {
+            const tableBody = document.getElementById(tableBodyId);
+            if (!tableBody) return; 
+            
+            tableBody.innerHTML = ''; 
+            removeHighlight(); 
+
+            vocabData.forEach(item => {
+                const row = document.createElement('tr');
+                // Thêm class hover cho dark mode
+                row.classList.add('hover:bg-red-50', 'dark:hover:bg-gray-700'); 
+                const vocabId = 'vocab-' + item.hanzi.replace(/\s/g, '').replace(/[\(\)]/g, ''); 
+                row.id = vocabId;
+                
+                // Cập nhật màu chữ cho dark mode
+                row.innerHTML = `
+                    <td class="py-1 px-2 text-red-800 dark:text-red-300 han-font vocab-hanzi" onclick="readVocab(this.textContent)">${item.hanzi}</td>
+                    <td class="py-1 px-2 italic text-gray-700 dark:text-gray-400">${item.pinyin}</td>
+                    <td class="py-1 px-2 text-gray-700 dark:text-gray-400">${item.viet}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // --- CẬP NHẬT: HÀM XỬ LÝ NGỮ PHÁP (Giảm khoảng cách dòng) ---
+        function updateGrammarContent(grammarText) {
+            const grammarContentDiv = document.getElementById('grammarContent');
+            
+            // Tách văn bản thành các khối (paragraph) bằng dấu xuống dòng kép hoặc nhiều khoảng trắng
+            // Loại bỏ các dòng trống/khoảng trắng dư thừa
+            const blocks = grammarText.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
+            
+            let htmlOutput = blocks.map(block => {
+                // Thay thế dấu xuống dòng đơn trong mỗi khối bằng <br>
+                const content = block.replace(/\n/g, '<br>');
+                // Đặt margin bottom nhỏ (mb-3) cho mỗi khối <p> để kiểm soát khoảng cách, 
+                // thay vì dựa vào CSS mặc định lớn và cấu trúc <p> lồng nhau không hợp lệ.
+                return `<p class="mb-3">${content}</p>`;
+            }).join('');
+
+            grammarContentDiv.innerHTML = htmlOutput;
+        }
+
+
+        // --- HÀM TAB CONTROL (Giữ nguyên) ---
+        
+        function selectTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+                // Xóa tất cả các màu sắc cụ thể
+                tab.classList.remove('text-indigo-600', 'text-green-600', 'text-yellow-600');
+                tab.classList.remove('dark:text-indigo-400', 'dark:text-green-400', 'dark:text-yellow-400');
+                
+                // Đặt lại màu mặc định
+                tab.classList.add('text-gray-500');
+            });
+
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            const activeTabButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+            activeTabButton.classList.add('active-tab');
+            activeTabButton.classList.remove('text-gray-500');
+
+            if (tabId === 'pinyin') {
+                activeTabButton.classList.add('text-indigo-600', 'dark:text-indigo-400');
+            } else if (tabId === 'viet') {
+                activeTabButton.classList.add('text-green-600', 'dark:text-green-400');
+            } else if (tabId === 'grammar') {
+                 activeTabButton.classList.add('text-yellow-600', 'dark:text-yellow-400');
+            }
+
+            document.querySelector(`.tab-content[data-content="${tabId}"]`).classList.remove('hidden');
+        }
+
+
+        // --- HÀM HỖ TRỢ CHUNG (Giữ nguyên) ---
+
+        function alertMessage(message, type = 'error', duration = 3000) {
+            const alertDiv = document.getElementById('customAlert');
+            alertDiv.textContent = message;
+            alertDiv.classList.remove('bg-red-500', 'bg-green-500', 'hidden');
+            if (type === 'error') {
+                alertDiv.classList.add('bg-red-500');
+            } else {
+                alertDiv.classList.add('bg-green-500');
+            }
+            alertDiv.classList.remove('translate-x-full');
+            alertDiv.classList.add('translate-x-0');
+
+            setTimeout(() => {
+                alertDiv.classList.add('translate-x-full');
+                setTimeout(() => alertDiv.classList.add('hidden'), 300); 
+            }, duration);
+        }
+
+        // --- HÀM TƯƠNG TÁC TỪ VỰNG (Giữ nguyên) ---
+
+        function removeHighlight() {
+             if (highlightedVocabRow) {
+                highlightedVocabRow.classList.remove('vocab-highlight');
+                highlightedVocabRow.style.backgroundColor = ''; 
+                highlightedVocabRow = null;
+             }
+        }
+
+        function highlightVocab(hanzi) {
+            removeHighlight();
+            const vocabId = 'vocab-' + hanzi.replace(/\s/g, '').replace(/[\(\)]/g, '');
+            
+            let row = document.getElementById(vocabId);
+            
+            if (row) {
+                row.classList.add('vocab-highlight');
+                highlightedVocabRow = row;
+                
+                // Cuộn đến vị trí của hàng (chỉ cần cuộn trong bảng đang hiển thị)
+                const containerDesktop = document.getElementById('vocabTableContainer');
+                
+                if (containerDesktop) {
+                    const rowTop = row.offsetTop - containerDesktop.offsetTop;
+                    const rowHeight = row.offsetHeight;
+                    const containerHeight = containerDesktop.clientHeight;
+                    
+                    if (rowTop < containerDesktop.scrollTop || (rowTop + rowHeight) > (containerDesktop.scrollTop + containerHeight)) {
+                         containerDesktop.scrollTop = rowTop - (containerHeight / 2) + (rowHeight / 2);
+                    }
+                }
+                
+                setTimeout(() => {
+                    row.classList.remove('vocab-highlight');
+                    highlightedVocabRow = null;
+                }, 3000); 
+            }
+        }
+        
+        function showTooltip(bounds, pinyin, viet) {
+            const tooltip = document.getElementById('vocabTooltip');
+            document.getElementById('tooltipPinyin').textContent = pinyin;
+            document.getElementById('tooltipViet').textContent = viet;
+            
+            tooltip.classList.remove('hidden');
+            
+            requestAnimationFrame(() => {
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+                const centerXPct = bounds.left + bounds.width / 2;
+                let finalX = centerXPct - (tooltipWidth / 2);
+                
+                if (finalX < 10) finalX = 10;
+                const viewportWidth = document.documentElement.clientWidth;
+                if (finalX + tooltipWidth > viewportWidth - 10) {
+                    finalX = viewportWidth - tooltipWidth - 10;
+                }
+
+                let finalY = bounds.top - tooltipHeight - 10; 
+                if (finalY < 0) {
+                     finalY = bounds.bottom + 10;
+                }
+                
+                tooltip.style.left = `${finalX}px`;
+                tooltip.style.top = `${finalY}px`;
+                tooltip.classList.add('show');
+            });
+            
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = setTimeout(hideTooltip, 3000); 
+        }
+
+        function hideTooltip() {
+            clearTimeout(tooltipTimeout);
+            const tooltip = document.getElementById('vocabTooltip');
+            tooltip.classList.remove('show');
+            setTimeout(() => tooltip.classList.add('hidden'), 200);
+        }
+
+        function handleSelection(event) {
+            // Đảm bảo không xử lý khi đang ở tab Luyện Viết
+            if (!document.getElementById('tabContentViet').classList.contains('hidden')) return;
+
+            const selection = window.getSelection();
+            if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
+                 hideTooltip();
+                 return;
+            }
+            
+            const range = selection.getRangeAt(0);
+            const bounds = range.getBoundingClientRect();
+            let selectedText = selection.toString().trim().replace(/[\s\r\n，。！？、]/g, '');
+
+            if (selectedText.length === 0) {
+                 hideTooltip();
+                 return;
+            }
+            
+            const matchingVocab = currentLessonVocab.find(vocab => vocab.hanzi === selectedText);
+
+            if (matchingVocab) {
+                highlightVocab(matchingVocab.hanzi);
+                readVocab(matchingVocab.hanzi);
+                showTooltip(bounds, matchingVocab.pinyin, matchingVocab.viet);
+            } else {
+                 hideTooltip();
+            }
+        }
+        
+        // --- HÀM TTS (Giữ nguyên) ---
+
+        function getChineseVoice() {
+            return synth.getVoices().find(voice => voice.lang.startsWith('zh-') && (voice.name.includes('China') || voice.name.includes('Mandarin'))) ||
+                   synth.getVoices().find(voice => voice.lang.startsWith('zh-'));
+        }
+
+        function stopReading() {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            updateReadButton(false);
+        }
+
+        function updateReadButton(isSpeaking) {
+            document.getElementById('playIcon').classList.toggle('hidden', isSpeaking);
+            document.getElementById('pauseIcon').classList.toggle('hidden', !isSpeaking);
+        }
+        
+        function readContent() {
+            if (synth.speaking) {
+                stopReading();
+                return;
+            }
+            
+            if (fullTextData.length === 0) {
+                 alertMessage('Không có nội dung bài đọc để phát.', 'error');
+                 return;
+            }
+            
+            let textToRead = '';
+            let btnId = '';
+            
+            const isDictationTabActive = !document.getElementById('tabContentViet').classList.contains('hidden');
+
+            if (isDictationTabActive) {
+                textToRead = fullTextData[currentSentenceIndex].hanzi;
+                btnId = 'dictationPlayBtn';
+            } else if (readingMode === 'full') {
+                textToRead = fullTextData.map(d => d.hanzi).join('');
+                btnId = 'readBtn';
+            } else if (readingMode === 'sentence') {
+                textToRead = fullTextData[currentSentenceIndex].hanzi;
+                btnId = 'readBtn';
+            }
+
+            if (textToRead) {
+                utterance = new SpeechSynthesisUtterance(textToRead);
+                const chineseVoice = getChineseVoice();
+                if (chineseVoice) {
+                    utterance.voice = chineseVoice;
+                } else {
+                    utterance.lang = 'zh-CN'; 
+                }
+
+                if (btnId === 'readBtn') {
+                     utterance.onstart = () => updateReadButton(true);
+                     utterance.onend = () => updateReadButton(false);
+                }
+                
+                synth.speak(utterance);
+            }
+        }
+        
+        function readVocab(text) {
+             stopReading();
+             const vocabUtterance = new SpeechSynthesisUtterance(text);
+             const chineseVoice = getChineseVoice();
+             if (chineseVoice) {
+                 vocabUtterance.voice = chineseVoice;
+             } else {
+                 vocabUtterance.lang = 'zh-CN'; 
+             }
+             synth.speak(vocabUtterance);
+        }
+
+        function readDictationSentence() {
+            readContent();
+        }
+
+        // --- HÀM GHI ÂM (Giữ nguyên) ---
+        
+        function stopPlayback() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0; 
+                currentAudio = null;
+            }
+        }
+        
+        function resetRecording() {
+            stopPlayback(); 
+            if (audioURL) {
+                URL.revokeObjectURL(audioURL);
+            }
+            audioChunks = [];
+            audioBlob = null;
+            audioURL = null;
+            isRecording = false;
+            updateRecordingControls('initial');
+        }
+        
+        function updateRecordingControls(state) {
+            const recordBtn = document.getElementById('recordBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const playbackBtn = document.getElementById('playbackBtn');
+            const playIconRecord = document.getElementById('playIconRecord');
+            const pauseIconRecord = document.getElementById('pauseIconRecord');
+
+            // Chỉ hiển thị trong tab Doc và chế độ Sentence
+            const isDocTabActive = !document.getElementById('tabContentDoc').classList.contains('hidden');
+            const visible = isDocTabActive && readingMode === 'sentence';
+            
+            recordBtn.classList.toggle('hidden', !visible);
+            playbackBtn.classList.toggle('hidden', !visible);
+            
+            recordBtn.classList.remove('blinking');
+            stopBtn.classList.add('hidden');
+            stopBtn.classList.remove('bg-gray-500'); 
+            stopBtn.classList.add('bg-red-500', 'hover:bg-red-600'); 
+            recordBtn.disabled = true;
+            playbackBtn.disabled = true;
+            playIconRecord.classList.remove('hidden');
+            pauseIconRecord.classList.add('hidden');
+
+            if (visible) {
+                if (state === 'initial' || state === 'recorded' || state === 'paused') {
+                    recordBtn.disabled = false;
+                    if (state === 'initial') {
+                        playbackBtn.classList.add('hidden');
+                    } else {
+                        playbackBtn.classList.remove('hidden');
+                        playbackBtn.disabled = false;
+                    }
+                } else if (state === 'recording') {
+                    recordBtn.classList.add('hidden');
+                    stopBtn.classList.remove('hidden');
+                    stopBtn.disabled = false;
+                    stopBtn.classList.add('blinking');
+                } else if (state === 'playing') {
+                    playbackBtn.disabled = false; 
+                    playIconRecord.classList.add('hidden');
+                    pauseIconRecord.classList.remove('hidden');
+                } else if (state === 'error') {
+                    recordBtn.disabled = false;
+                    playbackBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        async function startRecording() {
+            stopReading(); 
+            stopPlayback(); 
+            try {
+                if (!micPermissionGranted) {
+                    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    micPermissionGranted = true;
+                }
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+                mediaRecorder.onstop = () => {
+                    const mimeType = audioChunks[0]?.type || 'audio/webm'; 
+                    audioBlob = new Blob(audioChunks, { type: mimeType });
+                    audioURL = URL.createObjectURL(audioBlob);
+                    isRecording = false;
+                    updateRecordingControls('recorded');
+                    //alertMessage('Đã ghi âm xong! Nhấn nút Play để nghe lại.', 'success', 4000);
+                };
+                mediaRecorder.onerror = (e) => {
+                    console.error('Lỗi ghi âm:', e.error);
+                    alertMessage('Lỗi: ' + e.error.name + '. Không thể ghi âm.', 'error');
+                    resetRecording();
+                    updateRecordingControls('error');
+                };
+                mediaRecorder.start();
+                isRecording = true;
+                updateRecordingControls('recording');
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+                alertMessage('Lỗi: Không thể truy cập microphone. Vui lòng cấp quyền ghi âm.', 'error');
+                updateRecordingControls('initial');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+        }
+
+        function playRecording() {
+            if (!audioURL) {
+                alertMessage('Vui lòng ghi âm câu của bạn trước.', 'error', 3000);
+                return;
+            }
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                updateRecordingControls('paused');
+            } else if (currentAudio) {
+                currentAudio.play();
+                updateRecordingControls('playing');
+            } else {
+                currentAudio = new Audio(audioURL);
+                updateRecordingControls('playing');
+                currentAudio.onended = () => {
+                    updateRecordingControls('recorded'); 
+                    currentAudio = null;
+                };
+                currentAudio.play();
+            }
+        }
+
+        // --- HÀM CHUYỂN ĐỔI CHẾ ĐỘ & HIỂN THỊ (Cập nhật để gọi updateModeButtonIcon) ---
+
+        function setMode(mode, resetIndex = true) {
+            stopReading(); 
+            stopPlayback(); 
+            resetRecording(); 
+            removeHighlight(); 
+            hideTooltip(); 
+
+            if (resetIndex) {
+                 currentSentenceIndex = 0; 
+            }
+            readingMode = mode;
+            
+            // Xóa logic cập nhật trạng thái nút cũ
+            // document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
+            // document.getElementById(`${mode}ModeBtn`).classList.add('active');
+            
+            updateDisplay(); 
+            updateModeButtonIcon(); // Cập nhật icon khi chế độ thay đổi
+            
+            if (mode === 'sentence') {
+                updateRecordingControls('initial'); 
+            }
+        }
+
+        function updateDisplay() {
+            stopReading(); 
+            stopPlayback(); 
+            resetRecording(); 
+            removeHighlight(); 
+            hideTooltip(); 
+            
+            if (fullTextData.length === 0) {
+                 document.getElementById('hanzhiContent').innerHTML = 'Không có dữ liệu bài đọc.';
+                 document.getElementById('pinyinContent').innerHTML = '';
+                 document.getElementById('translationContent').innerHTML = '';
+                 return;
+            }
+
+            const hanzhiContent = document.getElementById('hanzhiContent');
+            const pinyinContent = document.getElementById('pinyinContent');
+            const translationContent = document.getElementById('translationContent');
+            const sentenceControls = document.getElementById('sentenceControls');
+            const sentenceProgress = document.getElementById('sentenceProgress');
+            
+            selectTab('pinyin'); 
+
+            hanzhiContent.innerHTML = '';
+            pinyinContent.innerHTML = '';
+            translationContent.innerHTML = '';
+
+            const sentenceFontSize = '1.5rem'; 
+
+            if (readingMode === 'full') {
+                hanzhiContent.innerHTML = fullTextData.map(d => d.hanzi).join(''); 
+                pinyinContent.innerHTML = fullTextData.map(d => d.pinyin).join(' '); 
+                translationContent.innerHTML = fullTextData.map(d => d.viet).join(' '); 
+                
+                sentenceControls.classList.add('hidden');
+                sentenceProgress.classList.add('hidden');
+                // hanziContent.classList.remove(sentenceFontSize); // Class này không tồn tại
+                
+                updateRecordingControls('hidden'); // Ẩn nút ghi âm
+
+            } else if (readingMode === 'sentence') {
+                const currentData = fullTextData[currentSentenceIndex];
+
+                hanzhiContent.innerHTML = currentData.hanzi;
+                // hanziContent.classList.add(sentenceFontSize); // Class này không tồn tại
+                
+                pinyinContent.innerHTML = currentData.pinyin;
+                translationContent.innerHTML = currentData.viet;
+
+                sentenceControls.classList.remove('hidden');
+                sentenceProgress.classList.remove('hidden');
+                sentenceProgress.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`;
+
+                document.getElementById('prevBtn').disabled = currentSentenceIndex === 0;
+                document.getElementById('nextBtn').disabled = currentSentenceIndex === fullTextData.length - 1;
+
+                updateRecordingControls('initial');
+            }
+        }
+
+        function nextSentence() {
+            if (currentSentenceIndex < fullTextData.length - 1) {
+                currentSentenceIndex++;
+                updateDisplay();
+                readContent(); 
+            }
+        }
+
+        function prevSentence() {
+            if (currentSentenceIndex > 0) {
+                currentSentenceIndex--;
+                updateDisplay();
+                readContent(); 
+            }
+        }
+        
+        // --- HÀM DICTATION MODE (Giữ nguyên) ---
+        
+        function resetDictation() {
+            currentSentenceIndex = 0;
+            document.getElementById('dictationInput').value = '';
+            document.getElementById('dictationResult').classList.add('hidden');
+            document.getElementById('nextDictationBtn').disabled = true;
+            document.getElementById('checkDictationBtn').disabled = false;
+            updateDictationProgress();
+        }
+        
+        function updateDictationProgress() {
+            const progressSpan = document.getElementById('dictationProgress');
+            if (fullTextData.length > 0) {
+                // progressSpan.textContent = `${currentSentenceIndex + 1}/${fullTextData.length}`; // Bỏ vì không dùng ID
+            } else {
+                // progressSpan.textContent = `0/0`; // Bỏ vì không dùng ID
+            }
+            
+            const nextBtn = document.getElementById('nextDictationBtn');
+            if (currentSentenceIndex === fullTextData.length - 1 && !nextBtn.disabled) {
+                 nextBtn.textContent = 'Hoàn thành!';
+            } else {
+                 nextBtn.textContent = 'Câu kế tiếp →';
+            }
+        }
+        
+        function checkDictation() {
+            const userInput = document.getElementById('dictationInput').value.trim();
+            const correctSentence = fullTextData[currentSentenceIndex].hanzi;
+            
+            const resultDiv = document.getElementById('dictationResult');
+            const correctedP = document.getElementById('correctedSentence');
+            const errorSummary = document.getElementById('errorSummary');
+            
+            let htmlOutput = '';
+            let correctCount = 0;
+            let totalLength = correctSentence.length;
+
+            for (let i = 0; i < totalLength; i++) {
+                const charCorrect = correctSentence[i];
+                const charInput = userInput[i] || ' '; 
+                
+                if (charInput === charCorrect) {
+                    htmlOutput += charCorrect;
+                    correctCount++;
+                } else {
+                    htmlOutput += `<span class="incorrect" title="Bạn đã viết: ${charInput || '[Trống]'}">${charCorrect}</span>`;
+                }
+            }
+            
+            if (userInput.length > totalLength) {
+                errorSummary.textContent = `Lỗi: Bạn đã viết thừa ${userInput.length - totalLength} ký tự.`;
+            } else {
+                const errorCount = totalLength - correctCount;
+                errorSummary.textContent = `Kết quả: Đúng ${correctCount}/${totalLength} ký tự. Lỗi: ${errorCount} ký tự.`;
+            }
+
+            correctedP.innerHTML = htmlOutput;
+            resultDiv.classList.remove('hidden');
+            
+            document.getElementById('nextDictationBtn').disabled = false;
+            document.getElementById('checkDictationBtn').disabled = true;
+        }
+
+        function nextDictationSentence() {
+            if (currentSentenceIndex < fullTextData.length - 1) {
+                currentSentenceIndex++;
+                document.getElementById('dictationInput').value = '';
+                document.getElementById('dictationResult').classList.add('hidden');
+                document.getElementById('nextDictationBtn').disabled = true;
+                document.getElementById('checkDictationBtn').disabled = false;
+                
+                updateDictationProgress();
+                readDictationSentence(); 
+            } else {
+                alertMessage('Bạn đã hoàn thành bài luyện viết!', 'success', 5000);
+            }
+        }
+        
+        // --- HÀM KHỞI TẠO (Giữ nguyên) ---
+        
+        function populateLessonSelector() {
+            const selector = document.getElementById('lessonSelector');
+            selector.innerHTML = '';
+            
+            const lessonIds = Object.keys(LESSON_METADATA).sort();
+            
+            lessonIds.forEach((id, index) => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = `Bài ${index + 1}: ${LESSON_METADATA[id].title_viet}`; 
+                selector.appendChild(option);
+            });
+            
+            return lessonIds[0]; 
+        }
+
+
+        // Khởi tạo hiển thị khi tải trang
+        window.onload = () => {
+            setInitialTheme(); // KHỞI TẠO CHẾ ĐỘ SÁNG/TỐI
+            
+            const defaultLessonId = populateLessonSelector();
+            loadLesson(defaultLessonId); 
+            
+            // Xử lý sự kiện resize để đảm bảo bố cục 2 cột chỉ hiển thị trên desktop khi loadLesson() đã chạy
+            window.addEventListener('resize', () => {
+                 const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+                 const vocabSectionDesktop = document.getElementById('vocabSection');
+                 const docTabActive = !document.getElementById('tabContentDoc').classList.contains('hidden');
+                 
+                 if (docTabActive) {
+                    if (isDesktop) {
+                        vocabSectionDesktop.classList.remove('hidden');
+                        vocabSectionDesktop.classList.add('flex');
+                    } else {
+                        vocabSectionDesktop.classList.add('hidden');
+                    }
+                 }
+            });
+
+
+            if (synth.onvoiceschanged !== undefined) {
+                synth.onvoiceschanged = () => {
+                    isVoiceLoaded = true;
+                };
+            }
+        };
+
+    </script>
+</body>
+</html>
