@@ -1,60 +1,252 @@
-叫|jiào|gọi, tên là
-请|qǐng|Mời, xin
-问|wèn|Hỏi
-吃|chī|Ăn
-喝|hē|Uống
-说|shuō|Nói
-喜欢|xǐhuān|Thích
-什么|shénme|Gì, cái gì
-名字|míngzi|Tên
-贵姓|guìxìng|Quý tính
-姓|xìng|Họ
-他|tā|Anh ấy
-她|tā|Cô ấy
-们|men|Hậu tố số nhiều 
-人|rén|Người
-也|yě|Cũng
-都|dōu|Đều
-中国|Zhōngguó|Trung Quốc
-美国|Měiguó|Mỹ
-英国|Yīngguó|Anh
-韩国|Hánguó|Hàn Quốc
-泰国|Tàiguó|Thái Lan
-德国|Déguó|Đức
-法国|Fǎguó|Pháp
-日本|Rìběn|Nhật Bản
-越南|Yuènán|Việt Nam
-汉语|Hànyǔ|Tiếng Hán
-英语|Yīngyǔ|Tiếng Anh
-冰淇淋|bīngqílín|kem
-包子|bāozi|bánh bao
-唱歌|chànggē|hát
-啤酒|píjiǔ|bia
-奶茶|nǎichá|trà sữa
-学校|xuéxiào|trường học
-帮助|bāngzhù|giúp đỡ
-开会|kāihuì|họp
-房子|fángzi| ngôi nhà
-手机|shǒujī|điện thoại
-打扫|dǎsǎo|quét dọn
-报纸|bàozhǐ|báo giấy
-摩托车|mótuōchē|xe máy
-操场|cāochǎng|sân vận động
-教室|jiàoshì|phòng học
-星期|xīngqī|tuần
-机器|jīqì|máy móc
-水果|shuǐguǒ|hoa quả
-汉字|hànzì|chữ Hán
-汽车|qìchē|ô tô
-洗澡|xǐzǎo|tắm
-游泳|yóuyǒng|bơi
-炒饭|chǎofàn|cơm rang
-牛奶|niúnǎi|sữa bò
-睡觉|shuìjiào|ngủ
-篮球|lánqiú|bóng rổ
-红茶|hóngchá|hồng trà
-羽毛球|yǔmáoqiú|cầu lông
-面包|miànbāo|bánh mì
-面条|miàntiáo|mì sợi
-音乐|yīnyuè|âm nhạc
-香蕉|xiāngjiāo|chuối
+急|jí|Gấp gáp, lo lắng
+可惜|kě xī|Tiếc nuối, đáng tiếc
+放松|fàng sōng|Thư giãn
+耐心|nài xīn|Kiên nhẫn
+奖金|jiǎng jīn|Tiền thưởng
+提供|tí gōng|Cung cấp
+一套|yī tào|Một bộ
+甜食|tián shí|Đồ ngọt, món ăn ngọt
+巧克力|qiǎo kè lì|Sô cô la
+糖|táng|Đường, kẹo
+研究生|yán jiū shēng|nghiên cứu sinh
+迷路|mí lù|Lạc đường
+钥匙|yào shi|Chìa khóa
+结账|jié zhàng|Thanh toán
+专门|zhuān mén|Chuyên môn, đặc biệt
+国家级|guó jiā jí|Cấp quốc gia
+肯定|kěn dìng|Chắc chắn, xác nhận
+退房|tuì fáng|Trả phòng
+失恋|shī liàn|Thất tình
+年年有余|nián nián yǒu yú|Năm nào cũng có dư
+富裕|fù yù|Giàu có
+淡|dàn|Nhạt
+盐|yán|Muối
+碰|pèng|Chạm, va chạm
+醉|zuì|Say, say xỉn
+皮鞋|pí xié|Giày da
+作家|zuò jiā|Nhà văn
+红|hóng|Đỏ, nổi tiếng 
+网红|wǎng hóng|Người nổi tiếng trên mạng 
+密码|mì mǎ|Mật khẩu
+错误|cuò wù|Lỗi, sai sót
+逛街|guàng jiē|Đi dạo phố
+宁可|nìng kě|Thà rằng, thà chịu
+擦|cā|Lau, chùi
+玻璃|bō lí|Kính
+病毒|bìng dú|Virus
+情人节|qíng rén jié|Ngày Valentine
+安排|ān pái|Sắp xếp
+客厅|kè tīng|Phòng khách
+书架|shū jià|Kệ sách
+换钱|huàn qián|Đổi tiền
+填|tián|Điền (thông tin)
+表格|biǎo gé|Mẫu đơn, biểu mẫu
+报名|bào míng|Đăng ký
+过期|guò qī|Hết hạn
+泥|ní|Bùn
+水泥|shuǐ ní|Xi măng
+土|tǔ|Đất, đất đai
+沙|shā|Cát
+死机|sǐ jī|Chết máy 
+赶紧|gǎn jǐn|Gấp gáp, nhanh chóng
+浪漫|làng màn|Lãng mạn
+惊喜|jīng xǐ|Điều bất ngờ, sự ngạc nhiên
+搞活动|gǎo huó dòng|Tổ chức sự kiện
+这款|zhè kuǎn|Mẫu này, phiên bản này
+脑袋|nǎo dài|Cái đầu
+顶|dǐng|Đỉnh, đánh đầu
+精彩|jīng cǎi|Tuyệt vời, xuất sắc
+糟|zāo|Tồi tệ, không tốt
+兑换|duì huàn|Đổi, quy đổi
+汇率|huì lǜ|Tỉ giá hối đoái
+业务员|yè wù yuán|Nhân viên kinh doanh
+不过|bù guò|Tuy nhiên, nhưng
+大多数|dà duō shù|Đa số, phần lớn
+避免|bì miǎn|Tránh, ngăn chặn
+省去|shěng qù|Tiết kiệm, bỏ qua
+复印机|fù yìn jī|Máy photocopy
+效果|xiàoguǒ|Hiệu quả
+两倍|liǎng bèi|Gấp đôi
+效率|xiào lǜ|Hiệu suất
+导演|dǎo yǎn|Đạo diễn
+录音|lù yīn|Ghi âm
+酸辣|suān là|Chua cay
+汤|tāng|Canh
+相当于|xiāng dāng yú|Tương đương với
+汉堡包|hàn bǎo bāo|Hamburger
+相比之下|xiāng bǐ zhī xià|Khi so sánh
+受欢迎|shòu huān yíng|Được ưa chuộng
+调味|tiáo wèi|Nêm gia vị
+土豆条|tǔ dòu tiáo|Khoai tây chiên
+制成|zhì chéng|Chế tạo, sản xuất
+独特|dú tè|Độc đáo
+中年|zhōng nián|Trung niên
+青年|qīng nián|Thanh niên
+过渡|guò dù|Chuyển tiếp, quá độ
+劳累|láo lèi|Mệt mỏi
+突然|tū rán|Đột ngột
+死亡|sǐ wáng|Tử vong
+吃惊|chī jīng|Ngạc nhiên
+爱护|ài hù|Yêu thương và bảo vệ
+道理|dào lǐ|đạo lý
+抽|chōu|Rút, lấy ra
+邀请|yāo qǐng|Mời, lời mời
+到处|dào chù|Khắp nơi
+总统|zǒng tǒng|Tổng thống
+奥巴马|Ào bā mǎ|Barack Obama 
+应|yīng|Nhận lời, đáp lời
+主席|zhǔ xí|Chủ tịch
+胡锦涛|Hú Jǐn tāo|Hồ Cẩm Đào
+国事|guó shì|Công việc quốc gia
+访问|fǎng wèn|Thăm, thăm hỏi
+邮票|yóu piào|Tem bưu chính
+可不是|kě bù shì|đúng vậy, chứ còn gì nữa 
+靠|kào|Dựa vào
+大概|dà gài|Khoảng, có thể
+装修|zhuāng xiū|Cải tạo, trang trí (nhà cửa)
+面积|miàn jī|Diện tích
+至少|zhì shǎo|Ít nhất
+选择|xuǎn zé|Lựa chọn
+正确|zhèng què|Đúng, chính xác
+对联|duì lián|Câu đối (trang trí, thường treo trong dịp lễ)
+贴|tiē|Dán, gắn
+贴反|tiē fǎn|Dán ngược
+上联|shàng lián|Câu đối trên
+左联|zuǒ lián|Câu đối bên trái
+右联|yòu lián|Câu đối bên phải
+地震|dì zhèn|Động đất
+去世|qù shì|Qua đời, mất
+剩下|shèng xià|Còn lại
+可怜|kě lián|Đáng thương
+贵重|guì zhòng|Quý giá
+贺年卡|hè nián kǎ|Thiệp chúc mừng năm mới
+例外|lì wài|Ngoại lệ
+托运|tuō yùn|Gửi (hành lý)
+行李|xíng lǐ|Hành lý
+登记|dēng jì|Đăng ký
+登机|dēng jī|Làm thủ tục lên máy bay
+牌|pái|Biển bảng, thẻ
+领|lǐng|Nhận, cầm
+有关|yǒu guān|Liên quan đến
+资料|zī liào|Tài liệu, thông tin
+统计|tǒng jì|Thống kê
+绝对|jué duì|Tuyệt đối
+小数目|xiǎo shù mù|con số nhỏ
+占|zhàn|Chiếm
+百分之|bǎi fēn zhī|Phần trăm
+听话|tīng huà|Nghe lời
+搅动|jiǎo dòng|Khuấy động, làm xao động
+氧气|yǎng qì|Oxy
+大批|dà pī|Một số lượng lớn
+优秀|yōu xiù|Xuất sắc, nổi bật
+京剧|jīng jù|Kinh kịch (một thể loại opera của Trung Quốc)
+形成|xíng chéng|Hình thành
+以来|yǐ lái|Kể từ, từ khi
+流派|liú pài|Trường phái
+无论|wú lùn|Bất kể, không kể
+公共场所|gōng gòng chǎng suǒ|Địa điểm công cộng
+愿望|yuàn wàng|Mong ước, nguyện vọng
+尽管|jǐn guǎn|Mặc dù, tuy rằng
+付出|fù chū|Đầu tư, bỏ ra
+传统|chuán tǒng|Truyền thống
+旗袍|qí páo|Sườn xám (một loại trang phục truyền thống của phụ nữ Trung Quốc)
+欧洲|Ōu zhōu|Châu Âu
+风格|fēng gé|Phong cách
+创意|chuàng yì|Sáng tạo, ý tưởng sáng tạo
+敲开|qiāo kāi|mở ra
+充满|chōng mǎn|Tràn đầy
+愉快|yú kuài|Vui vẻ, hài lòng
+香甜可口|xiāng tián kě kǒu|Ngọt ngào và thơm ngon
+健身祛病|jiàn shēn qū bìng|khỏe thân trừ bệnh
+含|hán|Chứa, bao hàm
+水分|shuǐ fèn|thành phần nước
+消化|xiāo huà|Tiêu hóa
+打雪仗|dǎ xuě zhàng|Chơi ném tuyết
+调查|diào chá|Khảo sát, điều tra
+表明|biǎo míng|Chứng minh, chỉ ra
+情侣|qíng lǚ|Đôi tình nhân, cặp đôi
+群众|qún zhòng|Quần chúng, đám đông
+珍珠|zhēn zhū|Ngọc trai
+讲究|jiǎng jiū|Coi trọng, chú trọng
+消费者|xiāo fèi zhě|Người tiêu dùng
+任何|rèn hé|Bất kỳ, bất cứ
+尾巴|wěi ba|Đuôi
+周围|zhōu wéi|Xung quanh
+四肢|sì zhī|Bốn chi (tay và chân)
+其余|qí yú|Phần còn lại
+食物|shí wù|Thức ăn
+范围|fàn wéi|Phạm vi
+活动|huó dòng|Hoạt động
+样子|yàng zi|Hình dáng, vẻ ngoài
+往往|wǎng wǎng|Thường thường, hay
+员工|yuán gōng|Nhân viên
+喜爱|xǐ ài|Thích, yêu thích
+令|lìng|Khiến, làm cho
+讨厌|tǎo yàn|Ghét, không thích
+新鲜|xīn xiān|Tươi mới
+豆浆|dòu jiāng|Sữa đậu nành
+饮品|yǐn pǐn|Đồ uống
+价值|jià zhí|Giá trị
+肚子|dù zi|Bụng
+约好|yuē hǎo|Hẹn hò, đã hẹn
+高尔夫球|gāo ěr fū qiú|Gôn (môn thể thao golf)
+本来|běn lái|Ban đầu, vốn dĩ
+社会|shè huì|Xã hội
+流行|liú xíng|Phổ biến, thịnh hành
+考虑|kǎo lǜ|Cân nhắc, xem xét
+交往|jiāo wǎng|Kết bạn, giao lưu
+礼节|lǐ jié|Lễ tiết, nghi lễ
+谈话|tán huà|Nói chuyện, trò chuyện
+疾病|jí bìng|Bệnh tật
+询问|xún wèn|Hỏi thăm, điều tra
+放弃|fàng qì|Từ bỏ
+清醒|qīng xǐng|Tỉnh táo, nhận thức rõ
+远离|yuǎn lí|Xa lánh, tránh xa
+美好|měi hǎo|Tốt đẹp, tuyệt vời
+沟通|gōu tōng|Giao tiếp
+理解|lǐ jiě|Hiểu, nhận thức
+才艺|cái yì|Tài năng, năng khiếu
+森林|sēn lín|Rừng
+不断|bù duàn|Không ngừng, liên tục
+当天|dāng tiān|Ngày hôm đó
+顺利|shùn lì|Suôn sẻ, thuận lợi
+太极拳|tài jí quán|Thái cực quyền
+期待|qī dài|Mong đợi, hy vọng
+摔|shuāi|Ngã, đánh
+晕倒|yūn dǎo|Ngất xỉu
+缺乏|quē fá|Thiếu thốn, không đủ
+治疗|zhì liáo|Điều trị
+冠军|guàn jūn|Nhà vô địch
+亚军|yà jūn|Á quân
+季军|jì jūn|Huy chương đồng
+营养不良|yíng yǎng bù liáng|Suy dinh dưỡng
+尽快|jǐn kuài|Càng sớm càng tốt
+陌生|mò shēng|Lạ lẫm, chưa quen
+熟悉|shú xī|Quen thuộc
+行动|xíng dòng|Hành động
+友谊|yǒu yì|Tình bạn
+首先|shǒu xiān|Đầu tiên, trước hết
+积极|jī jí|Tích cực
+伸出|shēn chū|Duỗi ra, đưa ra
+被动|bèi dòng|Bị động
+友好|yǒu hǎo|Thân thiện
+未来|wèi lái|Tương lai
+职业|zhí yè|Nghề nghiệp
+与此相关|yǔ cǐ xiāng guān|Liên quan đến điều này
+期间|qī jiān|Thời gian, khoảng thời gian
+丰富|fēng fù|Đầy đủ, phong phú
+知识|zhī shi|Kiến thức
+拉开|lā kāi|Kéo ra, mở ra
+距离|jù lí|Khoảng cách
+阶段|jiē duàn|Giai đoạn
+吸取|xī qǔ|Hấp thụ, tiếp thu, rút ra
+教训|jiào xùn|Bài học
+篇|piān|Bài, trang (dùng để chỉ bài viết)
+钥匙|yào shi|Chìa khóa
+向往|xiàng wǎng|Mong muốn, khao khát
+派|pài|Phái, phân loại
+考察|kǎo chá|Khảo sát, kiểm tra
+上海|Shàng hǎi|Thượng Hải 
+批评|pī píng|Phê bình
+约翰|Yuē hàn|John
+体育|tǐ yù|Thể dục, thể thao
