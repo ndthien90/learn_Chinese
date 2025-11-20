@@ -394,7 +394,6 @@
             background: var(--bg-input-section); /* THAY ĐỔI */
             border-radius: 10px;
             border: 1px solid var(--border-primary); /* THAY ĐỔI */
-            display:none;
         }
 
         .manual-input-section h3 {
@@ -404,7 +403,7 @@
             font-weight: 600;
         }
 
-        .input-group { display: flex; gap: 10px;}
+        .input-group { display: flex; gap: 10px; }
 
         #textInput {
             flex-grow: 1;
@@ -510,7 +509,6 @@
             position: relative;
             border-radius: 15px;
             margin-top: auto;
-            display: none;
         }
 
         .writer-container {
@@ -537,7 +535,6 @@
             gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
-           display:none;
         }
 
         .control-btn {
@@ -1041,7 +1038,7 @@
 <body>
     <!-- THAY ĐỔI: Thêm nút chuyển chế độ vào mobile header -->
     <div class="mobile-sticky-header">
-        <h2>Từ vựng Xanh lá</h2>
+        <h2>Luyện viết chữ Hán</h2>
         <button id="themeToggleBtnMobile" class="theme-toggle-btn">🌙</button>
     </div>
 
@@ -1050,7 +1047,7 @@
         <div class="sidebar">
             <!-- THAY ĐỔI: Thêm sidebar-header để chứa tiêu đề và nút chuyển chế độ -->
             <div class="sidebar-header">
-                <h2 class="desktop-title">Từ vựng Xanh lá</h2>
+                <h2 class="desktop-title">Luyện viết chữ Hán</h2>
                 <button id="themeToggleBtnDesktop" class="theme-toggle-btn">🌙</button>
             </div>
             
@@ -1058,16 +1055,9 @@
                 <label for="lessonDropdown"></label>
                 <div class="lesson-controls">
                     <select id="lessonDropdown" onchange="loadLesson()">
-                        <option value="bai1">模拟试卷1</option>
-                        <option value="bai2">模拟试卷2</option>
-                        <option value="bai3">模拟试卷3</option>
-                        <option value="bai4">模拟试卷4</option>
-                        <option value="bai5">模拟试卷5</option>
-                        <option value="bai6">模拟试卷6</option>
-                        <option value="bai7">模拟试卷7</option>
-                        <option value="bai8">模拟试卷8</option>
-                        <option value="bai9">模拟试卷9</option>
-                        <option value="bai10">模拟试卷10</option>
+                        <option value="bai1">Bài 1: 老师您好！</option>
+                        <option value="bai2">Bài 2: 谢谢你！</option>
+                        <option value="bai3">Bài 3: 你叫什么名字？</option>
                     </select>
                     <button class="flashcard-btn" onclick="startFlashcardMode()">📚Học tập</button>
                     <!-- NEW: Nút Kiểm tra -->
@@ -1117,11 +1107,11 @@
                     <div id="quizFeedback" class="quiz-feedback hidden"></div>
                 </div>
                 <div class="controls">
-                    <button class="control-btn" onclick="animateCharacter()"></button>
-                    <button class="control-btn" onclick="showCharacter()"></button>
-                    <button class="control-btn" onclick="hideCharacter()"></button>
-                    <button class="control-btn" onclick="startQuiz()"></button>
-                    <button class="control-btn" onclick="cancelQuiz()" id="cancelBtn" class="hidden"></button>
+                    <button class="control-btn" onclick="animateCharacter()">🎬</button>
+                    <button class="control-btn" onclick="showCharacter()">👁️</button>
+                    <button class="control-btn" onclick="hideCharacter()">🙈</button>
+                    <button class="control-btn" onclick="startQuiz()">✍️ </button>
+                    <button class="control-btn" onclick="cancelQuiz()" id="cancelBtn" class="hidden">❌ Hủy luyện</button>
                 </div>
             </div>
         </div>
@@ -1664,7 +1654,7 @@
                     const writerContainer = writerDiv.parentElement;
                     const containerPadding = parseFloat(getComputedStyle(writerContainer).paddingLeft) * 2;
                     let availableWidth = writerContainer.offsetWidth - containerPadding;
-                    writerSize = Math.max(100, Math.min(availableWidth, 150));
+                    writerSize = Math.max(240, Math.min(availableWidth, 350));
                 } else {
                     writerSize = 280;
                 }
@@ -1793,7 +1783,7 @@
                     const writerContainer = writerDiv.parentElement;
                     const containerPadding = parseFloat(getComputedStyle(writerContainer).paddingLeft) * 2;
                     let availableWidth = writerContainer.offsetWidth - containerPadding;
-                    newSize = Math.max(80, Math.min(availableWidth, 100));
+                    newSize = Math.max(240, Math.min(availableWidth, 350));
                 } else {
                     newSize = 280;
                 }
