@@ -535,6 +535,7 @@
             gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
+           display:none;
         }
 
         .control-btn {
@@ -1114,11 +1115,11 @@
                     <div id="quizFeedback" class="quiz-feedback hidden"></div>
                 </div>
                 <div class="controls">
-                    <button class="control-btn" onclick="animateCharacter()">🎬</button>
-                    <button class="control-btn" onclick="showCharacter()">👁️</button>
-                    <button class="control-btn" onclick="hideCharacter()">🙈</button>
-                    <button class="control-btn" onclick="startQuiz()">✍️ </button>
-                    <button class="control-btn" onclick="cancelQuiz()" id="cancelBtn" class="hidden">❌ Hủy luyện</button>
+                    <button class="control-btn" onclick="animateCharacter()"></button>
+                    <button class="control-btn" onclick="showCharacter()"></button>
+                    <button class="control-btn" onclick="hideCharacter()"></button>
+                    <button class="control-btn" onclick="startQuiz()"></button>
+                    <button class="control-btn" onclick="cancelQuiz()" id="cancelBtn" class="hidden"></button>
                 </div>
             </div>
         </div>
@@ -1790,7 +1791,7 @@
                     const writerContainer = writerDiv.parentElement;
                     const containerPadding = parseFloat(getComputedStyle(writerContainer).paddingLeft) * 2;
                     let availableWidth = writerContainer.offsetWidth - containerPadding;
-                    newSize = Math.max(240, Math.min(availableWidth, 350));
+                    newSize = Math.max(150, Math.min(availableWidth, 200));
                 } else {
                     newSize = 280;
                 }
