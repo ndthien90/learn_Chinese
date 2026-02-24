@@ -83,12 +83,6 @@
             
             <!-- Banner / Header của Đề -->
             <div class="flex flex-col md:flex-row items-end gap-6 mb-8 px-4">
-                <div class="w-32 h-32 md:w-48 md:h-48 rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0 relative group">
-                    <i class="fa-solid fa-music text-5xl md:text-7xl text-white/50"></i>
-                    <button id="playAllBtn" class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-circle-play text-5xl text-white drop-shadow-lg"></i>
-                    </button>
-                </div>
                 <div class="flex-1 w-full text-center md:text-left">
                     <span class="text-xs font-bold tracking-wider text-blue-600 uppercase">Danh sách bài nghe</span>
                     <h2 id="albumTitle" class="text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-4">Đề số 1</h2>
@@ -99,9 +93,9 @@
             <!-- List Header -->
             <div class="grid grid-cols-[50px_1fr_80px_60px] gap-4 px-6 py-3 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider sticky top-0 bg-[#f8fafc]/90 backdrop-blur z-10">
                 <div class="text-center">#</div>
-                <div>Tên tệp âm thanh</div>
+                <div>Tên tệp</div>
                 <div class="text-center"><i class="fa-regular fa-clock"></i></div>
-                <div class="text-center">Trạng thái</div>
+                <div class="text-center">TT</div>
             </div>
 
             <!-- Track List Container -->
@@ -177,7 +171,6 @@
         const albumTitle = document.getElementById('albumTitle');
         const trackCountDisplay = document.getElementById('trackCountDisplay');
         const trackListContainer = document.getElementById('trackList');
-        const playAllBtn = document.getElementById('playAllBtn');
         const mainScrollArea = document.getElementById('mainScrollArea');
 
         // Player UI
@@ -431,10 +424,7 @@
             loadDe(e.target.value);
         });
 
-        // Nút Nổi bật ở Header đề
-        playAllBtn.addEventListener('click', () => {
-            playTrack(0);
-        });
+ 
 
         // Nút điều khiển
         btnPlay.addEventListener('click', togglePlay);
