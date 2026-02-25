@@ -1,0 +1,472 @@
+{
+  "dictionary": {
+    "收到": {
+      "pinyin": "shōudào",
+      "meaning": "nhận được"
+    },
+    "礼物": {
+      "pinyin": "lǐwù",
+      "meaning": "quà tặng"
+    },
+    "感谢": {
+      "pinyin": "gǎnxiè",
+      "meaning": "cảm ơn"
+    },
+    "得知": {
+      "pinyin": "dézhī",
+      "meaning": "biết được, nhận biết"
+    },
+    "有名": {
+      "pinyin": "yǒumíng",
+      "meaning": "nổi tiếng"
+    },
+    "南方": {
+      "pinyin": "nánfāng",
+      "meaning": "phương nam, miền nam"
+    },
+    "滴": {
+      "pinyin": "dī",
+      "meaning": "giọt, nhỏ giọt"
+    },
+    "节约": {
+      "pinyin": "jiéyuē",
+      "meaning": "tiết kiệm"
+    },
+    "过分": {
+      "pinyin": "guòfèn",
+      "meaning": "quá đáng, thái quá"
+    },
+    "隔壁": {
+      "pinyin": "gébì",
+      "meaning": "bên cạnh, nhà bên"
+    },
+    "寂寞": {
+      "pinyin": "jìmò",
+      "meaning": "cô đơn, buồn tẻ"
+    },
+    "任何": {
+      "pinyin": "rènhé",
+      "meaning": "bất kỳ, bất cứ"
+    },
+    "表示": {
+      "pinyin": "biǎoshì",
+      "meaning": "biểu thị, thể hiện"
+    },
+    "秘密": {
+      "pinyin": "mìmì",
+      "meaning": "bí mật"
+    },
+    "歌曲": {
+      "pinyin": "gēqǔ",
+      "meaning": "bài hát"
+    },
+    "衬衫": {
+      "pinyin": "chènshān",
+      "meaning": "áo sơ mi"
+    },
+    "抽时间": {
+      "pinyin": "chōu shíjiān",
+      "meaning": "dành thời gian"
+    },
+    "堵车": {
+      "pinyin": "dǔchē",
+      "meaning": "tắc đường"
+    },
+    "云南": {
+      "pinyin": "Yunnan",
+      "meaning": "tỉnh Vân Nam"
+    },
+    "语气": {
+      "pinyin": "yǔqì",
+      "meaning": "giọng điệu"
+    },
+    "高手": {
+      "pinyin": "gāoshǒu",
+      "meaning": "chuyên gia, người giỏi"
+    },
+    "奖金": {
+      "pinyin": "jiǎngjīn",
+      "meaning": "tiền thưởng"
+    },
+    "广场": {
+      "pinyin": "guǎngchǎng",
+      "meaning": "quảng trường"
+    },
+    "对面": {
+      "pinyin": "duìmiàn",
+      "meaning": "đối diện, bên kia"
+    },
+    "排队": {
+      "pinyin": "páiduì",
+      "meaning": "xếp hàng"
+    },
+    "取款机": {
+      "pinyin": "qǔkuǎnjī",
+      "meaning": "máy rút tiền"
+    },
+    "修理": {
+      "pinyin": "xiūlǐ",
+      "meaning": "sửa chữa"
+    },
+    "毕业": {
+      "pinyin": "bìyè",
+      "meaning": "tốt nghiệp"
+    },
+    "论文": {
+      "pinyin": "lùnwén",
+      "meaning": "luận văn, bài nghiên cứu"
+    },
+    "资料": {
+      "pinyin": "zīliào",
+      "meaning": "tài liệu, dữ liệu"
+    },
+    "零钱": {
+      "pinyin": "língqián",
+      "meaning": "tiền lẻ, tiền nhỏ"
+    },
+    "数数": {
+      "pinyin": "shǔshù",
+      "meaning": "đếm số"
+    },
+    "个子": {
+      "pinyin": "gèzi",
+      "meaning": "chiều cao, tầm vóc"
+    },
+    "新闻": {
+      "pinyin": "xīnwén",
+      "meaning": "tin tức"
+    },
+    "地震": {
+      "pinyin": "dìzhèn",
+      "meaning": "động đất"
+    },
+    "损失": {
+      "pinyin": "sǔnshī",
+      "meaning": "tổn thất, thiệt hại"
+    },
+    "平米": {
+      "pinyin": "píngmǐ",
+      "meaning": "mét vuông"
+    },
+    "位置": {
+      "pinyin": "wèizhi",
+      "meaning": "vị trí"
+    },
+    "家电": {
+      "pinyin": "jiādiàn",
+      "meaning": "thiết bị gia dụng"
+    },
+    "生意": {
+      "pinyin": "shēngyi",
+      "meaning": "kinh doanh, buôn bán"
+    },
+    "旅行社": {
+      "pinyin": "lǚxíngshè",
+      "meaning": "công ty du lịch"
+    },
+    "原来": {
+      "pinyin": "yuánlái",
+      "meaning": "vốn dĩ, hóa ra"
+    },
+    "必胜客": {
+      "pinyin": "bìshèngkè",
+      "meaning": "Pizza Hut"
+    },
+    "小吃": {
+      "pinyin": "xiǎochī",
+      "meaning": "đồ ăn vặt"
+    },
+    "材料": {
+      "pinyin": "cáiliào",
+      "meaning": "vật liệu, tài liệu"
+    },
+    "经理": {
+      "pinyin": "jīnglǐ",
+      "meaning": "giám đốc, quản lý"
+    },
+    "开夜车": {
+      "pinyin": "kāiyèchē",
+      "meaning": "thức khuya làm việc"
+    },
+    "金鱼": {
+      "pinyin": "jīnyú",
+      "meaning": "cá vàng"
+    },
+    "弄错": {
+      "pinyin": "nòngcuò",
+      "meaning": "nhầm lẫn"
+    },
+    "附近": {
+      "pinyin": "fujin",
+      "meaning": "gần đây, lân cận"
+    },
+    "驾校": {
+      "pinyin": "jiàxiào",
+      "meaning": "trường dạy lái xe"
+    },
+    "报名": {
+      "pinyin": "bàomíng",
+      "meaning": "đăng ký"
+    },
+    "怎么办": {
+      "pinyin": "zěnme bàn",
+      "meaning": "phải làm sao, làm thế nào"
+    },
+    "马路": {
+      "pinyin": "mǎlù",
+      "meaning": "đường phố, đường lớn"
+    },
+    "接送": {
+      "pinyin": "jiēsòng",
+      "meaning": "đón và đưa"
+    },
+    "重视": {
+      "pinyin": "zhòngshì",
+      "meaning": "coi trọng, xem trọng"
+    },
+    "担心": {
+      "pinyin": "dānxīn",
+      "meaning": "lo lắng"
+    },
+    "安全": {
+      "pinyin": "ānquán",
+      "meaning": "an toàn"
+    },
+    "敬酒": {
+      "pinyin": "jìngjiǔ",
+      "meaning": "kính rượu, chúc rượu"
+    },
+    "规矩": {
+      "pinyin": "guīju",
+      "meaning": "quy tắc, lề thói"
+    },
+    "领导": {
+      "pinyin": "lǐngdǎo",
+      "meaning": "lãnh đạo"
+    },
+    "长辈": {
+      "pinyin": "zhǎngbèi",
+      "meaning": "người lớn tuổi hơn, bề trên"
+    },
+    "互相": {
+      "pinyin": "hùxiāng",
+      "meaning": "lẫn nhau"
+    },
+    "碰": {
+      "pinyin": "pèng",
+      "meaning": "chạm, va"
+    },
+    "喝光": {
+      "pinyin": "hēguāng",
+      "meaning": "uống hết, uống cạn"
+    },
+    "父母": {
+      "pinyin": "fùmǔ",
+      "meaning": "cha mẹ"
+    },
+    "严肃": {
+      "pinyin": "yánsù",
+      "meaning": "nghiêm túc, nghiêm nghị"
+    },
+    "教育": {
+      "pinyin": "jiàoyù",
+      "meaning": "giáo dục"
+    },
+    "宽松": {
+      "pinyin": "kuānsōng",
+      "meaning": "rộng rãi, thoải mái"
+    },
+    "赞成": {
+      "pinyin": "zànchéng",
+      "meaning": "tán thành, đồng ý"
+    },
+    "成绩": {
+      "pinyin": "chéngjì",
+      "meaning": "kết quả học tập"
+    },
+    "因此": {
+      "pinyin": "yīncǐ",
+      "meaning": "vì vậy, do đó"
+    },
+    "而": {
+      "pinyin": "ér",
+      "meaning": "mà, nhưng, và"
+    },
+    "受到": {
+      "pinyin": "shòudào",
+      "meaning": "nhận được, bị (tác động)"
+    },
+    "自由": {
+      "pinyin": "zìyóu",
+      "meaning": "tự do"
+    },
+    "发展": {
+      "pinyin": "fāzhǎn",
+      "meaning": "phát triển"
+    },
+    "开心网": {
+      "pinyin": "kaixinwang",
+      "meaning": "mạng xã hội Trung Quốc"
+    },
+    "社会": {
+      "pinyin": "shèhuì",
+      "meaning": "xã hội"
+    },
+    "交际": {
+      "pinyin": "jiāojì",
+      "meaning": "giao tiếp, quan hệ xã hội"
+    },
+    "保持": {
+      "pinyin": "bǎochí",
+      "meaning": "duy trì, giữ"
+    },
+    "联系": {
+      "pinyin": "liánxì",
+      "meaning": "liên hệ, kết nối"
+    },
+    "及时": {
+      "pinyin": "jíshí",
+      "meaning": "kịp thời, đúng lúc"
+    },
+    "分享": {
+      "pinyin": "fēnxiǎng",
+      "meaning": "chia sẻ"
+    },
+    "各位": {
+      "pinyin": "gèwèi",
+      "meaning": "các vị, mọi người"
+    },
+    "网友": {
+      "pinyin": "wǎngyǒu",
+      "meaning": "bạn trên mạng"
+    },
+    "加入": {
+      "pinyin": "jiārù",
+      "meaning": "tham gia, gia nhập"
+    },
+    "出现": {
+      "pinyin": "chūxiàn",
+      "meaning": "xuất hiện"
+    },
+    "内容": {
+      "pinyin": "nèiróng",
+      "meaning": "nội dung"
+    },
+    "电话": {
+      "pinyin": "diànhuà",
+      "meaning": "điện thoại"
+    },
+    "离不开": {
+      "pinyin": "líbukāi",
+      "meaning": "không thể thiếu, không thể rời xa"
+    },
+    "长期": {
+      "pinyin": "chángqī",
+      "meaning": "dài hạn, lâu dài"
+    },
+    "质量": {
+      "pinyin": "zhìliàng",
+      "meaning": "chất lượng"
+    },
+    "健康": {
+      "pinyin": "jiànkāng",
+      "meaning": "sức khỏe"
+    },
+    "灰尘": {
+      "pinyin": "huīchén",
+      "meaning": "bụi"
+    },
+    "擦掉": {
+      "pinyin": "cādiào",
+      "meaning": "lau/xóa đi"
+    },
+    "以便": {
+      "pinyin": "yǐbiàn",
+      "meaning": "để, để cho"
+    },
+    "延长": {
+      "pinyin": "yáncháng",
+      "meaning": "kéo dài"
+    },
+    "容易": {
+      "pinyin": "róngyì",
+      "meaning": "dễ dàng"
+    },
+    "王哲": {
+      "pinyin": "wángzhé",
+      "meaning": "Vương Triết"
+    },
+    "社会交际": {
+      "pinyin": "shèhuì jiāojì",
+      "meaning": "giao tiếp xã hội"
+    },
+    "网络": {
+      "pinyin": "wǎngluò",
+      "meaning": "mạng lưới, mạng"
+    },
+    "之前": {
+      "pinyin": "zhīqián",
+      "meaning": "trước đó, trước đây"
+    },
+    "鲜美": {
+      "pinyin": "xiānměi",
+      "meaning": "tươi ngon"
+    },
+    "油腻": {
+      "pinyin": "yóunì",
+      "meaning": "dầu mỡ, nhờn"
+    },
+    "演出": {
+      "pinyin": "yǎnchū",
+      "meaning": "biểu diễn"
+    },
+    "台上": {
+      "pinyin": "táishàng",
+      "meaning": "trên sân khấu"
+    },
+    "紧张": {
+      "pinyin": "jǐnzhāng",
+      "meaning": "căng thẳng, lo lắng"
+    },
+    "观众": {
+      "pinyin": "guānzhòng",
+      "meaning": "khán giả"
+    },
+    "台词": {
+      "pinyin": "táicí",
+      "meaning": "lời thoại"
+    },
+    "淋": {
+      "pinyin": "lín",
+      "meaning": "tưới, rưới, dội nước"
+    },
+    "湿": {
+      "pinyin": "shī",
+      "meaning": "ướt, ẩm ướt"
+    },
+    "落汤鸡": {
+      "pinyin": "luòtāngjī",
+      "meaning": "ướt như chuột lột"
+    },
+    "告别": {
+      "pinyin": "gàobié",
+      "meaning": "tạm biệt, chia tay"
+    },
+    "起身": {
+      "pinyin": "qǐshēn",
+      "meaning": "đứng dậy, rời khỏi chỗ"
+    },
+    "不然": {
+      "pinyin": "bùrán",
+      "meaning": "nếu không thì, bằng không"
+    },
+    "礼貌": {
+      "pinyin": "lǐmào",
+      "meaning": "lịch sự, lễ phép"
+    }
+  },
+  "translations": {
+    "hsk_ai_translation_De2_Trk8": "9. Anh Lưu này rất chín chắn, có lòng thương người, tính tình cũng tốt, nhưng lại quá keo kiệt, khiến người ta không chịu nổi.\n    ★ Anh Lưu rất keo kiệt.",
+    "hsk_ai_translation_De2_Trk9": "10. Xin chào! Hôm qua tôi mua chiếc áo sơ mi ở đây hơi nhỏ một chút, màu sắc cũng không hợp lắm, có thể đổi một chiếc khác được không?\n    ★ Anh ấy đang mua quần áo."
+  }
+}
