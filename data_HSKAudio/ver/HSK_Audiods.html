@@ -297,24 +297,6 @@
                     <button id="settingBold" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-bold hover:bg-gray-50 transition focus:outline-none text-sm">In Đậm (B)</button>
                     <button id="settingItalic" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 italic hover:bg-gray-50 transition focus:outline-none text-sm">In Nghiêng (I)</button>
                 </div>
-                
-                <div class="h-px bg-gray-100 my-1"></div>
-
-                <!-- Khu vực Quản lý Dữ liệu Nhập/Xuất -->
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-database text-blue-500"></i> Dữ liệu (Từ vựng & Bản dịch)</label>
-                    <div class="flex gap-2">
-                        <button id="btnExportData" class="flex-1 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-upload"></i> Xuất JSON
-                        </button>
-                        <button id="btnImportData" class="flex-1 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-download"></i> Nhập JSON
-                        </button>
-                        <input type="file" id="fileImportData" accept=".json" class="hidden">
-                    </div>
-                    <div id="dataMessage" class="mt-2 text-xs font-medium hidden text-center"></div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -383,12 +365,6 @@
         const settingItalic = document.getElementById('settingItalic');
         const settingApiKey = document.getElementById('settingApiKey');
         const apiKeyWarning = document.getElementById('apiKeyWarning');
-
-        // Elements Nhập/Xuất dữ liệu
-        const btnExportData = document.getElementById('btnExportData');
-        const btnImportData = document.getElementById('btnImportData');
-        const fileImportData = document.getElementById('fileImportData');
-        const dataMessage = document.getElementById('dataMessage');
 
         // Phân tích AI Elements
         const btnAnalyzeAI = document.getElementById('btnAnalyzeAI');
@@ -1264,97 +1240,6 @@ Yêu cầu JSON:
             if(lyricStyle.italic) settingItalic.className = "flex-1 py-2.5 rounded-lg italic transition focus:outline-none text-sm bg-blue-50 border border-blue-400 text-blue-600";
             else settingItalic.className = "flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 italic hover:bg-gray-50 transition focus:outline-none text-sm";
             applyLyricStyles();
-        });
-
-        // ================= XỬ LÝ NHẬP/XUẤT DỮ LIỆU JSON =================
-        function showDataMessage(msg, colorClass) {
-            dataMessage.textContent = msg;
-            dataMessage.className = `mt-2 text-xs font-medium text-center ${colorClass}`;
-            dataMessage.classList.remove('hidden');
-            setTimeout(() => dataMessage.classList.add('hidden'), 3500);
-        }
-
-        // 1. XUẤT DỮ LIỆU
-        btnExportData.addEventListener('click', () => {
-            const exportData = {
-                dictionary: JSON.parse(localStorage.getItem('hsk_user_dictionary') || '{}'),
-                translations: {}
-            };
-            
-            // Lọc lấy tất cả các bản dịch trong localStorage
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (key && key.startsWith('hsk_ai_translation_')) {
-                    exportData.translations[key] = localStorage.getItem(key);
-                }
-            }
-
-            // Tạo file JSON
-            const dataStr = JSON.stringify(exportData, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            // Tạo thẻ a ảo để tải xuống
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `HSK_Audio_Backup_${new Date().toISOString().slice(0,10)}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showDataMessage('Đã tải xuống file sao lưu!', 'text-green-600');
-        });
-
-        // 2. NHẬP DỮ LIỆU
-        btnImportData.addEventListener('click', () => {
-            fileImportData.click(); // Mở hộp thoại chọn file
-        });
-
-        fileImportData.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                try {
-                    const importedData = JSON.parse(event.target.result);
-                    let importedCount = 0;
-
-                    // Nhập từ điển: Sử dụng cơ chế Gộp (Merge) để không làm mất từ hiện có
-                    if (importedData.dictionary) {
-                        const currentDict = JSON.parse(localStorage.getItem('hsk_user_dictionary') || '{}');
-                        const mergedDict = { ...currentDict, ...importedData.dictionary };
-                        localStorage.setItem('hsk_user_dictionary', JSON.stringify(mergedDict));
-                        importedCount += Object.keys(importedData.dictionary).length;
-                    }
-
-                    // Nhập bản dịch: Ghi đè hoặc Thêm mới
-                    if (importedData.translations) {
-                        for (const [key, value] of Object.entries(importedData.translations)) {
-                            if (key.startsWith('hsk_ai_translation_')) {
-                                localStorage.setItem(key, value);
-                                importedCount++;
-                            }
-                        }
-                    }
-
-                    showDataMessage(`Thành công! Đã khôi phục ${importedCount} mục.`, 'text-green-600');
-                    
-                    // Cập nhật lại giao diện ngay lập tức nếu đang mở Phụ đề
-                    if (!lyricView.classList.contains('hidden')) {
-                        updateLyricContent();
-                    }
-
-                } catch (error) {
-                    showDataMessage('Lỗi: File JSON không hợp lệ.', 'text-red-600');
-                    console.error("Lỗi Import:", error);
-                }
-                
-                // Reset file input để có thể chọn lại cùng 1 file nếu cần
-                fileImportData.value = ''; 
-            };
-            reader.readAsText(file);
         });
 
         applyLyricStyles();
