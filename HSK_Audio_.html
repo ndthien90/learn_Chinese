@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HSK Audio Pro Player</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Custom Scrollbar cho phần danh sách */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Custom Timeline Slider */
+        .progress-slider {
+            -webkit-appearance: none; width: 100%; height: 4px; background: #e2e8f0;
+            border-radius: 5px; outline: none; cursor: pointer; transition: background 450ms ease-in;
+        }
+        .progress-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 12px; height: 12px;
+            border-radius: 50%; background: #2563eb; cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2); transition: transform 0.1s;
+        }
+        .progress-slider:hover::-webkit-slider-thumb { transform: scale(1.3); }
+        
+        /* Hiệu ứng Track đang phát */
+        .playing-track { background-color: #eff6ff; border-radius: 0.5rem; }
+        .playing-track .track-num { display: none; }
+        .playing-track .track-eq { display: flex; }
+        
+        /* Equalizer Animation */
+        .track-eq { display: none; align-items: flex-end; gap: 2px; height: 16px; justify-content: center;}
+        .eq-bar { width: 3px; background-color: #2563eb; animation: eq-bounce 1s infinite ease-in-out; border-radius: 2px;}
+        .eq-bar:nth-child(1) { animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.0s; }
+        @keyframes eq-bounce {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+        .is-paused .eq-bar { animation-play-state: paused; height: 4px; }
+
+        /* Disable pull-to-refresh on mobile */
+        html, body { 
+            overscroll-behavior-y: none; 
+            height: 100%;
+            height: 100dvh; /* Fix lỗi thanh điều hướng trên mobile */
+            overflow: hidden !important; /* Khóa chặt cuộn toàn trang */
+        }
+    </style>
+</head>
+<body class="text-gray-800 h-[100dvh] w-full flex flex-col overflow-hidden bg-white">
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="flex-none bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between z-30 relative shadow-sm h-[70px]">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                <i class="fa-solid fa-headphones-simple text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK Audio</h1>
+            </div>
+        </div>
+
+        <!-- Bộ chọn Đề -->
+        <div class="flex items-center">
+            <select id="deSelector" class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-3 py-2 outline-none shadow-sm cursor-pointer font-medium hover:bg-gray-50 transition">
+                <!-- Javascript render đề -->
+            </select>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <!-- Đã thêm 'flex flex-col' vào main để các view con có thể tự kéo giãn chiều cao -->
+    <main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative w-full flex flex-col" id="mainScrollArea">
+        <!-- VIEW 1: DANH SÁCH BÀI NGHE -->
+        <div id="trackListView" class="w-full max-w-4xl mx-auto px-2 sm:px-4 py-6">
+            <!-- List Header -->
+            <div class="grid grid-cols-[40px_1fr_60px] sm:grid-cols-[50px_1fr_80px] gap-2 sm:gap-4 px-4 py-3 border-b border-gray-100 text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider sticky top-0 bg-white/95 backdrop-blur z-10">
+                <div class="text-center">#</div>
+                <div>Tệp</div>
+                <div class="text-center"><i class="fa-regular fa-clock"></i></div>
+            </div>
+
+            <!-- Track List Container -->
+            <div id="trackList" class="flex flex-col mt-2">
+                <!-- Tracks rendered by JS -->
+            </div>
+        </div>
+
+        <!-- VIEW 2: PHỤ ĐỀ (LYRIC) - Ẩn mặc định -->
+        <!-- Thêm 'flex-1' để view này luôn chiếm trọn không gian trống -->
+        <div id="lyricView" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex-col">
+            <!-- Header Lyric -->
+            <div class="flex items-center justify-between mb-2 pb-4 border-b border-gray-100 flex-none">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines text-blue-500"></i> Phụ đề nội dung
+                    </h2>
+                    <p id="lyricSubtitle" class="text-sm text-gray-500 mt-1">Đề 1 - File 001.mp3</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="btnLyricSettings" class="text-gray-500 hover:text-blue-600 transition bg-gray-100 hover:bg-blue-50 w-9 h-9 sm:w-auto sm:px-3 sm:py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 focus:outline-none flex-shrink-0" title="Cài đặt hiển thị">
+                        <i class="fa-solid fa-gear"></i> <span class="hidden sm:inline">Cài đặt</span>
+                    </button>
+                    <button id="closeLyricViewBtn" class="text-gray-500 hover:text-blue-600 transition bg-gray-100 hover:bg-blue-50 px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 focus:outline-none flex-shrink-0">
+                        <i class="fa-solid fa-list-ul"></i> <span class="hidden sm:inline">Danh sách</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Nội dung Lyric (Đã cấu trúc lại để CĂN GIỮA MÀN HÌNH) -->
+            <div class="flex-1 flex flex-col items-center justify-center py-10 w-full">
+                <!-- Giới hạn max-w-2xl giúp form chữ gọn gàng hơn khi màn hình quá rộng -->
+                <div id="lyricContent" class="text-gray-800 leading-[1.8] whitespace-pre-wrap text-[18px] sm:text-[22px] font-medium w-full max-w-2xl px-2">
+                    Đang tải dữ liệu...
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== PLAYER ==================== -->
+    <footer class="flex-none bg-white border-t border-gray-100 px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] sm:pt-4 sm:pb-[calc(16px+env(safe-area-inset-bottom))] z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.03)] w-full transition-all duration-300">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6">
+            
+            <!-- 1. Info -->
+            <div class="flex items-center gap-3 w-full md:w-1/3 min-w-0">
+                <div id="nowPlayingIcon" class="w-12 h-12 rounded-lg bg-[#eef2ff] flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer" onclick="toggleLyricView()" title="Nhấn để xem phụ đề">
+                    <i class="fa-solid fa-compact-disc text-gray-400 text-xl"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <h4 id="nowPlayingTitle" class="font-bold text-gray-900 text-[15px] truncate">Chưa chọn bài</h4>
+                    <p id="nowPlayingAlbum" class="text-xs text-gray-500 truncate mt-0.5">Vui lòng chọn bài</p>
+                </div>
+            </div>
+
+            <!-- 2. Controls & Progress -->
+            <div class="flex flex-col items-center w-full md:w-[40%] px-2">
+                <!-- Buttons -->
+                <div class="flex items-center justify-center gap-4 sm:gap-6 mb-2 sm:mb-3">
+                    <button id="btnSpeed" class="text-xs font-bold text-gray-500 hover:text-blue-600 transition w-8 focus:outline-none">1.0x</button>
+                    <button id="btnPrev" class="text-gray-600 hover:text-blue-600 transition text-lg focus:outline-none p-2"><i class="fa-solid fa-backward-step"></i></button>
+                    <button id="btnPlay" class="w-11 h-11 flex items-center justify-center bg-[#0f172a] text-white rounded-full hover:bg-blue-600 hover:scale-105 transition-all shadow-md focus:outline-none flex-shrink-0">
+                        <i id="iconPlay" class="fa-solid fa-play ml-1 text-lg"></i>
+                    </button>
+                    <button id="btnNext" class="text-gray-600 hover:text-blue-600 transition text-lg focus:outline-none p-2"><i class="fa-solid fa-forward-step"></i></button>
+                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại danh sách"><i class="fa-solid fa-repeat"></i></button>
+                    <!-- NÚT LYRIC MỚI THÊM VÀO ĐÂY -->
+                    <button id="btnLyric" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 p-2 ml-1" title="Xem phụ đề">
+                        <i class="fa-regular fa-file-lines text-lg"></i>
+                    </button>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full flex items-center gap-3">
+                    <span id="timeCurrent" class="text-[10px] sm:text-[11px] font-medium text-gray-500 w-8 sm:w-10 text-right">0:00</span>
+                    <input type="range" id="progressBar" class="progress-slider flex-1" min="0" max="100" value="0">
+                    <span id="timeTotal" class="text-[10px] sm:text-[11px] font-medium text-gray-500 w-8 sm:w-10">0:00</span>
+                </div>
+            </div>
+
+            <!-- 3. Volume -->
+            <div class="hidden md:flex items-center justify-end gap-3 w-1/3">
+                <i class="fa-solid fa-volume-low text-gray-400 text-sm"></i>
+                <input type="range" id="volumeBar" class="progress-slider w-24" min="0" max="1" step="0.01" value="1">
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL CÀI ĐẶT PHỤ ĐỀ ==================== -->
+    <div id="lyricSettingsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-sm overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col">
+            <!-- Header Modal -->
+            <div class="px-5 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50 flex-none">
+                <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-blue-500"></i> Tùy chỉnh hiển thị
+                </h3>
+                <button id="closeLyricSettingsBtn" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2 -mr-2 rounded-full hover:bg-red-50">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <!-- Nội dung Modal -->
+            <div class="p-5 flex flex-col gap-4">
+                <!-- Kiểu chữ -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Kiểu chữ</label>
+                    <select id="settingFontFamily" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500 text-gray-700 font-medium cursor-pointer">
+                        <option value="'Inter', sans-serif">Mặc định (Inter)</option>
+                        <option value="'KaiTi', 'STKaiti', serif">Kaiti (Khải Thể)</option>
+                        <option value="serif">Serif (Có chân)</option>
+                    </select>
+                </div>
+                <!-- Cỡ chữ -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1 flex justify-between">
+                        <span>Cỡ chữ</span>
+                        <span id="settingFontSizeDisplay" class="text-blue-600 font-bold">22px</span>
+                    </label>
+                    <!-- Tùy chỉnh thanh trượt slider -->
+                    <input type="range" id="settingFontSize" min="14" max="50" value="22" class="w-full progress-slider h-2">
+                </div>
+                <!-- Màu chữ -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Màu chữ</label>
+                    <div class="flex items-center gap-3">
+                        <input type="color" id="settingColor" value="#1f2937" class="w-9 h-9 rounded cursor-pointer border border-gray-300 p-0.5 outline-none">
+                        <span class="text-sm text-gray-500">Nhấn để chọn màu</span>
+                    </div>
+                </div>
+                <!-- Định dạng Đậm/Nghiêng -->
+                <div class="flex items-center gap-3 mt-1">
+                    <button id="settingBold" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-bold hover:bg-gray-50 transition focus:outline-none text-sm">In Đậm (B)</button>
+                    <button id="settingItalic" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 italic hover:bg-gray-50 transition focus:outline-none text-sm">In Nghiêng (I)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element (Hidden) -->
+    <audio id="audioPlayer"></audio>
+
+    <script>
+        // === CONFIGURATION ===
+        const MAX_DE = 10;
+        const TRACKS_PER_DE = 45;
+        
+        // === STATE ===
+        let currentDe = 1;
+        let currentTrackIndex = -1; 
+        let isPlaying = false;
+        let isRepeatOne = false;
+        let currentSpeed = 1.0;
+        let tracks = []; 
+        let isDraggingProgress = false;
+        
+        // Trạng thái Phụ đề
+        let currentLyricsData = []; // Mảng chứa các đoạn text phụ đề tách bởi #
+
+        // === DOM ELEMENTS ===
+        const deSelector = document.getElementById('deSelector');
+        const trackListContainer = document.getElementById('trackList');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const btnPlay = document.getElementById('btnPlay');
+        const iconPlay = document.getElementById('iconPlay');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnRepeat = document.getElementById('btnRepeat');
+        const btnSpeed = document.getElementById('btnSpeed');
+        const progressBar = document.getElementById('progressBar');
+        const volumeBar = document.getElementById('volumeBar');
+        const timeCurrent = document.getElementById('timeCurrent');
+        const timeTotal = document.getElementById('timeTotal');
+        const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+        const nowPlayingAlbum = document.getElementById('nowPlayingAlbum');
+        const nowPlayingIcon = document.getElementById('nowPlayingIcon');
+        
+        // DOM Elements Phụ đề & View
+        const btnLyric = document.getElementById('btnLyric');
+        const trackListView = document.getElementById('trackListView');
+        const lyricView = document.getElementById('lyricView');
+        const closeLyricViewBtn = document.getElementById('closeLyricViewBtn');
+        const lyricContent = document.getElementById('lyricContent');
+        const lyricSubtitle = document.getElementById('lyricSubtitle');
+
+        // DOM Elements Cài đặt Phụ đề
+        const btnLyricSettings = document.getElementById('btnLyricSettings');
+        const lyricSettingsModal = document.getElementById('lyricSettingsModal');
+        const closeLyricSettingsBtn = document.getElementById('closeLyricSettingsBtn');
+        const settingFontFamily = document.getElementById('settingFontFamily');
+        const settingFontSize = document.getElementById('settingFontSize');
+        const settingFontSizeDisplay = document.getElementById('settingFontSizeDisplay');
+        const settingColor = document.getElementById('settingColor');
+        const settingBold = document.getElementById('settingBold');
+        const settingItalic = document.getElementById('settingItalic');
+        
+        // Trạng thái cấu hình (Style state)
+        let lyricStyle = {
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 22,
+            color: "#1f2937",
+            bold: false,
+            italic: false
+        };
+
+        function init() {
+            for (let i = 1; i <= MAX_DE; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Đề số ${i}`;
+                deSelector.appendChild(option);
+            }
+            loadDe(currentDe);
+            updateSliderBackground(volumeBar, volumeBar.value * 100);
+        }
+
+        function padNum(num) {
+            return String(num).padStart(3, '0');
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        // Tải File Phụ Đề
+        async function fetchLyrics(deNumber) {
+            currentLyricsData = []; // Xóa dữ liệu cũ
+            try {
+                const response = await fetch(`data_HSKAudio/De${deNumber}.txt`);
+                if (!response.ok) throw new Error('Không tìm thấy file');
+                const text = await response.text();
+                
+                // Tách text bằng dấu # và xóa khoảng trắng thừa ở đầu/cuối mỗi đoạn
+                currentLyricsData = text.split('#').map(item => item.trim());
+                
+            } catch (error) {
+                console.warn(`Chưa tải được phụ đề cho Đề ${deNumber}:`, error);
+                // Nếu file không tồn tại, mảng currentLyricsData sẽ rỗng
+            }
+        }
+
+        function loadDe(deNumber) {
+            currentDe = parseInt(deNumber);
+            
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+            isPlaying = false;
+            currentTrackIndex = -1;
+            
+            trackListContainer.innerHTML = '';
+            tracks = [];
+
+            // Gọi hàm tải phụ đề ngầm
+            fetchLyrics(currentDe);
+
+            // Luôn đưa về màn hình danh sách khi chuyển đề
+            trackListView.classList.remove('hidden');
+            lyricView.classList.add('hidden');
+            lyricView.classList.remove('flex');
+            btnLyric.classList.remove('text-blue-600', 'bg-blue-50', 'rounded-lg');
+            btnLyric.classList.add('text-gray-400');
+
+            for (let i = 1; i <= TRACKS_PER_DE; i++) {
+                const trackNumStr = padNum(i);
+                const fileName = `De${currentDe}_${trackNumStr}.mp3`;
+                const filePath = `data_HSKAudio/De${currentDe}_mp3/${fileName}`; 
+                
+                tracks.push({
+                    index: i - 1,
+                    num: i,
+                    fileName: fileName,
+                    path: filePath,
+                    duration: '--:--', 
+                    status: 'ready'
+                });
+            }
+
+            renderTrackList();
+            
+            nowPlayingAlbum.textContent = `Đề số ${currentDe}`;
+            nowPlayingTitle.textContent = "Chưa chọn bài";
+            nowPlayingIcon.innerHTML = `<i class="fa-solid fa-compact-disc text-gray-400 text-xl"></i>`;
+            timeCurrent.textContent = "0:00";
+            timeTotal.textContent = "0:00";
+            progressBar.value = 0;
+            updateSliderBackground(progressBar, 0);
+            updatePlayerUI();
+            
+            // Cập nhật lại màu nút lyric
+            btnLyric.classList.remove('text-blue-600');
+            btnLyric.classList.add('text-gray-400');
+        }
+
+        function renderTrackList() {
+            trackListContainer.innerHTML = '';
+            
+            tracks.forEach(track => {
+                const row = document.createElement('div');
+                row.id = `trackRow_${track.index}`;
+                
+                const isCurrentTrack = track.index === currentTrackIndex;
+                let rowClasses = "grid grid-cols-[40px_1fr_60px] sm:grid-cols-[50px_1fr_80px] gap-2 sm:gap-4 px-4 py-3 items-center border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors group mx-1 my-0.5";
+                
+                if (isCurrentTrack) {
+                    rowClasses += " playing-track border-transparent";
+                    if (!isPlaying) rowClasses += " is-paused";
+                }
+
+                row.className = rowClasses;
+                row.onclick = () => playTrack(track.index);
+
+                const errorIcon = track.status === 'error' ? '<i class="fa-solid fa-triangle-exclamation text-red-400 text-xs ml-2" title="Lỗi file"></i>' : '';
+                const titleColor = track.status === 'error' ? 'text-red-500' : (isCurrentTrack ? 'text-blue-600' : 'text-gray-700');
+
+                row.innerHTML = `
+                    <div class="text-center text-[13px] font-medium text-gray-400">
+                        <span class="track-num group-hover:hidden ${isCurrentTrack ? 'hidden' : 'block'}">${track.num}</span>
+                        <div class="track-eq group-hover:hidden w-full ${isCurrentTrack ? 'flex' : 'hidden'}">
+                            <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                        </div>
+                        <i class="fa-solid fa-play text-blue-500 hidden group-hover:block ${isCurrentTrack ? 'text-blue-600' : ''} text-xs"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="font-medium text-[14px] ${titleColor} truncate">${track.fileName}${errorIcon}</div>
+                    </div>
+                    <div class="text-center text-[13px] font-medium text-gray-400 track-time" id="timeDisplay_${track.index}">${track.duration}</div>
+                `;
+                trackListContainer.appendChild(row);
+            });
+        }
+
+        function playTrack(index) {
+            if (index < 0 || index >= tracks.length) return;
+
+            if (currentTrackIndex === index) {
+                togglePlay();
+                return;
+            }
+
+            currentTrackIndex = index;
+            const track = tracks[currentTrackIndex];
+            
+            audioPlayer.src = track.path;
+            audioPlayer.playbackRate = currentSpeed; 
+            
+            audioPlayer.play().then(() => {
+                isPlaying = true;
+                track.status = 'playing';
+                updatePlayerUI();
+                renderTrackList(); 
+                
+                // Nếu đang ở màn hình danh sách thì tự động cuộn đến bài
+                if (lyricView.classList.contains('hidden')) {
+                    scrollToPlayingTrack();
+                }
+                
+                // Cập nhật nội dung lyric nếu giao diện lyric đang mở
+                if (!lyricView.classList.contains('hidden')) {
+                    updateLyricContent();
+                }
+
+            }).catch(error => {
+                console.warn("Chưa có file audio thực tế:", error);
+                isPlaying = true;
+                track.status = 'error';
+                updatePlayerUI();
+                renderTrackList();
+            });
+        }
+
+        function togglePlay() {
+            if (currentTrackIndex === -1) {
+                playTrack(0);
+                return;
+            }
+            if (audioPlayer.paused) {
+                audioPlayer.play().catch(e => console.warn(e));
+                isPlaying = true;
+            } else {
+                audioPlayer.pause();
+                isPlaying = false;
+            }
+            updatePlayerUI();
+            renderTrackList();
+        }
+
+        function playNext() {
+            let nextIdx = currentTrackIndex + 1;
+            if (nextIdx >= tracks.length) nextIdx = 0;
+            playTrack(nextIdx);
+        }
+
+        function playPrev() {
+            if (audioPlayer.currentTime > 3) {
+                audioPlayer.currentTime = 0;
+                return;
+            }
+            let prevIdx = currentTrackIndex - 1;
+            if (prevIdx < 0) prevIdx = tracks.length - 1;
+            playTrack(prevIdx);
+        }
+
+        function scrollToPlayingTrack() {
+            if (currentTrackIndex === -1) return;
+            const row = document.getElementById(`trackRow_${currentTrackIndex}`);
+            const container = document.getElementById('mainScrollArea');
+            if (row && container) {
+                const rowTop = row.offsetTop;
+                const rowHeight = row.offsetHeight;
+                const containerHeight = container.clientHeight;
+                
+                container.scrollTo({
+                    top: rowTop - (containerHeight / 2) + (rowHeight / 2),
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function updatePlayerUI() {
+            if (currentTrackIndex !== -1) {
+                const track = tracks[currentTrackIndex];
+                nowPlayingTitle.textContent = track.fileName;
+                nowPlayingAlbum.textContent = `Đề số ${currentDe}`;
+                
+                if (isPlaying) {
+                    nowPlayingIcon.innerHTML = `<i class="fa-solid fa-compact-disc fa-spin text-blue-500 text-2xl" style="animation-duration: 3s;"></i>`;
+                    iconPlay.className = "fa-solid fa-pause text-lg";
+                } else {
+                    nowPlayingIcon.innerHTML = `<i class="fa-solid fa-compact-disc text-blue-500 text-2xl"></i>`;
+                    iconPlay.className = "fa-solid fa-play ml-1 text-lg";
+                }
+            }
+        }
+
+        function updateSliderBackground(slider, percentage) {
+            slider.style.background = `linear-gradient(to right, #2563eb 0%, #2563eb ${percentage}%, #e2e8f0 ${percentage}%, #e2e8f0 100%)`;
+        }
+
+        // ================= XỬ LÝ CHUYỂN ĐỔI GIAO DIỆN PHỤ ĐỀ =================
+        function updateLyricContent() {
+            if (currentTrackIndex === -1) {
+                lyricSubtitle.textContent = `Đề số ${currentDe}`;
+                lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-10"><i class="fa-solid fa-music text-4xl mb-4 block opacity-50"></i>Vui lòng chọn một bài nghe để xem phụ đề.</div>';
+                return;
+            }
+
+            const track = tracks[currentTrackIndex];
+            lyricSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
+
+            // Kiểm tra xem có dữ liệu phụ đề cho câu này không
+            if (currentLyricsData && currentLyricsData.length > currentTrackIndex && currentLyricsData[currentTrackIndex] !== "") {
+                lyricContent.textContent = currentLyricsData[currentTrackIndex];
+            } else {
+                lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-10"><i class="fa-solid fa-folder-open text-4xl mb-4 block opacity-50"></i>Không tìm thấy dữ liệu phụ đề cho bài này.<br/><span class="text-sm mt-2 block">Hãy kiểm tra lại file data_HSKAudio/De'+currentDe+'.txt</span></div>';
+            }
+        }
+
+        function toggleLyricView() {
+            const isLyricHidden = lyricView.classList.contains('hidden');
+            
+            if (isLyricHidden) {
+                // ĐANG ẨN -> MỞ LYRIC LÊN, ẨN LIST
+                trackListView.classList.add('hidden');
+                lyricView.classList.remove('hidden');
+                lyricView.classList.add('flex'); // Bật layout cột
+                
+                updateLyricContent();
+                
+                // Cập nhật UI nút bật Lyric
+                btnLyric.classList.remove('text-gray-400');
+                btnLyric.classList.add('text-blue-600', 'bg-blue-50', 'rounded-lg');
+                
+                // Cuộn phần tử lên đầu
+                document.getElementById('mainScrollArea').scrollTop = 0;
+            } else {
+                // ĐANG MỞ -> ĐÓNG LYRIC LẠI, HIỆN LIST
+                lyricView.classList.add('hidden');
+                lyricView.classList.remove('flex');
+                trackListView.classList.remove('hidden');
+                
+                // Trả lại UI nút
+                btnLyric.classList.remove('text-blue-600', 'bg-blue-50', 'rounded-lg');
+                btnLyric.classList.add('text-gray-400');
+                
+                // Cuộn về lại đúng bài đang phát trên danh sách
+                scrollToPlayingTrack();
+            }
+        }
+
+        // Bắt sự kiện click
+        btnLyric.addEventListener('click', toggleLyricView);
+        closeLyricViewBtn.addEventListener('click', toggleLyricView);
+
+        // ================= XỬ LÝ CÀI ĐẶT PHỤ ĐỀ =================
+        function applyLyricStyles() {
+            // Gán trực tiếp style nội tuyến (inline style) sẽ đè lên class của Tailwind
+            lyricContent.style.fontFamily = lyricStyle.fontFamily;
+            lyricContent.style.fontSize = lyricStyle.fontSize + 'px';
+            lyricContent.style.color = lyricStyle.color;
+            lyricContent.style.fontWeight = lyricStyle.bold ? 'bold' : '500'; 
+            lyricContent.style.fontStyle = lyricStyle.italic ? 'italic' : 'normal';
+        }
+
+        function toggleLyricSettingsModal() {
+            if (lyricSettingsModal.classList.contains('hidden')) {
+                // Mở Modal Cài Đặt
+                lyricSettingsModal.classList.remove('hidden');
+                setTimeout(() => {
+                    lyricSettingsModal.classList.remove('opacity-0');
+                    const modalBox = lyricSettingsModal.querySelector('.bg-white');
+                    modalBox.classList.remove('scale-95');
+                    modalBox.classList.add('scale-100');
+                }, 10);
+            } else {
+                // Đóng Modal Cài Đặt
+                lyricSettingsModal.classList.add('opacity-0');
+                const modalBox = lyricSettingsModal.querySelector('.bg-white');
+                modalBox.classList.remove('scale-100');
+                modalBox.classList.add('scale-95');
+                setTimeout(() => {
+                    lyricSettingsModal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Sự kiện mở/đóng Modal Settings
+        btnLyricSettings.addEventListener('click', toggleLyricSettingsModal);
+        closeLyricSettingsBtn.addEventListener('click', toggleLyricSettingsModal);
+        lyricSettingsModal.addEventListener('click', (e) => {
+            if (e.target === lyricSettingsModal) toggleLyricSettingsModal();
+        });
+
+        // Xử lý sự kiện thay đổi Form Cài đặt
+        settingFontFamily.addEventListener('change', (e) => {
+            lyricStyle.fontFamily = e.target.value;
+            applyLyricStyles();
+        });
+
+        settingFontSize.addEventListener('input', (e) => {
+            lyricStyle.fontSize = e.target.value;
+            settingFontSizeDisplay.textContent = e.target.value + 'px';
+            applyLyricStyles();
+        });
+
+        settingColor.addEventListener('input', (e) => {
+            lyricStyle.color = e.target.value;
+            applyLyricStyles();
+        });
+
+        settingBold.addEventListener('click', () => {
+            lyricStyle.bold = !lyricStyle.bold;
+            // Cập nhật trạng thái màu cho nút (Nổi bật khi đang Bật)
+            if(lyricStyle.bold) {
+                settingBold.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-600');
+                settingBold.classList.remove('border-gray-300', 'text-gray-700');
+            } else {
+                settingBold.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-600');
+                settingBold.classList.add('border-gray-300', 'text-gray-700');
+            }
+            applyLyricStyles();
+        });
+
+        settingItalic.addEventListener('click', () => {
+            lyricStyle.italic = !lyricStyle.italic;
+            if(lyricStyle.italic) {
+                settingItalic.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-600');
+                settingItalic.classList.remove('border-gray-300', 'text-gray-700');
+            } else {
+                settingItalic.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-600');
+                settingItalic.classList.add('border-gray-300', 'text-gray-700');
+            }
+            applyLyricStyles();
+        });
+
+        // Kích hoạt thiết lập Style ngay khi trang vừa tải xong
+        applyLyricStyles();
+
+        // === EVENT LISTENERS KHÁC ===
+        deSelector.addEventListener('change', (e) => loadDe(e.target.value));
+        btnPlay.addEventListener('click', togglePlay);
+        btnNext.addEventListener('click', playNext);
+        btnPrev.addEventListener('click', playPrev);
+
+        btnRepeat.addEventListener('click', () => {
+            isRepeatOne = !isRepeatOne;
+            if (isRepeatOne) {
+                // Xóa màu xám, thêm màu xanh
+                btnRepeat.classList.remove('text-gray-400');
+                btnRepeat.classList.add('text-blue-600');
+                // Chỉnh lại UI số 1 cho đẹp và rõ nét
+                btnRepeat.innerHTML = '<i class="fa-solid fa-repeat"></i><span class="absolute text-[9px] font-bold -bottom-0.5 -right-0.5 bg-white text-blue-600 rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none shadow-sm">1</span>';
+            } else {
+                // Xóa màu xanh, trả lại màu xám
+                btnRepeat.classList.remove('text-blue-600');
+                btnRepeat.classList.add('text-gray-400');
+                btnRepeat.innerHTML = '<i class="fa-solid fa-repeat"></i>';
+            }
+        });
+
+        const speeds = [0.75, 1.0, 1.25, 1.5];
+        btnSpeed.addEventListener('click', () => {
+            let idx = speeds.indexOf(currentSpeed);
+            idx = (idx + 1) % speeds.length;
+            currentSpeed = speeds[idx];
+            audioPlayer.playbackRate = currentSpeed;
+            btnSpeed.textContent = currentSpeed + 'x';
+            if(currentSpeed !== 1.0) btnSpeed.classList.add('text-blue-600');
+            else btnSpeed.classList.remove('text-blue-600');
+        });
+
+        audioPlayer.addEventListener('timeupdate', () => {
+            if (!isDraggingProgress && audioPlayer.duration) {
+                const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progressBar.value = percent;
+                updateSliderBackground(progressBar, percent);
+                timeCurrent.textContent = formatTime(audioPlayer.currentTime);
+            }
+        });
+
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            timeTotal.textContent = formatTime(audioPlayer.duration);
+            
+            if(currentTrackIndex !== -1) {
+                const track = tracks[currentTrackIndex];
+                track.duration = formatTime(audioPlayer.duration);
+                const timeCell = document.getElementById(`timeDisplay_${currentTrackIndex}`);
+                if(timeCell) timeCell.textContent = track.duration;
+            }
+        });
+
+        audioPlayer.addEventListener('ended', () => {
+            if (isRepeatOne) {
+                audioPlayer.currentTime = 0;
+                audioPlayer.play();
+            } else {
+                playNext();
+            }
+        });
+
+        progressBar.addEventListener('input', () => {
+            isDraggingProgress = true;
+            updateSliderBackground(progressBar, progressBar.value);
+            if (audioPlayer.duration) {
+                timeCurrent.textContent = formatTime((progressBar.value / 100) * audioPlayer.duration);
+            }
+        });
+
+        progressBar.addEventListener('change', () => {
+            if (audioPlayer.duration) {
+                audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
+            }
+            isDraggingProgress = false;
+        });
+
+        volumeBar.addEventListener('input', (e) => {
+            const vol = parseFloat(e.target.value);
+            audioPlayer.volume = vol;
+            updateSliderBackground(volumeBar, vol * 100);
+            
+            const icon = volumeBar.previousElementSibling;
+            if (vol === 0) icon.className = 'fa-solid fa-volume-xmark text-gray-400 text-sm';
+            else if (vol < 0.5) icon.className = 'fa-solid fa-volume-low text-gray-400 text-sm';
+            else icon.className = 'fa-solid fa-volume-high text-gray-400 text-sm';
+        });
+
+        // Init
+        init();
+    </script>
+</body>
+</html>
