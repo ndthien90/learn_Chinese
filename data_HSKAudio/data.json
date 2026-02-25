@@ -1035,6 +1035,394 @@
     "道理": {
       "pinyin": "dàolǐ",
       "meaning": "lẽ phải, nguyên tắc"
+    },
+    "实在": {
+      "pinyin": "shízài",
+      "meaning": "thật sự, thực tế, chân thành"
+    },
+    "打工": {
+      "pinyin": "dǎgōng",
+      "meaning": "làm thuê, làm công"
+    },
+    "笑话": {
+      "pinyin": "xiàohua",
+      "meaning": "truyện cười, chuyện đùa"
+    },
+    "讲价": {
+      "pinyin": "jiǎngjià",
+      "meaning": "mặc cả, trả giá"
+    },
+    "认真": {
+      "pinyin": "rènzhēn",
+      "meaning": "nghiêm túc, cẩn thận"
+    },
+    "负责": {
+      "pinyin": "fùzé",
+      "meaning": "chịu trách nhiệm"
+    },
+    "热心": {
+      "pinyin": "rèxīn",
+      "meaning": "nhiệt tình, hăng hái"
+    },
+    "助人": {
+      "pinyin": "zhùrén",
+      "meaning": "giúp đỡ người khác"
+    },
+    "做客": {
+      "pinyin": "zuòkè",
+      "meaning": "đi thăm, làm khách"
+    },
+    "邮": {
+      "pinyin": "yóu",
+      "meaning": "bưu điện, thư từ"
+    },
+    "邮件": {
+      "pinyin": "yóujiàn",
+      "meaning": "thư điện tử"
+    },
+    "聚会": {
+      "pinyin": "jùhuì",
+      "meaning": "họp mặt, tụ họp"
+    },
+    "小食品": {
+      "pinyin": "xiǎoshípǐn",
+      "meaning": "đồ ăn vặt"
+    },
+    "吵死": {
+      "pinyin": "chǎosǐ",
+      "meaning": "ồn chết đi được, ồn quá"
+    },
+    "婚礼": {
+      "pinyin": "hūnlǐ",
+      "meaning": "lễ cưới"
+    },
+    "发型": {
+      "pinyin": "fàxíng",
+      "meaning": "kiểu tóc"
+    },
+    "字画": {
+      "pinyin": "zìhuà",
+      "meaning": "thư họa, tranh chữ"
+    },
+    "画店": {
+      "pinyin": "huàdiàn",
+      "meaning": "cửa hàng tranh"
+    },
+    "喂鸟": {
+      "pinyin": "wèiniǎo",
+      "meaning": "cho chim ăn"
+    },
+    "养花": {
+      "pinyin": "yǎnghuā",
+      "meaning": "trồng hoa"
+    },
+    "钢琴": {
+      "pinyin": "gāngqín",
+      "meaning": "đàn piano"
+    },
+    "舞蹈": {
+      "pinyin": "wǔdǎo",
+      "meaning": "múa, điệu múa"
+    },
+    "辅导课": {
+      "pinyin": "fǔdǎokè",
+      "meaning": "lớp phụ đạo"
+    },
+    "机场": {
+      "pinyin": "jīchǎng",
+      "meaning": "sân bay"
+    },
+    "脸色": {
+      "pinyin": "liǎn sè",
+      "meaning": "sắc mặt, vẻ mặt"
+    },
+    "美容": {
+      "pinyin": "měiróng",
+      "meaning": "làm đẹp"
+    },
+    "苏珊": {
+      "pinyin": "sūshān",
+      "meaning": "Susan (tên người)"
+    },
+    "京剧": {
+      "pinyin": "jīngjù",
+      "meaning": "Kinh kịch, loại hình kịch truyền thống của Trung Quốc"
+    },
+    "光盘": {
+      "pinyin": "guāngpán",
+      "meaning": "đĩa CD/DVD"
+    },
+    "航班": {
+      "pinyin": "hángbān",
+      "meaning": "chuyến bay"
+    },
+    "上海": {
+      "pinyin": "Shànghǎi",
+      "meaning": "Thành phố Thượng Hải"
+    },
+    "起飞": {
+      "pinyin": "qǐfēi",
+      "meaning": "cất cánh"
+    },
+    "手术": {
+      "pinyin": "shǒushù",
+      "meaning": "phẫu thuật"
+    },
+    "病房": {
+      "pinyin": "bìngfáng",
+      "meaning": "phòng bệnh"
+    },
+    "急诊室": {
+      "pinyin": "jízhěnshì",
+      "meaning": "phòng cấp cứu"
+    },
+    "川菜": {
+      "pinyin": "chuāncài",
+      "meaning": "món ăn Tứ Xuyên"
+    },
+    "拿手": {
+      "pinyin": "náshǒu",
+      "meaning": "sở trường, giỏi"
+    },
+    "实话": {
+      "pinyin": "shíhuà",
+      "meaning": "sự thật, lời thật"
+    },
+    "四川": {
+      "pinyin": "Sìchuān",
+      "meaning": "Tỉnh Tứ Xuyên, Trung Quốc"
+    },
+    "京": {
+      "pinyin": "jīng",
+      "meaning": "thủ đô, kinh đô"
+    },
+    "北京": {
+      "pinyin": "běijīng",
+      "meaning": "Bắc Kinh"
+    },
+    "thủ đô Trung Quốc": {
+      "pinyin": "zhōngguóshǒudū",
+      "meaning": "thủ đô Trung Quốc"
+    },
+    "家乡": {
+      "pinyin": "jiāxiāng",
+      "meaning": "quê hương"
+    },
+    "校园": {
+      "pinyin": "xiàoyuán",
+      "meaning": "khuôn viên trường học"
+    },
+    "取钱": {
+      "pinyin": "qǔqián",
+      "meaning": "rút tiền"
+    },
+    "包裹": {
+      "pinyin": "bāoguǒ",
+      "meaning": "gói hàng, bưu kiện"
+    },
+    "瞎操心": {
+      "pinyin": "xiācāoxīn",
+      "meaning": "lo lắng vô ích"
+    },
+    "晒网": {
+      "pinyin": "shàiwǎng",
+      "meaning": "phơi lưới (nghĩa đen), lười biếng/nghỉ ngơi (nghĩa bóng)"
+    },
+    "打鱼": {
+      "pinyin": "dǎyú",
+      "meaning": "đánh cá"
+    },
+    "高尔夫": {
+      "pinyin": "gāo'ěrfū",
+      "meaning": "gôn"
+    },
+    "网球": {
+      "pinyin": "wǎngqiú",
+      "meaning": "quần vợt"
+    },
+    "练": {
+      "pinyin": "liàn",
+      "meaning": "luyện tập, rèn luyện"
+    },
+    "广泛": {
+      "pinyin": "guǎngfàn",
+      "meaning": "rộng rãi, phổ biến"
+    },
+    "洗衣机": {
+      "pinyin": "xǐyījī",
+      "meaning": "máy giặt"
+    },
+    "农家饭": {
+      "pinyin": "nóngjiāfàn",
+      "meaning": "cơm nhà quê"
+    },
+    "田园": {
+      "pinyin": "tiányuán",
+      "meaning": "đồng quê, nông thôn"
+    },
+    "景色": {
+      "pinyin": "jǐngsè",
+      "meaning": "phong cảnh"
+    },
+    "农家院": {
+      "pinyin": "nóngjiāyuàn",
+      "meaning": "nhà nông dân, trang trại nhỏ"
+    },
+    "摘": {
+      "pinyin": "zhāi",
+      "meaning": "hái, bẻ, ngắt"
+    },
+    "状态": {
+      "pinyin": "zhuàngtài",
+      "meaning": "trạng thái"
+    },
+    "居民": {
+      "pinyin": "jūmín",
+      "meaning": "cư dân"
+    },
+    "推动": {
+      "pinyin": "tuīdòng",
+      "meaning": "thúc đẩy"
+    },
+    "旅游业": {
+      "pinyin": "lǚyóuyè",
+      "meaning": "ngành du lịch"
+    },
+    "农村": {
+      "pinyin": "nóngcūn",
+      "meaning": "nông thôn"
+    },
+    "市场": {
+      "pinyin": "shìchǎng",
+      "meaning": "thị trường"
+    },
+    "农贸": {
+      "pinyin": "nóngmào",
+      "meaning": "nông nghiệp và thương mại"
+    },
+    "蔬菜": {
+      "pinyin": "shūcài",
+      "meaning": "rau củ"
+    },
+    "随着": {
+      "pinyin": "suízhe",
+      "meaning": "theo, cùng với"
+    },
+    "逐渐": {
+      "pinyin": "zhújiàn",
+      "meaning": "dần dần"
+    },
+    "增多": {
+      "pinyin": "zēngduō",
+      "meaning": "tăng lên, nhiều hơn"
+    },
+    "周围": {
+      "pinyin": "zhōuwéi",
+      "meaning": "xung quanh"
+    },
+    "及": {
+      "pinyin": "jí",
+      "meaning": "và, đến, kịp"
+    },
+    "如何": {
+      "pinyin": "rúhé",
+      "meaning": "như thế nào, cách nào"
+    },
+    "长城": {
+      "pinyin": "chángchéng",
+      "meaning": "Vạn Lý Trường Thành"
+    },
+    "兴奋": {
+      "pinyin": "xīngfèn",
+      "meaning": "hưng phấn, phấn khích"
+    },
+    "闹钟": {
+      "pinyin": "nàozhōng",
+      "meaning": "đồng hồ báo thức"
+    },
+    "响声": {
+      "pinyin": "xiǎngshēng",
+      "meaning": "tiếng động, âm thanh"
+    },
+    "背包": {
+      "pinyin": "bēibāo",
+      "meaning": "ba lô"
+    },
+    "集合": {
+      "pinyin": "jíhé",
+      "meaning": "tập hợp"
+    },
+    "地": {
+      "pinyin": "dì",
+      "meaning": "đất, mặt đất, địa điểm"
+    },
+    "集合地": {
+      "pinyin": "jíhédì",
+      "meaning": "điểm tập trung"
+    },
+    "心急": {
+      "pinyin": "xīn jí",
+      "meaning": "nóng lòng, sốt ruột"
+    },
+    "美景": {
+      "pinyin": "měijǐng",
+      "meaning": "phong cảnh đẹp"
+    },
+    "路边": {
+      "pinyin": "lùbiān",
+      "meaning": "bên đường"
+    },
+    "阅读": {
+      "pinyin": "yuèdú",
+      "meaning": "đọc"
+    },
+    "采访": {
+      "pinyin": "cǎifǎng",
+      "meaning": "phỏng vấn"
+    },
+    "家长": {
+      "pinyin": "jiāzhǎng",
+      "meaning": "phụ huynh"
+    },
+    "特意": {
+      "pinyin": "tèyì",
+      "meaning": "cố ý, có chủ đích"
+    },
+    "小凳": {
+      "pinyin": "xiǎodèng",
+      "meaning": "ghế nhỏ"
+    },
+    "气氛": {
+      "pinyin": "qìfēn",
+      "meaning": "không khí, bầu không khí"
+    },
+    "培养": {
+      "pinyin": "péiyǎng",
+      "meaning": "nuôi dưỡng, đào tạo"
+    },
+    "良好": {
+      "pinyin": "liánghǎo",
+      "meaning": "tốt, khá tốt"
+    },
+    "习惯": {
+      "pinyin": "xíguàn",
+      "meaning": "thói quen"
+    },
+    "漏水": {
+      "pinyin": "lòushuǐ",
+      "meaning": "rò rỉ nước"
+    },
+    "原因": {
+      "pinyin": "yuányīn",
+      "meaning": "nguyên nhân"
+    },
+    "水龙头": {
+      "pinyin": "shuǐlóngtóu",
+      "meaning": "vòi nước"
+    },
+    "忘记": {
+      "pinyin": "wàngjì",
+      "meaning": "quên"
     }
   },
   "translations": {
