@@ -80,10 +80,9 @@
     </header>
 
     <!-- ==================== MAIN CONTENT ==================== -->
-    <!-- Đã thêm 'flex flex-col' vào main để các view con có thể tự kéo giãn chiều cao -->
-    <main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative w-full flex flex-col" id="mainScrollArea">
-        <!-- VIEW 1: DANH SÁCH BÀI NGHE -->
-        <div id="trackListView" class="w-full max-w-4xl mx-auto px-2 sm:px-4 py-6">
+    <main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative w-full" id="mainScrollArea">
+        <div class="max-w-4xl mx-auto px-2 sm:px-4 py-6">
+            
             <!-- List Header -->
             <div class="grid grid-cols-[40px_1fr_60px] sm:grid-cols-[50px_1fr_80px] gap-2 sm:gap-4 px-4 py-3 border-b border-gray-100 text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider sticky top-0 bg-white/95 backdrop-blur z-10">
                 <div class="text-center">#</div>
@@ -95,36 +94,7 @@
             <div id="trackList" class="flex flex-col mt-2">
                 <!-- Tracks rendered by JS -->
             </div>
-        </div>
 
-        <!-- VIEW 2: PHỤ ĐỀ (LYRIC) - Ẩn mặc định -->
-        <!-- Thêm 'flex-1' để view này luôn chiếm trọn không gian trống -->
-        <div id="lyricView" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex-col">
-            <!-- Header Lyric -->
-            <div class="flex items-center justify-between mb-2 pb-4 border-b border-gray-100 flex-none">
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
-                        <i class="fa-solid fa-file-lines text-blue-500"></i> Phụ đề nội dung
-                    </h2>
-                    <p id="lyricSubtitle" class="text-sm text-gray-500 mt-1">Đề 1 - File 001.mp3</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button id="btnLyricSettings" class="text-gray-500 hover:text-blue-600 transition bg-gray-100 hover:bg-blue-50 w-9 h-9 sm:w-auto sm:px-3 sm:py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 focus:outline-none flex-shrink-0" title="Cài đặt hiển thị">
-                        <i class="fa-solid fa-gear"></i> <span class="hidden sm:inline">Cài đặt</span>
-                    </button>
-                    <button id="closeLyricViewBtn" class="text-gray-500 hover:text-blue-600 transition bg-gray-100 hover:bg-blue-50 px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 focus:outline-none flex-shrink-0">
-                        <i class="fa-solid fa-list-ul"></i> <span class="hidden sm:inline">Danh sách</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Nội dung Lyric (Đã cấu trúc lại để CĂN GIỮA MÀN HÌNH) -->
-            <div class="flex-1 flex flex-col items-center justify-center py-10 w-full">
-                <!-- Giới hạn max-w-2xl giúp form chữ gọn gàng hơn khi màn hình quá rộng -->
-                <div id="lyricContent" class="text-gray-800 leading-[1.8] whitespace-pre-wrap text-[18px] sm:text-[22px] font-medium w-full max-w-2xl px-2">
-                    Đang tải dữ liệu...
-                </div>
-            </div>
         </div>
     </main>
 
@@ -134,7 +104,7 @@
             
             <!-- 1. Info -->
             <div class="flex items-center gap-3 w-full md:w-1/3 min-w-0">
-                <div id="nowPlayingIcon" class="w-12 h-12 rounded-lg bg-[#eef2ff] flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer" onclick="toggleLyricView()" title="Nhấn để xem phụ đề">
+                <div id="nowPlayingIcon" class="w-12 h-12 rounded-lg bg-[#eef2ff] flex items-center justify-center flex-shrink-0 transition-colors cursor-pointer" onclick="openLyricModal()" title="Nhấn để xem phụ đề">
                     <i class="fa-solid fa-compact-disc text-gray-400 text-xl"></i>
                 </div>
                 <div class="min-w-0 flex-1">
@@ -177,52 +147,30 @@
         </div>
     </footer>
 
-    <!-- ==================== MODAL CÀI ĐẶT PHỤ ĐỀ ==================== -->
-    <div id="lyricSettingsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-sm overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col">
+    <!-- ==================== MODAL PHỤ ĐỀ (LYRIC) ==================== -->
+    <div id="lyricModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <!-- Vùng modal chính -->
+        <div class="bg-white rounded-2xl shadow-2xl w-11/12 max-w-lg overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[70vh]">
+            
             <!-- Header Modal -->
             <div class="px-5 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50 flex-none">
-                <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-blue-500"></i> Tùy chỉnh hiển thị
-                </h3>
-                <button id="closeLyricSettingsBtn" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2 -mr-2 rounded-full hover:bg-red-50">
+                <div class="flex flex-col">
+                    <h3 class="font-bold text-gray-800 text-base flex items-center gap-2">
+                        <i class="fa-regular fa-file-word text-blue-500 text-lg"></i> Phụ đề nội dung
+                    </h3>
+                    <span id="lyricModalSubtitle" class="text-xs text-gray-500 mt-0.5">Đề 1 - File 001.mp3</span>
+                </div>
+                <button id="closeLyricBtn" class="text-gray-400 hover:text-red-500 transition-colors focus:outline-none p-2 -mr-2 rounded-full hover:bg-red-50">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
+            
             <!-- Nội dung Modal -->
-            <div class="p-5 flex flex-col gap-4">
-                <!-- Kiểu chữ -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Kiểu chữ</label>
-                    <select id="settingFontFamily" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500 text-gray-700 font-medium cursor-pointer">
-                        <option value="'Inter', sans-serif">Mặc định (Inter)</option>
-                        <option value="'KaiTi', 'STKaiti', serif">Kaiti (Khải Thể)</option>
-                        <option value="serif">Serif (Có chân)</option>
-                    </select>
-                </div>
-                <!-- Cỡ chữ -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1 flex justify-between">
-                        <span>Cỡ chữ</span>
-                        <span id="settingFontSizeDisplay" class="text-blue-600 font-bold">22px</span>
-                    </label>
-                    <!-- Tùy chỉnh thanh trượt slider -->
-                    <input type="range" id="settingFontSize" min="14" max="50" value="22" class="w-full progress-slider h-2">
-                </div>
-                <!-- Màu chữ -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Màu chữ</label>
-                    <div class="flex items-center gap-3">
-                        <input type="color" id="settingColor" value="#1f2937" class="w-9 h-9 rounded cursor-pointer border border-gray-300 p-0.5 outline-none">
-                        <span class="text-sm text-gray-500">Nhấn để chọn màu</span>
-                    </div>
-                </div>
-                <!-- Định dạng Đậm/Nghiêng -->
-                <div class="flex items-center gap-3 mt-1">
-                    <button id="settingBold" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-bold hover:bg-gray-50 transition focus:outline-none text-sm">In Đậm (B)</button>
-                    <button id="settingItalic" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 italic hover:bg-gray-50 transition focus:outline-none text-sm">In Nghiêng (I)</button>
-                </div>
+            <!-- whitespace-pre-wrap giúp giữ nguyên định dạng xuống dòng của file text -->
+            <div id="lyricContent" class="p-6 overflow-y-auto custom-scrollbar flex-1 text-gray-700 leading-relaxed whitespace-pre-wrap text-[16px] md:text-[17px] font-medium">
+                Đang tải dữ liệu...
             </div>
+            
         </div>
     </div>
 
@@ -264,33 +212,12 @@
         const nowPlayingAlbum = document.getElementById('nowPlayingAlbum');
         const nowPlayingIcon = document.getElementById('nowPlayingIcon');
         
-        // DOM Elements Phụ đề & View
+        // DOM Elements Phụ đề
         const btnLyric = document.getElementById('btnLyric');
-        const trackListView = document.getElementById('trackListView');
-        const lyricView = document.getElementById('lyricView');
-        const closeLyricViewBtn = document.getElementById('closeLyricViewBtn');
+        const lyricModal = document.getElementById('lyricModal');
+        const closeLyricBtn = document.getElementById('closeLyricBtn');
         const lyricContent = document.getElementById('lyricContent');
-        const lyricSubtitle = document.getElementById('lyricSubtitle');
-
-        // DOM Elements Cài đặt Phụ đề
-        const btnLyricSettings = document.getElementById('btnLyricSettings');
-        const lyricSettingsModal = document.getElementById('lyricSettingsModal');
-        const closeLyricSettingsBtn = document.getElementById('closeLyricSettingsBtn');
-        const settingFontFamily = document.getElementById('settingFontFamily');
-        const settingFontSize = document.getElementById('settingFontSize');
-        const settingFontSizeDisplay = document.getElementById('settingFontSizeDisplay');
-        const settingColor = document.getElementById('settingColor');
-        const settingBold = document.getElementById('settingBold');
-        const settingItalic = document.getElementById('settingItalic');
-        
-        // Trạng thái cấu hình (Style state)
-        let lyricStyle = {
-            fontFamily: "'Inter', sans-serif",
-            fontSize: 22,
-            color: "#1f2937",
-            bold: false,
-            italic: false
-        };
+        const lyricModalSubtitle = document.getElementById('lyricModalSubtitle');
 
         function init() {
             for (let i = 1; i <= MAX_DE; i++) {
@@ -344,13 +271,6 @@
 
             // Gọi hàm tải phụ đề ngầm
             fetchLyrics(currentDe);
-
-            // Luôn đưa về màn hình danh sách khi chuyển đề
-            trackListView.classList.remove('hidden');
-            lyricView.classList.add('hidden');
-            lyricView.classList.remove('flex');
-            btnLyric.classList.remove('text-blue-600', 'bg-blue-50', 'rounded-lg');
-            btnLyric.classList.add('text-gray-400');
 
             for (let i = 1; i <= TRACKS_PER_DE; i++) {
                 const trackNumStr = padNum(i);
@@ -440,15 +360,11 @@
                 track.status = 'playing';
                 updatePlayerUI();
                 renderTrackList(); 
+                scrollToPlayingTrack();
                 
-                // Nếu đang ở màn hình danh sách thì tự động cuộn đến bài
-                if (lyricView.classList.contains('hidden')) {
-                    scrollToPlayingTrack();
-                }
-                
-                // Cập nhật nội dung lyric nếu giao diện lyric đang mở
-                if (!lyricView.classList.contains('hidden')) {
-                    updateLyricContent();
+                // Cập nhật nội dung modal lyric nếu modal đang mở
+                if (!lyricModal.classList.contains('hidden')) {
+                    updateLyricModalContent();
                 }
 
             }).catch(error => {
@@ -528,144 +444,76 @@
             slider.style.background = `linear-gradient(to right, #2563eb 0%, #2563eb ${percentage}%, #e2e8f0 ${percentage}%, #e2e8f0 100%)`;
         }
 
-        // ================= XỬ LÝ CHUYỂN ĐỔI GIAO DIỆN PHỤ ĐỀ =================
-        function updateLyricContent() {
+        // ================= XỬ LÝ MODAL PHỤ ĐỀ =================
+        function updateLyricModalContent() {
             if (currentTrackIndex === -1) {
-                lyricSubtitle.textContent = `Đề số ${currentDe}`;
-                lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-10"><i class="fa-solid fa-music text-4xl mb-4 block opacity-50"></i>Vui lòng chọn một bài nghe để xem phụ đề.</div>';
+                lyricModalSubtitle.textContent = `Đề số ${currentDe}`;
+                lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-4"><i class="fa-solid fa-music text-3xl mb-3 block"></i>Vui lòng chọn một bài nghe để xem phụ đề.</div>';
                 return;
             }
 
             const track = tracks[currentTrackIndex];
-            lyricSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
+            lyricModalSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
 
-            // Kiểm tra xem có dữ liệu phụ đề cho câu này không
+            // Kiểm tra xem có dữ liệu phụ đề cho câu này không (index mảng khớp với index track)
             if (currentLyricsData && currentLyricsData.length > currentTrackIndex && currentLyricsData[currentTrackIndex] !== "") {
+                // Hiển thị text. Vì đã dùng class whitespace-pre-wrap ở HTML nên thẻ div sẽ tự động nhận diện ký tự xuống dòng (\n)
                 lyricContent.textContent = currentLyricsData[currentTrackIndex];
             } else {
-                lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-10"><i class="fa-solid fa-folder-open text-4xl mb-4 block opacity-50"></i>Không tìm thấy dữ liệu phụ đề cho bài này.<br/><span class="text-sm mt-2 block">Hãy kiểm tra lại file data_HSKAudio/De'+currentDe+'.txt</span></div>';
+                lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-4"><i class="fa-solid fa-folder-open text-3xl mb-3 block"></i>Không tìm thấy dữ liệu phụ đề cho bài này.<br/><span class="text-sm">Hãy kiểm tra lại file data_HSKAudio/De'+currentDe+'.txt</span></div>';
             }
         }
 
-        function toggleLyricView() {
-            const isLyricHidden = lyricView.classList.contains('hidden');
+        function openLyricModal() {
+            updateLyricModalContent();
             
-            if (isLyricHidden) {
-                // ĐANG ẨN -> MỞ LYRIC LÊN, ẨN LIST
-                trackListView.classList.add('hidden');
-                lyricView.classList.remove('hidden');
-                lyricView.classList.add('flex'); // Bật layout cột
-                
-                updateLyricContent();
-                
-                // Cập nhật UI nút bật Lyric
-                btnLyric.classList.remove('text-gray-400');
-                btnLyric.classList.add('text-blue-600', 'bg-blue-50', 'rounded-lg');
-                
-                // Cuộn phần tử lên đầu
-                document.getElementById('mainScrollArea').scrollTop = 0;
-            } else {
-                // ĐANG MỞ -> ĐÓNG LYRIC LẠI, HIỆN LIST
-                lyricView.classList.add('hidden');
-                lyricView.classList.remove('flex');
-                trackListView.classList.remove('hidden');
-                
-                // Trả lại UI nút
-                btnLyric.classList.remove('text-blue-600', 'bg-blue-50', 'rounded-lg');
-                btnLyric.classList.add('text-gray-400');
-                
-                // Cuộn về lại đúng bài đang phát trên danh sách
-                scrollToPlayingTrack();
-            }
+            // Xóa class hidden để element xuất hiện trên DOM
+            lyricModal.classList.remove('hidden');
+            
+            // Đợi 1 nhịp nhỏ để trình duyệt render, sau đó kích hoạt hiệu ứng mờ dần và scale
+            setTimeout(() => {
+                lyricModal.classList.remove('opacity-0');
+                const modalBox = lyricModal.querySelector('.bg-white');
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 10);
+
+            // Đổi màu nút để báo hiệu đang bật
+            btnLyric.classList.remove('text-gray-400');
+            btnLyric.classList.add('text-blue-600');
         }
 
-        // Bắt sự kiện click
-        btnLyric.addEventListener('click', toggleLyricView);
-        closeLyricViewBtn.addEventListener('click', toggleLyricView);
+        function closeLyricModalFunc() {
+            // Ngược lại: Kích hoạt hiệu ứng ẩn đi
+            lyricModal.classList.add('opacity-0');
+            const modalBox = lyricModal.querySelector('.bg-white');
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+            
+            // Đợi hiệu ứng chạy xong (300ms theo duration-300) rồi mới cho display: none
+            setTimeout(() => {
+                lyricModal.classList.add('hidden');
+            }, 300);
 
-        // ================= XỬ LÝ CÀI ĐẶT PHỤ ĐỀ =================
-        function applyLyricStyles() {
-            // Gán trực tiếp style nội tuyến (inline style) sẽ đè lên class của Tailwind
-            lyricContent.style.fontFamily = lyricStyle.fontFamily;
-            lyricContent.style.fontSize = lyricStyle.fontSize + 'px';
-            lyricContent.style.color = lyricStyle.color;
-            lyricContent.style.fontWeight = lyricStyle.bold ? 'bold' : '500'; 
-            lyricContent.style.fontStyle = lyricStyle.italic ? 'italic' : 'normal';
+            // Tắt màu nút
+            btnLyric.classList.remove('text-blue-600');
+            btnLyric.classList.add('text-gray-400');
         }
 
-        function toggleLyricSettingsModal() {
-            if (lyricSettingsModal.classList.contains('hidden')) {
-                // Mở Modal Cài Đặt
-                lyricSettingsModal.classList.remove('hidden');
-                setTimeout(() => {
-                    lyricSettingsModal.classList.remove('opacity-0');
-                    const modalBox = lyricSettingsModal.querySelector('.bg-white');
-                    modalBox.classList.remove('scale-95');
-                    modalBox.classList.add('scale-100');
-                }, 10);
+        // Bắt sự kiện click nút Lyric
+        btnLyric.addEventListener('click', () => {
+            if(lyricModal.classList.contains('hidden')) {
+                openLyricModal();
             } else {
-                // Đóng Modal Cài Đặt
-                lyricSettingsModal.classList.add('opacity-0');
-                const modalBox = lyricSettingsModal.querySelector('.bg-white');
-                modalBox.classList.remove('scale-100');
-                modalBox.classList.add('scale-95');
-                setTimeout(() => {
-                    lyricSettingsModal.classList.add('hidden');
-                }, 300);
+                closeLyricModalFunc();
             }
-        }
-
-        // Sự kiện mở/đóng Modal Settings
-        btnLyricSettings.addEventListener('click', toggleLyricSettingsModal);
-        closeLyricSettingsBtn.addEventListener('click', toggleLyricSettingsModal);
-        lyricSettingsModal.addEventListener('click', (e) => {
-            if (e.target === lyricSettingsModal) toggleLyricSettingsModal();
         });
 
-        // Xử lý sự kiện thay đổi Form Cài đặt
-        settingFontFamily.addEventListener('change', (e) => {
-            lyricStyle.fontFamily = e.target.value;
-            applyLyricStyles();
+        // Bấm nút X hoặc bấm ra ngoài màn hình đen để tắt
+        closeLyricBtn.addEventListener('click', closeLyricModalFunc);
+        lyricModal.addEventListener('click', (e) => {
+            if (e.target === lyricModal) closeLyricModalFunc();
         });
-
-        settingFontSize.addEventListener('input', (e) => {
-            lyricStyle.fontSize = e.target.value;
-            settingFontSizeDisplay.textContent = e.target.value + 'px';
-            applyLyricStyles();
-        });
-
-        settingColor.addEventListener('input', (e) => {
-            lyricStyle.color = e.target.value;
-            applyLyricStyles();
-        });
-
-        settingBold.addEventListener('click', () => {
-            lyricStyle.bold = !lyricStyle.bold;
-            // Cập nhật trạng thái màu cho nút (Nổi bật khi đang Bật)
-            if(lyricStyle.bold) {
-                settingBold.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-600');
-                settingBold.classList.remove('border-gray-300', 'text-gray-700');
-            } else {
-                settingBold.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-600');
-                settingBold.classList.add('border-gray-300', 'text-gray-700');
-            }
-            applyLyricStyles();
-        });
-
-        settingItalic.addEventListener('click', () => {
-            lyricStyle.italic = !lyricStyle.italic;
-            if(lyricStyle.italic) {
-                settingItalic.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-600');
-                settingItalic.classList.remove('border-gray-300', 'text-gray-700');
-            } else {
-                settingItalic.classList.remove('bg-blue-50', 'border-blue-400', 'text-blue-600');
-                settingItalic.classList.add('border-gray-300', 'text-gray-700');
-            }
-            applyLyricStyles();
-        });
-
-        // Kích hoạt thiết lập Style ngay khi trang vừa tải xong
-        applyLyricStyles();
 
         // === EVENT LISTENERS KHÁC ===
         deSelector.addEventListener('change', (e) => loadDe(e.target.value));
