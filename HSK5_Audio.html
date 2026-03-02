@@ -77,9 +77,77 @@
             user-select: text;
             -webkit-user-select: text;
         }
+        
+        /* Hiệu ứng mờ dần cho Login Wall */
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-out;
+        }
     </style>
 </head>
 <body class="text-gray-800 h-[100dvh] w-full flex flex-col overflow-hidden bg-white relative">
+
+    <!-- ==================== LOGIN WALL (BỨC TƯỜNG ĐĂNG NHẬP TẠI MÀN HÌNH CHÍNH) ==================== -->
+    <div id="loginWall" class="fixed inset-0 z-[999] bg-slate-900 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
+            <div class="px-6 py-8 border-b border-gray-100 flex flex-col items-center justify-center bg-blue-50 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-500 rounded-full opacity-10 blur-xl"></div>
+                
+                <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-500/30 mb-4 z-10">
+                    <i class="fa-solid fa-headphones-simple text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight z-10">HSK Audio Pro</h2>
+                <p class="text-sm text-gray-500 mt-1 z-10 font-medium">Hệ thống luyện nghe & dịch thông minh</p>
+            </div>
+            
+            <div class="p-6 sm:p-8 flex flex-col gap-4">
+                <div id="wallLoading" class="flex flex-col items-center justify-center py-6">
+                    <i class="fa-solid fa-circle-notch fa-spin text-blue-500 text-3xl mb-3"></i>
+                    <p class="text-sm font-medium text-gray-500">Đang kiểm tra phiên đăng nhập...</p>
+                </div>
+
+                <div id="wallAuthActions" class="hidden flex-col gap-3">
+                    <!-- Form Đăng nhập -->
+                    <div id="wallLoginForm" class="flex flex-col gap-3">
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <input type="email" id="wallAuthEmail" placeholder="Nhập địa chỉ Email" class="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-gray-50 focus:bg-white">
+                        </div>
+                        <div class="relative">
+                            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <input type="password" id="wallAuthPassword" placeholder="Nhập mật khẩu" class="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-gray-50 focus:bg-white">
+                        </div>
+                        <button id="wallBtnLoginEmail" class="w-full bg-blue-600 text-white hover:bg-blue-700 py-3 rounded-xl text-sm font-bold transition shadow-md shadow-blue-500/20 mt-2">Đăng nhập vào hệ thống</button>
+                        <div class="text-center text-sm text-gray-500 mt-3">
+                            Chưa có tài khoản? <a href="#" id="wallLinkShowRegister" class="text-blue-600 hover:text-blue-700 hover:underline font-bold transition-colors">Đăng ký ngay</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Form Đăng ký -->
+                    <div id="wallRegisterForm" class="hidden flex-col gap-3">
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <input type="email" id="wallRegEmail" placeholder="Nhập địa chỉ Email" class="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-gray-50 focus:bg-white">
+                        </div>
+                        <div class="relative">
+                            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <input type="password" id="wallRegPassword" placeholder="Mật khẩu (Từ 6 ký tự)" class="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-gray-50 focus:bg-white">
+                        </div>
+                        <div class="relative">
+                            <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-blue-500 text-sm"></i>
+                            <input type="text" id="wallRegTeacherCode" placeholder="Mã giáo viên (Bắt buộc)" class="w-full border border-blue-300 bg-blue-50/50 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:border-blue-600 focus:bg-blue-50 transition-all text-blue-800 font-medium">
+                        </div>
+                        <button id="wallBtnSubmitRegister" class="w-full bg-green-600 text-white hover:bg-green-700 py-3 rounded-xl text-sm font-bold transition shadow-md shadow-green-500/20 mt-2">Tạo tài khoản</button>
+                        <div class="text-center text-sm text-gray-500 mt-3">
+                            Đã có tài khoản? <a href="#" id="wallLinkShowLogin" class="text-blue-600 hover:text-blue-700 hover:underline font-bold transition-colors">Quay lại đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Tooltip Element -->
     <div id="wordTooltip" class="tooltip-box hidden">
@@ -117,7 +185,7 @@
                 <i class="fa-solid fa-headphones-simple text-xl"></i>
             </div>
             <div>
-                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK Audio</h1>
+                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK5 2018 Audio</h1>
             </div>
         </div>
 
@@ -258,6 +326,25 @@
             </div>
             <div class="p-5 flex flex-col gap-4 max-h-[70vh] overflow-y-auto">
                 
+                <!-- Khu vực Tài khoản Đồng bộ (Trong Cài Đặt) -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-user-circle text-blue-500"></i> Tài khoản đồng bộ</label>
+                    <div id="authSection" class="flex flex-col p-3 bg-gray-50 border border-gray-200 rounded-lg gap-3">
+                        <!-- User Info -->
+                        <div class="flex items-center gap-3">
+                            <div id="userAvatar" class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold overflow-hidden flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+                            <div class="flex-1 min-w-0">
+                                <div id="userName" class="text-sm font-bold text-gray-800 truncate">Chưa đăng nhập</div>
+                                <div id="userEmail" class="text-[10px] text-gray-500 truncate">Vui lòng tải lại trang</div>
+                            </div>
+                        </div>
+
+                        <button id="btnLogout" class="hidden text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-1.5 rounded-md text-xs font-bold transition w-full mt-1">Đăng xuất khỏi hệ thống</button>
+                    </div>
+                </div>
+
+                <div class="h-px bg-gray-100 my-1"></div>
+
                 <!-- Khu vực API Key DeepSeek -->
                 <div class="p-3 bg-purple-50 rounded-lg border border-purple-100">
                     <label class="block text-sm font-bold text-purple-800 mb-1 flex items-center gap-2"><i class="fa-solid fa-key"></i> DeepSeek API Key</label>
@@ -327,7 +414,337 @@
 
     <audio id="audioPlayer"></audio>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // Đã bỏ signInAnonymously ra khỏi import
+        import { getAuth, signInWithCustomToken, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // === FIREBASE CONFIG & STATE ===
+        let db, auth, currentUser, appId;
+        let isFirebaseReady = false;
+        
+        // Theo dõi các listener để chủ động tắt (unsubscribe) khi đổi tài khoản
+        let unsubDict = null;
+        let unsubTrans = null;
+
+        // ================= DOM ELEMENTS CHO LOGIN WALL =================
+        const loginWall = document.getElementById('loginWall');
+        const wallLoading = document.getElementById('wallLoading');
+        const wallAuthActions = document.getElementById('wallAuthActions');
+        const wallLoginForm = document.getElementById('wallLoginForm');
+        const wallRegisterForm = document.getElementById('wallRegisterForm');
+        
+        const wallAuthEmail = document.getElementById('wallAuthEmail');
+        const wallAuthPassword = document.getElementById('wallAuthPassword');
+        const wallRegEmail = document.getElementById('wallRegEmail');
+        const wallRegPassword = document.getElementById('wallRegPassword');
+        const wallRegTeacherCode = document.getElementById('wallRegTeacherCode');
+        
+        const wallBtnLoginEmail = document.getElementById('wallBtnLoginEmail');
+        const wallBtnSubmitRegister = document.getElementById('wallBtnSubmitRegister');
+        const wallLinkShowRegister = document.getElementById('wallLinkShowRegister');
+        const wallLinkShowLogin = document.getElementById('wallLinkShowLogin');
+
+        // Bổ sung DOM Elements cho Tài khoản (Trong Cài Đặt)
+        const btnLogout = document.getElementById('btnLogout');
+        const userName = document.getElementById('userName');
+        const userEmail = document.getElementById('userEmail');
+        const userAvatar = document.getElementById('userAvatar');
+
+        // Chuyển đổi UI Đăng nhập / Đăng ký trên Login Wall
+        if (wallLinkShowRegister && wallLinkShowLogin) {
+            wallLinkShowRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                wallLoginForm.classList.add('hidden');
+                wallLoginForm.classList.remove('flex');
+                wallRegisterForm.classList.remove('hidden');
+                wallRegisterForm.classList.add('flex');
+            });
+            wallLinkShowLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                wallRegisterForm.classList.add('hidden');
+                wallRegisterForm.classList.remove('flex');
+                wallLoginForm.classList.remove('hidden');
+                wallLoginForm.classList.add('flex');
+            });
+        }
+
+        try {
+            // Lấy config từ môi trường (nếu có) hoặc dùng config mặc định (để bạn tự thay thế khi chạy trên máy)
+            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+  apiKey: "AIzaSyDlc6ysmMOKnaRw9ycbsKP0FRXp7cos8_M",
+  authDomain: "hskaudio-665f8.firebaseapp.com",
+  projectId: "hskaudio-665f8",
+  storageBucket: "hskaudio-665f8.firebasestorage.app",
+  messagingSenderId: "390394990321",
+  appId: "1:390394990321:web:72f5c6c8736c5b02d26350",
+  measurementId: "G-J2QN2FNXVK"
+            };
+
+            if (firebaseConfig && firebaseConfig.apiKey !== "YOUR_API_KEY") {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+                const initAuth = async () => {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    }
+                    // Nếu không có token, Firebase Auth sẽ tự trigger onAuthStateChanged(user=null)
+                };
+                initAuth();
+
+                onAuthStateChanged(auth, async (user) => {
+                    // Tắt các listener lắng nghe database của tài khoản cũ trước khi thiết lập cái mới
+                    if (unsubDict) { unsubDict(); unsubDict = null; }
+                    if (unsubTrans) { unsubTrans(); unsubTrans = null; }
+
+                    currentUser = user;
+                    if (user) {
+                        isFirebaseReady = true;
+
+                        // TẮT BỨC TƯỜNG ĐĂNG NHẬP
+                        loginWall.classList.add('fade-out');
+
+                        // CẬP NHẬT GIAO DIỆN TÀI KHOẢN (TRONG CÀI ĐẶT)
+                        userName.textContent = user.displayName || (user.email?.split('@')[0]) || "Học viên";
+                        userEmail.textContent = user.email || "";
+                        if (user.photoURL) {
+                            userAvatar.innerHTML = `<img src="${user.photoURL}" class="w-full h-full object-cover">`;
+                        } else {
+                            userAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
+                        }
+                        if(btnLogout) btnLogout.classList.remove('hidden');
+
+                        // Đẩy dữ liệu máy lên cloud
+                        await syncLocalToFirebase();
+                        setupFirestoreListeners();
+                        
+                        // Bắt đầu tải dữ liệu app nếu chưa tải
+                        if(tracks.length === 0) initApp();
+
+                    } else {
+                        // HIỂN THỊ BỨC TƯỜNG ĐĂNG NHẬP
+                        isFirebaseReady = false;
+                        loginWall.classList.remove('fade-out');
+                        wallLoading.classList.add('hidden');
+                        wallAuthActions.classList.remove('hidden');
+                        wallAuthActions.classList.add('flex');
+
+                        userName.textContent = "Chưa đăng nhập";
+                        userEmail.textContent = "Vui lòng đăng nhập để vào ứng dụng";
+                        userAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
+                        if(btnLogout) btnLogout.classList.add('hidden');
+                        
+                        // Xóa dữ liệu cũ trên giao diện nếu vừa đăng xuất
+                        if (audioPlayer) audioPlayer.pause();
+                    }
+                });
+            } else {
+                console.warn("Vui lòng cập nhật cấu hình Firebase (firebaseConfig) để sử dụng tính năng lưu trữ đám mây.");
+                // Hiển thị form đăng nhập để báo lỗi
+                wallLoading.classList.add('hidden');
+                wallAuthActions.classList.remove('hidden');
+                wallAuthActions.classList.add('flex');
+            }
+        } catch (e) {
+            console.warn("Firebase initialization skipped:", e);
+            wallLoading.classList.add('hidden');
+            wallAuthActions.classList.remove('hidden');
+            wallAuthActions.classList.add('flex');
+        }
+
+        // BẮT SỰ KIỆN NÚT ĐĂNG NHẬP (TRÊN WALL)
+        if (wallBtnLoginEmail) {
+            wallBtnLoginEmail.addEventListener('click', async () => {
+                if (!auth) return alert("Hệ thống chưa kết nối cơ sở dữ liệu. Vui lòng kiểm tra lại cấu hình Firebase.");
+                
+                const email = wallAuthEmail.value.trim();
+                const password = wallAuthPassword.value;
+                if (!email || !password) return alert("Vui lòng nhập đầy đủ Email và Mật khẩu!");
+                
+                try {
+                    wallBtnLoginEmail.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang kết nối...';
+                    wallBtnLoginEmail.disabled = true;
+                    await signInWithEmailAndPassword(auth, email, password);
+                    // Thành công thì onAuthStateChanged sẽ tự ẩn wall đi
+                } catch (error) {
+                    console.error("Lỗi đăng nhập:", error);
+                    if (error.code === 'auth/invalid-credential') alert("Tài khoản hoặc mật khẩu không chính xác!");
+                    else alert("Đăng nhập thất bại: " + error.message);
+                    wallBtnLoginEmail.innerHTML = 'Đăng nhập vào hệ thống';
+                    wallBtnLoginEmail.disabled = false;
+                }
+            });
+        }
+
+        // BẮT SỰ KIỆN NÚT ĐĂNG KÝ MỚI (KÈM MÃ GIÁO VIÊN TRÊN WALL)
+        if (wallBtnSubmitRegister) {
+            wallBtnSubmitRegister.addEventListener('click', async () => {
+                if (!auth) return alert("Hệ thống chưa kết nối cơ sở dữ liệu. Vui lòng kiểm tra lại cấu hình Firebase.");
+
+                const email = wallRegEmail.value.trim();
+                const password = wallRegPassword.value;
+                const teacherCode = wallRegTeacherCode.value.trim();
+
+                if (!email || !password || !teacherCode) return alert("Vui lòng nhập đầy đủ thông tin!");
+                if (password.length < 6) return alert("Mật khẩu phải từ 6 ký tự trở lên!");
+                
+                // KIỂM TRA MÃ GIÁO VIÊN BẮT BUỘC
+                if (teacherCode !== 'ruands10') {
+                    return alert("Mã giáo viên không hợp lệ! Vui lòng liên hệ giáo viên để lấy mã.");
+                }
+
+                try {
+                    wallBtnSubmitRegister.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang tạo tài khoản...';
+                    wallBtnSubmitRegister.disabled = true;
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    // Tạo thành công Firebase sẽ tự login và onAuthStateChanged sẽ chạy
+                } catch (error) {
+                    console.error("Lỗi đăng ký:", error);
+                    if (error.code === 'auth/email-already-in-use') alert("Email này đã được đăng ký trước đó!");
+                    else if (error.code === 'auth/invalid-email') alert("Định dạng Email không hợp lệ!");
+                    else alert("Đăng ký thất bại: " + error.message);
+                    wallBtnSubmitRegister.innerHTML = 'Tạo tài khoản';
+                    wallBtnSubmitRegister.disabled = false;
+                }
+            });
+        }
+
+        // BẮT SỰ KIỆN NÚT ĐĂNG XUẤT (TRONG CÀI ĐẶT)
+        if (btnLogout) {
+            btnLogout.addEventListener('click', async () => {
+                if (!auth) return;
+                try {
+                    // Dọn dẹp listener trước khi đăng xuất
+                    if (unsubDict) { unsubDict(); unsubDict = null; }
+                    if (unsubTrans) { unsubTrans(); unsubTrans = null; }
+                    
+                    // Reset UI form đăng nhập để lần sau sạch sẽ
+                    wallAuthEmail.value = '';
+                    wallAuthPassword.value = '';
+                    wallBtnLoginEmail.innerHTML = 'Đăng nhập vào hệ thống';
+                    wallBtnLoginEmail.disabled = false;
+                    wallLinkShowLogin.click(); // Trả về tab đăng nhập
+                    
+                    await signOut(auth);
+                    toggleLyricSettingsModal(); // Đóng form cài đặt
+                } catch (error) {
+                    console.error("Lỗi đăng xuất:", error);
+                }
+            });
+        }
+
+        async function syncLocalToFirebase() {
+            if (!isFirebaseReady || !currentUser) return;
+            // Đẩy từ điển local lên Firebase
+            const dictStr = localStorage.getItem('hsk_user_dictionary');
+            if (dictStr) {
+                const dict = JSON.parse(dictStr);
+                for (const [word, data] of Object.entries(dict)) {
+                    if (!word.trim()) continue;
+                    // Bọc encodeURIComponent để từ vựng không gây ra lỗi cấu trúc đường dẫn của Firebase
+                    const safeWord = encodeURIComponent(word);
+                    const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                    setDoc(docRef, { pinyin: data.pinyin, meaning: data.meaning }, { merge: true }).catch(e=>console.error(e));
+                }
+            }
+            // Đẩy bản dịch local lên Firebase
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('hsk_ai_translation_')) {
+                    const translation = localStorage.getItem(key);
+                    const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'translations', key);
+                    setDoc(docRef, { translation }, { merge: true }).catch(e=>console.error(e));
+                }
+            }
+        }
+
+        function setupFirestoreListeners() {
+            if (!currentUser || !db) return;
+            
+            // Lắng nghe thay đổi Từ điển từ Firebase (Real-time sync)
+            const dictRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary');
+            unsubDict = onSnapshot(dictRef, (snapshot) => {
+                const dictStr = localStorage.getItem('hsk_user_dictionary');
+                const localDict = dictStr ? JSON.parse(dictStr) : {};
+                snapshot.forEach(doc => { 
+                    try {
+                        localDict[decodeURIComponent(doc.id)] = doc.data(); 
+                    } catch(e) {
+                        localDict[doc.id] = doc.data();
+                    }
+                });
+                localStorage.setItem('hsk_user_dictionary', JSON.stringify(localDict));
+                
+                const lyricView = document.getElementById('lyricView');
+                if (lyricView && !lyricView.classList.contains('hidden') && currentTrackIndex !== -1) {
+                    const rawText = currentLyricsData[currentTrackIndex];
+                    if(rawText) renderAnnotatedLyric(rawText);
+                }
+            }, (err) => console.error("Lỗi đồng bộ Từ điển:", err));
+
+            // Lắng nghe thay đổi Bản dịch từ Firebase
+            const transRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'translations');
+            unsubTrans = onSnapshot(transRef, (snapshot) => {
+                snapshot.forEach(doc => { localStorage.setItem(doc.id, doc.data().translation); });
+                
+                const currentKey = `hsk_ai_translation_De${currentDe}_Trk${currentTrackIndex}`;
+                const currentTranslation = localStorage.getItem(currentKey);
+                const lyricView = document.getElementById('lyricView');
+                if (currentTranslation && lyricView && !lyricView.classList.contains('hidden')) {
+                    showTranslation(currentTranslation);
+                }
+            }, (err) => console.error("Lỗi đồng bộ Bản dịch:", err));
+        }
+
+        // ================= FIREBASE STORAGE WRAPPERS =================
+        async function saveWordData(word, pinyin, meaning) {
+            if (!word.trim()) return;
+            const dictStr = localStorage.getItem('hsk_user_dictionary');
+            const dict = dictStr ? JSON.parse(dictStr) : {};
+            dict[word] = { pinyin, meaning };
+            localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+            
+            if (isFirebaseReady && currentUser) {
+                try {
+                    const safeWord = encodeURIComponent(word);
+                    const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                    await setDoc(docRef, { pinyin, meaning });
+                } catch(e) { console.error(e); }
+            }
+        }
+
+        async function deleteWordData(word) {
+            if (!word.trim()) return;
+            const dictStr = localStorage.getItem('hsk_user_dictionary');
+            const dict = dictStr ? JSON.parse(dictStr) : {};
+            delete dict[word];
+            localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+            
+            if (isFirebaseReady && currentUser) {
+                 try {
+                     const safeWord = encodeURIComponent(word);
+                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                     await deleteDoc(docRef);
+                 } catch(e) {}
+            }
+        }
+
+        async function saveTranslationData(de, trk, translation) {
+            const key = `hsk_ai_translation_De${de}_Trk${trk}`;
+            localStorage.setItem(key, translation);
+            
+            if (isFirebaseReady && currentUser) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'translations', key);
+                    await setDoc(docRef, { translation });
+                } catch(e) {}
+            }
+        }
+
         // === CONFIGURATION ===
         const MAX_DE = 10;
         const TRACKS_PER_DE = 45;
@@ -488,8 +905,11 @@
             }
         }
 
-        // Chuyển hàm init thành async để chờ quá trình đồng bộ hoàn tất trước khi vẽ UI
-        async function init() {
+        // Đổi tên hàm init thành initApp để chờ được gọi từ onAuthStateChanged thay vì gọi trực tiếp ở cuối file
+        async function initApp() {
+            // Kiểm tra xem đã vẽ list đề chưa để tránh lặp lại
+            if (deSelector.options.length > 0) return;
+
             for (let i = 1; i <= MAX_DE; i++) {
                 const option = document.createElement('option');
                 option.value = i;
@@ -852,8 +1272,8 @@
             btnCancelTranslation.classList.add('hidden');
             
             const newText = translationText.textContent.trim();
-            const storageKey = `hsk_ai_translation_De${currentDe}_Trk${currentTrackIndex}`;
-            localStorage.setItem(storageKey, newText);
+            // Lưu bằng hàm Wrapper để đẩy lên Firebase
+            saveTranslationData(currentDe, currentTrackIndex, newText);
         });
 
         // =========================================================
@@ -904,9 +1324,8 @@ YÊU CẦU TRẢ VỀ JSON:
                 
                 const resultObj = JSON.parse(jsonStr);
 
-                // Lưu vào Local Storage
-                const storageKey = `hsk_ai_translation_De${currentDe}_Trk${currentTrackIndex}`;
-                localStorage.setItem(storageKey, resultObj.translation);
+                // Lưu vào Local Storage & Firebase
+                await saveTranslationData(currentDe, currentTrackIndex, resultObj.translation);
 
                 showTranslation(resultObj.translation);
 
@@ -979,11 +1398,8 @@ YÊU CẦU TRẢ VỀ JSON:
                     // Không dùng lệnh hủy (Abort) nữa, cho phép các request chạy song song ngầm
                     const result = await fetchWordLookup(selectedText);
                     
-                    // 1. LƯU TỪ VỪA TRA VÀO "TỪ ĐIỂN" TRONG LOCAL STORAGE (Bất kể người dùng còn bôi đen hay không)
-                    const dictStr = localStorage.getItem('hsk_user_dictionary');
-                    const dict = dictStr ? JSON.parse(dictStr) : {};
-                    dict[selectedText] = { pinyin: result.pinyin, meaning: result.meaning };
-                    localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+                    // 1. LƯU TỪ VỪA TRA VÀO "TỪ ĐIỂN" TRONG LOCAL STORAGE VÀ FIREBASE
+                    await saveWordData(selectedText, result.pinyin, result.meaning);
 
                     // 2. VẼ LẠI GIAO DIỆN ĐỂ TỪ VỪA BÔI ĐEN TRỞ THÀNH TỪ ĐƯỢC HIGHLIGHT
                     const rawText = currentLyricsData[currentTrackIndex];
@@ -1212,7 +1628,7 @@ Yêu cầu JSON:
             ttEditMode.classList.remove('flex');
         });
 
-        btnSaveEditWord.addEventListener('click', () => {
+        btnSaveEditWord.addEventListener('click', async () => {
             const newPinyin = editTtPinyin.value.trim();
             const newMeaning = editTtMeaning.value.trim();
             
@@ -1223,12 +1639,9 @@ Yêu cầu JSON:
             ttEditMode.classList.add('hidden');
             ttEditMode.classList.remove('flex');
             
-            // Lưu vào LocalStorage
+            // Lưu vào LocalStorage & Firebase
             if (currentLookupWord) {
-                const dictStr = localStorage.getItem('hsk_user_dictionary');
-                const dict = dictStr ? JSON.parse(dictStr) : {};
-                dict[currentLookupWord] = { pinyin: newPinyin, meaning: newMeaning };
-                localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+                await saveWordData(currentLookupWord, newPinyin, newMeaning);
                 
                 // THÊM LỆNH NÀY: Vẽ lại đoạn văn bản để các chữ màu xanh lập tức nhận dữ liệu mới
                 const rawText = currentLyricsData[currentTrackIndex];
@@ -1238,17 +1651,14 @@ Yêu cầu JSON:
 
         btnDeleteWord.addEventListener('click', () => {
             if (currentLookupWord) {
-                const dictStr = localStorage.getItem('hsk_user_dictionary');
-                const dict = dictStr ? JSON.parse(dictStr) : {};
-                delete dict[currentLookupWord]; // Xóa khỏi mảng
-                localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
-                
-                hideTooltip();
-                isTooltipPinned = false;
-                
-                // Vẽ lại giao diện văn bản để từ vừa bị xóa mất gạch chân xanh
-                const rawText = currentLyricsData[currentTrackIndex];
-                renderAnnotatedLyric(rawText);
+                deleteWordData(currentLookupWord).then(() => {
+                    hideTooltip();
+                    isTooltipPinned = false;
+                    
+                    // Vẽ lại giao diện văn bản để từ vừa bị xóa mất gạch chân xanh
+                    const rawText = currentLyricsData[currentTrackIndex];
+                    renderAnnotatedLyric(rawText);
+                });
             }
         });
 
@@ -1292,6 +1702,7 @@ Yêu cầu JSON:
                 hideTooltip();
             }
         }
+        window.toggleLyricView = toggleLyricView; // Expose ra window để HTML onclick gọi được
 
         btnLyric.addEventListener('click', toggleLyricView);
         closeLyricViewBtn.addEventListener('click', toggleLyricView);
@@ -1318,6 +1729,7 @@ Yêu cầu JSON:
                 setTimeout(() => lyricSettingsModal.classList.add('hidden'), 300);
             }
         }
+        window.toggleLyricSettingsModal = toggleLyricSettingsModal; // Expose ra window để HTML onclick gọi được
 
         btnLyricSettings.addEventListener('click', toggleLyricSettingsModal);
         closeLyricSettingsBtn.addEventListener('click', toggleLyricSettingsModal);
@@ -1404,19 +1816,20 @@ Yêu cầu JSON:
                     const importedData = JSON.parse(event.target.result);
                     let importedCount = 0;
 
-                    // Nhập từ điển: Sử dụng cơ chế Gộp (Merge) để không làm mất từ hiện có
+                    // Nhập từ điển: Lưu vào cả Local & Firebase
                     if (importedData.dictionary) {
-                        const currentDict = JSON.parse(localStorage.getItem('hsk_user_dictionary') || '{}');
-                        const mergedDict = { ...currentDict, ...importedData.dictionary };
-                        localStorage.setItem('hsk_user_dictionary', JSON.stringify(mergedDict));
-                        importedCount += Object.keys(importedData.dictionary).length;
+                        for (const [word, data] of Object.entries(importedData.dictionary)) {
+                            saveWordData(word, data.pinyin, data.meaning);
+                            importedCount++;
+                        }
                     }
 
-                    // Nhập bản dịch: Ghi đè hoặc Thêm mới
+                    // Nhập bản dịch: Lưu vào cả Local & Firebase
                     if (importedData.translations) {
                         for (const [key, value] of Object.entries(importedData.translations)) {
-                            if (key.startsWith('hsk_ai_translation_')) {
-                                localStorage.setItem(key, value);
+                            const match = key.match(/hsk_ai_translation_De(\d+)_Trk(\d+)/);
+                            if (match) {
+                                saveTranslationData(match[1], match[2], value);
                                 importedCount++;
                             }
                         }
@@ -1552,7 +1965,7 @@ Yêu cầu JSON:
             else icon.className = 'fa-solid fa-volume-high text-gray-400 text-sm';
         });
 
-        init();
+        // XÓA LỆNH init(); ĐỂ CHỜ ĐĂNG NHẬP MỚI KHỞI ĐỘNG APP
     </script>
 </body>
 </html>
