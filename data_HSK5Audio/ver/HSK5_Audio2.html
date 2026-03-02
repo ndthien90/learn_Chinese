@@ -12,13 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Font chữ Hán viết tay */
-        @font-face {
-            font-family: 'Kaiti';
-            src: url('https://ndthien90.github.io/hello_chinese2/fonts/Kaiti.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -192,7 +185,7 @@
                 <i class="fa-solid fa-headphones-simple text-xl"></i>
             </div>
             <div>
-                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK4 Xanh lá Audio</h1>
+                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK5 2018 Audio</h1>
             </div>
         </div>
 
@@ -480,13 +473,13 @@
         try {
             // Lấy config từ môi trường (nếu có) hoặc dùng config mặc định (để bạn tự thay thế khi chạy trên máy)
             const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-                apiKey: "AIzaSyDlc6ysmMOKnaRw9ycbsKP0FRXp7cos8_M",
-                authDomain: "hskaudio-665f8.firebaseapp.com",
-                projectId: "hskaudio-665f8",
-                storageBucket: "hskaudio-665f8.firebasestorage.app",
-                messagingSenderId: "390394990321",
-                appId: "1:390394990321:web:72f5c6c8736c5b02d26350",
-                measurementId: "G-J2QN2FNXVK"
+  apiKey: "AIzaSyDlc6ysmMOKnaRw9ycbsKP0FRXp7cos8_M",
+  authDomain: "hskaudio-665f8.firebaseapp.com",
+  projectId: "hskaudio-665f8",
+  storageBucket: "hskaudio-665f8.firebasestorage.app",
+  messagingSenderId: "390394990321",
+  appId: "1:390394990321:web:72f5c6c8736c5b02d26350",
+  measurementId: "G-J2QN2FNXVK"
             };
 
             if (firebaseConfig && firebaseConfig.apiKey !== "YOUR_API_KEY") {
@@ -677,65 +670,32 @@
             unsubDict = onSnapshot(dictRef, (snapshot) => {
                 const dictStr = localStorage.getItem('hsk_user_dictionary');
                 const localDict = dictStr ? JSON.parse(dictStr) : {};
-                let hasChanges = false;
-                
-                // Sử dụng docChanges() để nhận biết chính xác thao tác xóa/sửa
-                snapshot.docChanges().forEach((change) => {
-                    let wordKey = change.doc.id;
-                    try { wordKey = decodeURIComponent(wordKey); } catch(e) {}
-                    
-                    if (change.type === 'removed') {
-                        delete localDict[wordKey];
-                        hasChanges = true;
-                    } else {
-                        localDict[wordKey] = change.doc.data();
-                        hasChanges = true;
+                snapshot.forEach(doc => { 
+                    try {
+                        localDict[decodeURIComponent(doc.id)] = doc.data(); 
+                    } catch(e) {
+                        localDict[doc.id] = doc.data();
                     }
                 });
+                localStorage.setItem('hsk_user_dictionary', JSON.stringify(localDict));
                 
-                if (hasChanges) {
-                    localStorage.setItem('hsk_user_dictionary', JSON.stringify(localDict));
-                    
-                    const lyricView = document.getElementById('lyricView');
-                    if (lyricView && !lyricView.classList.contains('hidden') && currentTrackIndex !== -1) {
-                        const rawText = currentLyricsData[currentTrackIndex];
-                        if(rawText) renderAnnotatedLyric(rawText);
-                    }
+                const lyricView = document.getElementById('lyricView');
+                if (lyricView && !lyricView.classList.contains('hidden') && currentTrackIndex !== -1) {
+                    const rawText = currentLyricsData[currentTrackIndex];
+                    if(rawText) renderAnnotatedLyric(rawText);
                 }
             }, (err) => console.error("Lỗi đồng bộ Từ điển:", err));
 
             // Lắng nghe thay đổi Bản dịch từ Firebase
             const transRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'translations');
             unsubTrans = onSnapshot(transRef, (snapshot) => {
-                let hasChanges = false;
-                snapshot.docChanges().forEach((change) => {
-                    if (change.type === 'removed') {
-                        localStorage.removeItem(change.doc.id);
-                        hasChanges = true;
-                    } else {
-                        localStorage.setItem(change.doc.id, change.doc.data().translation);
-                        hasChanges = true;
-                    }
-                });
+                snapshot.forEach(doc => { localStorage.setItem(doc.id, doc.data().translation); });
                 
-                if (hasChanges) {
-                    const currentKey = `hsk_ai_translation_De${currentDe}_Trk${currentTrackIndex}`;
-                    const currentTranslation = localStorage.getItem(currentKey);
-                    const lyricView = document.getElementById('lyricView');
-                    
-                    if (lyricView && !lyricView.classList.contains('hidden')) {
-                        if (currentTranslation) {
-                            showTranslation(currentTranslation);
-                        } else {
-                            // Ẩn bản dịch nếu dữ liệu bị xóa từ máy khác
-                            const tc = document.getElementById('translationContent');
-                            if (tc) tc.classList.add('hidden');
-                            const btt = document.getElementById('btnToggleTranslate');
-                            if (btt) btt.classList.add('hidden');
-                            const ba = document.getElementById('btnAnalyzeAI');
-                            if (ba && deepseekApiKey) ba.classList.remove('hidden');
-                        }
-                    }
+                const currentKey = `hsk_ai_translation_De${currentDe}_Trk${currentTrackIndex}`;
+                const currentTranslation = localStorage.getItem(currentKey);
+                const lyricView = document.getElementById('lyricView');
+                if (currentTranslation && lyricView && !lyricView.classList.contains('hidden')) {
+                    showTranslation(currentTranslation);
                 }
             }, (err) => console.error("Lỗi đồng bộ Bản dịch:", err));
         }
@@ -786,7 +746,7 @@
         }
 
         // === CONFIGURATION ===
-        const MAX_DE = 5;
+        const MAX_DE = 10;
         const TRACKS_PER_DE = 45;
         
         // === STATE ===
@@ -800,7 +760,7 @@
         
         let currentLyricsData = []; 
         
-        // State API và Cài đặt
+// State API và Cài đặt
         // Đặt API key của bạn vào biến này. Nếu để trống "", hệ thống sẽ tìm trong LocalStorage.
         const API_KEY = "sk-3985f4e0a07a496b97056c0f4dbcfe13"; 
         // Ưu tiên: 1. Key cứng -> 2. Key đã lưu trong trình duyệt -> 3. Bỏ trống
@@ -889,6 +849,62 @@
 
         let isTooltipPinned = false; // Biến theo dõi trạng thái ghim tooltip
 
+        // ================= XỬ LÝ ĐỒNG BỘ DỮ LIỆU TỰ ĐỘNG (AUTO-SYNC) =================
+        async function syncDataOnLoad() {
+            try {
+                // Thử tải file data.json từ thư mục
+                const response = await fetch('data_HSK5Audio/data.json');
+                if (!response.ok) return; // Nếu không có file thì bỏ qua, dùng local
+                
+                const jsonData = await response.json();
+
+                // 1. Đếm số lượng dữ liệu trong Local Storage
+                let localDictCount = 0;
+                const localDictStr = localStorage.getItem('hsk_user_dictionary');
+                if (localDictStr) {
+                    localDictCount = Object.keys(JSON.parse(localDictStr)).length;
+                }
+                
+                let localTransCount = 0;
+                for (let i = 0; i < localStorage.length; i++) {
+                    if (localStorage.key(i) && localStorage.key(i).startsWith('hsk_ai_translation_')) {
+                        localTransCount++;
+                    }
+                }
+                const localTotal = localDictCount + localTransCount;
+
+                // 2. Đếm số lượng dữ liệu trong file JSON
+                let jsonDictCount = jsonData.dictionary ? Object.keys(jsonData.dictionary).length : 0;
+                let jsonTransCount = jsonData.translations ? Object.keys(jsonData.translations).length : 0;
+                const jsonTotal = jsonDictCount + jsonTransCount;
+
+                // 3. So sánh và Cập nhật nếu JSON lớn hơn
+                if (jsonTotal > localTotal) {
+                    console.log(`[Auto-Sync] Cập nhật dữ liệu từ data.json (JSON: ${jsonTotal} mục > Local: ${localTotal} mục)`);
+                    
+                    // Gộp Từ điển
+                    if (jsonData.dictionary) {
+                        const currentDict = JSON.parse(localDictStr || '{}');
+                        const mergedDict = { ...currentDict, ...jsonData.dictionary };
+                        localStorage.setItem('hsk_user_dictionary', JSON.stringify(mergedDict));
+                    }
+
+                    // Gộp Bản dịch
+                    if (jsonData.translations) {
+                        for (const [key, value] of Object.entries(jsonData.translations)) {
+                            if (key.startsWith('hsk_ai_translation_')) {
+                                localStorage.setItem(key, value);
+                            }
+                        }
+                    }
+                } else {
+                    console.log(`[Auto-Sync] Giữ nguyên Local Storage (Local: ${localTotal} mục >= JSON: ${jsonTotal} mục)`);
+                }
+            } catch (error) {
+                console.warn("[Auto-Sync] Không tìm thấy hoặc lỗi đọc file data.json:", error);
+            }
+        }
+
         // Đổi tên hàm init thành initApp để chờ được gọi từ onAuthStateChanged thay vì gọi trực tiếp ở cuối file
         async function initApp() {
             // Kiểm tra xem đã vẽ list đề chưa để tránh lặp lại
@@ -901,23 +917,26 @@
                 deSelector.appendChild(option);
             }
 
+            // Gọi hàm kiểm tra và đồng bộ file JSON
+            await syncDataOnLoad();
+
             loadDe(currentDe);
             updateSliderBackground(volumeBar, volumeBar.value * 100);
             
-            // Gán API key vào form tùy theo trạng thái
-            if (API_KEY) {
-                // Đưa một chuỗi ký tự giả vào ô input để che mắt
-                settingApiKey.value = "sk-••••••••••••••••••••••••••••"; 
-                settingApiKey.disabled = true; // Khóa hoàn toàn ô nhập liệu
-                settingApiKey.type = "text"; // Để text hay password đều an toàn vì giá trị là giả
-                
-                // Thêm style làm xám ô input để báo hiệu không thể sửa
-                settingApiKey.classList.add('bg-gray-200', 'text-gray-500', 'cursor-not-allowed', 'select-none');
-                settingApiKey.title = "Đang sử dụng API Key mặc định của hệ thống";
-            } else if (deepseekApiKey) {
-                // Nếu không có key hệ thống, trả lại ô nhập liệu bình thường cho người dùng
-                settingApiKey.value = deepseekApiKey;
-            }
+// Gán API key vào form tùy theo trạng thái
+        if (API_KEY) {
+            // Đưa một chuỗi ký tự giả vào ô input để che mắt
+            settingApiKey.value = "sk-••••••••••••••••••••••••••••"; 
+            settingApiKey.disabled = true; // Khóa hoàn toàn ô nhập liệu
+            settingApiKey.type = "text"; // Để text hay password đều an toàn vì giá trị là giả
+            
+            // Thêm style làm xám ô input để báo hiệu không thể sửa
+            settingApiKey.classList.add('bg-gray-200', 'text-gray-500', 'cursor-not-allowed', 'select-none');
+            settingApiKey.title = "Đang sử dụng API Key mặc định của hệ thống";
+        } else if (deepseekApiKey) {
+            // Nếu không có key hệ thống, trả lại ô nhập liệu bình thường cho người dùng
+            settingApiKey.value = deepseekApiKey;
+        }
         }
 
         function padNum(num) {
@@ -934,7 +953,7 @@
         async function fetchLyrics(deNumber) {
             currentLyricsData = []; 
             try {
-                const response = await fetch(`data_HSK4Audio/De${deNumber}.txt`);
+                const response = await fetch(`data_HSK5Audio/De${deNumber}.txt`);
                 if (!response.ok) throw new Error('Không tìm thấy file');
                 const text = await response.text();
                 currentLyricsData = text.split('#').map(item => item.trim());
@@ -966,7 +985,7 @@
                     index: i - 1,
                     num: i,
                     fileName: `De${currentDe}_${trackNumStr}.mp3`,
-                    path: `data_HSK4Audio/De${currentDe}_mp3/De${currentDe}_${trackNumStr}.mp3`,
+                    path: `data_HSK5Audio/De${currentDe}_mp3/De${currentDe}_${trackNumStr}.mp3`,
                     duration: '--:--', 
                     status: 'ready'
                 });
@@ -1117,7 +1136,7 @@
             hideTooltip();
 
             if (!deepseekApiKey) {
-                apiKeyWarning.classList.remove('hidden');
+                //apiKeyWarning.classList.remove('hidden');
             } else {
                 apiKeyWarning.classList.add('hidden');
             }
