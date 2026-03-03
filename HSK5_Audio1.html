@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Hanzi Writer Library -->
-    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
@@ -86,41 +84,11 @@
             pointer-events: none;
             transition: opacity 0.5s ease-out;
         }
-
-        /* ================= BỔ SUNG CSS CHO FLASHCARD & QUIZ ================= */
-        @font-face {
-            font-family: 'Kaiti';
-            src: url('https://ndthien90.github.io/hello_chinese2/fonts/Kaiti.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        .card-container { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-container.flipped { transform: rotateY(180deg); }
-        .btn-press:active { transform: scale(0.95); }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.3); opacity: 0; }
-        }
-        .speaking-animation::before {
-            content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%;
-            border-radius: 50%; background-color: rgba(59, 130, 246, 0.5); z-index: -1;
-            animation: pulse-ring 1s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        .chinese-font { font-family: 'Kaiti', 'Noto Sans SC', sans-serif; }
-        .custom-checkbox:checked { background-color: #10b981; border-color: #10b981; }
-        .custom-checkbox:checked::after { content: '✔'; display: block; color: white; text-align: center; font-size: 12px; line-height: 20px; }
-        .quiz-option { transition: all 0.2s; }
-        .quiz-option.correct { background-color: #d1fae5 !important; border-color: #10b981 !important; color: #065f46 !important; }
-        .quiz-option.wrong { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
     </style>
 </head>
 <body class="text-gray-800 h-[100dvh] w-full flex flex-col overflow-hidden bg-white relative">
 
-    <!-- ==================== LOGIN WALL ==================== -->
+    <!-- ==================== LOGIN WALL (BỨC TƯỜNG ĐĂNG NHẬP TẠI MÀN HÌNH CHÍNH) ==================== -->
     <div id="loginWall" class="fixed inset-0 z-[999] bg-slate-900 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
             <div class="px-6 py-8 border-b border-gray-100 flex flex-col items-center justify-center bg-blue-50 relative overflow-hidden">
@@ -141,6 +109,7 @@
                 </div>
 
                 <div id="wallAuthActions" class="hidden flex-col gap-3">
+                    <!-- Form Đăng nhập -->
                     <div id="wallLoginForm" class="flex flex-col gap-3">
                         <div class="relative">
                             <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
@@ -156,6 +125,7 @@
                         </div>
                     </div>
                     
+                    <!-- Form Đăng ký -->
                     <div id="wallRegisterForm" class="hidden flex-col gap-3">
                         <div class="relative">
                             <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
@@ -184,15 +154,19 @@
         <div id="ttLoading" class="text-sm text-gray-300 hidden flex items-center gap-2 justify-center">
             <i class="fa-solid fa-spinner fa-spin text-blue-400"></i> Đang tra từ...
         </div>
+        <!-- Thêm padding bottom để lấy chỗ cho nút bấm -->
         <div id="ttContent" class="hidden relative pb-6">
+            <!-- Chế độ xem -->
             <div id="ttViewMode">
                 <div id="ttPinyin" class="text-[#93c5fd] font-bold text-base mb-1 tracking-wide"></div>
                 <div id="ttMeaning" class="text-white text-sm font-medium leading-relaxed"></div>
+                <!-- Nút Sửa / Xóa từ -->
                 <div id="ttActionButtons" class="absolute -bottom-1 -right-1 flex gap-2">
                     <button id="btnEditWord" class="text-gray-400 hover:text-blue-300 transition-colors p-1 text-xs" title="Sửa từ này"><i class="fa-solid fa-pen"></i></button>
                     <button id="btnDeleteWord" class="text-gray-400 hover:text-red-400 transition-colors p-1 text-xs" title="Xóa khỏi từ điển"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
+            <!-- Chế độ sửa -->
             <div id="ttEditMode" class="hidden flex-col gap-2 text-left mt-1">
                 <input type="text" id="editTtPinyin" class="bg-slate-700 text-white text-sm px-2 py-1.5 rounded border border-slate-600 outline-none focus:border-blue-400 w-full" placeholder="Pinyin">
                 <textarea id="editTtMeaning" class="bg-slate-700 text-white text-sm px-2 py-1.5 rounded border border-slate-600 outline-none focus:border-blue-400 w-full resize-none custom-scrollbar" rows="2" placeholder="Nghĩa"></textarea>
@@ -211,15 +185,11 @@
                 <i class="fa-solid fa-headphones-simple text-xl"></i>
             </div>
             <div>
-                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK5 2018 Audio</h1>
+                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK Audio</h1>
             </div>
         </div>
 
-        <div class="flex items-center gap-2">
-            <!-- Nút Chuyển Đổi Sang Học Từ Vựng -->
-            <button id="btnToggleVocaMode" class="bg-indigo-50 text-indigo-600 hover:bg-indigo-100 border border-indigo-200 px-3 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-sm" title="Chuyển sang Học Từ Vựng">
-                <i class="fa-solid fa-graduation-cap"></i> <span class="hidden sm:inline">Học Từ Vựng</span>
-            </button>
+        <div class="flex items-center">
             <select id="deSelector" class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-3 py-2 outline-none shadow-sm cursor-pointer font-medium hover:bg-gray-50 transition">
                 <!-- Javascript render đề -->
             </select>
@@ -229,8 +199,8 @@
     <!-- ==================== MAIN CONTENT ==================== -->
     <main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative w-full flex flex-col" id="mainScrollArea">
         
-        <!-- AUDIO MODE: DANH SÁCH BÀI NGHE -->
-        <div id="trackListView" class="w-full max-w-4xl mx-auto px-2 sm:px-4 py-6 app-mode-audio">
+        <!-- VIEW 1: DANH SÁCH BÀI NGHE -->
+        <div id="trackListView" class="w-full max-w-4xl mx-auto px-2 sm:px-4 py-6">
             <div class="grid grid-cols-[40px_1fr_60px] sm:grid-cols-[50px_1fr_80px] gap-2 sm:gap-4 px-4 py-3 border-b border-gray-100 text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider sticky top-0 bg-white/95 backdrop-blur z-10">
                 <div class="text-center">#</div>
                 <div>Tệp</div>
@@ -239,8 +209,10 @@
             <div id="trackList" class="flex flex-col mt-2"></div>
         </div>
 
-        <!-- AUDIO MODE: PHỤ ĐỀ (LYRIC) -->
-        <div id="lyricView" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex-col relative app-mode-audio">
+        <!-- VIEW 2: PHỤ ĐỀ (LYRIC) -->
+        <div id="lyricView" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex-col relative">
+            
+            <!-- Header Lyric -->
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-4 border-b border-gray-100 flex-none gap-4">
                 <div>
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
@@ -250,9 +222,11 @@
                 </div>
                 
                 <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+                    <!-- Nút Dịch Toàn Bài AI -->
                     <button id="btnAnalyzeAI" class="text-purple-600 hover:text-white hover:bg-purple-600 transition bg-purple-50 border border-purple-200 px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 focus:outline-none whitespace-nowrap">
                         <i class="fa-solid fa-language"></i> Dịch Phụ đề
                     </button>
+                    <!-- Nút Ẩn/Hiện Dịch (Sau khi đã dịch) -->
                     <button id="btnToggleTranslate" class="hidden text-green-600 hover:text-white hover:bg-green-600 transition bg-green-50 border border-green-200 px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 focus:outline-none whitespace-nowrap">
                         <i class="fa-solid fa-eye-slash"></i> Ẩn Dịch
                     </button>
@@ -266,221 +240,39 @@
                 </div>
             </div>
             
+            <!-- Cảnh báo chưa có API Key -->
             <div id="apiKeyWarning" class="hidden w-full max-w-2xl mx-auto mb-4 bg-orange-50 border border-orange-200 text-orange-700 px-4 py-3 rounded-lg text-sm flex items-start gap-3">
                 <i class="fa-solid fa-circle-exclamation mt-0.5"></i>
                 <div>Bạn cần thêm <b>DeepSeek API Key</b> trong phần <a href="#" onclick="toggleLyricSettingsModal()" class="underline font-bold">Cài đặt</a> để sử dụng tính năng Dịch và Bôi đen tra từ.</div>
             </div>
 
+            <!-- Nội dung Lyric -->
             <div class="flex-1 flex flex-col items-center py-4 w-full h-full relative">
+                <!-- Vùng chứa text, bật user-select để cho phép bôi đen -->
                 <div id="lyricContent" class="text-gray-800 leading-[2] whitespace-pre-wrap text-[18px] sm:text-[22px] font-medium w-full max-w-2xl px-2 transition-all selection:bg-blue-200 selection:text-blue-900 cursor-text">
                     Đang tải dữ liệu...
                 </div>
 
+                <!-- Khu vực hiển thị bản dịch tiếng Việt -->
                 <div id="translationContent" class="hidden mt-8 w-full max-w-2xl px-4 py-4 bg-blue-50 border border-blue-100 rounded-xl relative group">
                     <div class="flex justify-between items-center mb-2">
                         <h4 class="text-sm font-bold text-blue-800 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-earth-asia"></i> Bản dịch Tiếng Việt</h4>
+                        <!-- Cụm nút sửa bản dịch -->
                         <div class="flex gap-2">
                             <button id="btnEditTranslation" class="text-blue-600 hover:bg-blue-200 px-2 py-1 rounded text-xs font-semibold transition"><i class="fa-solid fa-pen"></i> Sửa</button>
                             <button id="btnSaveTranslation" class="hidden bg-blue-600 text-white hover:bg-blue-700 px-3 py-1 rounded text-xs font-bold transition shadow-sm"><i class="fa-solid fa-check"></i> Lưu</button>
                             <button id="btnCancelTranslation" class="hidden text-gray-500 hover:bg-gray-200 px-2 py-1 rounded text-xs font-semibold transition"><i class="fa-solid fa-xmark"></i> Hủy</button>
                         </div>
                     </div>
+                    <!-- Thêm hiệu ứng khi được focus (bật chế độ sửa) -->
                     <div id="translationText" class="text-gray-700 text-[16px] sm:text-[18px] leading-relaxed italic p-2 -mx-2 rounded outline-none transition-all focus:bg-white focus:border focus:border-blue-300 focus:shadow-inner focus:not-italic min-h-[50px]"></div>
                 </div>
             </div>
         </div>
-
-        <!-- ========================================================== -->
-        <!-- VOCABULARY MODE: FLASHCARD / LIST / QUIZ -->
-        <!-- ========================================================== -->
-        <div id="vocabularyModeView" class="hidden w-full flex-col min-h-full pb-10 relative bg-[#f3f4f6]">
-            
-            <div class="bg-white px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-sm relative">
-                <div class="font-bold text-gray-800 text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-book-open text-indigo-600"></i> Từ vựng của bạn
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-xs font-semibold text-gray-500">Tiến độ:</span>
-                    <div class="w-10 h-10 flex items-center justify-center text-xs font-bold bg-gray-100 rounded-full text-gray-500 shadow-inner" id="vocaTotalProgress">0%</div>
-                </div>
-            </div>
-
-            <!-- Toggles (Tabs) -->
-            <div class="px-5 mt-4 relative z-10">
-                <div class="bg-gray-200 p-1 rounded-xl flex text-sm font-semibold">
-                    <button id="tabFlashcard" class="flex-1 py-2 rounded-lg bg-white text-blue-600 shadow-sm transition-all duration-300" onclick="switchVocaTab('flashcard')"><i class="fas fa-clone mr-1"></i> Flashcard</button>
-                    <button id="tabList" class="flex-1 py-2 rounded-lg bg-transparent text-gray-500 hover:text-gray-700 transition-all duration-300" onclick="switchVocaTab('list')"><i class="fas fa-list mr-1"></i> Danh sách</button>
-                    <button id="tabQuiz" class="flex-1 py-2 rounded-lg bg-transparent text-gray-500 hover:text-gray-700 transition-all duration-300" onclick="switchVocaTab('quiz')"><i class="fas fa-check-square mr-1"></i> Kiểm tra</button>
-                </div>
-            </div>
-
-            <!-- Voca Header Controls -->
-            <div class="p-5 flex-1 flex flex-col items-center relative z-10">
-                
-                <div id="vocaMainControls" class="w-full max-w-md mb-4">
-                    <div id="studyModeControl" class="flex items-center justify-between bg-orange-50 p-3 rounded-xl border border-orange-100">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-500"><i class="fas fa-filter"></i></div>
-                            <div>
-                                <div class="text-xs font-bold text-orange-800">Ôn tập trọng tâm</div>
-                                <div class="text-[10px] text-orange-600">Chỉ hiện từ chưa thuộc</div>
-                            </div>
-                        </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="onlyWeakToggle" class="sr-only peer">
-                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Cảnh báo chưa có từ vựng -->
-                <div id="vocaNoDataState" class="hidden w-full max-w-md mt-10 flex flex-col items-center justify-center p-8 bg-white rounded-3xl border border-gray-200 shadow-sm text-center">
-                    <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center text-4xl mb-4 text-gray-300"><i class="fa-solid fa-box-open"></i></div>
-                    <h3 class="text-lg font-bold text-gray-700 mb-2">Từ điển đang trống</h3>
-                    <p class="text-gray-500 text-sm mb-4">Hãy trở lại bài nghe và bôi đen từ vựng để lưu vào đây nhé.</p>
-                    <button onclick="toggleAppMode()" class="bg-blue-50 text-blue-600 font-bold px-4 py-2 rounded-lg text-sm hover:bg-blue-100 transition">Quay lại Bài nghe</button>
-                </div>
-
-                <!-- FLASHCARD -->
-                <div id="vocaFlashcardView" class="w-full max-w-md flex flex-col items-center">
-                    <div class="relative w-full aspect-[4/3] perspective-1000 mb-6">
-                        <button id="openWriterBtn" class="absolute top-4 right-16 z-20 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center shadow-md hover:bg-indigo-200 transition btn-press" title="Tập viết"><i class="fas fa-pen-nib"></i></button>
-                        <button id="speakBtn" class="absolute top-4 right-4 z-20 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shadow-md hover:bg-blue-200 transition btn-press" title="Phát âm"><i class="fas fa-volume-up text-lg"></i></button>
-                        <button id="markMemorizedBtn" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-white text-gray-300 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 transition btn-press border border-gray-100" title="Đánh dấu đã thuộc"><i class="fas fa-check text-xl"></i></button>
-
-                        <div id="emptyState" class="hidden w-full h-full absolute bg-white rounded-3xl border-2 border-dashed border-green-300 flex flex-col items-center justify-center z-30 p-6 text-center">
-                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-4xl mb-4">🎉</div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Tuyệt vời!</h3>
-                            <p class="text-gray-500 text-sm">Bạn đã thuộc hết các từ vựng này.</p>
-                        </div>
-
-                        <div id="mainCard" class="card-inner card-container w-full h-full relative transform-style-3d shadow-2xl shadow-blue-100 rounded-3xl cursor-pointer" onclick="flipCard()">
-                            <div class="card-face absolute w-full h-full backface-hidden bg-white rounded-3xl flex flex-col items-center justify-center border-2 border-gray-50 overflow-hidden pb-8">
-                                <div class="text-center z-10 w-full px-4">
-                                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 block">Hán tự</span>
-                                    <div class="card-front font-['Kaiti','Noto_Sans_SC'] text-6xl md:text-7xl text-gray-800 leading-tight drop-shadow-sm select-none break-words"></div>
-                                    <p class="text-sm text-gray-400 mt-6 animate-pulse">Chạm để xem nghĩa</p>
-                                </div>
-                            </div>
-                            <div class="card-face absolute w-full h-full backface-hidden bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl flex flex-col items-center justify-center rotate-y-180 text-white border-2 border-blue-500 pb-8">
-                                <div class="text-center p-6">
-                                    <span class="text-xs font-bold text-blue-200 uppercase tracking-widest mb-4 block">Pinyin & Nghĩa</span>
-                                    <div class="pinyin text-3xl font-bold mb-3 font-sans tracking-wide text-yellow-300"></div>
-                                    <div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-4"></div>
-                                    <div class="meaning text-xl font-medium leading-relaxed"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="w-full flex justify-between items-center px-2 mb-6">
-                        <div class="text-xs font-bold text-gray-400 uppercase">Tiến độ</div>
-                        <div class="word-count bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold shadow-sm">0 / 0</div>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-4 w-full">
-                        <button class="prev-button btn-press bg-white border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 h-14 rounded-2xl shadow-sm flex items-center justify-center transition text-xl"><i class="fas fa-arrow-left"></i></button>
-                        <button class="random-button btn-press bg-gradient-to-r from-orange-500 to-red-500 text-white h-14 rounded-2xl shadow-lg shadow-orange-200 flex items-center justify-center transition font-bold gap-2 text-sm hover:brightness-110"><i class="fas fa-random"></i></button>
-                        <button class="next-button btn-press bg-blue-600 text-white hover:bg-blue-700 h-14 rounded-2xl shadow-lg shadow-blue-200 flex items-center justify-center transition text-xl"><i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- LIST -->
-                <div id="vocaListView" class="w-full max-w-md hidden flex-col gap-3">
-                    <div class="bg-blue-50 p-3 rounded-lg text-xs text-blue-700 mb-2 flex justify-between items-center sticky top-0 z-10 shadow-sm border border-blue-100">
-                        <span class="flex-1 mr-2"><i class="fas fa-info-circle mr-1"></i> Nhấn vào từ để tập viết.</span>
-                        <label class="flex items-center gap-1.5 cursor-pointer bg-white px-2 py-1 rounded-md border border-blue-100 shadow-sm hover:bg-blue-50 transition">
-                            <span class="text-[10px] font-bold text-blue-600 whitespace-nowrap">Tất cả</span>
-                            <input type="checkbox" id="selectAllCheckbox" class="w-5 h-5 rounded border-2 border-blue-300 custom-checkbox focus:ring-0 transition cursor-pointer">
-                        </label>
-                    </div>
-                    <div id="paginationControls" class="flex justify-center items-center gap-3 py-2 hidden"></div>
-                    <div id="vocabularyListContainer" class="flex flex-col gap-3"></div>
-                </div>
-
-                <!-- QUIZ -->
-                <div id="vocaQuizView" class="w-full max-w-md hidden flex-col items-center">
-                    <div id="quizSetup" class="w-full bg-white rounded-3xl p-6 shadow-md border border-gray-100 text-center">
-                        <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-sm"><i class="fas fa-clipboard-check"></i></div>
-                        <h2 class="text-xl font-bold text-gray-800 mb-2">Kiểm tra từ vựng</h2>
-                        <div class="grid grid-cols-4 gap-3 mb-6">
-                            <button onclick="selectQuestionCount(10)" class="quiz-count-btn btn-press py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition" data-count="10">10</button>
-                            <button onclick="selectQuestionCount(20)" class="quiz-count-btn btn-press py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition" data-count="20">20</button>
-                            <button onclick="selectQuestionCount(50)" class="quiz-count-btn btn-press py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition" data-count="50">50</button>                   
-                            <button onclick="selectQuestionCount('all')" class="quiz-count-btn btn-press py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-bold hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition" data-count="all">All</button>
-                        </div>
-                        <div class="flex items-center justify-center gap-2 mb-6 text-sm text-gray-600">
-                            <label class="flex items-center cursor-pointer">
-                                <input type="checkbox" id="quizOnlyWeak" class="w-5 h-5 rounded border-2 border-gray-300 text-blue-600 mr-2">
-                                <span>Chỉ từ chưa thuộc</span>
-                            </label>
-                        </div>
-                        <button onclick="startQuiz()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition flex items-center justify-center gap-2">
-                            <i class="fas fa-play"></i> Bắt đầu
-                        </button>
-                    </div>
-
-                    <div id="quizActive" class="w-full hidden flex-col h-full">
-                        <div class="flex justify-between items-center mb-6 px-1">
-                            <span id="quizProgressText" class="text-lg font-bold text-blue-600">1/10</span>
-                            <span id="quizScoreText" class="text-sm font-bold text-green-700 bg-green-50 px-3 py-1 rounded-full border border-green-100">0</span>
-                        </div>
-                        <div class="w-full bg-gray-200 h-2 rounded-full mb-8 overflow-hidden">
-                            <div id="quizProgressBar" class="bg-blue-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-                        </div>
-                        <div class="flex-1 flex flex-col items-center">
-                            <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-6 flex flex-col items-center justify-center min-h-[160px]">
-                                <div id="quizQuestionLabel" class="text-xs font-bold text-gray-400 uppercase mb-2">Từ vựng này là gì?</div>
-                                <div id="quizQuestionHanzi" class="font-['Kaiti','Noto_Sans_SC'] text-6xl text-gray-800 leading-tight"></div>
-                                <div id="quizQuestionReveal" class="mt-4 text-xl font-bold text-blue-600 h-8 transition-opacity duration-300 opacity-0"></div>
-                            </div>
-                            <div id="quizOptions" class="w-full grid grid-cols-1 gap-3"></div>
-                        </div>
-                    </div>
-
-                    <div id="quizResult" class="w-full hidden flex-col items-center justify-center py-10">
-                        <div class="w-32 h-32 rounded-full bg-white border-8 border-blue-100 flex items-center justify-center text-4xl font-bold text-blue-600 shadow-sm mb-6" id="finalScoreCircle">0%</div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Hoàn thành!</h2>
-                        <p class="text-gray-500 mb-8" id="finalScoreDetail">...</p>
-                        <div class="w-full flex gap-3">
-                            <button onclick="resetQuizView()" class="flex-1 bg-gray-100 text-gray-700 font-bold py-3 rounded-xl hover:bg-gray-200 transition">Thoát</button>
-                            <button onclick="startQuiz()" class="flex-1 bg-blue-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-blue-700 transition">Làm lại</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </main>
 
-    <!-- WRITING MODAL -->
-    <div id="animationModal" class="fixed inset-0 bg-gray-900/60 z-[999] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
-        <div class="bg-white rounded-[2rem] w-full max-w-sm p-6 shadow-2xl transform transition-all scale-95" id="animationModalContent">
-            <div class="flex justify-between items-start mb-4">
-                <h2 class="text-xl font-bold text-gray-800">Tập viết</h2>
-                <button id="closeModal" class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="text-center mb-4">
-                <div class="flex items-center justify-center gap-2 mb-2">
-                    <span id="animationPinyin" class="text-lg font-bold text-blue-600"></span>
-                    <span class="text-gray-300">|</span>
-                    <span id="animationMeaning" class="text-gray-600 text-sm font-medium"></span>
-                </div>
-                <div id="characterTabs" class="flex justify-center gap-2 flex-wrap mb-4"></div>
-            </div>
-            <div class="bg-white border-2 border-gray-100 rounded-3xl p-2 mb-6 shadow-inner flex justify-center items-center aspect-square max-w-[260px] mx-auto relative overflow-hidden">
-                <div id="animationTarget" class="w-full h-full flex items-center justify-center cursor-pointer"></div>
-            </div>
-            <button id="animateActionBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-200 active:scale-95 transition flex items-center justify-center gap-2">
-                <i class="fas fa-play"></i> Viết lại
-            </button>
-        </div>
-    </div>
-
-
     <!-- ==================== PLAYER ==================== -->
-    <footer id="appFooter" class="flex-none bg-white border-t border-gray-100 px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] sm:pt-4 sm:pb-[calc(16px+env(safe-area-inset-bottom))] z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.03)] w-full transition-all duration-300">
+    <footer class="flex-none bg-white border-t border-gray-100 px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] sm:pt-4 sm:pb-[calc(16px+env(safe-area-inset-bottom))] z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.03)] w-full transition-all duration-300">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6">
             
             <div class="flex items-center gap-3 w-full md:w-1/3 min-w-0">
@@ -501,7 +293,7 @@
                         <i id="iconPlay" class="fa-solid fa-play ml-1 text-lg"></i>
                     </button>
                     <button id="btnNext" class="text-gray-600 hover:text-blue-600 transition text-lg focus:outline-none p-2"><i class="fa-solid fa-forward-step"></i></button>
-                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại bài hiện tại"><i class="fa-solid fa-repeat"></i></button>
+                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại danh sách"><i class="fa-solid fa-repeat"></i></button>
                     <button id="btnLyric" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 p-2 ml-1" title="Xem phụ đề">
                         <i class="fa-regular fa-file-lines text-lg"></i>
                     </button>
@@ -534,9 +326,11 @@
             </div>
             <div class="p-5 flex flex-col gap-4 max-h-[70vh] overflow-y-auto">
                 
+                <!-- Khu vực Tài khoản Đồng bộ (Trong Cài Đặt) -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-user-circle text-blue-500"></i> Tài khoản đồng bộ</label>
                     <div id="authSection" class="flex flex-col p-3 bg-gray-50 border border-gray-200 rounded-lg gap-3">
+                        <!-- User Info -->
                         <div class="flex items-center gap-3">
                             <div id="userAvatar" class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold overflow-hidden flex-shrink-0"><i class="fa-solid fa-user"></i></div>
                             <div class="flex-1 min-w-0">
@@ -551,6 +345,7 @@
 
                 <div class="h-px bg-gray-100 my-1"></div>
 
+                <!-- Khu vực API Key DeepSeek -->
                 <div class="p-3 bg-purple-50 rounded-lg border border-purple-100">
                     <label class="block text-sm font-bold text-purple-800 mb-1 flex items-center gap-2"><i class="fa-solid fa-key"></i> DeepSeek API Key</label>
                     <p class="text-xs text-purple-600 mb-2">Cần thiết để dùng tính năng bóc tách từ vựng & dịch thuật.</p>
@@ -559,6 +354,7 @@
 
                 <div class="h-px bg-gray-100 my-1"></div>
 
+                <!-- Kiểu chữ -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Kiểu chữ văn bản</label>
                     <select id="settingFontFamily" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500 text-gray-700 font-medium cursor-pointer">
@@ -567,6 +363,7 @@
                         <option value="serif">Serif (Có chân)</option>
                     </select>
                 </div>
+                <!-- Cỡ chữ -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1 flex justify-between">
                         <span>Cỡ chữ</span>
@@ -574,6 +371,7 @@
                     </label>
                     <input type="range" id="settingFontSize" min="14" max="50" value="22" class="w-full progress-slider h-2">
                 </div>
+                <!-- Màu chữ -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Màu chữ gốc</label>
                     <div class="flex items-center gap-3">
@@ -581,6 +379,7 @@
                         <span class="text-sm text-gray-500">Nhấn để chọn màu</span>
                     </div>
                 </div>
+                <!-- Định dạng Đậm/Nghiêng -->
                 <div class="flex items-center gap-3 mt-1">
                     <button id="settingBold" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-bold hover:bg-gray-50 transition focus:outline-none text-sm">In Đậm (B)</button>
                     <button id="settingItalic" class="flex-1 py-2.5 border border-gray-300 rounded-lg text-gray-700 italic hover:bg-gray-50 transition focus:outline-none text-sm">In Nghiêng (I)</button>
@@ -588,6 +387,7 @@
                 
                 <div class="h-px bg-gray-100 my-1"></div>
 
+                <!-- Khu vực Quản lý Dữ liệu Nhập/Xuất -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-database text-blue-500"></i> Quản lý Dữ liệu</label>
                     <div class="flex flex-col gap-2">
@@ -599,6 +399,7 @@
                                 <i class="fa-solid fa-upload"></i> Nhập JSON
                             </button>
                         </div>
+                        <!-- Nút Xuất Từ Vựng TXT -->
                         <button id="btnExportVocab" class="w-full bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2" title="Chỉ xuất từ điển ra file Text">
                             <i class="fa-solid fa-file-lines"></i> Xuất Từ vựng (.txt)
                         </button>
@@ -615,14 +416,15 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // Đã bỏ signInAnonymously ra khỏi import
         import { getAuth, signInWithCustomToken, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        // Bổ sung thêm writeBatch vào danh sách import của Firestore
-        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // === FIREBASE CONFIG & STATE ===
         let db, auth, currentUser, appId;
         let isFirebaseReady = false;
         
+        // Theo dõi các listener để chủ động tắt (unsubscribe) khi đổi tài khoản
         let unsubDict = null;
         let unsubTrans = null;
 
@@ -644,11 +446,13 @@
         const wallLinkShowRegister = document.getElementById('wallLinkShowRegister');
         const wallLinkShowLogin = document.getElementById('wallLinkShowLogin');
 
+        // Bổ sung DOM Elements cho Tài khoản (Trong Cài Đặt)
         const btnLogout = document.getElementById('btnLogout');
         const userName = document.getElementById('userName');
         const userEmail = document.getElementById('userEmail');
         const userAvatar = document.getElementById('userAvatar');
 
+        // Chuyển đổi UI Đăng nhập / Đăng ký trên Login Wall
         if (wallLinkShowRegister && wallLinkShowLogin) {
             wallLinkShowRegister.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -667,14 +471,15 @@
         }
 
         try {
+            // Lấy config từ môi trường (nếu có) hoặc dùng config mặc định (để bạn tự thay thế khi chạy trên máy)
             const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-  apiKey: "AIzaSyAlBTVyS4qV5A4ufZD1fOjKvlYIN9cWtpw",
-  authDomain: "hsk5audio.firebaseapp.com",
-  projectId: "hsk5audio",
-  storageBucket: "hsk5audio.firebasestorage.app",
-  messagingSenderId: "925814921350",
-  appId: "1:925814921350:web:f8658797901b68b144d907",
-  measurementId: "G-S7GCTWGF72"
+                apiKey: "AIzaSyDlc6ysmMOKnaRw9ycbsKP0FRXp7cos8_M",
+                authDomain: "hskaudio-665f8.firebaseapp.com",
+                projectId: "hskaudio-665f8",
+                storageBucket: "hskaudio-665f8.firebasestorage.app",
+                messagingSenderId: "390394990321",
+                appId: "1:390394990321:web:72f5c6c8736c5b02d26350",
+                measurementId: "G-J2QN2FNXVK"
             };
 
             if (firebaseConfig && firebaseConfig.apiKey !== "YOUR_API_KEY") {
@@ -687,10 +492,12 @@
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                         await signInWithCustomToken(auth, __initial_auth_token);
                     }
+                    // Nếu không có token, Firebase Auth sẽ tự trigger onAuthStateChanged(user=null)
                 };
                 initAuth();
 
                 onAuthStateChanged(auth, async (user) => {
+                    // Tắt các listener lắng nghe database của tài khoản cũ trước khi thiết lập cái mới
                     if (unsubDict) { unsubDict(); unsubDict = null; }
                     if (unsubTrans) { unsubTrans(); unsubTrans = null; }
 
@@ -698,8 +505,10 @@
                     if (user) {
                         isFirebaseReady = true;
 
+                        // TẮT BỨC TƯỜNG ĐĂNG NHẬP
                         loginWall.classList.add('fade-out');
 
+                        // CẬP NHẬT GIAO DIỆN TÀI KHOẢN (TRONG CÀI ĐẶT)
                         userName.textContent = user.displayName || (user.email?.split('@')[0]) || "Học viên";
                         userEmail.textContent = user.email || "";
                         if (user.photoURL) {
@@ -709,12 +518,15 @@
                         }
                         if(btnLogout) btnLogout.classList.remove('hidden');
 
+                        // Đẩy dữ liệu máy lên cloud
                         await syncLocalToFirebase();
                         setupFirestoreListeners();
                         
+                        // Bắt đầu tải dữ liệu app nếu chưa tải
                         if(tracks.length === 0) initApp();
 
                     } else {
+                        // HIỂN THỊ BỨC TƯỜNG ĐĂNG NHẬP
                         isFirebaseReady = false;
                         loginWall.classList.remove('fade-out');
                         wallLoading.classList.add('hidden');
@@ -726,11 +538,13 @@
                         userAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
                         if(btnLogout) btnLogout.classList.add('hidden');
                         
+                        // Xóa dữ liệu cũ trên giao diện nếu vừa đăng xuất
                         if (audioPlayer) audioPlayer.pause();
                     }
                 });
             } else {
                 console.warn("Vui lòng cập nhật cấu hình Firebase (firebaseConfig) để sử dụng tính năng lưu trữ đám mây.");
+                // Hiển thị form đăng nhập để báo lỗi
                 wallLoading.classList.add('hidden');
                 wallAuthActions.classList.remove('hidden');
                 wallAuthActions.classList.add('flex');
@@ -742,6 +556,7 @@
             wallAuthActions.classList.add('flex');
         }
 
+        // BẮT SỰ KIỆN NÚT ĐĂNG NHẬP (TRÊN WALL)
         if (wallBtnLoginEmail) {
             wallBtnLoginEmail.addEventListener('click', async () => {
                 if (!auth) return alert("Hệ thống chưa kết nối cơ sở dữ liệu. Vui lòng kiểm tra lại cấu hình Firebase.");
@@ -754,6 +569,7 @@
                     wallBtnLoginEmail.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang kết nối...';
                     wallBtnLoginEmail.disabled = true;
                     await signInWithEmailAndPassword(auth, email, password);
+                    // Thành công thì onAuthStateChanged sẽ tự ẩn wall đi
                 } catch (error) {
                     console.error("Lỗi đăng nhập:", error);
                     if (error.code === 'auth/invalid-credential') alert("Tài khoản hoặc mật khẩu không chính xác!");
@@ -764,6 +580,7 @@
             });
         }
 
+        // BẮT SỰ KIỆN NÚT ĐĂNG KÝ MỚI (KÈM MÃ GIÁO VIÊN TRÊN WALL)
         if (wallBtnSubmitRegister) {
             wallBtnSubmitRegister.addEventListener('click', async () => {
                 if (!auth) return alert("Hệ thống chưa kết nối cơ sở dữ liệu. Vui lòng kiểm tra lại cấu hình Firebase.");
@@ -775,6 +592,7 @@
                 if (!email || !password || !teacherCode) return alert("Vui lòng nhập đầy đủ thông tin!");
                 if (password.length < 6) return alert("Mật khẩu phải từ 6 ký tự trở lên!");
                 
+                // KIỂM TRA MÃ GIÁO VIÊN BẮT BUỘC
                 if (teacherCode !== 'ruands10') {
                     return alert("Mã giáo viên không hợp lệ! Vui lòng liên hệ giáo viên để lấy mã.");
                 }
@@ -783,6 +601,7 @@
                     wallBtnSubmitRegister.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang tạo tài khoản...';
                     wallBtnSubmitRegister.disabled = true;
                     await createUserWithEmailAndPassword(auth, email, password);
+                    // Tạo thành công Firebase sẽ tự login và onAuthStateChanged sẽ chạy
                 } catch (error) {
                     console.error("Lỗi đăng ký:", error);
                     if (error.code === 'auth/email-already-in-use') alert("Email này đã được đăng ký trước đó!");
@@ -794,21 +613,24 @@
             });
         }
 
+        // BẮT SỰ KIỆN NÚT ĐĂNG XUẤT (TRONG CÀI ĐẶT)
         if (btnLogout) {
             btnLogout.addEventListener('click', async () => {
                 if (!auth) return;
                 try {
+                    // Dọn dẹp listener trước khi đăng xuất
                     if (unsubDict) { unsubDict(); unsubDict = null; }
                     if (unsubTrans) { unsubTrans(); unsubTrans = null; }
                     
+                    // Reset UI form đăng nhập để lần sau sạch sẽ
                     wallAuthEmail.value = '';
                     wallAuthPassword.value = '';
                     wallBtnLoginEmail.innerHTML = 'Đăng nhập vào hệ thống';
                     wallBtnLoginEmail.disabled = false;
-                    wallLinkShowLogin.click();
+                    wallLinkShowLogin.click(); // Trả về tab đăng nhập
                     
                     await signOut(auth);
-                    toggleLyricSettingsModal(); 
+                    toggleLyricSettingsModal(); // Đóng form cài đặt
                 } catch (error) {
                     console.error("Lỗi đăng xuất:", error);
                 }
@@ -817,17 +639,19 @@
 
         async function syncLocalToFirebase() {
             if (!isFirebaseReady || !currentUser) return;
+            // Đẩy từ điển local lên Firebase
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             if (dictStr) {
                 const dict = JSON.parse(dictStr);
                 for (const [word, data] of Object.entries(dict)) {
                     if (!word.trim()) continue;
+                    // Bọc encodeURIComponent để từ vựng không gây ra lỗi cấu trúc đường dẫn của Firebase
                     const safeWord = encodeURIComponent(word);
                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
-                    // CHỈ ĐẨY PINYIN VÀ MEANING, BỎ TRẠNG THÁI MEMORIZED ĐỂ GIỮ Ở LOCAL
                     setDoc(docRef, { pinyin: data.pinyin, meaning: data.meaning }, { merge: true }).catch(e=>console.error(e));
                 }
             }
+            // Đẩy bản dịch local lên Firebase
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 if (key && key.startsWith('hsk_ai_translation_')) {
@@ -841,12 +665,14 @@
         function setupFirestoreListeners() {
             if (!currentUser || !db) return;
             
+            // Lắng nghe thay đổi Từ điển từ Firebase (Real-time sync)
             const dictRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary');
             unsubDict = onSnapshot(dictRef, (snapshot) => {
                 const dictStr = localStorage.getItem('hsk_user_dictionary');
                 const localDict = dictStr ? JSON.parse(dictStr) : {};
                 let hasChanges = false;
                 
+                // Sử dụng docChanges() để nhận biết chính xác thao tác xóa/sửa
                 snapshot.docChanges().forEach((change) => {
                     let wordKey = change.doc.id;
                     try { wordKey = decodeURIComponent(wordKey); } catch(e) {}
@@ -855,14 +681,7 @@
                         delete localDict[wordKey];
                         hasChanges = true;
                     } else {
-                        // GIỮ LẠI TRẠNG THÁI MEMORIZED Ở LOCAL, KHÔNG BỊ GHI ĐÈ TỪ FIREBASE
-                        const incomingData = change.doc.data();
-                        const existingMemorized = localDict[wordKey] ? localDict[wordKey].memorized : false;
-                        localDict[wordKey] = {
-                            pinyin: incomingData.pinyin,
-                            meaning: incomingData.meaning,
-                            memorized: existingMemorized
-                        };
+                        localDict[wordKey] = change.doc.data();
                         hasChanges = true;
                     }
                 });
@@ -870,24 +689,15 @@
                 if (hasChanges) {
                     localStorage.setItem('hsk_user_dictionary', JSON.stringify(localDict));
                     
-                    // DEBOUNCE: Gộp các lệnh vẽ lại giao diện để tránh lag khi có quá nhiều từ được cập nhật cùng lúc
-                    clearTimeout(window.dictSyncTimeout);
-                    window.dictSyncTimeout = setTimeout(() => {
-                        // Update Lyric
-                        const lyricView = document.getElementById('lyricView');
-                        if (lyricView && !lyricView.classList.contains('hidden') && currentTrackIndex !== -1) {
-                            const rawText = currentLyricsData[currentTrackIndex];
-                            if(rawText) renderAnnotatedLyric(rawText);
-                        }
-
-                        // Update Voca View if active
-                        if (isVocaMode) {
-                            refreshVocaData();
-                        }
-                    }, 150);
+                    const lyricView = document.getElementById('lyricView');
+                    if (lyricView && !lyricView.classList.contains('hidden') && currentTrackIndex !== -1) {
+                        const rawText = currentLyricsData[currentTrackIndex];
+                        if(rawText) renderAnnotatedLyric(rawText);
+                    }
                 }
             }, (err) => console.error("Lỗi đồng bộ Từ điển:", err));
 
+            // Lắng nghe thay đổi Bản dịch từ Firebase
             const transRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'translations');
             unsubTrans = onSnapshot(transRef, (snapshot) => {
                 let hasChanges = false;
@@ -910,6 +720,7 @@
                         if (currentTranslation) {
                             showTranslation(currentTranslation);
                         } else {
+                            // Ẩn bản dịch nếu dữ liệu bị xóa từ máy khác
                             const tc = document.getElementById('translationContent');
                             if (tc) tc.classList.add('hidden');
                             const btt = document.getElementById('btnToggleTranslate');
@@ -923,25 +734,18 @@
         }
 
         // ================= FIREBASE STORAGE WRAPPERS =================
-        async function saveWordData(word, pinyin, meaning, memorized = null) {
+        async function saveWordData(word, pinyin, meaning) {
             if (!word.trim()) return;
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
-            
-            // Giữ lại trạng thái memorized cũ nếu không truyền vào
-            if (memorized === null) {
-                memorized = dict[word] ? (dict[word].memorized || false) : false;
-            }
-
-            dict[word] = { pinyin, meaning, memorized };
+            dict[word] = { pinyin, meaning };
             localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
             
             if (isFirebaseReady && currentUser) {
                 try {
                     const safeWord = encodeURIComponent(word);
                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
-                    // CHỈ LƯU PINYIN VÀ MEANING LÊN CLOUD
-                    await setDoc(docRef, { pinyin, meaning }, { merge: true });
+                    await setDoc(docRef, { pinyin, meaning });
                 } catch(e) { console.error(e); }
             }
         }
@@ -986,9 +790,13 @@
         let currentSpeed = 1.0;
         let tracks = []; 
         let isDraggingProgress = false;
+        
         let currentLyricsData = []; 
         
+        // State API và Cài đặt
+        // Đặt API key của bạn vào biến này. Nếu để trống "", hệ thống sẽ tìm trong LocalStorage.
         const API_KEY = "sk-3985f4e0a07a496b97056c0f4dbcfe13"; 
+        // Ưu tiên: 1. Key cứng -> 2. Key đã lưu trong trình duyệt -> 3. Bỏ trống
         let deepseekApiKey = API_KEY || localStorage.getItem('hsk_deepseek_key') || '';
         let lyricStyle = {
             fontFamily: "'Inter', sans-serif",
@@ -1035,22 +843,26 @@
         const settingApiKey = document.getElementById('settingApiKey');
         const apiKeyWarning = document.getElementById('apiKeyWarning');
 
+        // Elements Nhập/Xuất dữ liệu
         const btnExportData = document.getElementById('btnExportData');
         const btnImportData = document.getElementById('btnImportData');
         const btnExportVocab = document.getElementById('btnExportVocab');
         const fileImportData = document.getElementById('fileImportData');
         const dataMessage = document.getElementById('dataMessage');
 
+        // Phân tích AI Elements
         const btnAnalyzeAI = document.getElementById('btnAnalyzeAI');
         const btnToggleTranslate = document.getElementById('btnToggleTranslate');
         const translationContent = document.getElementById('translationContent');
         const translationText = document.getElementById('translationText');
         
+        // Element Sửa Dịch
         const btnEditTranslation = document.getElementById('btnEditTranslation');
         const btnSaveTranslation = document.getElementById('btnSaveTranslation');
         const btnCancelTranslation = document.getElementById('btnCancelTranslation');
         let originalTranslation = "";
 
+        // Element Tooltip
         const wordTooltip = document.getElementById('wordTooltip');
         const ttLoading = document.getElementById('ttLoading');
         const ttContent = document.getElementById('ttContent');
@@ -1059,6 +871,7 @@
         const ttMeaning = document.getElementById('ttMeaning');
         const ttActionButtons = document.getElementById('ttActionButtons');
         
+        // Element Sửa Tooltip
         const ttEditMode = document.getElementById('ttEditMode');
         const btnEditWord = document.getElementById('btnEditWord');
         const btnDeleteWord = document.getElementById('btnDeleteWord');
@@ -1067,31 +880,101 @@
         const btnSaveEditWord = document.getElementById('btnSaveEditWord');
         const btnCancelEditWord = document.getElementById('btnCancelEditWord');
 
-        let isTooltipPinned = false;
+        let isTooltipPinned = false; // Biến theo dõi trạng thái ghim tooltip
 
+        // ================= XỬ LÝ ĐỒNG BỘ DỮ LIỆU TỰ ĐỘNG (AUTO-SYNC) =================
+        async function syncDataOnLoad() {
+            try {
+                // Thử tải file data.json từ thư mục
+                const response = await fetch('data_HSK5Audio/data.json');
+                if (!response.ok) return; // Nếu không có file thì bỏ qua, dùng local
+                
+                const jsonData = await response.json();
+
+                // 1. Đếm số lượng dữ liệu trong Local Storage
+                let localDictCount = 0;
+                const localDictStr = localStorage.getItem('hsk_user_dictionary');
+                if (localDictStr) {
+                    localDictCount = Object.keys(JSON.parse(localDictStr)).length;
+                }
+                
+                let localTransCount = 0;
+                for (let i = 0; i < localStorage.length; i++) {
+                    if (localStorage.key(i) && localStorage.key(i).startsWith('hsk_ai_translation_')) {
+                        localTransCount++;
+                    }
+                }
+                const localTotal = localDictCount + localTransCount;
+
+                // 2. Đếm số lượng dữ liệu trong file JSON
+                let jsonDictCount = jsonData.dictionary ? Object.keys(jsonData.dictionary).length : 0;
+                let jsonTransCount = jsonData.translations ? Object.keys(jsonData.translations).length : 0;
+                const jsonTotal = jsonDictCount + jsonTransCount;
+
+                // 3. So sánh và Cập nhật nếu JSON lớn hơn
+                if (jsonTotal > localTotal) {
+                    console.log(`[Auto-Sync] Cập nhật dữ liệu từ data.json (JSON: ${jsonTotal} mục > Local: ${localTotal} mục)`);
+                    
+                    // Gộp Từ điển
+                    if (jsonData.dictionary) {
+                        const currentDict = JSON.parse(localDictStr || '{}');
+                        const mergedDict = { ...currentDict, ...jsonData.dictionary };
+                        localStorage.setItem('hsk_user_dictionary', JSON.stringify(mergedDict));
+                    }
+
+                    // Gộp Bản dịch
+                    if (jsonData.translations) {
+                        for (const [key, value] of Object.entries(jsonData.translations)) {
+                            if (key.startsWith('hsk_ai_translation_')) {
+                                localStorage.setItem(key, value);
+                            }
+                        }
+                    }
+                } else {
+                    console.log(`[Auto-Sync] Giữ nguyên Local Storage (Local: ${localTotal} mục >= JSON: ${jsonTotal} mục)`);
+                }
+            } catch (error) {
+                console.warn("[Auto-Sync] Không tìm thấy hoặc lỗi đọc file data.json:", error);
+            }
+        }
+
+        // Đổi tên hàm init thành initApp để chờ được gọi từ onAuthStateChanged thay vì gọi trực tiếp ở cuối file
         async function initApp() {
+            // Kiểm tra xem đã vẽ list đề chưa để tránh lặp lại
             if (deSelector.options.length > 0) return;
+
             for (let i = 1; i <= MAX_DE; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = `Đề số ${i}`;
                 deSelector.appendChild(option);
             }
+
+            // Gọi hàm kiểm tra và đồng bộ file JSON
+            await syncDataOnLoad();
+
             loadDe(currentDe);
             updateSliderBackground(volumeBar, volumeBar.value * 100);
             
+            // Gán API key vào form tùy theo trạng thái
             if (API_KEY) {
+                // Đưa một chuỗi ký tự giả vào ô input để che mắt
                 settingApiKey.value = "sk-••••••••••••••••••••••••••••"; 
-                settingApiKey.disabled = true; 
-                settingApiKey.type = "text"; 
+                settingApiKey.disabled = true; // Khóa hoàn toàn ô nhập liệu
+                settingApiKey.type = "text"; // Để text hay password đều an toàn vì giá trị là giả
+                
+                // Thêm style làm xám ô input để báo hiệu không thể sửa
                 settingApiKey.classList.add('bg-gray-200', 'text-gray-500', 'cursor-not-allowed', 'select-none');
                 settingApiKey.title = "Đang sử dụng API Key mặc định của hệ thống";
             } else if (deepseekApiKey) {
+                // Nếu không có key hệ thống, trả lại ô nhập liệu bình thường cho người dùng
                 settingApiKey.value = deepseekApiKey;
             }
         }
 
-        function padNum(num) { return String(num).padStart(3, '0'); }
+        function padNum(num) {
+            return String(num).padStart(3, '0');
+        }
 
         function formatTime(seconds) {
             if (isNaN(seconds)) return "0:00";
@@ -1122,9 +1005,6 @@
             tracks = [];
 
             fetchLyrics(currentDe);
-
-            // Chuyển về Audio mode nếu đang ở chế độ khác
-            if (isVocaMode) toggleAppMode();
 
             trackListView.classList.remove('hidden');
             lyricView.classList.add('hidden');
@@ -1212,14 +1092,8 @@
                 updatePlayerUI();
                 renderTrackList(); 
                 
-                // Trở về mode audio nếu đang bật lyric
-                if (isVocaMode) {
-                    toggleAppMode();
-                    if(lyricView.classList.contains('hidden')) toggleLyricView();
-                } else {
-                    if (lyricView.classList.contains('hidden')) scrollToPlayingTrack();
-                    if (!lyricView.classList.contains('hidden')) updateLyricContent();
-                }
+                if (lyricView.classList.contains('hidden')) scrollToPlayingTrack();
+                if (!lyricView.classList.contains('hidden')) updateLyricContent();
 
             }).catch(error => {
                 console.warn("Chưa có file audio thực tế:", error);
@@ -1288,13 +1162,17 @@
 
         // ================= XỬ LÝ GIAO DIỆN PHỤ ĐỀ & DỊCH AI =================
         function updateLyricContent() {
+            // Mặc định ẩn các tính năng AI
             btnAnalyzeAI.classList.add('hidden');
             btnToggleTranslate.classList.add('hidden');
             translationContent.classList.add('hidden');
             hideTooltip();
 
-            if (!deepseekApiKey) apiKeyWarning.classList.remove('hidden');
-            else apiKeyWarning.classList.add('hidden');
+            if (!deepseekApiKey) {
+                apiKeyWarning.classList.remove('hidden');
+            } else {
+                apiKeyWarning.classList.add('hidden');
+            }
 
             if (currentTrackIndex === -1) {
                 lyricSubtitle.textContent = `Đề số ${currentDe}`;
@@ -1312,23 +1190,29 @@
                 return;
             }
 
+            // HIỂN THỊ TEXT: Gọi hàm quét và bọc từ đã lưu, thay vì gán text thô
             renderAnnotatedLyric(rawText);
 
+            // Kiểm tra Cache bản dịch
             const storageKey = `hsk_ai_translation_De${currentDe}_Trk${currentTrackIndex}`;
             const cachedTranslation = localStorage.getItem(storageKey);
 
             if (cachedTranslation) {
+                // Đã dịch -> Hiện bản dịch và ẩn nút Dịch
                 showTranslation(cachedTranslation);
             } else {
+                // Chưa dịch -> Hiện nút Dịch
                 if(deepseekApiKey) btnAnalyzeAI.classList.remove('hidden');
             }
         }
 
+        // HÀM MỚI: Quét và highlight các từ vựng đã được lưu trong "Từ điển cá nhân"
         function renderAnnotatedLyric(rawText) {
-            lyricContent.innerHTML = ''; 
+            lyricContent.innerHTML = ''; // Reset vùng chữ
 
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
+            // Sắp xếp từ dài xếp trước để ưu tiên cắt từ ghép đúng (Ví dụ: "什么" cắt trước "什")
             const words = Object.keys(dict).filter(w => w.trim() !== '').sort((a, b) => b.length - a.length);
 
             if (words.length === 0) {
@@ -1336,6 +1220,7 @@
                 return;
             }
 
+            // Tạo Regex động để tìm tất cả các từ trong Từ điển
             const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const escapedWords = words.map(escapeRegExp);
             const regex = new RegExp("(" + escapedWords.join("|") + ")", "g");
@@ -1346,28 +1231,29 @@
                 if (dict[part]) {
                     const span = document.createElement('span');
                     span.textContent = part;
-                    // Đổi màu nếu từ này đã thuộc (memorized)
-                    if (dict[part].memorized) {
-                        span.className = "saved-word cursor-pointer text-green-600 border-b-[2px] border-dotted border-green-400 hover:bg-green-50 hover:text-green-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
-                    } else {
-                        span.className = "saved-word cursor-pointer text-blue-600 border-b-[2px] border-dotted border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
-                    }
+                    // Thêm class 'saved-word' để định danh từ đã lưu
+                    span.className = "saved-word cursor-pointer text-blue-600 border-b-[2px] border-dotted border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
                     
+                    // Khi rê chuột vào -> Hiện
                     span.addEventListener('mouseenter', (e) => {
                         if (isTooltipPinned && currentLookupWord === part) return;
                         showTooltip(span, part, dict[part].pinyin, dict[part].meaning);
-                        isTooltipPinned = false; 
+                        isTooltipPinned = false; // Chỉ hover thì không ghim
                     });
 
+                    // Khi rê chuột ra -> Ẩn (nếu chưa ghim)
                     span.addEventListener('mouseleave', (e) => {
-                        if (!isTooltipPinned) hideTooltip();
+                        if (!isTooltipPinned) {
+                            hideTooltip();
+                        }
                     });
 
+                    // Khi nhấn vào -> Ghim lại để chuột có thể di chuyển xuống sửa
                     span.addEventListener('click', (e) => {
                         e.stopPropagation();
                         window.getSelection().removeAllRanges(); 
                         showTooltip(span, part, dict[part].pinyin, dict[part].meaning);
-                        isTooltipPinned = true; 
+                        isTooltipPinned = true; // Ghim tooltip
                     });
                     
                     lyricContent.appendChild(span);
@@ -1390,11 +1276,13 @@
             btnAnalyzeAI.classList.add('hidden'); 
         }
 
+        // ================= XỬ LÝ SỬA BẢN DỊCH =================
         btnEditTranslation.addEventListener('click', () => {
             originalTranslation = translationText.textContent;
             translationText.contentEditable = "true";
             translationText.focus();
             
+            // Đổi UI Nút
             btnEditTranslation.classList.add('hidden');
             btnSaveTranslation.classList.remove('hidden');
             btnCancelTranslation.classList.remove('hidden');
@@ -1417,8 +1305,11 @@
             btnCancelTranslation.classList.add('hidden');
             
             const newText = translationText.textContent.trim();
+            // Lưu bằng hàm Wrapper để đẩy lên Firebase
             saveTranslationData(currentDe, currentTrackIndex, newText);
         });
+
+        // =========================================================
 
         async function analyzeLyric() {
             if (!deepseekApiKey) {
@@ -1435,6 +1326,7 @@
             btnAnalyzeAI.disabled = true;
             btnAnalyzeAI.classList.add('opacity-75');
 
+            // Prompt đơn giản chỉ lấy bản dịch
             const systemPrompt = `You are a professional Chinese-Vietnamese translator. Output valid JSON.`;
             const userPrompt = `Dịch toàn bộ đoạn hội thoại tiếng Trung sau sang tiếng Việt tự nhiên và lưu loát:
 "${rawText}"
@@ -1464,7 +1356,10 @@ YÊU CẦU TRẢ VỀ JSON:
                 if (match) jsonStr = match[1];
                 
                 const resultObj = JSON.parse(jsonStr);
+
+                // Lưu vào Local Storage & Firebase
                 await saveTranslationData(currentDe, currentTrackIndex, resultObj.translation);
+
                 showTranslation(resultObj.translation);
 
             } catch(error) {
@@ -1477,6 +1372,7 @@ YÊU CẦU TRẢ VỀ JSON:
             }
         }
 
+        // Bật tắt hộp dịch
         btnToggleTranslate.addEventListener('click', () => {
             if(translationContent.classList.contains('hidden')) {
                 translationContent.classList.remove('hidden');
@@ -1495,42 +1391,60 @@ YÊU CẦU TRẢ VỀ JSON:
 
         btnAnalyzeAI.addEventListener('click', analyzeLyric);
 
-        // ================= XỬ LÝ BÔI ĐEN TRA TỪ =================
-        let currentLookupWord = "";
+        // ================= XỬ LÝ BÔI ĐEN TRA TỪ (ON-DEMAND) =================
+        let currentLookupWord = ""; // Dùng để theo dõi từ cuối cùng người dùng đang muốn xem
+
+        // Bắt sự kiện bôi đen (mouse/touch up) trong khung Lyric
+        document.addEventListener('selectionchange', () => {
+            // Có thể dùng để theo dõi, nhưng xử lý chính ở mouseup/touchend sẽ tốt hơn
+        });
 
         lyricContent.addEventListener('mouseup', handleTextSelection);
         lyricContent.addEventListener('touchend', handleTextSelection);
 
         async function handleTextSelection() {
+            // Đợi một chút để trình duyệt hoàn tất việc bôi đen (đặc biệt trên mobile)
             setTimeout(async () => {
                 const selection = window.getSelection();
                 const selectedText = selection.toString().trim();
 
-                if (!selectedText || selectedText.length > 20) return; 
+                // Nếu không bôi đen chữ nào hoặc chữ quá dài (> 20 ký tự thường không phải từ vựng)
+                if (!selectedText || selectedText.length > 20) {
+                    return; 
+                }
 
                 if (!deepseekApiKey) {
                     showTooltipWarning(selection, "Vui lòng nhập API Key để tra từ.");
                     return;
                 }
 
+                // Lấy tọa độ của vùng bôi đen để hiển thị Tooltip
                 const range = selection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
                 
                 showLoadingTooltip(rect);
+
+                // Cập nhật từ đang được focus cuối cùng trên Tooltip
                 currentLookupWord = selectedText;
 
                 try {
+                    // Không dùng lệnh hủy (Abort) nữa, cho phép các request chạy song song ngầm
                     const result = await fetchWordLookup(selectedText);
+                    
+                    // 1. LƯU TỪ VỪA TRA VÀO "TỪ ĐIỂN" TRONG LOCAL STORAGE VÀ FIREBASE
                     await saveWordData(selectedText, result.pinyin, result.meaning);
 
+                    // 2. VẼ LẠI GIAO DIỆN ĐỂ TỪ VỪA BÔI ĐEN TRỞ THÀNH TỪ ĐƯỢC HIGHLIGHT
                     const rawText = currentLyricsData[currentTrackIndex];
                     renderAnnotatedLyric(rawText);
                     
+                    // 3. CHỈ HIỂN THỊ KẾT QUẢ LÊN TOOLTIP NẾU ĐÂY LÀ TỪ MÀ NGƯỜI DÙNG ĐANG XEM GẦN NHẤT
                     if (currentLookupWord === selectedText) {
-                        isTooltipPinned = true;
+                        isTooltipPinned = true; // Ghim kết quả vừa tra
                         updateTooltipContent(selectedText, result.pinyin, result.meaning);
                         window.getSelection().removeAllRanges();
                     }
+
                 } catch (error) {
                     if (currentLookupWord === selectedText) {
                         isTooltipPinned = true;
@@ -1567,13 +1481,15 @@ Yêu cầu JSON:
             return JSON.parse(jsonStr);
         }
 
+        // ================= XỬ LÝ GIAO DIỆN TOOLTIP =================
         function positionTooltip(rect) {
+            // Tránh việc tính toán sai khi rect rỗng
             if(rect.width === 0 && rect.height === 0) return;
 
             let top = rect.top - wordTooltip.offsetHeight - 12;
             let left = rect.left + (rect.width / 2) - (wordTooltip.offsetWidth / 2);
 
-            if (top < 10) top = rect.bottom + 12;
+            if (top < 10) top = rect.bottom + 12; // Nếu đụng trần thì lật xuống dưới
             if (left < 10) left = 10;
             if (left + wordTooltip.offsetWidth > window.innerWidth - 10) {
                 left = window.innerWidth - wordTooltip.offsetWidth - 10;
@@ -1589,7 +1505,9 @@ Yêu cầu JSON:
             ttActionButtons.classList.remove('hidden');
         }
 
+        // Cập nhật hàm showTooltip để nhận chữ gốc
         function showTooltip(targetElement, word, pinyin, meaning) {
+            // KHÔNG thay đổi tooltip nếu đang ở chế độ sửa
             if (!ttEditMode.classList.contains('hidden')) return;
 
             wordTooltip.classList.remove('hidden');
@@ -1597,7 +1515,7 @@ Yêu cầu JSON:
             ttContent.classList.remove('hidden');
             resetTooltipView();
 
-            currentLookupWord = word;
+            currentLookupWord = word; // Lưu lại từ đang hiển thị
             ttPinyin.textContent = pinyin;
             ttMeaning.textContent = meaning;
             ttPinyin.className = "text-[#93c5fd] font-bold text-base mb-1 tracking-wide";
@@ -1644,7 +1562,7 @@ Yêu cầu JSON:
             ttLoading.classList.add('hidden');
             ttContent.classList.remove('hidden');
             resetTooltipView();
-            ttActionButtons.classList.add('hidden'); 
+            ttActionButtons.classList.add('hidden'); // Ẩn nút sửa xóa đi vì đây là cảnh báo
 
             ttPinyin.textContent = "Chú ý";
             ttMeaning.textContent = msg;
@@ -1652,6 +1570,7 @@ Yêu cầu JSON:
         }
 
         function hideTooltip() {
+            // Không tắt tooltip nếu đang ở chế độ sửa
             if (!ttEditMode.classList.contains('hidden')) return;
 
             wordTooltip.style.opacity = '0';
@@ -1663,6 +1582,7 @@ Yêu cầu JSON:
             }, 200);
         }
 
+        // ================= XỬ LÝ GÕ PINYIN THÔNG MINH =================
         function convertNumberToPinyin(text) {
             const toneMap = {
                 'a': ['ā', 'á', 'ǎ', 'à', 'a'], 'A': ['Ā', 'Á', 'Ǎ', 'À', 'A'],
@@ -1674,13 +1594,17 @@ Yêu cầu JSON:
                 'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'], 'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
             };
 
+            // Tìm các cụm chữ cái nối liền bởi số từ 1-5 (vd: fu4, nv3, xiao3)
             return text.replace(/([a-zA-ZüÜvV]+)([1-5])/g, (match, word, toneNum) => {
                 const toneIndex = parseInt(toneNum) - 1;
+                
+                // Nếu là thanh nhẹ (số 5), chỉ cần chuyển v thành ü
                 if (toneIndex === 4) return word.replace(/v/g, 'ü').replace(/V/g, 'Ü');
 
                 let target = '';
                 let lowerWord = word.toLowerCase();
                 
+                // Quy tắc đặt dấu Pinyin
                 if (lowerWord.includes('a')) target = 'a';
                 else if (lowerWord.includes('e')) target = 'e';
                 else if (lowerWord.includes('ou')) target = 'o';
@@ -1692,24 +1616,35 @@ Yêu cầu JSON:
                 }
 
                 if (target) {
+                    // Xác định đang viết hoa hay viết thường để thay thế đúng
                     let actualChar = word.includes(target.toUpperCase()) ? target.toUpperCase() : target.toLowerCase();
                     let replacement = toneMap[actualChar][toneIndex];
-                    return word.replace(actualChar, replacement).replace(/v/g, 'ü').replace(/V/g, 'Ü');
+                    
+                    // Gắn dấu và thay thế chữ v/V thành ü/Ü (cách gõ bàn phím chuẩn)
+                    return word.replace(actualChar, replacement)
+                               .replace(/v/g, 'ü')
+                               .replace(/V/g, 'Ü');
                 }
                 return word.replace(/v/g, 'ü').replace(/V/g, 'Ü');
             });
         }
 
+        // Bắt sự kiện người dùng đang gõ phím vào ô Pinyin
         editTtPinyin.addEventListener('input', function() {
             let original = this.value;
             let converted = convertNumberToPinyin(original);
+            
+            // Nếu có sự biến đổi (Ví dụ: gõ thêm số 4)
             if (original !== converted) {
-                let start = this.selectionStart;
-                this.value = converted;
+                let start = this.selectionStart; // Lấy vị trí con trỏ hiện tại
+                this.value = converted; // Gán text mới
+                
+                // Chỉnh con trỏ lùi lại 1 bước vì chữ số đã bị gộp thành dấu
                 this.setSelectionRange(start - 1, start - 1);
             }
         });
 
+        // ================= XỬ LÝ SỬA / XÓA TỪ ĐIỂN =================
         btnEditWord.addEventListener('click', () => {
             ttViewMode.classList.add('hidden');
             ttEditMode.classList.remove('hidden');
@@ -1730,17 +1665,20 @@ Yêu cầu JSON:
             const newPinyin = editTtPinyin.value.trim();
             const newMeaning = editTtMeaning.value.trim();
             
+            // Cập nhật UI Tooltip
             ttPinyin.textContent = newPinyin;
             ttMeaning.textContent = newMeaning;
             ttViewMode.classList.remove('hidden');
             ttEditMode.classList.add('hidden');
             ttEditMode.classList.remove('flex');
             
+            // Lưu vào LocalStorage & Firebase
             if (currentLookupWord) {
                 await saveWordData(currentLookupWord, newPinyin, newMeaning);
+                
+                // THÊM LỆNH NÀY: Vẽ lại đoạn văn bản để các chữ màu xanh lập tức nhận dữ liệu mới
                 const rawText = currentLyricsData[currentTrackIndex];
                 renderAnnotatedLyric(rawText);
-                if(isVocaMode) refreshVocaData();
             }
         });
 
@@ -1749,31 +1687,35 @@ Yêu cầu JSON:
                 deleteWordData(currentLookupWord).then(() => {
                     hideTooltip();
                     isTooltipPinned = false;
+                    
+                    // Vẽ lại giao diện văn bản để từ vừa bị xóa mất gạch chân xanh
                     const rawText = currentLyricsData[currentTrackIndex];
                     renderAnnotatedLyric(rawText);
-                    if(isVocaMode) refreshVocaData();
                 });
             }
         });
 
+        // Tắt tooltip khi bấm ra ngoài
         document.addEventListener('mousedown', (e) => {
+            // Tắt Tooltip nếu click ra ngoài Tooltip VÀ không click vào chữ đã lưu
             if (!e.target.closest('#wordTooltip') && !e.target.closest('.saved-word')) {
                 resetTooltipView(); 
                 hideTooltip();
-                isTooltipPinned = false; 
+                isTooltipPinned = false; // Bỏ ghim
+                
+                // Chỉ xóa vùng bôi đen nếu người dùng click ra hẳn bên ngoài khung văn bản
                 if (!e.target.closest('#lyricContent')) {
                     window.getSelection().removeAllRanges(); 
                 }
             }
         });
 
-        // ================= CÀI ĐẶT & STYLE =================
+        // ========================================================
+
         function toggleLyricView() {
             const isLyricHidden = lyricView.classList.contains('hidden');
             if (isLyricHidden) {
-                document.querySelectorAll('.app-mode-audio').forEach(el => {
-                    if(el.id === 'trackListView') el.classList.add('hidden');
-                });
+                trackListView.classList.add('hidden');
                 lyricView.classList.remove('hidden');
                 lyricView.classList.add('flex');
                 
@@ -1785,7 +1727,7 @@ Yêu cầu JSON:
             } else {
                 lyricView.classList.add('hidden');
                 lyricView.classList.remove('flex');
-                document.getElementById('trackListView').classList.remove('hidden');
+                trackListView.classList.remove('hidden');
                 
                 btnLyric.classList.remove('text-blue-600', 'bg-blue-50', 'rounded-lg');
                 btnLyric.classList.add('text-gray-400');
@@ -1793,11 +1735,12 @@ Yêu cầu JSON:
                 hideTooltip();
             }
         }
-        window.toggleLyricView = toggleLyricView; 
+        window.toggleLyricView = toggleLyricView; // Expose ra window để HTML onclick gọi được
 
         btnLyric.addEventListener('click', toggleLyricView);
         closeLyricViewBtn.addEventListener('click', toggleLyricView);
 
+        // ================= CÀI ĐẶT & STYLE =================
         function applyLyricStyles() {
             lyricContent.style.fontFamily = lyricStyle.fontFamily;
             lyricContent.style.fontSize = lyricStyle.fontSize + 'px';
@@ -1819,7 +1762,7 @@ Yêu cầu JSON:
                 setTimeout(() => lyricSettingsModal.classList.add('hidden'), 300);
             }
         }
-        window.toggleLyricSettingsModal = toggleLyricSettingsModal; 
+        window.toggleLyricSettingsModal = toggleLyricSettingsModal; // Expose ra window để HTML onclick gọi được
 
         btnLyricSettings.addEventListener('click', toggleLyricSettingsModal);
         closeLyricSettingsBtn.addEventListener('click', toggleLyricSettingsModal);
@@ -1827,9 +1770,11 @@ Yêu cầu JSON:
             if (e.target === lyricSettingsModal) toggleLyricSettingsModal();
         });
 
+        // Xử lý lưu Key DeepSeek
         settingApiKey.addEventListener('change', (e) => {
             deepseekApiKey = e.target.value.trim();
             localStorage.setItem('hsk_deepseek_key', deepseekApiKey);
+            // Cập nhật lại giao diện để tắt cảnh báo nếu vừa nhập xong
             if(!lyricView.classList.contains('hidden')) updateLyricContent();
         });
 
@@ -1849,6 +1794,7 @@ Yêu cầu JSON:
             applyLyricStyles();
         });
 
+        // ================= XỬ LÝ NHẬP/XUẤT DỮ LIỆU JSON =================
         function showDataMessage(msg, colorClass) {
             dataMessage.textContent = msg;
             dataMessage.className = `mt-2 text-xs font-medium text-center ${colorClass}`;
@@ -1856,20 +1802,27 @@ Yêu cầu JSON:
             setTimeout(() => dataMessage.classList.add('hidden'), 3500);
         }
 
+        // 1. XUẤT DỮ LIỆU
         btnExportData.addEventListener('click', () => {
             const exportData = {
                 dictionary: JSON.parse(localStorage.getItem('hsk_user_dictionary') || '{}'),
                 translations: {}
             };
+            
+            // Lọc lấy tất cả các bản dịch trong localStorage
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 if (key && key.startsWith('hsk_ai_translation_')) {
                     exportData.translations[key] = localStorage.getItem(key);
                 }
             }
+
+            // Tạo file JSON
             const dataStr = JSON.stringify(exportData, null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
+            
+            // Tạo thẻ a ảo để tải xuống
             const a = document.createElement('a');
             a.href = url;
             a.download = `HSK_Audio_Backup_${new Date().toISOString().slice(0,10)}.json`;
@@ -1877,24 +1830,34 @@ Yêu cầu JSON:
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            
             showDataMessage('Đã tải xuống file sao lưu!', 'text-green-600');
         });
 
-        btnImportData.addEventListener('click', () => { fileImportData.click(); });
+        // 2. NHẬP DỮ LIỆU
+        btnImportData.addEventListener('click', () => {
+            fileImportData.click(); // Mở hộp thoại chọn file
+        });
+
         fileImportData.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = (event) => {
                 try {
                     const importedData = JSON.parse(event.target.result);
                     let importedCount = 0;
+
+                    // Nhập từ điển: Lưu vào cả Local & Firebase
                     if (importedData.dictionary) {
                         for (const [word, data] of Object.entries(importedData.dictionary)) {
-                            saveWordData(word, data.pinyin, data.meaning, data.memorized);
+                            saveWordData(word, data.pinyin, data.meaning);
                             importedCount++;
                         }
                     }
+
+                    // Nhập bản dịch: Lưu vào cả Local & Firebase
                     if (importedData.translations) {
                         for (const [key, value] of Object.entries(importedData.translations)) {
                             const match = key.match(/hsk_ai_translation_De(\d+)_Trk(\d+)/);
@@ -1904,33 +1867,47 @@ Yêu cầu JSON:
                             }
                         }
                     }
+
                     showDataMessage(`Thành công! Đã khôi phục ${importedCount} mục.`, 'text-green-600');
-                    if (!lyricView.classList.contains('hidden')) updateLyricContent();
-                    if (isVocaMode) refreshVocaData();
+                    
+                    // Cập nhật lại giao diện ngay lập tức nếu đang mở Phụ đề
+                    if (!lyricView.classList.contains('hidden')) {
+                        updateLyricContent();
+                    }
+
                 } catch (error) {
                     showDataMessage('Lỗi: File JSON không hợp lệ.', 'text-red-600');
                     console.error("Lỗi Import:", error);
                 }
+                
+                // Reset file input để có thể chọn lại cùng 1 file nếu cần
                 fileImportData.value = ''; 
             };
             reader.readAsText(file);
         });
 
+        // 3. XUẤT TỪ VỰNG DẠNG TXT (word|pinyin|meaning)
         btnExportVocab.addEventListener('click', () => {
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
             const words = Object.keys(dict);
+
             if (words.length === 0) {
                 showDataMessage('Từ điển đang trống, chưa có từ nào để xuất.', 'text-orange-500');
                 return;
             }
+
+            // Tạo nội dung file txt
             let textContent = "";
             words.forEach(word => {
                 const entry = dict[word];
+                // Loại bỏ khoảng trắng thừa ở cuối mỗi thành phần
                 const pinyin = entry.pinyin ? entry.pinyin.trim() : '';
                 const meaning = entry.meaning ? entry.meaning.trim() : '';
                 textContent += `${word}|${pinyin}|${meaning}\n`;
             });
+
+            // Gọi tải xuống
             const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1940,12 +1917,13 @@ Yêu cầu JSON:
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            
             showDataMessage(`Đã xuất ${words.length} từ vựng ra file TXT!`, 'text-green-600');
         });
 
         applyLyricStyles();
 
-        // ================= ĐIỀU KHIỂN AUDIO =================
+        // === ĐIỀU KHIỂN AUDIO ===
         deSelector.addEventListener('change', (e) => loadDe(e.target.value));
         btnPlay.addEventListener('click', togglePlay);
         btnNext.addEventListener('click', playNext);
@@ -1994,20 +1972,9 @@ Yêu cầu JSON:
             }
         });
 
-//        audioPlayer.addEventListener('ended', () => {
- //         if (isRepeatOne) { audioPlayer.currentTime = 0; audioPlayer.play(); } 
-  //       else { playNext(); }
- //    });
         audioPlayer.addEventListener('ended', () => {
-            if (isRepeatOne) { 
-                audioPlayer.currentTime = 0; 
-                audioPlayer.play(); 
-            } else { 
-                // Dừng phát và cập nhật lại UI thay vì tự động chuyển bài
-                isPlaying = false;
-                updatePlayerUI();
-                renderTrackList();
-            }
+            if (isRepeatOne) { audioPlayer.currentTime = 0; audioPlayer.play(); } 
+            else { playNext(); }
         });
 
         progressBar.addEventListener('input', () => {
@@ -2031,596 +1998,7 @@ Yêu cầu JSON:
             else icon.className = 'fa-solid fa-volume-high text-gray-400 text-sm';
         });
 
-        // ========================================================================
-        // ======================= MODULE HỌC TỪ VỰNG ============================
-        // ========================================================================
-        let isVocaMode = false;
-        let vocaFullList = [];
-        let activeVocabulary = [];
-        let vocaCurrentIndex = 0;
-        let isStudyWeakMode = false;
-        let currentVocaTab = 'flashcard';
-        let currentPage = 1;
-        const itemsPerPage = 50;
-
-        let quizQuestions = [];
-        let quizCurrentIndex = 0;
-        let quizScore = 0;
-        let isQuizAnswering = false;
-        let selectedQuizCount = 10;
-
-        let animationWriter = null;
-        let animationCharacters = [];
-
-        const btnToggleVocaMode = document.getElementById('btnToggleVocaMode');
-        const vocabularyModeView = document.getElementById('vocabularyModeView');
-        const appFooter = document.getElementById('appFooter');
-        
-        function toggleAppMode() {
-            isVocaMode = !isVocaMode;
-            if (isVocaMode) {
-                // Sang Voca Mode
-                document.querySelectorAll('.app-mode-audio').forEach(el => el.classList.add('hidden'));
-                btnToggleVocaMode.classList.replace('bg-indigo-50', 'bg-indigo-600');
-                btnToggleVocaMode.classList.replace('text-indigo-600', 'text-white');
-                btnToggleVocaMode.innerHTML = '<i class="fa-solid fa-music"></i> <span class="hidden sm:inline">Bài Nghe</span>';
-                
-                vocabularyModeView.classList.remove('hidden');
-                vocabularyModeView.classList.add('flex');
-                
-                // KHẮC PHỤC LỖI NỀN TRẮNG KHI CUỘN:
-                // Đồng bộ màu nền xám cho toàn bộ thẻ body và vùng cuộn chính
-                document.body.classList.replace('bg-white', 'bg-[#f3f4f6]');
-                document.getElementById('mainScrollArea').classList.replace('bg-white', 'bg-[#f3f4f6]');
-
-                // ẨN AUDIO PLAYER KHI HỌC TỪ VỰNG
-                appFooter.classList.add('hidden');
-                
-                refreshVocaData();
-            } else {
-                // Sang Audio Mode
-                vocabularyModeView.classList.add('hidden');
-                vocabularyModeView.classList.remove('flex');
-                
-                btnToggleVocaMode.classList.replace('bg-indigo-600', 'bg-indigo-50');
-                btnToggleVocaMode.classList.replace('text-white', 'text-indigo-600');
-                btnToggleVocaMode.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span class="hidden sm:inline">Học Từ Vựng</span>';
-                
-                // TRẢ LẠI MÀU NỀN TRẮNG CHO GIAO DIỆN BÀI NGHE
-                document.body.classList.replace('bg-[#f3f4f6]', 'bg-white');
-                document.getElementById('mainScrollArea').classList.replace('bg-[#f3f4f6]', 'bg-white');
-
-                // HIỆN LẠI AUDIO PLAYER
-                appFooter.classList.remove('hidden');
-                
-                if (lyricView.classList.contains('flex')) {
-                    lyricView.classList.remove('hidden');
-                } else {
-                    document.getElementById('trackListView').classList.remove('hidden');
-                }
-            }
-        }
-        btnToggleVocaMode.addEventListener('click', toggleAppMode);
-
-        function getDictionaryArray() {
-            const dictStr = localStorage.getItem('hsk_user_dictionary');
-            const dict = dictStr ? JSON.parse(dictStr) : {};
-            return Object.keys(dict).map(hanzi => ({
-                hanzi: hanzi,
-                pinyin: dict[hanzi].pinyin,
-                meaning: dict[hanzi].meaning,
-                memorized: dict[hanzi].memorized || false
-            }));
-        }
-
-        // HÀM MỚI: Chỉ cập nhật trạng thái "Đã thuộc" dưới Local Storage
-        function updateLocalMemorized(word, isMemorized) {
-            const dictStr = localStorage.getItem('hsk_user_dictionary');
-            const dict = dictStr ? JSON.parse(dictStr) : {};
-            if (dict[word]) {
-                dict[word].memorized = isMemorized;
-                localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
-            }
-        }
-
-        function refreshVocaData() {
-            vocaFullList = getDictionaryArray();
-            updateTotalProgress();
-
-            if (vocaFullList.length === 0) {
-                document.getElementById('vocaNoDataState').classList.remove('hidden');
-                document.getElementById('vocaFlashcardView').classList.add('hidden');
-                document.getElementById('vocaListView').classList.add('hidden');
-                document.getElementById('vocaQuizView').classList.add('hidden');
-                document.getElementById('vocaMainControls').classList.add('hidden');
-                return;
-            } else {
-                document.getElementById('vocaNoDataState').classList.add('hidden');
-                // SỬA LỖI TẠI ĐÂY: Chỉ bật thanh công cụ khi đang ở tab flashcard
-                if(currentVocaTab === 'flashcard') document.getElementById('vocaMainControls').classList.remove('hidden');
-            }
-
-            if (isStudyWeakMode) {
-                activeVocabulary = vocaFullList.filter(item => !item.memorized);
-            } else {
-                activeVocabulary = [...vocaFullList];
-            }
-            
-            if (vocaCurrentIndex >= activeVocabulary.length) vocaCurrentIndex = 0;
-            
-            if (currentVocaTab === 'flashcard') {
-                if (activeVocabulary.length === 0 && isStudyWeakMode) {
-                    document.getElementById('emptyState').classList.remove('hidden');
-                    document.getElementById('mainCard').classList.add('hidden');
-                } else {
-                    document.getElementById('emptyState').classList.add('hidden');
-                    document.getElementById('mainCard').classList.remove('hidden');
-                }
-                updateCardUI();
-            } else if (currentVocaTab === 'list') {
-                renderVocaList();
-            }
-        }
-
-        function updateTotalProgress() {
-            const total = vocaFullList.length;
-            const totalProgressDisplay = document.getElementById('vocaTotalProgress');
-            if (total === 0) {
-                totalProgressDisplay.textContent = "0%";
-                totalProgressDisplay.className = "w-10 h-10 flex items-center justify-center text-xs font-bold bg-gray-100 rounded-full text-gray-500 shadow-inner";
-                return;
-            }
-            const memorizedCount = vocaFullList.filter(w => w.memorized).length;
-            const percent = Math.round((memorizedCount / total) * 100);
-            totalProgressDisplay.textContent = `${percent}%`;
-            
-            if(percent < 30) totalProgressDisplay.className = "w-10 h-10 flex items-center justify-center text-xs font-bold bg-gray-100 rounded-full text-gray-500 shadow-inner";
-            else if (percent < 70) totalProgressDisplay.className = "w-10 h-10 flex items-center justify-center text-xs font-bold bg-blue-100 rounded-full text-blue-600 shadow-inner";
-            else totalProgressDisplay.className = "w-10 h-10 flex items-center justify-center text-xs font-bold bg-green-100 rounded-full text-green-600 shadow-inner";
-        }
-
-        function switchVocaTab(tabName) {
-            currentVocaTab = tabName;
-            ['vocaFlashcardView', 'vocaListView', 'vocaQuizView'].forEach(id => {
-                const el = document.getElementById(id);
-                if(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
-            });
-            ['tabFlashcard', 'tabList', 'tabQuiz'].forEach(id => {
-                const btn = document.getElementById(id);
-                if(btn) btn.className = "flex-1 py-2 rounded-lg bg-transparent text-gray-500 hover:text-gray-700 transition-all duration-300";
-            });
-
-            let activeBtnId = '';
-            if (tabName === 'flashcard') {
-                activeBtnId = 'tabFlashcard';
-                document.getElementById('vocaFlashcardView').classList.remove('hidden');
-                document.getElementById('vocaFlashcardView').classList.add('flex');
-                document.getElementById('vocaMainControls').classList.remove('hidden');
-                refreshVocaData();
-            } else if (tabName === 'list') {
-                activeBtnId = 'tabList';
-                document.getElementById('vocaListView').classList.remove('hidden');
-                document.getElementById('vocaListView').classList.add('flex');
-                document.getElementById('vocaMainControls').classList.add('hidden');
-                renderVocaList();
-            } else if (tabName === 'quiz') {
-                activeBtnId = 'tabQuiz';
-                document.getElementById('vocaQuizView').classList.remove('hidden');
-                document.getElementById('vocaQuizView').classList.add('flex');
-                document.getElementById('vocaMainControls').classList.add('hidden');
-                resetQuizView();
-            }
-
-            const activeBtn = document.getElementById(activeBtnId);
-            if(activeBtn) activeBtn.className = "flex-1 py-2 rounded-lg bg-white text-blue-600 shadow-sm transition-all duration-300";
-        }
-        window.switchVocaTab = switchVocaTab;
-
-        // FLASHCARD LOGIC
-        const cardContainer = document.querySelector('.card-container');
-        function flipCard() { cardContainer.classList.toggle('flipped'); }
-        window.flipCard = flipCard;
-
-        function updateCardUI() {
-            if (activeVocabulary.length === 0) {
-                document.querySelector('.word-count').textContent = `0 / 0`;
-                return;
-            }
-            const vocabItem = activeVocabulary[vocaCurrentIndex];
-            const isMemorized = vocabItem.memorized;
-            
-            const btnMark = document.getElementById('markMemorizedBtn');
-            if (isMemorized) {
-                btnMark.className = "absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition btn-press border border-green-500";
-            } else {
-                btnMark.className = "absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-white text-gray-300 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 transition btn-press border border-gray-100";
-            }
-
-            const cFront = document.querySelector('.card-front');
-            cFront.style.opacity = 0;
-            setTimeout(() => {
-                cFront.textContent = vocabItem.hanzi;
-                cFront.style.opacity = 1;
-            }, 150);
-
-            document.querySelector('.pinyin').textContent = vocabItem.pinyin;
-            document.querySelector('.meaning').textContent = vocabItem.meaning;
-            document.querySelector('.word-count').textContent = `${vocaCurrentIndex + 1} / ${activeVocabulary.length}`;
-            cardContainer.classList.remove('flipped');
-        }
-
-        function navigateCard(direction) {
-            if (activeVocabulary.length === 0) return;
-            if (direction === 'next') vocaCurrentIndex = (vocaCurrentIndex + 1) % activeVocabulary.length;
-            else vocaCurrentIndex = (vocaCurrentIndex - 1 + activeVocabulary.length) % activeVocabulary.length;
-            updateCardUI();
-        }
-
-        function animateRandomSelection() {
-            if (activeVocabulary.length === 0) return;
-            let count = 0;
-            const cFront = document.querySelector('.card-front');
-            const interval = setInterval(() => {
-                const tempIndex = Math.floor(Math.random() * activeVocabulary.length);
-                cFront.textContent = activeVocabulary[tempIndex].hanzi;
-                count++;
-                if (count >= 10) {
-                    clearInterval(interval);
-                    vocaCurrentIndex = tempIndex;
-                    updateCardUI();
-                }
-            }, 80);
-        }
-
-        document.getElementById('onlyWeakToggle').addEventListener('change', (e) => { 
-            isStudyWeakMode = e.target.checked; vocaCurrentIndex = 0; refreshVocaData(); 
-        });
-        
-        document.getElementById('markMemorizedBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (activeVocabulary.length > 0) {
-                const vocab = activeVocabulary[vocaCurrentIndex];
-                // SỬ DỤNG HÀM LOCAL THAY VÌ ĐẨY LÊN FIREBASE
-                updateLocalMemorized(vocab.hanzi, !vocab.memorized);
-                refreshVocaData(); 
-            }
-        });
-        
-        document.querySelector('.random-button').addEventListener('click', (e) => { e.stopPropagation(); animateRandomSelection(); });
-        document.querySelector('.next-button').addEventListener('click', (e) => { e.stopPropagation(); navigateCard('next'); });
-        document.querySelector('.prev-button').addEventListener('click', (e) => { e.stopPropagation(); navigateCard('prev'); });
-
-        document.getElementById('speakBtn').addEventListener('click', (e) => { 
-            e.stopPropagation(); 
-            if (activeVocabulary.length > 0) {
-                const text = activeVocabulary[vocaCurrentIndex].hanzi;
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    const utterance = new SpeechSynthesisUtterance(text);
-                    utterance.lang = 'zh-CN'; utterance.rate = 0.8;
-                    const btn = document.getElementById('speakBtn');
-                    btn.classList.add('speaking-animation');
-                    utterance.onend = () => btn.classList.remove('speaking-animation');
-                    window.speechSynthesis.speak(utterance);
-                }
-            }
-        });
-
-        // LIST LOGIC
-        function renderVocaList() {
-            const container = document.getElementById('vocabularyListContainer');
-            container.innerHTML = '';
-            
-            const selectAllCb = document.getElementById('selectAllCheckbox');
-            const allMemorized = vocaFullList.length > 0 && vocaFullList.every(item => item.memorized);
-            selectAllCb.checked = allMemorized;
-
-            if (vocaFullList.length === 0) return;
-
-            const totalPages = Math.ceil(vocaFullList.length / itemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages;
-            if (currentPage < 1) currentPage = 1;
-
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const paginatedItems = vocaFullList.slice(startIndex, startIndex + itemsPerPage);
-
-            paginatedItems.forEach(item => {
-                const el = document.createElement('div');
-                el.className = `bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between transition hover:shadow-md ${item.memorized ? 'bg-green-50/50' : ''}`;
-                el.innerHTML = `
-                    <div class="flex items-center gap-4 flex-1 cursor-pointer" onclick="openWriterForWord('${item.hanzi}')">
-                        <div class="min-w-[3rem] w-auto px-2 py-1 h-12 rounded-lg flex items-center justify-center text-2xl chinese-font text-blue-600 text-center whitespace-nowrap">
-                            ${item.hanzi}
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="font-bold text-gray-800 text-lg leading-tight mb-1 break-words">${item.pinyin}</div>
-                            <div class="text-sm text-gray-500 break-words">${item.meaning}</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center pl-2">
-                        <label class="cursor-pointer p-2">
-                            <input type="checkbox" class="w-6 h-6 rounded-md border-2 border-gray-300 custom-checkbox focus:ring-0 transition cursor-pointer" 
-                                ${item.memorized ? 'checked' : ''} 
-                                onchange="handleListCheck(this, '${item.hanzi}', '${item.pinyin}', '${item.meaning}')">
-                        </label>
-                    </div>
-                `;
-                container.appendChild(el);
-            });
-            renderPaginationControls(totalPages);
-        }
-
-        function renderPaginationControls(totalPages) {
-            const paginationControls = document.getElementById('paginationControls');
-            if (totalPages <= 1) {
-                paginationControls.innerHTML = '';
-                paginationControls.classList.add('hidden');
-                paginationControls.classList.remove('flex');
-                return;
-            }
-            paginationControls.classList.remove('hidden');
-            paginationControls.classList.add('flex');
-            paginationControls.innerHTML = `
-                <button onclick="changePage(-1)" class="w-10 h-10 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>
-                <span class="text-sm font-medium text-gray-600">Trang ${currentPage} / ${totalPages}</span>
-                <button onclick="changePage(1)" class="w-10 h-10 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>
-            `;
-        }
-
-        window.changePage = function(dir) {
-            currentPage += dir;
-            renderVocaList();
-            document.getElementById('vocabularyModeView').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        window.handleListCheck = function(cb, hanzi, pinyin, meaning) {
-            // SỬ DỤNG HÀM LOCAL THAY VÌ ĐẨY LÊN FIREBASE
-            updateLocalMemorized(hanzi, cb.checked);
-            refreshVocaData();
-        }
-
-        document.getElementById('selectAllCheckbox').addEventListener('change', async (e) => {
-            const isChecked = e.target.checked;
-            
-            // Cập nhật Local Storage NGAY LẬP TỨC
-            const dictStr = localStorage.getItem('hsk_user_dictionary');
-            const dict = dictStr ? JSON.parse(dictStr) : {};
-            
-            vocaFullList.forEach(item => {
-                if (dict[item.hanzi]) {
-                    dict[item.hanzi].memorized = isChecked;
-                }
-            });
-            localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
-            
-            // Cập nhật giao diện lập tức
-            refreshVocaData();
-            
-            // BỎ HOÀN TOÀN KHỐI LỆNH ĐẨY FIREBASE BATCH Ở ĐÂY
-        });
-
-        // QUIZ LOGIC
-        window.selectQuestionCount = function(count) {
-            selectedQuizCount = count;
-            document.querySelectorAll('.quiz-count-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-50', 'border-blue-500', 'text-blue-600');
-                if (btn.getAttribute('data-count') == count) {
-                    btn.classList.add('bg-blue-50', 'border-blue-500', 'text-blue-600');
-                }
-            });
-        }
-
-        window.startQuiz = function() {
-            let pool = document.getElementById('quizOnlyWeak').checked ? vocaFullList.filter(item => !item.memorized) : [...vocaFullList];
-
-            if (pool.length < 4) {
-                alert("Cần ít nhất 4 từ vựng để bắt đầu kiểm tra!");
-                return;
-            }
-
-            pool.sort(() => 0.5 - Math.random());
-            let limit = selectedQuizCount === 'all' ? pool.length : Math.min(parseInt(selectedQuizCount), pool.length);
-            
-            quizQuestions = [];
-            for(let i=0; i<limit; i++) {
-                const correct = pool[i];
-                const distractors = vocaFullList.filter(x => x.hanzi !== correct.hanzi).sort(() => 0.5 - Math.random()).slice(0, 3);
-                let options = [correct, ...distractors].sort(() => 0.5 - Math.random());
-                quizQuestions.push({ question: correct, options: options, type: Math.random() > 0.5 ? 'pinyin' : 'meaning' });
-            }
-
-            quizCurrentIndex = 0;
-            quizScore = 0;
-            
-            document.getElementById('quizSetup').classList.add('hidden');
-            document.getElementById('quizResult').classList.add('hidden');
-            document.getElementById('quizResult').classList.remove('flex');
-            
-            const activeDiv = document.getElementById('quizActive');
-            activeDiv.classList.remove('hidden');
-            activeDiv.classList.add('flex');
-
-            renderQuizQuestion();
-        }
-
-        function renderQuizQuestion() {
-            isQuizAnswering = false;
-            const q = quizQuestions[quizCurrentIndex];
-            
-            document.getElementById('quizProgressText').textContent = `${quizCurrentIndex + 1}/${quizQuestions.length}`;
-            document.getElementById('quizScoreText').textContent = quizScore;
-            document.getElementById('quizProgressBar').style.width = `${(quizCurrentIndex / quizQuestions.length) * 100}%`;
-            document.getElementById('quizQuestionLabel').textContent = q.type === 'pinyin' ? "Chọn Pinyin đúng" : "Chọn Nghĩa tiếng Việt";
-            document.getElementById('quizQuestionHanzi').textContent = q.question.hanzi;
-            
-            const reveal = document.getElementById('quizQuestionReveal');
-            reveal.textContent = '';
-            reveal.classList.add('opacity-0');
-
-            const optionsDiv = document.getElementById('quizOptions');
-            optionsDiv.innerHTML = '';
-            
-            q.options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = "quiz-option w-full bg-white border-2 border-gray-100 p-4 rounded-xl text-center hover:border-blue-200 hover:bg-blue-50 active:scale-[0.98] btn-press relative overflow-hidden transition-all duration-200";
-                let content = q.type === 'pinyin' 
-                    ? `<div class="font-bold text-gray-800 text-xl">${opt.pinyin}</div>`
-                    : `<div class="font-medium text-gray-800 text-lg">${opt.meaning}</div>`;
-                btn.innerHTML = content;
-                btn.onclick = () => handleQuizAnswer(btn, opt, q);
-                optionsDiv.appendChild(btn);
-            });
-        }
-
-        function handleQuizAnswer(btn, selected, q) {
-            if (isQuizAnswering) return;
-            isQuizAnswering = true;
-
-            const isCorrect = selected.hanzi === q.question.hanzi;
-            const reveal = document.getElementById('quizQuestionReveal');
-            reveal.textContent = q.type === 'pinyin' ? q.question.meaning : q.question.pinyin;
-            reveal.classList.remove('opacity-0');
-
-            if (isCorrect) {
-                btn.classList.add('correct');
-                quizScore++;
-                document.getElementById('quizScoreText').textContent = quizScore;
-            } else {
-                btn.classList.add('wrong');
-                const targetText = q.type === 'pinyin' ? q.question.pinyin : q.question.meaning;
-                Array.from(document.getElementById('quizOptions').children).forEach(b => {
-                    if (b.textContent.trim() === targetText.trim()) b.classList.add('correct');
-                });
-            }
-
-            setTimeout(() => {
-                quizCurrentIndex++;
-                if (quizCurrentIndex < quizQuestions.length) renderQuizQuestion();
-                else finishQuiz();
-            }, 1500);
-        }
-
-        function finishQuiz() {
-            document.getElementById('quizActive').classList.add('hidden');
-            document.getElementById('quizActive').classList.remove('flex');
-            const res = document.getElementById('quizResult');
-            res.classList.remove('hidden');
-            res.classList.add('flex');
-
-            const percent = Math.round((quizScore / quizQuestions.length) * 100);
-            const circle = document.getElementById('finalScoreCircle');
-            circle.textContent = `${percent}%`;
-            document.getElementById('finalScoreDetail').textContent = `Bạn trả lời đúng ${quizScore}/${quizQuestions.length} câu`;
-            
-            if(percent >= 80) circle.className = "w-32 h-32 rounded-full bg-white border-8 border-green-100 flex items-center justify-center text-4xl font-bold text-green-600 shadow-sm mb-6";
-            else if(percent >= 50) circle.className = "w-32 h-32 rounded-full bg-white border-8 border-yellow-100 flex items-center justify-center text-4xl font-bold text-yellow-600 shadow-sm mb-6";
-            else circle.className = "w-32 h-32 rounded-full bg-white border-8 border-red-100 flex items-center justify-center text-4xl font-bold text-red-600 shadow-sm mb-6";
-        }
-
-        window.resetQuizView = function() {
-            document.getElementById('quizResult').classList.add('hidden');
-            document.getElementById('quizResult').classList.remove('flex');
-            document.getElementById('quizActive').classList.add('hidden');
-            document.getElementById('quizActive').classList.remove('flex');
-            document.getElementById('quizSetup').classList.remove('hidden');
-            window.selectQuestionCount(selectedQuizCount); 
-        }
-
-        // TẬP VIẾT HÁN TỰ (HANZI WRITER MODAL)
-        window.openWriterForWord = function(hanzi) {
-            const vocab = vocaFullList.find(v => v.hanzi === hanzi);
-            if (vocab) openAnimationModal(vocab);
-        }
-
-        const animationModal = document.getElementById('animationModal');
-        document.getElementById('openWriterBtn').addEventListener('click', (e) => { e.stopPropagation(); openAnimationModal(); });
-
-        function openAnimationModal(specificVocab = null) {
-            const vocab = specificVocab || (activeVocabulary.length > 0 ? activeVocabulary[vocaCurrentIndex] : null);
-            if (!vocab) return;
-            
-            document.getElementById('animationPinyin').textContent = vocab.pinyin;
-            document.getElementById('animationMeaning').textContent = vocab.meaning;
-            
-            animationCharacters = [...vocab.hanzi];
-            generateCharacterTabs();
-            
-            animationModal.classList.remove('hidden');
-            setTimeout(() => {
-                animationModal.classList.remove('opacity-0');
-                document.getElementById('animationModalContent').classList.remove('scale-95');
-                document.getElementById('animationModalContent').classList.add('scale-100');
-                initializeAnimation(animationCharacters[0]);
-            }, 50);
-        }
-
-        function closeAnimationModal() {
-            animationModal.classList.add('opacity-0');
-            document.getElementById('animationModalContent').classList.remove('scale-100');
-            document.getElementById('animationModalContent').classList.add('scale-95');
-            setTimeout(() => {
-                animationModal.classList.add('hidden');
-                cleanupAnimation();
-            }, 300);
-        }
-        document.getElementById('closeModal').addEventListener('click', closeAnimationModal);
-        animationModal.addEventListener('click', (e) => { if(e.target === animationModal) closeAnimationModal(); });
-
-        function generateCharacterTabs() {
-            const container = document.getElementById('characterTabs');
-            container.innerHTML = '';
-            if (animationCharacters.length > 1) {
-                animationCharacters.forEach((char, index) => {
-                    const tab = document.createElement('button');
-                    tab.className = `w-10 h-10 rounded-lg border-2 flex items-center justify-center text-lg font-bold chinese-font transition ${index === 0 ? 'border-indigo-500 text-indigo-600 bg-indigo-50' : 'border-gray-200 text-gray-400 hover:border-indigo-300'}`;
-                    tab.textContent = char;
-                    tab.onclick = () => {
-                         Array.from(container.children).forEach((t, i) => {
-                            t.className = i === index ? 'w-10 h-10 rounded-lg border-2 flex items-center justify-center text-lg font-bold chinese-font transition border-indigo-500 text-indigo-600 bg-indigo-50' : 'w-10 h-10 rounded-lg border-2 flex items-center justify-center text-lg font-bold chinese-font transition border-gray-200 text-gray-400 hover:border-indigo-300';
-                        });
-                        initializeAnimation(animationCharacters[index]);
-                    }
-                    container.appendChild(tab);
-                });
-            }
-        }
-
-        function createGridBackground(svg, size) {
-            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-            svg.appendChild(defs);
-            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            g.setAttribute('stroke', '#e5e7eb'); g.setAttribute('stroke-width', '1'); g.setAttribute('stroke-dasharray', '5,5');
-            const lines = [ {x1: size/2, y1: 0, x2: size/2, y2: size}, {x1: 0, y1: size/2, x2: size, y2: size/2}, {x1: 0, y1: 0, x2: size, y2: size}, {x1: size, y1: 0, x2: 0, y2: size} ];
-            lines.forEach(l => {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', l.x1); line.setAttribute('y1', l.y1); line.setAttribute('x2', l.x2); line.setAttribute('y2', l.y2);
-                g.appendChild(line);
-            });
-            svg.appendChild(g);
-        }
-
-        function initializeAnimation(character) {
-            cleanupAnimation();
-            const target = document.getElementById('animationTarget');
-            const size = target.clientWidth;
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('width', size); svg.setAttribute('height', size); svg.setAttribute('id', 'hanzi-svg-target');
-            createGridBackground(svg, size);
-            target.appendChild(svg);
-            try {
-                animationWriter = HanziWriter.create('hanzi-svg-target', character, {
-                    width: size, height: size, padding: 10, strokeAnimationSpeed: 1, delayBetweenStrokes: 500,
-                    strokeColor: '#4f46e5', radicalColor: '#818cf8', outlineColor: '#e5e7eb', showOutline: true, showCharacter: true
-                });
-                animationWriter.animateCharacter();
-            } catch (e) { console.error("HanziWriter error:", e); }
-        }
-
-        function cleanupAnimation() {
-            if (animationWriter) { try { animationWriter.pauseAnimation(); } catch(e){} animationWriter = null; }
-            document.getElementById('animationTarget').innerHTML = '';
-        }
-        document.getElementById('animateActionBtn').addEventListener('click', () => { if(animationWriter) animationWriter.animateCharacter(); });
+        // XÓA LỆNH init(); ĐỂ CHỜ ĐĂNG NHẬP MỚI KHỞI ĐỘNG APP
     </script>
 </body>
 </html>

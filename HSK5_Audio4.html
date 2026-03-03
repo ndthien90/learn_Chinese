@@ -501,7 +501,7 @@
                         <i id="iconPlay" class="fa-solid fa-play ml-1 text-lg"></i>
                     </button>
                     <button id="btnNext" class="text-gray-600 hover:text-blue-600 transition text-lg focus:outline-none p-2"><i class="fa-solid fa-forward-step"></i></button>
-                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại bài hiện tại"><i class="fa-solid fa-repeat"></i></button>
+                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại danh sách"><i class="fa-solid fa-repeat"></i></button>
                     <button id="btnLyric" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 p-2 ml-1" title="Xem phụ đề">
                         <i class="fa-regular fa-file-lines text-lg"></i>
                     </button>
@@ -616,8 +616,8 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithCustomToken, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        // Bổ sung thêm writeBatch vào danh sách import của Firestore
-        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Bổ sung thêm writeBatch và getDocs vào danh sách import của Firestore
+        import { getFirestore, doc, setDoc, getDoc, getDocs, collection, onSnapshot, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // === FIREBASE CONFIG & STATE ===
         let db, auth, currentUser, appId;
@@ -668,13 +668,13 @@
 
         try {
             const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-  apiKey: "AIzaSyAlBTVyS4qV5A4ufZD1fOjKvlYIN9cWtpw",
-  authDomain: "hsk5audio.firebaseapp.com",
-  projectId: "hsk5audio",
-  storageBucket: "hsk5audio.firebasestorage.app",
-  messagingSenderId: "925814921350",
-  appId: "1:925814921350:web:f8658797901b68b144d907",
-  measurementId: "G-S7GCTWGF72"
+                apiKey: "AIzaSyDlc6ysmMOKnaRw9ycbsKP0FRXp7cos8_M",
+                authDomain: "hskaudio-665f8.firebaseapp.com",
+                projectId: "hskaudio-665f8",
+                storageBucket: "hskaudio-665f8.firebasestorage.app",
+                messagingSenderId: "390394990321",
+                appId: "1:390394990321:web:72f5c6c8736c5b02d26350",
+                measurementId: "G-J2QN2FNXVK"
             };
 
             if (firebaseConfig && firebaseConfig.apiKey !== "YOUR_API_KEY") {
@@ -817,24 +817,87 @@
 
         async function syncLocalToFirebase() {
             if (!isFirebaseReady || !currentUser) return;
-            const dictStr = localStorage.getItem('hsk_user_dictionary');
-            if (dictStr) {
-                const dict = JSON.parse(dictStr);
-                for (const [word, data] of Object.entries(dict)) {
+
+            try {
+                // 1. Tải toàn bộ dữ liệu từ Cloud về trước
+                const dictRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary');
+                const cloudSnap = await getDocs(dictRef);
+                const cloudDict = {};
+                cloudSnap.forEach(doc => {
+                    try { cloudDict[decodeURIComponent(doc.id)] = doc.data(); } catch(e) {}
+                });
+
+                // 2. Đọc Local Storage hiện tại
+                const dictStr = localStorage.getItem('hsk_user_dictionary');
+                const localDict = dictStr ? JSON.parse(dictStr) : {};
+                
+                let localNeedsUpdate = false;
+                const batch = writeBatch(db);
+                let batchCount = 0;
+
+                // 3. So sánh và Merge (Ưu tiên Cloud làm nguồn chuẩn)
+                for (const [word, localData] of Object.entries(localDict)) {
                     if (!word.trim()) continue;
-                    const safeWord = encodeURIComponent(word);
-                    const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
-                    // CHỈ ĐẨY PINYIN VÀ MEANING, BỎ TRẠNG THÁI MEMORIZED ĐỂ GIỮ Ở LOCAL
-                    setDoc(docRef, { pinyin: data.pinyin, meaning: data.meaning }, { merge: true }).catch(e=>console.error(e));
+                    
+                    if (cloudDict[word]) {
+                        // Nếu Cloud đã có, cập nhật Local Storage theo Cloud để tránh đẩy rác cũ lên
+                        const cData = cloudDict[word];
+                        if (localData.memorized !== cData.memorized || localData.pinyin !== cData.pinyin || localData.meaning !== cData.meaning) {
+                            localDict[word] = {
+                                pinyin: cData.pinyin || localData.pinyin,
+                                meaning: cData.meaning || localData.meaning,
+                                memorized: cData.memorized !== undefined ? cData.memorized : false
+                            };
+                            localNeedsUpdate = true;
+                        }
+                    } else {
+                        // Nếu Cloud chưa có, đẩy Local lên Cloud (áp dụng cho từ vựng lưu lúc offline/chưa đăng nhập)
+                        const safeWord = encodeURIComponent(word);
+                        const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                        batch.set(docRef, { 
+                            pinyin: localData.pinyin, 
+                            meaning: localData.meaning, 
+                            memorized: localData.memorized || false 
+                        }, { merge: true });
+                        batchCount++;
+                    }
                 }
-            }
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (key && key.startsWith('hsk_ai_translation_')) {
-                    const translation = localStorage.getItem(key);
-                    const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'translations', key);
-                    setDoc(docRef, { translation }, { merge: true }).catch(e=>console.error(e));
+
+                // 4. Bổ sung những từ có trên Cloud mà Local hoàn toàn chưa có
+                for (const [word, cloudData] of Object.entries(cloudDict)) {
+                    if (!localDict[word]) {
+                        localDict[word] = cloudData;
+                        localNeedsUpdate = true;
+                    }
                 }
+
+                // Thực thi cập nhật cục bộ
+                if (localNeedsUpdate) {
+                    localStorage.setItem('hsk_user_dictionary', JSON.stringify(localDict));
+                }
+                
+                // Thực thi cập nhật lên Cloud
+                if (batchCount > 0) {
+                    await batch.commit();
+                }
+
+                // 5. Merge Bản dịch (Translations)
+                const transRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'translations');
+                const transSnap = await getDocs(transRef);
+                const cloudTrans = {};
+                transSnap.forEach(doc => { cloudTrans[doc.id] = doc.data().translation; });
+
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('hsk_ai_translation_')) {
+                        if (!cloudTrans[key]) {
+                            const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'translations', key);
+                            setDoc(docRef, { translation: localStorage.getItem(key) }, { merge: true }).catch(e=>console.error(e));
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Lỗi đồng bộ dữ liệu lúc khởi tạo:", err);
             }
         }
 
@@ -855,13 +918,14 @@
                         delete localDict[wordKey];
                         hasChanges = true;
                     } else {
-                        // GIỮ LẠI TRẠNG THÁI MEMORIZED Ở LOCAL, KHÔNG BỊ GHI ĐÈ TỪ FIREBASE
+                        // FIXED: Lấy trạng thái memorized TỪ FIREBASE trước (Source of Truth)
                         const incomingData = change.doc.data();
-                        const existingMemorized = localDict[wordKey] ? localDict[wordKey].memorized : false;
+                        const isMemorized = incomingData.memorized !== undefined ? incomingData.memorized : (localDict[wordKey] ? localDict[wordKey].memorized : false);
+                        
                         localDict[wordKey] = {
                             pinyin: incomingData.pinyin,
                             meaning: incomingData.meaning,
-                            memorized: existingMemorized
+                            memorized: isMemorized
                         };
                         hasChanges = true;
                     }
@@ -940,8 +1004,8 @@
                 try {
                     const safeWord = encodeURIComponent(word);
                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
-                    // CHỈ LƯU PINYIN VÀ MEANING LÊN CLOUD
-                    await setDoc(docRef, { pinyin, meaning }, { merge: true });
+                    // FIXED: Ghi đè TẤT CẢ field lên Firebase để thiết bị khác có thể tải về
+                    await setDoc(docRef, { pinyin, meaning, memorized }, { merge: true });
                 } catch(e) { console.error(e); }
             }
         }
@@ -1994,20 +2058,9 @@ Yêu cầu JSON:
             }
         });
 
-//        audioPlayer.addEventListener('ended', () => {
- //         if (isRepeatOne) { audioPlayer.currentTime = 0; audioPlayer.play(); } 
-  //       else { playNext(); }
- //    });
         audioPlayer.addEventListener('ended', () => {
-            if (isRepeatOne) { 
-                audioPlayer.currentTime = 0; 
-                audioPlayer.play(); 
-            } else { 
-                // Dừng phát và cập nhật lại UI thay vì tự động chuyển bài
-                isPlaying = false;
-                updatePlayerUI();
-                renderTrackList();
-            }
+            if (isRepeatOne) { audioPlayer.currentTime = 0; audioPlayer.play(); } 
+            else { playNext(); }
         });
 
         progressBar.addEventListener('input', () => {
@@ -2069,7 +2122,6 @@ Yêu cầu JSON:
                 vocabularyModeView.classList.add('flex');
                 
                 // KHẮC PHỤC LỖI NỀN TRẮNG KHI CUỘN:
-                // Đồng bộ màu nền xám cho toàn bộ thẻ body và vùng cuộn chính
                 document.body.classList.replace('bg-white', 'bg-[#f3f4f6]');
                 document.getElementById('mainScrollArea').classList.replace('bg-white', 'bg-[#f3f4f6]');
 
@@ -2113,13 +2165,22 @@ Yêu cầu JSON:
             }));
         }
 
-        // HÀM MỚI: Chỉ cập nhật trạng thái "Đã thuộc" dưới Local Storage
-        function updateLocalMemorized(word, isMemorized) {
+        // FIXED: Hàm này giờ sẽ cập nhật Local Storage ĐỒNG THỜI đẩy dữ liệu trạng thái lên Firebase
+        async function updateWordMemorizedState(word, isMemorized) {
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
             if (dict[word]) {
                 dict[word].memorized = isMemorized;
                 localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+
+                // Gửi lên Firebase
+                if (isFirebaseReady && currentUser) {
+                    try {
+                        const safeWord = encodeURIComponent(word);
+                        const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                        await setDoc(docRef, { memorized: isMemorized }, { merge: true });
+                    } catch(e) { console.error("Lỗi cập nhật trạng thái đã thuộc:", e); }
+                }
             }
         }
 
@@ -2136,7 +2197,6 @@ Yêu cầu JSON:
                 return;
             } else {
                 document.getElementById('vocaNoDataState').classList.add('hidden');
-                // SỬA LỖI TẠI ĐÂY: Chỉ bật thanh công cụ khi đang ở tab flashcard
                 if(currentVocaTab === 'flashcard') document.getElementById('vocaMainControls').classList.remove('hidden');
             }
 
@@ -2280,8 +2340,8 @@ Yêu cầu JSON:
             e.stopPropagation();
             if (activeVocabulary.length > 0) {
                 const vocab = activeVocabulary[vocaCurrentIndex];
-                // SỬ DỤNG HÀM LOCAL THAY VÌ ĐẨY LÊN FIREBASE
-                updateLocalMemorized(vocab.hanzi, !vocab.memorized);
+                // FIXED: Gọi hàm cập nhật có kết nối Firestore
+                updateWordMemorizedState(vocab.hanzi, !vocab.memorized);
                 refreshVocaData(); 
             }
         });
@@ -2374,15 +2434,15 @@ Yêu cầu JSON:
         }
 
         window.handleListCheck = function(cb, hanzi, pinyin, meaning) {
-            // SỬ DỤNG HÀM LOCAL THAY VÌ ĐẨY LÊN FIREBASE
-            updateLocalMemorized(hanzi, cb.checked);
+            // FIXED: Gọi hàm cập nhật có kết nối Firestore
+            updateWordMemorizedState(hanzi, cb.checked);
             refreshVocaData();
         }
 
         document.getElementById('selectAllCheckbox').addEventListener('change', async (e) => {
             const isChecked = e.target.checked;
             
-            // Cập nhật Local Storage NGAY LẬP TỨC
+            // Cập nhật Local Storage
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
             
@@ -2396,7 +2456,20 @@ Yêu cầu JSON:
             // Cập nhật giao diện lập tức
             refreshVocaData();
             
-            // BỎ HOÀN TOÀN KHỐI LỆNH ĐẨY FIREBASE BATCH Ở ĐÂY
+            // FIXED: Phục hồi tính năng gửi Batch Update lên Firebase để đồng bộ nút Select All
+            if (isFirebaseReady && currentUser) {
+                try {
+                    const batch = writeBatch(db);
+                    vocaFullList.forEach(item => {
+                        const safeWord = encodeURIComponent(item.hanzi);
+                        const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                        batch.set(docRef, { memorized: isChecked }, { merge: true });
+                    });
+                    await batch.commit();
+                } catch(err) {
+                    console.error("Lỗi đồng bộ Select All:", err);
+                }
+            }
         });
 
         // QUIZ LOGIC
