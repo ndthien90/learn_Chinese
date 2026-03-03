@@ -74,13 +74,12 @@
             margin-left: -6px; border-width: 6px; border-style: solid;
             border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent;
         }
-        /* Đảm bảo text có thể bôi đen */
         #lyricContent {
             user-select: text;
             -webkit-user-select: text;
+            scroll-behavior: smooth;
         }
         
-        /* Hiệu ứng mờ dần cho Login Wall */
         .fade-out {
             opacity: 0;
             pointer-events: none;
@@ -211,7 +210,7 @@
                 <i class="fa-solid fa-headphones-simple text-xl"></i>
             </div>
             <div>
-                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK4 Xanh lá Audio</h1>
+                <h1 class="text-xl font-bold text-gray-900 tracking-tight">HSK4 Audio</h1>
             </div>
         </div>
 
@@ -242,14 +241,8 @@
         <!-- AUDIO MODE: PHỤ ĐỀ (LYRIC) -->
         <div id="lyricView" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex-col relative app-mode-audio">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-4 border-b border-gray-100 flex-none gap-4">
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
-                        <i class="fa-solid fa-file-lines text-blue-500"></i> Phụ đề nội dung
-                    </h2>
-                    <p id="lyricSubtitle" class="text-sm text-gray-500 mt-1">Đề 1 - File 001.mp3</p>
-                </div>
-                
-                <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+               
+                <div class="flex justify-end items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
                     <button id="btnAnalyzeAI" class="text-purple-600 hover:text-white hover:bg-purple-600 transition bg-purple-50 border border-purple-200 px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 focus:outline-none whitespace-nowrap">
                         <i class="fa-solid fa-language"></i> Dịch Phụ đề
                     </button>
@@ -344,6 +337,7 @@
                 <!-- FLASHCARD -->
                 <div id="vocaFlashcardView" class="w-full max-w-md flex flex-col items-center">
                     <div class="relative w-full aspect-[4/3] perspective-1000 mb-6">
+                        <button id="searchContextBtn" class="absolute top-4 left-4 z-20 w-10 h-10 bg-white text-blue-600 border border-blue-100 rounded-full flex items-center justify-center shadow-md hover:bg-blue-50 transition btn-press" title="Tìm ngữ cảnh trong bài nghe"><i class="fas fa-search"></i></button>
                         <button id="openWriterBtn" class="absolute top-4 right-16 z-20 w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center shadow-md hover:bg-indigo-200 transition btn-press" title="Tập viết"><i class="fas fa-pen-nib"></i></button>
                         <button id="speakBtn" class="absolute top-4 right-4 z-20 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shadow-md hover:bg-blue-200 transition btn-press" title="Phát âm"><i class="fas fa-volume-up text-lg"></i></button>
                         <button id="markMemorizedBtn" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-white text-gray-300 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 transition btn-press border border-gray-100" title="Đánh dấu đã thuộc"><i class="fas fa-check text-xl"></i></button>
@@ -387,14 +381,30 @@
 
                 <!-- LIST -->
                 <div id="vocaListView" class="w-full max-w-md hidden flex-col gap-3">
-                    <div class="bg-blue-50 p-3 rounded-lg text-xs text-blue-700 mb-2 flex justify-between items-center sticky top-0 z-10 shadow-sm border border-blue-100">
-                        <span class="flex-1 mr-2"><i class="fas fa-info-circle mr-1"></i> Nhấn vào từ để tập viết.</span>
-                        <label class="flex items-center gap-1.5 cursor-pointer bg-white px-2 py-1 rounded-md border border-blue-100 shadow-sm hover:bg-blue-50 transition">
+                    <!-- Banner hướng dẫn và nút Chọn Tất cả -->
+                    <div class="hidden bg-blue-50 p-2.5 sm:p-3 rounded-lg text-xs text-blue-700 mb-1 flex justify-between items-center sticky top-0 z-10 shadow-sm border border-blue-100">
+                        <span class="flex-1 leading-relaxed"><i class="fas fa-info-circle mr-1"></i> Nhấn vào từ để tập viết. Bấm <i class="fa-solid fa-magnifying-glass mx-1"></i> tìm câu mẫu.</span>
+                        <label class="flex items-center gap-1.5 cursor-pointer bg-white px-2 py-1.5 rounded-md border border-blue-100 shadow-sm hover:bg-blue-50 transition ml-2">
                             <span class="text-[10px] font-bold text-blue-600 whitespace-nowrap">Tất cả</span>
-                            <input type="checkbox" id="selectAllCheckbox" class="w-5 h-5 rounded border-2 border-blue-300 custom-checkbox focus:ring-0 transition cursor-pointer">
+                            <input type="checkbox" id="selectAllCheckbox" class="w-4 h-4 rounded border-2 border-blue-300 custom-checkbox focus:ring-0 transition cursor-pointer">
                         </label>
                     </div>
-                    <div id="paginationControls" class="flex justify-center items-center gap-3 py-2 hidden"></div>
+                    
+                    <!-- Hàng chứa Tìm kiếm & Nút sắp xếp -->
+                    <div class="flex justify-between items-center gap-2 w-full">
+                        <div class="flex-1 relative min-w-0">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                            <input type="text" id="vocaSearchInput" placeholder="Tìm Hán tự, Pinyin, Nghĩa..." class="w-full border border-gray-200 rounded-lg pl-8 pr-3 py-2 text-xs sm:text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all bg-white shadow-sm placeholder-gray-400">
+                        </div>
+                        
+                        <button id="btnSortList" class="flex items-center justify-center cursor-pointer bg-white w-9 h-9 sm:w-10 sm:h-10 rounded-lg border border-gray-200 shadow-sm hover:bg-gray-50 transition text-sm flex-shrink-0 text-blue-500" onclick="toggleVocaSort()" title="Sắp xếp: Mới nhất">
+                            <i class="fas fa-sort-amount-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Phân trang (Đã được tách ra hàng riêng) -->
+                    <div id="paginationControls" class="justify-center items-center gap-2 sm:gap-3 hidden w-full mb-1"></div>
+
                     <div id="vocabularyListContainer" class="flex flex-col gap-3"></div>
                 </div>
 
@@ -478,6 +488,23 @@
         </div>
     </div>
 
+    <!-- CONTEXT SEARCH MODAL -->
+    <div id="wordContextModal" class="fixed inset-0 bg-gray-900/60 z-[999] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-[2rem] w-full max-w-lg p-6 shadow-2xl transform transition-all scale-95 flex flex-col max-h-[85vh]" id="wordContextModalContent">
+            <div class="flex justify-between items-start mb-4 flex-none border-b border-gray-100 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-blue-500"></i> Các câu chứa từ:</h2>
+                    <div id="ctxSearchWord" class="text-2xl font-bold text-blue-600 mt-1 chinese-font"></div>
+                </div>
+                <button id="closeCtxModal" class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="ctxResultsContainer" class="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-3 pr-2 pb-2">
+                <!-- Results dynamically injected here -->
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
 
     <!-- ==================== PLAYER ==================== -->
     <footer id="appFooter" class="flex-none bg-white border-t border-gray-100 px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] sm:pt-4 sm:pb-[calc(16px+env(safe-area-inset-bottom))] z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.03)] w-full transition-all duration-300">
@@ -501,7 +528,7 @@
                         <i id="iconPlay" class="fa-solid fa-play ml-1 text-lg"></i>
                     </button>
                     <button id="btnNext" class="text-gray-600 hover:text-blue-600 transition text-lg focus:outline-none p-2"><i class="fa-solid fa-forward-step"></i></button>
-                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại danh sách"><i class="fa-solid fa-repeat"></i></button>
+                    <button id="btnRepeat" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 relative p-2" title="Lặp lại bài hiện tại"><i class="fa-solid fa-repeat"></i></button>
                     <button id="btnLyric" class="text-gray-400 hover:text-blue-600 transition text-sm focus:outline-none w-8 p-2 ml-1" title="Xem phụ đề">
                         <i class="fa-regular fa-file-lines text-lg"></i>
                     </button>
@@ -611,13 +638,10 @@
         </div>
     </div>
 
-    <audio id="audioPlayer"></audio>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithCustomToken, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        // Bổ sung thêm writeBatch vào danh sách import của Firestore
-        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { initializeFirestore, persistentLocalCache, doc, setDoc, getDoc, collection, onSnapshot, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // === FIREBASE CONFIG & STATE ===
         let db, auth, currentUser, appId;
@@ -680,7 +704,11 @@
             if (firebaseConfig && firebaseConfig.apiKey !== "YOUR_API_KEY") {
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
-                db = getFirestore(app);
+                
+                db = initializeFirestore(app, {
+                    localCache: persistentLocalCache()
+                });
+                
                 appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
                 const initAuth = async () => {
@@ -697,7 +725,6 @@
                     currentUser = user;
                     if (user) {
                         isFirebaseReady = true;
-
                         loginWall.classList.add('fade-out');
 
                         userName.textContent = user.displayName || (user.email?.split('@')[0]) || "Học viên";
@@ -708,8 +735,7 @@
                             userAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
                         }
                         if(btnLogout) btnLogout.classList.remove('hidden');
-
-                        await syncLocalToFirebase();
+                        
                         setupFirestoreListeners();
                         
                         if(tracks.length === 0) initApp();
@@ -820,22 +846,32 @@
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             if (dictStr) {
                 const dict = JSON.parse(dictStr);
+                let batch = writeBatch(db);
+                let count = 0;
                 for (const [word, data] of Object.entries(dict)) {
                     if (!word.trim()) continue;
                     const safeWord = encodeURIComponent(word);
                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
-                    // CHỈ ĐẨY PINYIN VÀ MEANING, BỎ TRẠNG THÁI MEMORIZED ĐỂ GIỮ Ở LOCAL
-                    setDoc(docRef, { pinyin: data.pinyin, meaning: data.meaning }, { merge: true }).catch(e=>console.error(e));
+                    batch.set(docRef, { pinyin: data.pinyin, meaning: data.meaning }, { merge: true });
+                    count++;
+                    if(count >= 490) { await batch.commit(); batch = writeBatch(db); count = 0; }
                 }
+                if(count > 0) await batch.commit();
             }
+            
+            let batchTrans = writeBatch(db);
+            let countTrans = 0;
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 if (key && key.startsWith('hsk_ai_translation_')) {
                     const translation = localStorage.getItem(key);
                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'translations', key);
-                    setDoc(docRef, { translation }, { merge: true }).catch(e=>console.error(e));
+                    batchTrans.set(docRef, { translation }, { merge: true });
+                    countTrans++;
+                    if(countTrans >= 490) { await batchTrans.commit(); batchTrans = writeBatch(db); countTrans = 0; }
                 }
             }
+            if(countTrans > 0) await batchTrans.commit();
         }
 
         function setupFirestoreListeners() {
@@ -855,7 +891,6 @@
                         delete localDict[wordKey];
                         hasChanges = true;
                     } else {
-                        // GIỮ LẠI TRẠNG THÁI MEMORIZED Ở LOCAL, KHÔNG BỊ GHI ĐÈ TỪ FIREBASE
                         const incomingData = change.doc.data();
                         const existingMemorized = localDict[wordKey] ? localDict[wordKey].memorized : false;
                         localDict[wordKey] = {
@@ -870,20 +905,14 @@
                 if (hasChanges) {
                     localStorage.setItem('hsk_user_dictionary', JSON.stringify(localDict));
                     
-                    // DEBOUNCE: Gộp các lệnh vẽ lại giao diện để tránh lag khi có quá nhiều từ được cập nhật cùng lúc
                     clearTimeout(window.dictSyncTimeout);
                     window.dictSyncTimeout = setTimeout(() => {
-                        // Update Lyric
                         const lyricView = document.getElementById('lyricView');
                         if (lyricView && !lyricView.classList.contains('hidden') && currentTrackIndex !== -1) {
                             const rawText = currentLyricsData[currentTrackIndex];
                             if(rawText) renderAnnotatedLyric(rawText);
                         }
-
-                        // Update Voca View if active
-                        if (isVocaMode) {
-                            refreshVocaData();
-                        }
+                        if (isVocaMode) refreshVocaData();
                     }, 150);
                 }
             }, (err) => console.error("Lỗi đồng bộ Từ điển:", err));
@@ -928,7 +957,6 @@
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
             
-            // Giữ lại trạng thái memorized cũ nếu không truyền vào
             if (memorized === null) {
                 memorized = dict[word] ? (dict[word].memorized || false) : false;
             }
@@ -940,7 +968,6 @@
                 try {
                     const safeWord = encodeURIComponent(word);
                     const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
-                    // CHỈ LƯU PINYIN VÀ MEANING LÊN CLOUD
                     await setDoc(docRef, { pinyin, meaning }, { merge: true });
                 } catch(e) { console.error(e); }
             }
@@ -978,7 +1005,6 @@
         const MAX_DE = 10;
         const TRACKS_PER_DE = 45;
         
-        // === STATE ===
         let currentDe = 1;
         let currentTrackIndex = -1; 
         let isPlaying = false;
@@ -998,7 +1024,6 @@
             italic: false
         };
 
-        // === DOM ELEMENTS ===
         const deSelector = document.getElementById('deSelector');
         const trackListContainer = document.getElementById('trackList');
         const audioPlayer = document.getElementById('audioPlayer');
@@ -1021,7 +1046,7 @@
         const lyricView = document.getElementById('lyricView');
         const closeLyricViewBtn = document.getElementById('closeLyricViewBtn');
         const lyricContent = document.getElementById('lyricContent');
-        const lyricSubtitle = document.getElementById('lyricSubtitle');
+        //const lyricSubtitle = document.getElementById('lyricSubtitle');
 
         const btnLyricSettings = document.getElementById('btnLyricSettings');
         const lyricSettingsModal = document.getElementById('lyricSettingsModal');
@@ -1069,6 +1094,51 @@
 
         let isTooltipPinned = false;
 
+        async function syncDataOnLoad() {
+            try {
+                const response = await fetch('data_HSK4Audio/data.json');
+                if (!response.ok) return; 
+                
+                const jsonData = await response.json();
+
+                let localDictCount = 0;
+                const localDictStr = localStorage.getItem('hsk_user_dictionary');
+                if (localDictStr) {
+                    localDictCount = Object.keys(JSON.parse(localDictStr)).length;
+                }
+                
+                let localTransCount = 0;
+                for (let i = 0; i < localStorage.length; i++) {
+                    if (localStorage.key(i) && localStorage.key(i).startsWith('hsk_ai_translation_')) {
+                        localTransCount++;
+                    }
+                }
+                const localTotal = localDictCount + localTransCount;
+
+                let jsonDictCount = jsonData.dictionary ? Object.keys(jsonData.dictionary).length : 0;
+                let jsonTransCount = jsonData.translations ? Object.keys(jsonData.translations).length : 0;
+                const jsonTotal = jsonDictCount + jsonTransCount;
+
+                if (jsonTotal > localTotal) {
+                    console.log(`[Auto-Sync] Cập nhật dữ liệu từ data.json vào Local Storage...`);
+                    if (jsonData.dictionary) {
+                        const currentDict = JSON.parse(localDictStr || '{}');
+                        const mergedDict = { ...currentDict, ...jsonData.dictionary };
+                        localStorage.setItem('hsk_user_dictionary', JSON.stringify(mergedDict));
+                    }
+                    if (jsonData.translations) {
+                        for (const [key, value] of Object.entries(jsonData.translations)) {
+                            if (key.startsWith('hsk_ai_translation_')) {
+                                localStorage.setItem(key, value);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.warn("[Auto-Sync] Bỏ qua tải data.json nội bộ:", error);
+            }
+        }
+
         async function initApp() {
             if (deSelector.options.length > 0) return;
             for (let i = 1; i <= MAX_DE; i++) {
@@ -1077,6 +1147,9 @@
                 option.textContent = `Đề số ${i}`;
                 deSelector.appendChild(option);
             }
+
+            await syncDataOnLoad();
+
             loadDe(currentDe);
             updateSliderBackground(volumeBar, volumeBar.value * 100);
             
@@ -1089,10 +1162,19 @@
             } else if (deepseekApiKey) {
                 settingApiKey.value = deepseekApiKey;
             }
+            
+            // Khởi tạo Event Listener cho ô tìm kiếm
+            const vocaSearchInput = document.getElementById('vocaSearchInput');
+            if (vocaSearchInput) {
+                vocaSearchInput.addEventListener('input', (e) => {
+                    vocaSearchQuery = e.target.value;
+                    currentPage = 1; // Reset trang khi tìm kiếm
+                    renderVocaList();
+                });
+            }
         }
 
         function padNum(num) { return String(num).padStart(3, '0'); }
-
         function formatTime(seconds) {
             if (isNaN(seconds)) return "0:00";
             const m = Math.floor(seconds / 60);
@@ -1108,7 +1190,7 @@
                 const text = await response.text();
                 currentLyricsData = text.split('#').map(item => item.trim());
             } catch (error) {
-                console.warn(`Chưa tải được phụ đề cho Đề ${deNumber}:`, error);
+                console.warn(`Chưa tải được phụ đề cho Đề ${deNumber}`);
             }
         }
 
@@ -1123,7 +1205,6 @@
 
             fetchLyrics(currentDe);
 
-            // Chuyển về Audio mode nếu đang ở chế độ khác
             if (isVocaMode) toggleAppMode();
 
             trackListView.classList.remove('hidden');
@@ -1196,6 +1277,7 @@
             });
         }
 
+        // ĐÃ TỐI ƯU LẠI CHỨC NĂNG NÀY ĐỂ KHÔNG TỰ ĐỘNG CHUYỂN ĐỔI GIAO DIỆN KHI PHÁT
         function playTrack(index) {
             if (index < 0 || index >= tracks.length) return;
             if (currentTrackIndex === index) { togglePlay(); return; }
@@ -1212,17 +1294,13 @@
                 updatePlayerUI();
                 renderTrackList(); 
                 
-                // Trở về mode audio nếu đang bật lyric
-                if (isVocaMode) {
-                    toggleAppMode();
-                    if(lyricView.classList.contains('hidden')) toggleLyricView();
-                } else {
-                    if (lyricView.classList.contains('hidden')) scrollToPlayingTrack();
-                    if (!lyricView.classList.contains('hidden')) updateLyricContent();
+                // Cập nhật lại lyric hoặc scroll track ngầm
+                if (!isVocaMode) {
+                    if (document.getElementById('lyricView').classList.contains('hidden')) scrollToPlayingTrack();
+                    else updateLyricContent();
                 }
 
             }).catch(error => {
-                console.warn("Chưa có file audio thực tế:", error);
                 isPlaying = true;
                 track.status = 'error';
                 updatePlayerUI();
@@ -1286,7 +1364,6 @@
             slider.style.background = `linear-gradient(to right, #2563eb 0%, #2563eb ${percentage}%, #e2e8f0 ${percentage}%, #e2e8f0 100%)`;
         }
 
-        // ================= XỬ LÝ GIAO DIỆN PHỤ ĐỀ & DỊCH AI =================
         function updateLyricContent() {
             btnAnalyzeAI.classList.add('hidden');
             btnToggleTranslate.classList.add('hidden');
@@ -1297,13 +1374,13 @@
             else apiKeyWarning.classList.add('hidden');
 
             if (currentTrackIndex === -1) {
-                lyricSubtitle.textContent = `Đề số ${currentDe}`;
+                //lyricSubtitle.textContent = `Đề số ${currentDe}`;
                 lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-10"><i class="fa-solid fa-music text-4xl mb-4 block opacity-50"></i>Vui lòng chọn một bài nghe để xem phụ đề.</div>';
                 return;
             }
 
             const track = tracks[currentTrackIndex];
-            lyricSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
+            //lyricSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
 
             const rawText = (currentLyricsData && currentLyricsData.length > currentTrackIndex) ? currentLyricsData[currentTrackIndex] : "";
             
@@ -1333,60 +1410,63 @@
 
             if (words.length === 0) {
                 lyricContent.textContent = rawText;
-                return;
+            } else {
+                const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const escapedWords = words.map(escapeRegExp);
+                const regex = new RegExp("(" + escapedWords.join("|") + ")", "g");
+
+                const parts = rawText.split(regex);
+
+                parts.forEach(part => {
+                    if (dict[part]) {
+                        const span = document.createElement('span');
+                        span.textContent = part;
+                        if (dict[part].memorized) {
+                            span.className = "saved-word cursor-pointer text-green-600 border-b-[2px] border-dotted border-green-400 hover:bg-green-50 hover:text-green-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
+                        } else {
+                            span.className = "saved-word cursor-pointer text-blue-600 border-b-[2px] border-dotted border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
+                        }
+                        
+                        span.addEventListener('mouseenter', (e) => {
+                            if (isTooltipPinned && currentLookupWord === part) return;
+                            showTooltip(span, part, dict[part].pinyin, dict[part].meaning);
+                            isTooltipPinned = false; 
+                        });
+
+                        span.addEventListener('mouseleave', (e) => {
+                            if (!isTooltipPinned) hideTooltip();
+                        });
+
+                        span.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            window.getSelection().removeAllRanges(); 
+                            showTooltip(span, part, dict[part].pinyin, dict[part].meaning);
+                            isTooltipPinned = true; 
+                        });
+                        
+                        lyricContent.appendChild(span);
+                    } else if (part) {
+                        lyricContent.appendChild(document.createTextNode(part));
+                    }
+                });
             }
 
-            const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const escapedWords = words.map(escapeRegExp);
-            const regex = new RegExp("(" + escapedWords.join("|") + ")", "g");
-
-            const parts = rawText.split(regex);
-
-            parts.forEach(part => {
-                if (dict[part]) {
-                    const span = document.createElement('span');
-                    span.textContent = part;
-                    // Đổi màu nếu từ này đã thuộc (memorized)
-                    if (dict[part].memorized) {
-                        span.className = "saved-word cursor-pointer text-green-600 border-b-[2px] border-dotted border-green-400 hover:bg-green-50 hover:text-green-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
-                    } else {
-                        span.className = "saved-word cursor-pointer text-blue-600 border-b-[2px] border-dotted border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-colors mx-[1px] rounded-sm pb-[1px]";
-                    }
-                    
-                    span.addEventListener('mouseenter', (e) => {
-                        if (isTooltipPinned && currentLookupWord === part) return;
-                        showTooltip(span, part, dict[part].pinyin, dict[part].meaning);
-                        isTooltipPinned = false; 
-                    });
-
-                    span.addEventListener('mouseleave', (e) => {
-                        if (!isTooltipPinned) hideTooltip();
-                    });
-
-                    span.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        window.getSelection().removeAllRanges(); 
-                        showTooltip(span, part, dict[part].pinyin, dict[part].meaning);
-                        isTooltipPinned = true; 
-                    });
-                    
-                    lyricContent.appendChild(span);
-                } else if (part) {
-                    lyricContent.appendChild(document.createTextNode(part));
-                }
-            });
+            // Xử lý cuộn tự động khi bấm từ context modal (Highlight từ mục tiêu)
+            if (window.jumpToTrackTargetWord) {
+                setTimeout(() => {
+                    if (window.scrollToTargetWord) window.scrollToTargetWord(window.jumpToTrackTargetWord);
+                }, 300);
+            }
         }
 
         function showTranslation(text) {
             translationText.textContent = text;
             translationContent.classList.remove('hidden');
-            
             btnToggleTranslate.classList.remove('hidden');
             btnToggleTranslate.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Ẩn Dịch';
             btnToggleTranslate.classList.replace('bg-green-50', 'bg-gray-100');
             btnToggleTranslate.classList.replace('text-green-600', 'text-gray-600');
             btnToggleTranslate.classList.replace('border-green-200', 'border-gray-300');
-            
             btnAnalyzeAI.classList.add('hidden'); 
         }
 
@@ -1394,7 +1474,6 @@
             originalTranslation = translationText.textContent;
             translationText.contentEditable = "true";
             translationText.focus();
-            
             btnEditTranslation.classList.add('hidden');
             btnSaveTranslation.classList.remove('hidden');
             btnCancelTranslation.classList.remove('hidden');
@@ -1403,7 +1482,6 @@
         btnCancelTranslation.addEventListener('click', () => {
             translationText.textContent = originalTranslation;
             translationText.contentEditable = "false";
-            
             btnEditTranslation.classList.remove('hidden');
             btnSaveTranslation.classList.add('hidden');
             btnCancelTranslation.classList.add('hidden');
@@ -1411,11 +1489,9 @@
 
         btnSaveTranslation.addEventListener('click', () => {
             translationText.contentEditable = "false";
-            
             btnEditTranslation.classList.remove('hidden');
             btnSaveTranslation.classList.add('hidden');
             btnCancelTranslation.classList.add('hidden');
-            
             const newText = translationText.textContent.trim();
             saveTranslationData(currentDe, currentTrackIndex, newText);
         });
@@ -1436,13 +1512,7 @@
             btnAnalyzeAI.classList.add('opacity-75');
 
             const systemPrompt = `You are a professional Chinese-Vietnamese translator. Output valid JSON.`;
-            const userPrompt = `Dịch toàn bộ đoạn hội thoại tiếng Trung sau sang tiếng Việt tự nhiên và lưu loát:
-"${rawText}"
-
-YÊU CẦU TRẢ VỀ JSON:
-{
-  "translation": "Bản dịch của bạn ở đây"
-}`;
+            const userPrompt = `Dịch toàn bộ đoạn hội thoại tiếng Trung sau sang tiếng Việt tự nhiên và lưu loát:\n"${rawText}"\n\nYÊU CẦU TRẢ VỀ JSON:\n{\n  "translation": "Bản dịch của bạn ở đây"\n}`;
 
             try {
                 const response = await fetch('https://api.deepseek.com/chat/completions', {
@@ -1457,7 +1527,6 @@ YÊU CẦU TRẢ VỀ JSON:
                 });
 
                 if(!response.ok) throw new Error(`API Error: ${response.status}`);
-
                 const data = await response.json();
                 let jsonStr = data.choices[0].message.content;
                 const match = jsonStr.match(/```json\n([\s\S]*?)\n```/);
@@ -1495,9 +1564,7 @@ YÊU CẦU TRẢ VỀ JSON:
 
         btnAnalyzeAI.addEventListener('click', analyzeLyric);
 
-        // ================= XỬ LÝ BÔI ĐEN TRA TỪ =================
         let currentLookupWord = "";
-
         lyricContent.addEventListener('mouseup', handleTextSelection);
         lyricContent.addEventListener('touchend', handleTextSelection);
 
@@ -1505,7 +1572,6 @@ YÊU CẦU TRẢ VỀ JSON:
             setTimeout(async () => {
                 const selection = window.getSelection();
                 const selectedText = selection.toString().trim();
-
                 if (!selectedText || selectedText.length > 20) return; 
 
                 if (!deepseekApiKey) {
@@ -1515,14 +1581,12 @@ YÊU CẦU TRẢ VỀ JSON:
 
                 const range = selection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
-                
                 showLoadingTooltip(rect);
                 currentLookupWord = selectedText;
 
                 try {
                     const result = await fetchWordLookup(selectedText);
                     await saveWordData(selectedText, result.pinyin, result.meaning);
-
                     const rawText = currentLyricsData[currentTrackIndex];
                     renderAnnotatedLyric(rawText);
                     
@@ -1542,12 +1606,7 @@ YÊU CẦU TRẢ VỀ JSON:
 
         async function fetchWordLookup(word) {
             const systemPrompt = `You are a Chinese-Vietnamese dictionary. Output JSON.`;
-            const userPrompt = `Cung cấp bính âm và nghĩa tiếng Việt ngắn gọn nhất cho từ/cụm từ sau: "${word}".
-Yêu cầu JSON:
-{
-  "pinyin": "bính âm (viết liền nếu là từ ghép)",
-  "meaning": "nghĩa ngắn gọn"
-}`;
+            const userPrompt = `Cung cấp bính âm và nghĩa tiếng Việt ngắn gọn nhất cho từ/cụm từ sau: "${word}".\nYêu cầu JSON:\n{\n  "pinyin": "bính âm (viết liền nếu là từ ghép)",\n  "meaning": "nghĩa ngắn gọn"\n}`;
             const response = await fetch('https://api.deepseek.com/chat/completions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${deepseekApiKey}` },
@@ -1558,7 +1617,6 @@ Yêu cầu JSON:
                     temperature: 0.1 
                 })
             });
-
             if(!response.ok) throw new Error("API Error");
             const data = await response.json();
             let jsonStr = data.choices[0].message.content;
@@ -1569,16 +1627,13 @@ Yêu cầu JSON:
 
         function positionTooltip(rect) {
             if(rect.width === 0 && rect.height === 0) return;
-
             let top = rect.top - wordTooltip.offsetHeight - 12;
             let left = rect.left + (rect.width / 2) - (wordTooltip.offsetWidth / 2);
-
             if (top < 10) top = rect.bottom + 12;
             if (left < 10) left = 10;
             if (left + wordTooltip.offsetWidth > window.innerWidth - 10) {
                 left = window.innerWidth - wordTooltip.offsetWidth - 10;
             }
-
             wordTooltip.style.top = `${top}px`;
             wordTooltip.style.left = `${left}px`;
         }
@@ -1591,17 +1646,14 @@ Yêu cầu JSON:
 
         function showTooltip(targetElement, word, pinyin, meaning) {
             if (!ttEditMode.classList.contains('hidden')) return;
-
             wordTooltip.classList.remove('hidden');
             ttLoading.classList.add('hidden');
             ttContent.classList.remove('hidden');
             resetTooltipView();
-
             currentLookupWord = word;
             ttPinyin.textContent = pinyin;
             ttMeaning.textContent = meaning;
             ttPinyin.className = "text-[#93c5fd] font-bold text-base mb-1 tracking-wide";
-
             wordTooltip.style.opacity = '0';
             requestAnimationFrame(() => {
                 positionTooltip(targetElement.getBoundingClientRect());
@@ -1611,12 +1663,10 @@ Yêu cầu JSON:
 
         function showLoadingTooltip(rect) {
             if (!ttEditMode.classList.contains('hidden')) return;
-
             wordTooltip.classList.remove('hidden');
             ttContent.classList.add('hidden');
             ttLoading.classList.remove('hidden');
             resetTooltipView();
-            
             wordTooltip.style.opacity = '0';
             requestAnimationFrame(() => {
                 positionTooltip(rect);
@@ -1628,11 +1678,9 @@ Yêu cầu JSON:
             ttLoading.classList.add('hidden');
             ttContent.classList.remove('hidden');
             resetTooltipView();
-
             currentLookupWord = word;
             ttPinyin.textContent = pinyin;
             ttMeaning.textContent = meaning;
-            
             const selection = window.getSelection();
             if(selection.rangeCount > 0 && selection.toString().trim() !== '') {
                 positionTooltip(selection.getRangeAt(0).getBoundingClientRect());
@@ -1645,7 +1693,6 @@ Yêu cầu JSON:
             ttContent.classList.remove('hidden');
             resetTooltipView();
             ttActionButtons.classList.add('hidden'); 
-
             ttPinyin.textContent = "Chú ý";
             ttMeaning.textContent = msg;
             ttPinyin.className = "text-orange-400 font-bold text-sm mb-1 tracking-wide";
@@ -1653,7 +1700,6 @@ Yêu cầu JSON:
 
         function hideTooltip() {
             if (!ttEditMode.classList.contains('hidden')) return;
-
             wordTooltip.style.opacity = '0';
             setTimeout(() => {
                 if(wordTooltip.style.opacity === '0') {
@@ -1673,14 +1719,11 @@ Yêu cầu JSON:
                 'v': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'], 'V': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü'],
                 'ü': ['ǖ', 'ǘ', 'ǚ', 'ǜ', 'ü'], 'Ü': ['Ǖ', 'Ǘ', 'Ǚ', 'Ǜ', 'Ü']
             };
-
             return text.replace(/([a-zA-ZüÜvV]+)([1-5])/g, (match, word, toneNum) => {
                 const toneIndex = parseInt(toneNum) - 1;
                 if (toneIndex === 4) return word.replace(/v/g, 'ü').replace(/V/g, 'Ü');
-
                 let target = '';
                 let lowerWord = word.toLowerCase();
-                
                 if (lowerWord.includes('a')) target = 'a';
                 else if (lowerWord.includes('e')) target = 'e';
                 else if (lowerWord.includes('ou')) target = 'o';
@@ -1690,7 +1733,6 @@ Yêu cầu JSON:
                     let m = lowerWord.match(/[oivüu]/);
                     if (m) target = m[0];
                 }
-
                 if (target) {
                     let actualChar = word.includes(target.toUpperCase()) ? target.toUpperCase() : target.toLowerCase();
                     let replacement = toneMap[actualChar][toneIndex];
@@ -1714,7 +1756,6 @@ Yêu cầu JSON:
             ttViewMode.classList.add('hidden');
             ttEditMode.classList.remove('hidden');
             ttEditMode.classList.add('flex');
-            
             editTtPinyin.value = ttPinyin.textContent;
             editTtMeaning.value = ttMeaning.textContent;
             editTtMeaning.focus();
@@ -1729,13 +1770,11 @@ Yêu cầu JSON:
         btnSaveEditWord.addEventListener('click', async () => {
             const newPinyin = editTtPinyin.value.trim();
             const newMeaning = editTtMeaning.value.trim();
-            
             ttPinyin.textContent = newPinyin;
             ttMeaning.textContent = newMeaning;
             ttViewMode.classList.remove('hidden');
             ttEditMode.classList.add('hidden');
             ttEditMode.classList.remove('flex');
-            
             if (currentLookupWord) {
                 await saveWordData(currentLookupWord, newPinyin, newMeaning);
                 const rawText = currentLyricsData[currentTrackIndex];
@@ -1776,9 +1815,7 @@ Yêu cầu JSON:
                 });
                 lyricView.classList.remove('hidden');
                 lyricView.classList.add('flex');
-                
                 updateLyricContent();
-                
                 btnLyric.classList.remove('text-gray-400');
                 btnLyric.classList.add('text-blue-600', 'bg-blue-50', 'rounded-lg');
                 document.getElementById('mainScrollArea').scrollTop = 0;
@@ -1786,7 +1823,6 @@ Yêu cầu JSON:
                 lyricView.classList.add('hidden');
                 lyricView.classList.remove('flex');
                 document.getElementById('trackListView').classList.remove('hidden');
-                
                 btnLyric.classList.remove('text-blue-600', 'bg-blue-50', 'rounded-lg');
                 btnLyric.classList.add('text-gray-400');
                 scrollToPlayingTrack();
@@ -1881,30 +1917,80 @@ Yêu cầu JSON:
         });
 
         btnImportData.addEventListener('click', () => { fileImportData.click(); });
-        fileImportData.addEventListener('change', (e) => {
+        fileImportData.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = (event) => {
+            reader.onload = async (event) => {
                 try {
                     const importedData = JSON.parse(event.target.result);
                     let importedCount = 0;
-                    if (importedData.dictionary) {
-                        for (const [word, data] of Object.entries(importedData.dictionary)) {
-                            saveWordData(word, data.pinyin, data.meaning, data.memorized);
-                            importedCount++;
+
+                    if (isFirebaseReady && currentUser) {
+                        showDataMessage('Đang đồng bộ dữ liệu lên mây...', 'text-blue-500');
+                        let batch = writeBatch(db);
+                        let operationCount = 0;
+
+                        const checkAndCommitBatch = async () => {
+                            if (operationCount >= 490) { 
+                                await batch.commit();
+                                batch = writeBatch(db);
+                                operationCount = 0;
+                            }
+                        };
+
+                        if (importedData.dictionary) {
+                            for (const [word, data] of Object.entries(importedData.dictionary)) {
+                                const safeWord = encodeURIComponent(word);
+                                const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'dictionary', safeWord);
+                                batch.set(docRef, { pinyin: data.pinyin, meaning: data.meaning }, { merge: true });
+                                
+                                const dictStr = localStorage.getItem('hsk_user_dictionary');
+                                const dict = dictStr ? JSON.parse(dictStr) : {};
+                                dict[word] = { pinyin: data.pinyin, meaning: data.meaning, memorized: data.memorized || false };
+                                localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+
+                                operationCount++;
+                                importedCount++;
+                                await checkAndCommitBatch();
+                            }
                         }
-                    }
-                    if (importedData.translations) {
-                        for (const [key, value] of Object.entries(importedData.translations)) {
-                            const match = key.match(/hsk_ai_translation_De(\d+)_Trk(\d+)/);
-                            if (match) {
-                                saveTranslationData(match[1], match[2], value);
+
+                        if (importedData.translations) {
+                            for (const [key, value] of Object.entries(importedData.translations)) {
+                                const docRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'translations', key);
+                                batch.set(docRef, { translation: value }, { merge: true });
+                                localStorage.setItem(key, value);
+                                operationCount++;
+                                importedCount++;
+                                await checkAndCommitBatch();
+                            }
+                        }
+                        
+                        if (operationCount > 0) {
+                            await batch.commit();
+                        }
+                        showDataMessage(`Thành công! Đã khôi phục và đồng bộ ${importedCount} mục.`, 'text-green-600');
+
+                    } else {
+                        if (importedData.dictionary) {
+                            const dictStr = localStorage.getItem('hsk_user_dictionary');
+                            const dict = dictStr ? JSON.parse(dictStr) : {};
+                            for (const [word, data] of Object.entries(importedData.dictionary)) {
+                                dict[word] = { pinyin: data.pinyin, meaning: data.meaning, memorized: data.memorized || false };
+                                importedCount++;
+                            }
+                            localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
+                        }
+                        if (importedData.translations) {
+                            for (const [key, value] of Object.entries(importedData.translations)) {
+                                localStorage.setItem(key, value);
                                 importedCount++;
                             }
                         }
+                        showDataMessage(`Đã khôi phục Offline ${importedCount} mục.`, 'text-green-600');
                     }
-                    showDataMessage(`Thành công! Đã khôi phục ${importedCount} mục.`, 'text-green-600');
+
                     if (!lyricView.classList.contains('hidden')) updateLyricContent();
                     if (isVocaMode) refreshVocaData();
                 } catch (error) {
@@ -1996,7 +2082,11 @@ Yêu cầu JSON:
 
         audioPlayer.addEventListener('ended', () => {
             if (isRepeatOne) { audioPlayer.currentTime = 0; audioPlayer.play(); } 
-            else { playNext(); }
+            else { 
+                isPlaying = false;
+                updatePlayerUI();
+                renderTrackList();
+            }
         });
 
         progressBar.addEventListener('input', () => {
@@ -2031,6 +2121,8 @@ Yêu cầu JSON:
         let currentVocaTab = 'flashcard';
         let currentPage = 1;
         const itemsPerPage = 50;
+        let vocaSortMode = 'newest';
+        let vocaSearchQuery = ''; // Biến lưu trữ từ khóa tìm kiếm
 
         let quizQuestions = [];
         let quizCurrentIndex = 0;
@@ -2045,41 +2137,57 @@ Yêu cầu JSON:
         const vocabularyModeView = document.getElementById('vocabularyModeView');
         const appFooter = document.getElementById('appFooter');
         
-        function toggleAppMode() {
-            isVocaMode = !isVocaMode;
-            if (isVocaMode) {
-                // Sang Voca Mode
+        window.allLyricsCache = window.allLyricsCache || {};
+
+        async function loadAllLyricsCache() {
+            const fetchPromises = [];
+            for (let de = 1; de <= MAX_DE; de++) {
+                if (!window.allLyricsCache[de]) {
+                    fetchPromises.push(
+                        fetch(`data_HSK4Audio/De${de}.txt`)
+                            .then(res => res.ok ? res.text() : "")
+                            .then(text => {
+                                window.allLyricsCache[de] = text ? text.split('#').map(item => item.trim()) : [];
+                            })
+                            .catch(() => { window.allLyricsCache[de] = []; })
+                    );
+                }
+            }
+            if (fetchPromises.length > 0) {
+                await Promise.all(fetchPromises);
+            }
+        }
+
+        async function toggleAppMode() {
+            if (!isVocaMode) {
+                const originalHtml = btnToggleVocaMode.innerHTML;
+                btnToggleVocaMode.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+                btnToggleVocaMode.disabled = true;
+                
+                await loadAllLyricsCache();
+                
+                btnToggleVocaMode.disabled = false;
+                isVocaMode = true;
+                
                 document.querySelectorAll('.app-mode-audio').forEach(el => el.classList.add('hidden'));
                 btnToggleVocaMode.classList.replace('bg-indigo-50', 'bg-indigo-600');
                 btnToggleVocaMode.classList.replace('text-indigo-600', 'text-white');
                 btnToggleVocaMode.innerHTML = '<i class="fa-solid fa-music"></i> <span class="hidden sm:inline">Bài Nghe</span>';
-                
                 vocabularyModeView.classList.remove('hidden');
                 vocabularyModeView.classList.add('flex');
-                
-                // KHẮC PHỤC LỖI NỀN TRẮNG KHI CUỘN:
-                // Đồng bộ màu nền xám cho toàn bộ thẻ body và vùng cuộn chính
                 document.body.classList.replace('bg-white', 'bg-[#f3f4f6]');
                 document.getElementById('mainScrollArea').classList.replace('bg-white', 'bg-[#f3f4f6]');
-
-                // ẨN AUDIO PLAYER KHI HỌC TỪ VỰNG
                 appFooter.classList.add('hidden');
-                
                 refreshVocaData();
             } else {
-                // Sang Audio Mode
+                isVocaMode = false;
                 vocabularyModeView.classList.add('hidden');
                 vocabularyModeView.classList.remove('flex');
-                
                 btnToggleVocaMode.classList.replace('bg-indigo-600', 'bg-indigo-50');
                 btnToggleVocaMode.classList.replace('text-white', 'text-indigo-600');
                 btnToggleVocaMode.innerHTML = '<i class="fa-solid fa-graduation-cap"></i> <span class="hidden sm:inline">Học Từ Vựng</span>';
-                
-                // TRẢ LẠI MÀU NỀN TRẮNG CHO GIAO DIỆN BÀI NGHE
                 document.body.classList.replace('bg-[#f3f4f6]', 'bg-white');
                 document.getElementById('mainScrollArea').classList.replace('bg-[#f3f4f6]', 'bg-white');
-
-                // HIỆN LẠI AUDIO PLAYER
                 appFooter.classList.remove('hidden');
                 
                 if (lyricView.classList.contains('flex')) {
@@ -2094,15 +2202,28 @@ Yêu cầu JSON:
         function getDictionaryArray() {
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
-            return Object.keys(dict).map(hanzi => ({
-                hanzi: hanzi,
-                pinyin: dict[hanzi].pinyin,
-                meaning: dict[hanzi].meaning,
-                memorized: dict[hanzi].memorized || false
-            }));
+            
+            let allLyricsString = "";
+            for (let i = 1; i <= MAX_DE; i++) {
+                if (window.allLyricsCache[i]) {
+                    allLyricsString += window.allLyricsCache[i].join(" ");
+                }
+            }
+
+            const arr = [];
+            for (const hanzi of Object.keys(dict)) {
+                if (allLyricsString.includes(hanzi)) {
+                    arr.push({
+                        hanzi: hanzi,
+                        pinyin: dict[hanzi].pinyin,
+                        meaning: dict[hanzi].meaning,
+                        memorized: dict[hanzi].memorized || false
+                    });
+                }
+            }
+            return arr;
         }
 
-        // HÀM MỚI: Chỉ cập nhật trạng thái "Đã thuộc" dưới Local Storage
         function updateLocalMemorized(word, isMemorized) {
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
@@ -2114,6 +2235,11 @@ Yêu cầu JSON:
 
         function refreshVocaData() {
             vocaFullList = getDictionaryArray();
+
+            if (vocaSortMode === 'newest') {
+                vocaFullList.reverse(); 
+            }
+
             updateTotalProgress();
 
             if (vocaFullList.length === 0) {
@@ -2125,7 +2251,6 @@ Yêu cầu JSON:
                 return;
             } else {
                 document.getElementById('vocaNoDataState').classList.add('hidden');
-                // SỬA LỖI TẠI ĐÂY: Chỉ bật thanh công cụ khi đang ở tab flashcard
                 if(currentVocaTab === 'flashcard') document.getElementById('vocaMainControls').classList.remove('hidden');
             }
 
@@ -2149,6 +2274,20 @@ Yêu cầu JSON:
             } else if (currentVocaTab === 'list') {
                 renderVocaList();
             }
+        }
+
+        window.toggleVocaSort = function() {
+            vocaSortMode = vocaSortMode === 'newest' ? 'oldest' : 'newest';
+            const btn = document.getElementById('btnSortList');
+            if (vocaSortMode === 'newest') {
+                btn.innerHTML = '<i class="fas fa-sort-amount-down"></i>';
+                btn.title = "Đang sắp xếp: Mới nhất";
+            } else {
+                btn.innerHTML = '<i class="fas fa-sort-amount-up"></i>';
+                btn.title = "Đang sắp xếp: Cũ nhất";
+            }
+            currentPage = 1; 
+            refreshVocaData();
         }
 
         function updateTotalProgress() {
@@ -2269,7 +2408,6 @@ Yêu cầu JSON:
             e.stopPropagation();
             if (activeVocabulary.length > 0) {
                 const vocab = activeVocabulary[vocaCurrentIndex];
-                // SỬ DỤNG HÀM LOCAL THAY VÌ ĐẨY LÊN FIREBASE
                 updateLocalMemorized(vocab.hanzi, !vocab.memorized);
                 refreshVocaData(); 
             }
@@ -2295,6 +2433,14 @@ Yêu cầu JSON:
             }
         });
 
+        // Tích hợp Tìm kiếm ngữ cảnh từ Flashcard
+        document.getElementById('searchContextBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (activeVocabulary.length > 0) {
+                searchWordInDe(activeVocabulary[vocaCurrentIndex].hanzi);
+            }
+        });
+
         // LIST LOGIC
         function renderVocaList() {
             const container = document.getElementById('vocabularyListContainer');
@@ -2304,29 +2450,44 @@ Yêu cầu JSON:
             const allMemorized = vocaFullList.length > 0 && vocaFullList.every(item => item.memorized);
             selectAllCb.checked = allMemorized;
 
-            if (vocaFullList.length === 0) return;
+            // XỬ LÝ LỌC TỪ KHÓA TÌM KIẾM
+            let filteredList = vocaFullList;
+            if (vocaSearchQuery.trim() !== '') {
+                const query = vocaSearchQuery.toLowerCase().trim();
+                filteredList = vocaFullList.filter(item => 
+                    item.hanzi.toLowerCase().includes(query) || 
+                    (item.pinyin && item.pinyin.toLowerCase().includes(query)) || 
+                    (item.meaning && item.meaning.toLowerCase().includes(query))
+                );
+            }
 
-            const totalPages = Math.ceil(vocaFullList.length / itemsPerPage);
+            if (filteredList.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-400 py-8 text-sm font-medium italic">Không tìm thấy từ vựng nào phù hợp.</div>`;
+                renderPaginationControls(0);
+                return;
+            }
+
+            const totalPages = Math.ceil(filteredList.length / itemsPerPage);
             if (currentPage > totalPages) currentPage = totalPages;
             if (currentPage < 1) currentPage = 1;
 
             const startIndex = (currentPage - 1) * itemsPerPage;
-            const paginatedItems = vocaFullList.slice(startIndex, startIndex + itemsPerPage);
+            const paginatedItems = filteredList.slice(startIndex, startIndex + itemsPerPage);
 
             paginatedItems.forEach(item => {
                 const el = document.createElement('div');
-                el.className = `bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between transition hover:shadow-md ${item.memorized ? 'bg-green-50/50' : ''}`;
+                el.className = `bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between transition hover:shadow-md ${item.memorized ? 'bg-green-50/50' : ''}`;
                 el.innerHTML = `
-                    <div class="flex items-center gap-4 flex-1 cursor-pointer" onclick="openWriterForWord('${item.hanzi}')">
-                        <div class="min-w-[3rem] w-auto px-2 py-1 h-12 rounded-lg flex items-center justify-center text-2xl chinese-font text-blue-600 text-center whitespace-nowrap">
+                    <div class="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                        <div class="min-w-[3rem] w-auto px-2 py-1 h-12 rounded-lg flex items-center justify-center text-2xl chinese-font text-blue-600 text-center whitespace-nowrap cursor-pointer hover:bg-blue-100 transition" onclick="openWriterForWord('${item.hanzi}')" title="Nhấn để tập viết">
                             ${item.hanzi}
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="font-bold text-gray-800 text-lg leading-tight mb-1 break-words">${item.pinyin}</div>
+                        <div class="flex-1 min-w-0 cursor-pointer" onclick="searchWordInDe('${item.hanzi}')" title="Tìm trong bài nghe">
+                            <div class="font-bold text-gray-800 text-2sm leading-tight mb-1 break-words hover:text-blue-600 transition">${item.pinyin}</div>
                             <div class="text-sm text-gray-500 break-words">${item.meaning}</div>
                         </div>
                     </div>
-                    <div class="flex items-center pl-2">
+                    <div class="flex items-center pl-2 sm:pl-3 border-l border-gray-100 ml-2">
                         <label class="cursor-pointer p-2">
                             <input type="checkbox" class="w-6 h-6 rounded-md border-2 border-gray-300 custom-checkbox focus:ring-0 transition cursor-pointer" 
                                 ${item.memorized ? 'checked' : ''} 
@@ -2350,9 +2511,9 @@ Yêu cầu JSON:
             paginationControls.classList.remove('hidden');
             paginationControls.classList.add('flex');
             paginationControls.innerHTML = `
-                <button onclick="changePage(-1)" class="w-10 h-10 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>
-                <span class="text-sm font-medium text-gray-600">Trang ${currentPage} / ${totalPages}</span>
-                <button onclick="changePage(1)" class="w-10 h-10 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>
+                <button onclick="changePage(-1)" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600 transition" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>
+                <span class="text-xs sm:text-sm font-medium text-gray-600 whitespace-nowrap">Trang ${currentPage} / ${totalPages}</span>
+                <button onclick="changePage(1)" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-gray-200 text-gray-600 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600 transition" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>
             `;
         }
 
@@ -2363,15 +2524,12 @@ Yêu cầu JSON:
         }
 
         window.handleListCheck = function(cb, hanzi, pinyin, meaning) {
-            // SỬ DỤNG HÀM LOCAL THAY VÌ ĐẨY LÊN FIREBASE
             updateLocalMemorized(hanzi, cb.checked);
             refreshVocaData();
         }
 
         document.getElementById('selectAllCheckbox').addEventListener('change', async (e) => {
             const isChecked = e.target.checked;
-            
-            // Cập nhật Local Storage NGAY LẬP TỨC
             const dictStr = localStorage.getItem('hsk_user_dictionary');
             const dict = dictStr ? JSON.parse(dictStr) : {};
             
@@ -2381,12 +2539,190 @@ Yêu cầu JSON:
                 }
             });
             localStorage.setItem('hsk_user_dictionary', JSON.stringify(dict));
-            
-            // Cập nhật giao diện lập tức
             refreshVocaData();
-            
-            // BỎ HOÀN TOÀN KHỐI LỆNH ĐẨY FIREBASE BATCH Ở ĐÂY
         });
+
+        // ========================================================================
+        // TÌM KIẾM NGỮ CẢNH (CONTEXT SEARCH)
+        // ========================================================================
+        window.jumpToTrackTargetWord = "";
+        window.allLyricsCache = window.allLyricsCache || {}; 
+
+        window.searchWordInDe = async function(hanzi) {
+            document.getElementById('ctxSearchWord').textContent = hanzi;
+            const container = document.getElementById('ctxResultsContainer');
+            container.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-10 text-gray-400">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-3 text-blue-500"></i>
+                    <p class="text-center font-medium">Đang quét toàn bộ 10 Đề...</p>
+                </div>`;
+            
+            const modal = document.getElementById('wordContextModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('wordContextModalContent').classList.remove('scale-95');
+                document.getElementById('wordContextModalContent').classList.add('scale-100');
+            }, 50);
+
+            // Tái sử dụng lại hàm load ngầm đã viết ở trên
+            await loadAllLyricsCache();
+
+            const results = [];
+            for (let de = 1; de <= MAX_DE; de++) {
+                const deLyrics = window.allLyricsCache[de];
+                if (!deLyrics) continue;
+
+                for (let i = 0; i < deLyrics.length; i++) {
+                    const text = deLyrics[i];
+                    if (text && text.includes(hanzi)) {
+                        const idx = text.indexOf(hanzi);
+                        const start = Math.max(0, idx - 35);
+                        const end = Math.min(text.length, idx + hanzi.length + 35);
+                        let snippet = text.substring(start, end);
+                        
+                        if (start > 0) snippet = "..." + snippet;
+                        if (end < text.length) snippet = snippet + "...";
+                        
+                        const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        const regex = new RegExp(escapeRegExp(hanzi), 'g');
+                        snippet = snippet.replace(regex, `<span class="text-blue-600 font-bold bg-blue-100 px-[2px] rounded mx-[1px] shadow-sm">${hanzi}</span>`);
+                        
+                        results.push({ de: de, trackIndex: i, snippet: snippet });
+                    }
+                }
+            }
+
+            showContextModalResults(hanzi, results);
+        }
+
+        // TẠO GIAO DIỆN KẾT QUẢ: GỘP CHUNG HÀNH ĐỘNG VÀO THÂN THẺ
+        function showContextModalResults(hanzi, results) {
+            const container = document.getElementById('ctxResultsContainer');
+            container.innerHTML = '';
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-10 text-gray-400">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3 opacity-50"></i>
+                        <p class="text-center font-medium">Không tìm thấy từ này trong bất kỳ Đề nào.</p>
+                    </div>`;
+            } else {
+                const summary = document.createElement('div');
+                summary.className = "text-xs font-bold text-green-600 mb-2 px-1";
+                summary.innerHTML = `<i class="fas fa-check-circle"></i> Tìm thấy ${results.length} kết quả trên toàn bộ hệ thống`;
+                container.appendChild(summary);
+
+                results.forEach(res => {
+                    const trackFileName = `De${res.de}_${padNum(res.trackIndex + 1)}.mp3`;
+                    const el = document.createElement('div');
+                    
+                    // Gắn sự kiện click trực tiếp lên toàn bộ thẻ div
+                    el.className = "bg-white hover:bg-blue-50 border-2 border-gray-100 hover:border-blue-200 p-3 sm:p-4 rounded-xl cursor-pointer transition shadow-sm hover:shadow-md relative";
+                    el.onclick = () => jumpToTrackAndWord(res.de, res.trackIndex, hanzi);
+                    
+                    el.innerHTML = `
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-md"><i class="fa-solid fa-headphones mr-1"></i> Đề ${res.de} - ${trackFileName}</div>
+                        </div>
+                        <div class="text-gray-800 text-[16px] sm:text-[18px] leading-relaxed font-['Kaiti','Noto_Sans_SC'] font-medium">${res.snippet}</div>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+        }
+
+        function closeContextModal() {
+            const modal = document.getElementById('wordContextModal');
+            modal.classList.add('opacity-0');
+            document.getElementById('wordContextModalContent').classList.remove('scale-100');
+            document.getElementById('wordContextModalContent').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+        document.getElementById('closeCtxModal').addEventListener('click', closeContextModal);
+        
+        const wordCtxModal = document.getElementById('wordContextModal');
+        wordCtxModal.addEventListener('click', (e) => {
+            if (e.target === wordCtxModal) closeContextModal();
+        });
+
+        // TÍNH NĂNG 2: ĐƯA VỀ PHỤ ĐỀ, CUỘN ĐẾN TỪ KHÓA VÀ KHÔNG PHÁT NHẠC
+        window.jumpToTrackAndWord = function(targetDe, trackIndex, hanzi) {
+            closeContextModal();
+            window.jumpToTrackTargetWord = hanzi;
+
+            // Thoát màn học từ vựng nếu đang mở
+            if (isVocaMode) {
+                toggleAppMode();
+            }
+
+            if (currentDe !== targetDe) {
+                document.getElementById('deSelector').value = targetDe;
+                loadDe(targetDe); // Đổi Đề mới (Hàm này tự động reset về TrackList)
+                
+                // ÉP MỞ LẠI GIAO DIỆN PHỤ ĐỀ NGAY SAU KHI ĐỔI ĐỀ
+                if (document.getElementById('lyricView').classList.contains('hidden')) {
+                    toggleLyricView();
+                }
+
+                // Đợi Đề mới tải phụ đề xong thì mới chọn bài
+                let retries = 0;
+                const checkInterval = setInterval(() => {
+                    if ((currentLyricsData && currentLyricsData.length > 0) || retries > 20) {
+                        clearInterval(checkInterval);
+                        loadTrackWithoutPlaying(trackIndex, hanzi);
+                    }
+                    retries++;
+                }, 100);
+            } else {
+                // Mở Phụ đề nếu chưa mở (Trường hợp cùng Đề)
+                if (document.getElementById('lyricView').classList.contains('hidden')) {
+                    toggleLyricView();
+                }
+                loadTrackWithoutPlaying(trackIndex, hanzi);
+            }
+        }
+
+        window.loadTrackWithoutPlaying = function(trackIndex, hanzi) {
+            // Dừng audio nếu đang phát
+            if (isPlaying || !audioPlayer.paused) {
+                audioPlayer.pause();
+                isPlaying = false;
+            }
+
+            if (currentTrackIndex !== trackIndex) {
+                currentTrackIndex = trackIndex;
+                const track = tracks[currentTrackIndex];
+                audioPlayer.src = track.path;
+                audioPlayer.playbackRate = currentSpeed;
+                
+                updatePlayerUI();
+                renderTrackList();
+                updateLyricContent(); // Việc cuộn sẽ được xử lý trong renderAnnotatedLyric qua jumpToTrackTargetWord
+            } else {
+                updatePlayerUI();
+                renderTrackList();
+                window.scrollToTargetWord(hanzi);
+            }
+        }
+
+        window.scrollToTargetWord = function(hanzi) {
+            const lyricContent = document.getElementById('lyricContent');
+            const spans = lyricContent.querySelectorAll('.saved-word');
+            
+            for (let span of spans) {
+                if (span.textContent === hanzi) {
+                    span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    span.classList.add('bg-yellow-300', 'text-yellow-900', 'scale-125', 'shadow-lg', 'transition-all', 'duration-500', 'z-10', 'relative');
+                    setTimeout(() => {
+                        span.classList.remove('bg-yellow-300', 'text-yellow-900', 'scale-125', 'shadow-lg', 'z-10', 'relative');
+                    }, 3000);
+                    break;
+                }
+            }
+            window.jumpToTrackTargetWord = "";
+        }
+
 
         // QUIZ LOGIC
         window.selectQuestionCount = function(count) {
