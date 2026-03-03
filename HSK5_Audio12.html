@@ -241,13 +241,7 @@
         <!-- AUDIO MODE: PHỤ ĐỀ (LYRIC) -->
         <div id="lyricView" class="hidden flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex-col relative app-mode-audio">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-4 border-b border-gray-100 flex-none gap-4">
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
-                        <i class="fa-solid fa-file-lines text-blue-500"></i> Phụ đề nội dung
-                    </h2>
-                    <p id="lyricSubtitle" class="text-sm text-gray-500 mt-1">Đề 1 - File 001.mp3</p>
-                </div>
-                
+               
                 <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
                     <button id="btnAnalyzeAI" class="text-purple-600 hover:text-white hover:bg-purple-600 transition bg-purple-50 border border-purple-200 px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 focus:outline-none whitespace-nowrap">
                         <i class="fa-solid fa-language"></i> Dịch Phụ đề
@@ -1052,7 +1046,7 @@
         const lyricView = document.getElementById('lyricView');
         const closeLyricViewBtn = document.getElementById('closeLyricViewBtn');
         const lyricContent = document.getElementById('lyricContent');
-        const lyricSubtitle = document.getElementById('lyricSubtitle');
+        //const lyricSubtitle = document.getElementById('lyricSubtitle');
 
         const btnLyricSettings = document.getElementById('btnLyricSettings');
         const lyricSettingsModal = document.getElementById('lyricSettingsModal');
@@ -1380,13 +1374,13 @@
             else apiKeyWarning.classList.add('hidden');
 
             if (currentTrackIndex === -1) {
-                lyricSubtitle.textContent = `Đề số ${currentDe}`;
+                //lyricSubtitle.textContent = `Đề số ${currentDe}`;
                 lyricContent.innerHTML = '<div class="text-center text-gray-400 italic mt-10"><i class="fa-solid fa-music text-4xl mb-4 block opacity-50"></i>Vui lòng chọn một bài nghe để xem phụ đề.</div>';
                 return;
             }
 
             const track = tracks[currentTrackIndex];
-            lyricSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
+            //lyricSubtitle.textContent = `Đề ${currentDe} - ${track.fileName}`;
 
             const rawText = (currentLyricsData && currentLyricsData.length > currentTrackIndex) ? currentLyricsData[currentTrackIndex] : "";
             
