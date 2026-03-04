@@ -17,6 +17,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            future: {
+                hoverOnlyWhenSupported: true, // Loại bỏ trạng thái hover bị kẹt trên mobile
+            },
             theme: {
                 extend: {
                     fontFamily: {
@@ -42,19 +45,29 @@
         .feature-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        
+        /* Chỉ áp dụng hiệu ứng hover trên các thiết bị hỗ trợ chuột (PC/Laptop) */
+        @media (hover: hover) and (pointer: fine) {
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* Hiệu ứng lún nhẹ khi người dùng chạm (tap) trên điện thoại để tạo cảm giác bấm */
+        .feature-card:active {
+            transform: scale(0.96);
+            transition: transform 0.1s;
         }
     </style>
 </head>
 <body class="font-sans text-gray-800 min-h-screen">
 
     <!-- Container chính: Tràn viền trên Mobile, dạng khung bo góc trên PC (sm trở lên) -->
-    <div class="max-w-4xl w-full mx-auto bg-white sm:rounded-3xl sm:shadow-2xl overflow-hidden sm:border border-gray-100 sm:my-10 min-h-screen sm:min-h-0 flex flex-col">
+    <div class="max-w-4xl w-full mx-auto bg-white sm:rounded-3xl sm:shadow-2xl sm:border border-gray-100 sm:my-10 min-h-screen sm:min-h-0 flex flex-col">
         
         <!-- Phần Header màu Xanh Giáo Dục -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-5 text-center relative overflow-hidden shrink-0">
+        <div class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-5 text-center overflow-hidden shrink-0 sm:rounded-t-3xl shadow-md">
             <!-- Icon trang trí nền mờ -->
             <i class="fa-solid fa-yin-yang absolute -right-10 -bottom-10 text-9xl text-white opacity-10 transform -rotate-45"></i>
             <i class="fa-solid fa-dragon absolute -left-10 top-2 text-8xl text-white opacity-10"></i>
@@ -62,7 +75,7 @@
             <h1 class="text-2xl md:text-4xl font-extrabold text-white mb-3 tracking-tight drop-shadow-md">
                 Vui học tiếng Trung
             </h1>
-            <p class="text-blue-100 text-2sm md:text-2sm font-medium max-w-lg mx-auto">
+            <p class="text-blue-100 text-sm md:text-base font-medium max-w-lg mx-auto">
                 开心中文-好好学习天天向上
             </p>
         </div>
@@ -203,7 +216,7 @@
         </div>
         
         <!-- Footer nhỏ bên dưới -->
-        <div class="bg-gray-50 py-4 text-center border-t border-gray-100 shrink-0">
+        <div class="bg-gray-50 py-4 text-center border-t border-gray-100 shrink-0 sm:rounded-b-3xl">
             <p class="text-xs text-gray-400 font-semibold">Tự tin giao tiếp tiếng Trung mỗi ngày</p>
         </div>
     </div>
