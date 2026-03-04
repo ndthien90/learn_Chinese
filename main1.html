@@ -61,17 +61,17 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 min-h-screen">
+<body class="font-sans text-gray-800 bg-gray-50 sm:bg-transparent h-[100dvh] overflow-hidden">
 
-    <!-- Container chính: Tràn viền trên Mobile, dạng khung bo góc trên PC (sm trở lên) -->
-    <div class="max-w-4xl w-full mx-auto bg-white sm:rounded-3xl sm:shadow-2xl sm:border border-gray-100 sm:my-10 min-h-screen sm:min-h-0 flex flex-col">
-        
-        <!-- Phần Header màu Xanh Giáo Dục -->
-        <div class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-5 text-center overflow-hidden shrink-0 sm:rounded-t-3xl shadow-md">
-            <!-- Icon trang trí nền mờ -->
-            <i class="fa-solid fa-yin-yang absolute -right-10 -bottom-10 text-9xl text-white opacity-10 transform -rotate-45"></i>
-            <i class="fa-solid fa-dragon absolute -left-10 top-2 text-8xl text-white opacity-10"></i>
+    <!-- Vùng cuộn độc lập: Giúp thanh URL trình duyệt cố định, không bị ẩn khi cuộn -->
+    <div class="w-full h-full overflow-y-auto">
+
+        <!-- Container chính: Tràn viền trên Mobile, dạng khung bo góc trên PC (sm trở lên) -->
+        <div class="max-w-4xl w-full mx-auto bg-white sm:rounded-3xl sm:shadow-2xl sm:border border-gray-100 sm:my-10 min-h-full sm:min-h-0 flex flex-col">
             
+            <!-- Phần Header màu Xanh Giáo Dục -->
+            <div class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-5 text-center overflow-hidden shrink-0 sm:rounded-t-3xl shadow-md">
+                <!-- Icon trang trí nền mờ -->
             <h1 class="text-2xl md:text-4xl font-extrabold text-white mb-3 tracking-tight drop-shadow-md">
                 Vui học tiếng Trung
             </h1>
@@ -220,6 +220,8 @@
             <p class="text-xs text-gray-400 font-semibold">Tự tin giao tiếp tiếng Trung mỗi ngày</p>
         </div>
     </div>
+    
+    </div> <!-- Đóng thẻ của vùng cuộn độc lập -->
 
 </body>
 </html>
