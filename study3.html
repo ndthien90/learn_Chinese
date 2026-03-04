@@ -154,33 +154,6 @@
             transition: width 0.3s ease;
         }
 
-        /* --- NÚT BOOKMARK CỐ ĐỊNH TRÊN CÙNG BÊN TRÁI --- */
-        .fixed-bookmark-btn {
-            position: fixed;
-            top: 20px;
-            left: 0; /* Bám sát cạnh trái */
-            z-index: 990;
-            padding: 2px 2px 2px 2px;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-left: none; /* Bỏ viền bên trái */
-            border-radius: 0 8px 8px 0; /* Chỉ bo tròn cạnh phải */
-            cursor: pointer;
-            box-shadow: 2px 4px 8px var(--shadow-color); /* Đổ bóng sang phải */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px; /* Tăng kích thước icon cho dễ bấm */
-            transition: all 0.3s ease;
-        }
-
-        .fixed-bookmark-btn:hover {
-            background-color: var(--hover-color);
-            padding-left: 15px; /* Hiệu ứng thò ra một chút khi hover */
-            box-shadow: 4px 4px 12px var(--shadow-color);
-        }
-
         /* --- CSS CHO BOOKMARK PANEL --- */
         .bookmark-panel {
             position: fixed;
@@ -239,64 +212,17 @@
         }
 
         .bookmark-item {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            padding: 0;
-            border-bottom: none;
-        }
-
-        .bookmark-content {
-            padding: 8px 0px; /* Thu nhỏ lề trái/phải từ 20px xuống 10px */
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            cursor: pointer;
             transition: background-color 0.2s;
         }
 
-        .bookmark-content:hover {
+        .bookmark-item:hover {
             background-color: var(--hover-color);
-        }
-
-        .bookmark-title-wrap {
-            display: flex;
-            align-items: center;
-            gap: 2px; /* Giảm khoảng cách giữa mũi tên và text */
-            flex: 1;
-        }
-
-        .bookmark-toggle {
-            cursor: pointer;
-            width: 16px; /* Giảm độ rộng của khu vực mũi tên */
-            height: 16px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px; /* Nhỏ gọn hơn */
-            transition: transform 0.2s;
-            color: var(--text-secondary);
-            user-select: none;
-        }
-
-        .bookmark-toggle.open {
-            transform: rotate(90deg);
-        }
-
-        .bookmark-toggle.hidden {
-            visibility: hidden;
-        }
-
-        .bookmark-children {
-            list-style: none;
-            padding-left: 15px; /* Giảm độ thụt lề của các mục con */
-            margin: 0;
-            display: none;
-        }
-
-        .bookmark-children.open {
-            display: block;
         }
 
         .bookmark-title {
@@ -312,7 +238,6 @@
             background-color: var(--bg-secondary);
             padding: 3px 8px;
             border-radius: 12px;
-            white-space: nowrap;
         }
         
         .bookmark-empty {
@@ -324,11 +249,6 @@
     </style>
 </head>
 <body>
-    <!-- Nút mở Bookmark cố định -->
-    <button id="toggleBookmarks" class="fixed-bookmark-btn" title="Mở mục lục">
-        📑
-    </button>
-
     <!-- Thanh Bookmark -->
     <div id="bookmarkPanel" class="bookmark-panel">
         <div class="bookmark-header">
@@ -344,6 +264,9 @@
         <div class="header">
             <h1>Vui học tiếng Trung</h1>
             <div class="header-buttons">
+                <button class="btn-custom" id="toggleBookmarks">
+                    <span>📑 Mục lục</span>
+                </button>
                 <button class="btn-custom" id="themeToggle">
                     <span class="theme-icon">🌓</span>
                 </button>
@@ -446,103 +369,36 @@
                 
                 const text = await response.text();
                 const lines = text.split('\n');
-                
-                // Khởi tạo gốc của cây (root)
-                const root = { children: [] };
-                // Sử dụng stack để theo dõi cấp độ cha con
-                const stack = [ { level: -1, node: root } ];
                 let hasBookmarks = false;
 
                 lines.forEach(line => {
                     if (!line.trim()) return;
                     
-                    // Regex lấy: [1] khoảng trắng đầu dòng, [2] Tên, [3] Trang
-                    const match = line.match(/^(\s*)(.*?)\s*\[(\d+)\]\s*$/);
+                    // Regex: Lấy text trước và số trong ngoặc vuông (VD: "1. Khởi động [2]")
+                    const match = line.match(/^(.*?)\s*\[(\d+)\]\s*$/);
                     
                     if (match) {
                         hasBookmarks = true;
-                        // Tính cấp độ (level) dựa trên độ dài khoảng trắng (quy đổi 1 tab = 4 space)
-                        const indent = match[1].replace(/\t/g, '    ').length;
-                        const title = match[2];
-                        const page = parseInt(match[3], 10);
-                        const item = { title, page, children: [] };
+                        const title = match[1];
+                        const page = parseInt(match[2], 10);
 
-                        // Tìm node cha phù hợp dựa trên độ lùi đầu dòng (indent)
-                        while (stack.length > 1 && stack[stack.length - 1].level >= indent) {
-                            stack.pop();
-                        }
+                        const li = document.createElement('li');
+                        li.className = 'bookmark-item';
+                        li.innerHTML = `
+                            <span class="bookmark-title">${title}</span> 
+                            <span class="bookmark-page">Tr ${page}</span>
+                        `;
                         
-                        // Thêm vào danh sách con của node cha tìm được
-                        stack[stack.length - 1].node.children.push(item);
-                        // Đưa node hiện tại vào stack để làm cha cho các node thụt lề sâu hơn tiếp theo
-                        stack.push({ level: indent, node: item });
+                        // Sự kiện click để cuộn tới trang
+                        li.onclick = () => {
+                            scrollToPage(page);
+                            toggleBookmarkPanel(false); // Ẩn panel đi sau khi chọn
+                        };
+                        list.appendChild(li);
                     }
                 });
 
                 if (!hasBookmarks) throw new Error('File rỗng hoặc sai định dạng');
-
-                // Hàm đệ quy để render HTML cho cây Mục lục
-                function renderTree(nodes, parentElement) {
-                    nodes.forEach(node => {
-                        const li = document.createElement('li');
-                        li.className = 'bookmark-item';
-                        
-                        const contentDiv = document.createElement('div');
-                        contentDiv.className = 'bookmark-content';
-                        
-                        const titleWrap = document.createElement('div');
-                        titleWrap.className = 'bookmark-title-wrap';
-
-                        const hasChild = node.children.length > 0;
-                        
-                        // Nút mũi tên (ẩn đi nếu không có mục con)
-                        const toggleBtn = document.createElement('span');
-                        toggleBtn.className = `bookmark-toggle ${hasChild ? 'open' : 'hidden'}`;
-                        toggleBtn.innerHTML = '▶';
-                        
-                        const titleSpan = document.createElement('span');
-                        titleSpan.className = 'bookmark-title';
-                        titleSpan.textContent = node.title;
-
-                        titleWrap.appendChild(toggleBtn);
-                        titleWrap.appendChild(titleSpan);
-
-                        const pageSpan = document.createElement('span');
-                        pageSpan.className = 'bookmark-page';
-                        pageSpan.textContent = `Tr ${node.page}`;
-
-                        contentDiv.appendChild(titleWrap);
-                        contentDiv.appendChild(pageSpan);
-                        li.appendChild(contentDiv);
-
-                        let childrenContainer = null;
-                        if (hasChild) {
-                            childrenContainer = document.createElement('ul');
-                            childrenContainer.className = 'bookmark-children open'; // Mặc định mở
-                            renderTree(node.children, childrenContainer);
-                            li.appendChild(childrenContainer);
-
-                            // Bấm vào mũi tên để đóng/mở mục con
-                            toggleBtn.onclick = (e) => {
-                                e.stopPropagation();
-                                childrenContainer.classList.toggle('open');
-                                toggleBtn.classList.toggle('open');
-                            };
-                        }
-
-                        // Bấm vào tên mục lục để chuyển trang
-                        contentDiv.onclick = (e) => {
-                            // Nếu bấm vào nút mũi tên (toggle) thì bỏ qua không chuyển trang
-                            if(e.target === toggleBtn) return; 
-                            scrollToPage(node.page);
-                            toggleBookmarkPanel(false);
-                        };
-
-                        parentElement.appendChild(li);
-                    });
-                }
-
-                renderTree(root.children, list);
 
             } catch (error) {
                 console.log('Lỗi tải Bookmark:', error);
@@ -554,8 +410,7 @@
         function scrollToPage(pageNum) {
             const pageElement = document.getElementById(`pdf-page-${pageNum}`);
             if (pageElement) {
-                // Đổi behavior từ 'smooth' thành 'auto' để nhảy trang ngay lập tức
-                pageElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+                pageElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
                 alert(`Trang ${pageNum} đang được tải hoặc không tồn tại.`);
             }
@@ -640,7 +495,7 @@
         });
 
         // Load initial PDF
-        loadPDF(1);
+        loadPDF(2);
     </script>
 </body>
 </html>
